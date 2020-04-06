@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static com.poker.reader.parser.util.FileParserUtil.DATE_TIME_FORMAT;
+import static com.poker.reader.parser.util.Tokens.END_CARD;
+import static com.poker.reader.parser.util.Tokens.START_CARD;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
@@ -141,5 +143,34 @@ public class FileParserUtilTest {
         actual = FileParserUtil.extractValueFromAction(line, TypeAction.BETS);
         expected = 120L;
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void extractCardTest() {
+        String line = "Dealt to jcarlos.vale [3d Tc]";
+
+        String actual = FileParserUtil.extractCard(line, START_CARD, END_CARD, 1);
+        String expected = "3d";
+        assertEquals(actual, expected);
+
+        actual = FileParserUtil.extractCard(line, START_CARD, END_CARD, 2);
+        expected = "Tc";
+        assertEquals(actual, expected);
+
+        line = "Oliver N76: folds [8c 8s]";
+        actual = FileParserUtil.extractCard(line, START_CARD, END_CARD, 1);
+        expected = "8c";
+        assertEquals(actual, expected);
+
+        actual = FileParserUtil.extractCard(line, START_CARD, END_CARD, 2);
+        expected = "8s";
+        assertEquals(actual, expected);
+
+        line = "mjmj1971: folds";
+        actual = FileParserUtil.extractCard(line, START_CARD, END_CARD, 1);
+        assertNull(actual);
+
+        actual = FileParserUtil.extractCard(line, START_CARD, END_CARD, 2);
+        assertNull(actual);
     }
 }

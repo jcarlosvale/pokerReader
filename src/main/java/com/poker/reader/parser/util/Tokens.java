@@ -43,6 +43,20 @@ public class Tokens {
     public static final String START_STACK = "(";
     public static final String END_STACK = " in chips)";
 
+    public static final String START_CARD = " [";
+    public static final String END_CARD = "]";
+
+    public static final String START_TURN = "] [";
+    public static final String END_TURN = "]";
+
+    public static final String START_RIVER = "] [";
+    public static final String END_RIVER = "]";
+
+
+    //Keywords
+    public static final String DEALT_TO = "Dealt to ";
+
+    //ACTIONS
     public static final String ANTE = ": posts the ante ";
     public static final String SMALL_BLIND = ": posts small blind ";
     public static final String BIG_BLIND = ": posts big blind ";

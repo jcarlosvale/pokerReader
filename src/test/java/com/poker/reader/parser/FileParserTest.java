@@ -127,5 +127,72 @@ public class FileParserTest {
                 .value(120L)
                 .build();
         assertEquals(expected, actual);
+
+        line = "VitalikX77: calls 4604 and is all-in";
+        actual = parser.extractAction(line);
+        expected = Action
+                .builder()
+                .player(Player.builder().nickname("VitalikX77").build())
+                .typeAction(TypeAction.CALL_ALL_IN)
+                .value(4604L)
+                .build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void extractHoldCards() {
+        String line = "Dealt to jcarlos.vale [3d Tc]";
+        HoldCards actual = parser.extractHoldCardsFromAction(line);
+        HoldCards expected = HoldCards
+                .builder()
+                .card1("3d")
+                .card2("Tc")
+                .player(Player.builder().nickname("jcarlos.vale").build())
+                .build();
+        assertEquals(expected, actual);
+
+        line = "Oliver N76: folds [8c 8s]";
+        actual = parser.extractHoldCardsFromAction(line);
+        expected = HoldCards
+                .builder()
+                .card1("8c")
+                .card2("8s")
+                .player(Player.builder().nickname("Oliver N76").build())
+                .build();
+        assertEquals(expected, actual);
+
+        line = "GunDolfAA: folds";
+        actual = parser.extractHoldCardsFromAction(line);
+        expected = HoldCards
+                .builder()
+                .card1(null)
+                .card2(null)
+                .player(Player.builder().nickname("GunDolfAA").build())
+                .build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void extractFlop() {
+        String line = "*** FLOP *** [9d 2h 9h]";
+        Flop actual = parser.extractFlop(line);
+        Flop expected = Flop.builder().card1("9d").card2("2h").card3("9h").build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void extractTurn() {
+        String line = "*** TURN *** [9d 2h 9h] [Jh]";
+        Turn actual = parser.extractTurn(line);
+        Turn expected = Turn.builder().card("Jh").build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void extractRiver() {
+        String line = "*** RIVER *** [9d 2h 9h Jh] [6s]";
+        River actual = parser.extractRiver(line);
+        River expected = River.builder().card("6s").build();
+        assertEquals(expected, actual);
     }
 }

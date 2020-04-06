@@ -52,4 +52,45 @@ public class FileParser {
                 .value(FileParserUtil.extractValueFromAction(line, typeAction))
                 .build();
     }
+
+    public HoldCards extractHoldCardsFromAction(String line) {
+        if (line.contains(DEALT_TO)) {
+            return HoldCards
+                    .builder()
+                    .player(Player.builder().nickname(FileParserUtil.extract(line, DEALT_TO, START_CARD)).build())
+                    .card1(extractCard(line, START_CARD, END_CARD, 1))
+                    .card2(extractCard(line, START_CARD, END_CARD, 2))
+                    .build();
+        } else {
+            return HoldCards
+                    .builder()
+                    .player(Player.builder().nickname(StringUtils.substringBefore(line,":")).build())
+                    .card1(extractCard(line, START_CARD, END_CARD, 1))
+                    .card2(extractCard(line, START_CARD, END_CARD, 2))
+                    .build();
+        }
+    }
+
+    public Flop extractFlop(String line) {
+        return Flop
+                .builder()
+                .card1(extractCard(line, START_CARD, END_CARD, 1))
+                .card2(extractCard(line, START_CARD, END_CARD, 2))
+                .card3(extractCard(line, START_CARD, END_CARD, 3))
+                .build();
+    }
+
+    public Turn extractTurn(String line) {
+        return Turn
+                .builder()
+                .card(extractCard(line, START_TURN, END_TURN, 1))
+                .build();
+    }
+
+    public River extractRiver(String line) {
+        return River
+                .builder()
+                .card(extractCard(line, START_RIVER, END_RIVER, 1))
+                .build();
+    }
 }

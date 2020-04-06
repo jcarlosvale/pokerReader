@@ -6,6 +6,7 @@ public enum TypeAction {
     BIG_BLIND,
     FOLD,
     CALL,
+    CALL_ALL_IN,
     BETS,
     CHECK,
     RAISE,
