@@ -10,6 +10,7 @@ public enum TypeAction {
     BETS,
     CHECK,
     RAISE,
-    ALL_IN
+    ALL_IN,
+    NO_SHOW_HAND,
     ;
 }

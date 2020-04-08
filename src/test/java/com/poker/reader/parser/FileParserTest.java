@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.poker.reader.parser.util.FileParserUtil.DATE_TIME_FORMAT;
 import static org.junit.Assert.assertEquals;
@@ -137,6 +139,17 @@ public class FileParserTest {
                 .value(4604L)
                 .build();
         assertEquals(expected, actual);
+
+        line = "mjmj1971: doesn't show hand";
+        actual = parser.extractAction(line);
+        expected = Action
+                .builder()
+                .player(Player.builder().nickname("mjmj1971").build())
+                .typeAction(TypeAction.NO_SHOW_HAND)
+                .value(0L)
+                .build();
+        assertEquals(expected, actual);
+
     }
 
     @Test
@@ -193,6 +206,51 @@ public class FileParserTest {
         String line = "*** RIVER *** [9d 2h 9h Jh] [6s]";
         River actual = parser.extractRiver(line);
         River expected = River.builder().card("6s").build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void extractUncalledBetTest() {
+        String line = "Uncalled bet (300) returned to mjmj1971";
+        AdditionalInfoPlayer actual = parser.extractAdditionalInfoPlayerUncalledBet(line);
+        AdditionalInfoPlayer expected =
+                AdditionalInfoPlayer
+                        .builder()
+                        .info(TypeInfo.UNCALLED_BET)
+                        .value(300L)
+                        .player(Player.builder().nickname("mjmj1971").build())
+                        .build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void extractAdditionalInfoPlayerCollectedFromPotTest() {
+        String line = "mjmj1971 collected 440 from pot";
+        AdditionalInfoPlayer actual = parser.extractAdditionalInfoPlayerCollectedFromPot(line);
+        AdditionalInfoPlayer expected =
+                AdditionalInfoPlayer
+                        .builder()
+                        .info(TypeInfo.COLLECTED_FROM_POT)
+                        .value(440L)
+                        .player(Player.builder().nickname("mjmj1971").build())
+                        .build();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void extractTotalPotTest() {
+        String line = "Total pot 440 | Rake 0";
+        Long actual = parser.extractTotalPot(line);
+        Long expected = 440L;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void extractBoardTest() {
+        String line = "Board [7s 5h Jc Qd 8d]";
+        List<String> actual = parser.extractBoard(line);
+        List<String> expected = new ArrayList<>();
+        expected.add("7s"); expected.add("5h"); expected.add("Jc"); expected.add("Qd"); expected.add("8d");
         assertEquals(expected, actual);
     }
 }

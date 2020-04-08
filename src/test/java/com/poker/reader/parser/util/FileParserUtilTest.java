@@ -1,11 +1,14 @@
 package com.poker.reader.parser.util;
 
 import com.poker.reader.entity.TypeAction;
+import com.poker.reader.parser.FileParser;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.poker.reader.parser.util.FileParserUtil.DATE_TIME_FORMAT;
 import static com.poker.reader.parser.util.Tokens.END_CARD;
@@ -172,5 +175,14 @@ public class FileParserUtilTest {
 
         actual = FileParserUtil.extractCard(line, START_CARD, END_CARD, 2);
         assertNull(actual);
+    }
+
+    @Test
+    public void extractListTest() {
+        String line = "some token [A1 A2 A3] end token";
+        List<String> actual = FileParserUtil.extractList(line, "some token [", "]", " ");
+        List<String> expected = new ArrayList<>();
+        expected.add("A1"); expected.add("A2"); expected.add("A3");
+        assertEquals(expected, actual);
     }
 }

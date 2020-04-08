@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileParserUtil {
 
@@ -61,6 +63,7 @@ public class FileParserUtil {
             if (line.contains(Tokens.ALL_IN))   return TypeAction.ALL_IN;
             else                                return TypeAction.RAISE;
         }
+        if (line.contains(Tokens.NO_SHOW_HAND)) return TypeAction.NO_SHOW_HAND;
         return null;
     }
 
@@ -76,6 +79,7 @@ public class FileParserUtil {
         if (typeAction.equals(TypeAction.CHECK))        return 0L;
         if (typeAction.equals(TypeAction.ALL_IN))       return extractLong(line, " to ", Tokens.ALL_IN);
         if (typeAction.equals(TypeAction.RAISE))        return extractLongAfter(line, " to ");
+        if (typeAction.equals(TypeAction.NO_SHOW_HAND)) return 0L;
         return null;
     }
 
@@ -83,5 +87,13 @@ public class FileParserUtil {
         String cards = extract(line, startToken, endToken);
         if (null == cards || cards.isEmpty()) return null;
         return cards.split(" ")[cardNumber-1];
+    }
+
+    public static List<String> extractList(String line, String startToken, String endToken, String splitToken) {
+        line = extract(line, startToken, endToken);
+        String[] splited = line.split(splitToken);
+        ArrayList<String> list = new ArrayList<>();
+        for(String s : splited) list.add(s);
+        return list;
     }
 }

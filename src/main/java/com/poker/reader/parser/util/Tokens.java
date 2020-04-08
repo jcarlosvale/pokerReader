@@ -52,9 +52,18 @@ public class Tokens {
     public static final String START_RIVER = "] [";
     public static final String END_RIVER = "]";
 
+    public static final String START_UNCALLED_BET = "Uncalled bet (";
+    public static final String END_UNCALLED_BET = ") ";
+
+    public static final String START_COLLECTED_FROM_POT = "collected ";
+    public static final String END_COLLECTED_FROM_POT = " from pot";
+
+    public static final String START_TOTAL_POT = "Total pot ";
+    public static final String END_TOTAL_POT = " |";
 
     //Keywords
     public static final String DEALT_TO = "Dealt to ";
+    public static final String RETURNED_TO = "returned to ";
 
     //ACTIONS
     public static final String ANTE = ": posts the ante ";
@@ -66,5 +75,5 @@ public class Tokens {
     public static final String BETS = ": bets ";
     public static final String RAISE = ": raises ";
     public static final String ALL_IN = " and is all-in";
-
+    public static final String NO_SHOW_HAND = " doesn't show hand";
 }
