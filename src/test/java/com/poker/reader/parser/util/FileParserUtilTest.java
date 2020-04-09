@@ -82,39 +82,6 @@ public class FileParserUtilTest {
     }
 
     @Test
-    public void extractTypeActionTest() {
-        String line = "H3ll5cream: raises 2597 to 2697 and is all-in";
-        TypeAction actual = FileParserUtil.selectTypeAction(line);
-        TypeAction expected = TypeAction.ALL_IN;
-        assertEquals(expected, actual);
-
-        line = "GunDolfAA: raises 360 to 480";
-        actual = FileParserUtil.selectTypeAction(line);
-        expected = TypeAction.RAISE;
-        assertEquals(expected, actual);
-
-        line = "W SERENA: calls 480";
-        actual = FileParserUtil.selectTypeAction(line);
-        expected = TypeAction.CALL;
-        assertEquals(expected, actual);
-
-        line = "H3ll5cream: folds ";
-        actual = FileParserUtil.selectTypeAction(line);
-        expected = TypeAction.FOLD;
-        assertEquals(expected, actual);
-
-        line = "mjmj1971: checks ";
-        actual = FileParserUtil.selectTypeAction(line);
-        expected = TypeAction.CHECK;
-        assertEquals(expected, actual);
-
-        line = "GunDolfAA: bets 120";
-        actual = FileParserUtil.selectTypeAction(line);
-        expected = TypeAction.BETS;
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public void extractValueFromActionTest() {
         String line = "H3ll5cream: raises 2597 to 2697 and is all-in";
         Long actual = FileParserUtil.extractValueFromAction(line, TypeAction.ALL_IN);

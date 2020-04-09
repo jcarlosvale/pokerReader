@@ -61,19 +61,33 @@ public class Tokens {
     public static final String START_TOTAL_POT = "Total pot ";
     public static final String END_TOTAL_POT = " |";
 
+    public static final String START_COLLECTED_SUMMARY = "collected (";
+    public static final String END_COLLECTED_SUMMARY = ")";
+
+
     //Keywords
     public static final String DEALT_TO = "Dealt to ";
     public static final String RETURNED_TO = "returned to ";
 
     //ACTIONS
-    public static final String ANTE = ": posts the ante ";
-    public static final String SMALL_BLIND = ": posts small blind ";
-    public static final String BIG_BLIND = ": posts big blind ";
-    public static final String FOLD = ": folds ";
-    public static final String CALL = ": calls ";
-    public static final String CHECK = ": checks ";
-    public static final String BETS = ": bets ";
-    public static final String RAISE = ": raises ";
-    public static final String ALL_IN = " and is all-in";
-    public static final String NO_SHOW_HAND = " doesn't show hand";
+    public static final String ANTE_ACTION = ": posts the ante ";
+    public static final String SMALL_BLIND_ACTION = ": posts small blind ";
+    public static final String BIG_BLIND_ACTION = ": posts big blind ";
+    public static final String FOLD_ACTION = ": folds ";
+    public static final String CALL_ACTION = ": calls ";
+    public static final String CHECK_ACTION = ": checks ";
+    public static final String BETS_ACTION = ": bets ";
+    public static final String RAISE_ACTION = ": raises ";
+    public static final String ALL_IN_ACTION = " and is all-in";
+    public static final String NO_SHOW_HAND_ACTION = " doesn't show hand";
+
+    //TYPE INFO
+    public static final String UNCALLED_BET_TYPE_INFO           = "Uncalled bet ";
+    public static final String COLLECTED_FROM_POT_TYPE_INFO     = " from pot";
+    public static final String FOLDED_BEFORE_FLOP_TYPE_INFO     = " folded before Flop";
+    public static final String FOLDED_ON_THE_RIVER_TYPE_INFO    = " folded on the River";
+    public static final String DID_NOT_BET_TYPE_INFO            = "(didn't bet)";
+    public static final String BUTTON_TYPE_INFO                 = "(button)";
+    public static final String BIG_BLIND_TYPE_INFO              = "(big blind)";
+    public static final String SMALL_BLIND_TYPE_INFO            = "(small blind)";
 }

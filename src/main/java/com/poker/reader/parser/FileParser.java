@@ -2,9 +2,13 @@ package com.poker.reader.parser;
 
 import com.poker.reader.entity.*;
 import com.poker.reader.parser.util.FileParserUtil;
+import com.poker.reader.parser.util.Tokens;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.poker.reader.parser.util.FileParserUtil.*;
 import static com.poker.reader.parser.util.Tokens.*;
@@ -37,7 +41,7 @@ public class FileParser {
     }
 
     public Action extractAction(String line) {
-        TypeAction typeAction = FileParserUtil.selectTypeAction(line);
+        TypeAction typeAction = selectTypeAction(line);
         return Action.builder().player(Player.builder().nickname(StringUtils.substringBefore(line, ":").trim()).build())
                 .typeAction(typeAction).value(FileParserUtil.extractValueFromAction(line, typeAction)).build();
     }
@@ -78,7 +82,7 @@ public class FileParser {
     }
 
     public AdditionalInfoPlayer extractAdditionalInfoPlayerCollectedFromPot(String line) {
-        return AdditionalInfoPlayer.builder().info(TypeInfo.COLLECTED_FROM_POT)
+        return AdditionalInfoPlayer.builder().info(TypeInfo.COLLECTED)
                 .value(extractLong(line, START_COLLECTED_FROM_POT, END_COLLECTED_FROM_POT))
                 .player(Player.builder().nickname(StringUtils.substringBefore(line, START_COLLECTED_FROM_POT).trim()).build()).build();
     }
@@ -89,5 +93,42 @@ public class FileParser {
 
     public List<String> extractBoard(String line) {
         return extractList(line, START_CARD, END_CARD, " ");
+    }
+
+    public Summary extractSummary(String line) {
+        Set<TypeInfo> typeInfoList = extractTypeInfoListFrom(line);
+        return Summary
+                .builder()
+                .seatId(extractInteger(line, START_SEAT_POSITION, END_SEAT_POSITION))
+                .value(extractLong(line, START_COLLECTED_SUMMARY, END_COLLECTED_SUMMARY))
+                .additionalInfoPlayerList(typeInfoList)
+                .build();
+    }
+
+    public Set<TypeInfo> extractTypeInfoListFrom(String line) {
+        return Arrays
+                .stream(TypeInfo.values())
+                .filter(typeInfo -> line.contains(typeInfo.getToken()))
+                .collect(Collectors.toSet());
+    }
+
+    public static TypeAction selectTypeAction(String line) {
+        if (line.contains(Tokens.ANTE_ACTION))         return TypeAction.ANTE;
+        if (line.contains(Tokens.SMALL_BLIND_ACTION))  return TypeAction.SMALL_BLIND;
+        if (line.contains(Tokens.BIG_BLIND_ACTION))    return TypeAction.BIG_BLIND;
+        if (line.contains(Tokens.FOLD_ACTION))         return TypeAction.FOLD;
+        if (line.contains(Tokens.CALL_ACTION)) {
+            if (line.contains(Tokens.ALL_IN_ACTION))   return TypeAction.CALL_ALL_IN;
+            else                                       return TypeAction.CALL;
+        }
+        if (line.contains(Tokens.CHECK_ACTION))        return TypeAction.CHECK;
+        if (line.contains(Tokens.BETS_ACTION))         return TypeAction.BETS;
+
+        if (line.contains(Tokens.RAISE_ACTION)) {
+            if (line.contains(Tokens.ALL_IN_ACTION))   return TypeAction.ALL_IN;
+            else                                       return TypeAction.RAISE;
+        }
+        if (line.contains(Tokens.NO_SHOW_HAND_ACTION)) return TypeAction.NO_SHOW_HAND;
+        return null;
     }
 }
