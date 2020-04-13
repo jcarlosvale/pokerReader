@@ -9,4 +9,5 @@ public class Action {
     private Player player;
     private TypeAction typeAction;
     private Long value;
+    private TypeStreet typeStreet;
 }

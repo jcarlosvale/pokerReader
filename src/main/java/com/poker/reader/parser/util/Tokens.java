@@ -83,11 +83,18 @@ public class Tokens {
 
     //TYPE INFO
     public static final String UNCALLED_BET_TYPE_INFO           = "Uncalled bet ";
-    public static final String COLLECTED_FROM_POT_TYPE_INFO     = " from pot";
     public static final String FOLDED_BEFORE_FLOP_TYPE_INFO     = " folded before Flop";
     public static final String FOLDED_ON_THE_RIVER_TYPE_INFO    = " folded on the River";
     public static final String DID_NOT_BET_TYPE_INFO            = "(didn't bet)";
     public static final String BUTTON_TYPE_INFO                 = "(button)";
     public static final String BIG_BLIND_TYPE_INFO              = "(big blind)";
     public static final String SMALL_BLIND_TYPE_INFO            = "(small blind)";
+
+    //FILE SECTION
+    public static final String SECTION_HEADER = START_HAND;
+    public static final String SECTION_PRE_FLOP = "*** HOLE CARDS ***";
+    public static final String SECTION_FLOP = "*** FLOP ***";
+    public static final String SECTION_TURN = "*** TURN ***";
+    public static final String SECTION_RIVER = "*** RIVER ***";
+    public static final String SECTION_SUMMARY = "*** SUMMARY ***";
 }

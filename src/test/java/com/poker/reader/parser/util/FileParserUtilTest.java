@@ -1,7 +1,6 @@
 package com.poker.reader.parser.util;
 
 import com.poker.reader.entity.TypeAction;
-import com.poker.reader.parser.FileParser;
 import org.junit.Test;
 
 import java.math.BigDecimal;
