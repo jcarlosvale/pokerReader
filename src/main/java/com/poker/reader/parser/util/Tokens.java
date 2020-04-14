@@ -73,9 +73,9 @@ public class Tokens {
     public static final String ANTE_ACTION = ": posts the ante ";
     public static final String SMALL_BLIND_ACTION = ": posts small blind ";
     public static final String BIG_BLIND_ACTION = ": posts big blind ";
-    public static final String FOLD_ACTION = ": folds ";
+    public static final String FOLD_ACTION = ": folds";
     public static final String CALL_ACTION = ": calls ";
-    public static final String CHECK_ACTION = ": checks ";
+    public static final String CHECK_ACTION = ": checks";
     public static final String BETS_ACTION = ": bets ";
     public static final String RAISE_ACTION = ": raises ";
     public static final String ALL_IN_ACTION = " and is all-in";

@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static com.poker.reader.entity.TypeStreet.ANTE;
+import static com.poker.reader.entity.TypeStreet.PREFLOP;
 import static com.poker.reader.parser.util.FileParser.*;
 import static com.poker.reader.parser.util.Tokens.*;
 import static com.poker.reader.parser.util.TypeFileSection.*;
@@ -37,8 +38,24 @@ public class FileReaderProcessor {
                 case HEADER:
                     processHeader(line);
                     break;
+                case PRE_FLOP:
+                    processPreFlop(line);
+                    break;
                 default:
             }
+        }
+    }
+
+    private void processPreFlop(String line) {
+        Hand hand = handList.getLast();
+        if (line.contains(SECTION_PRE_FLOP)) return;
+        if (line.contains(DEALT_TO)) {
+            HoldCards holdCards = extractHoldCardsFromAction(line);
+            hand.getSeats().get(holdCards.getPlayer()).setHoldCards(holdCards);
+        } else {
+            Action action = extractAction(line);
+            action.setTypeStreet(PREFLOP);
+            hand.getActions().add(action);
         }
     }
 
@@ -56,7 +73,7 @@ public class FileReaderProcessor {
             } else
             if (line.contains(START_SEAT_POSITION)) {
                 Seat seat = extractSeat(line);
-                hand.getSeats().add(seat);
+                hand.getSeats().put(seat.getPlayer(),seat);
             } else {
                 Action action = extractAction(line);
                 action.setTypeStreet(ANTE);

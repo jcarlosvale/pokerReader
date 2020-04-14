@@ -5,9 +5,9 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 @Builder
 @Data
@@ -19,6 +19,6 @@ public class Hand {
     private LocalDateTime dateTime;
     private String tableId;
     private Integer button;
-    private final Set<Seat> seats = new HashSet<>();
+    private final Map<Player,Seat> seats = new HashMap<>();
     private final List<Action> actions = new ArrayList<>();
 }

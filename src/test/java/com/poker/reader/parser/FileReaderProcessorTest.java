@@ -39,55 +39,64 @@ public class FileReaderProcessorTest {
                 .tableId("2779056951 40")
                 .button(5)
                 .build();
-        expectedHand.getSeats().add(Seat
+        expectedHand.getSeats().put(Player.builder().nickname("W SERENA").build(),
+                Seat
                 .builder()
                 .absolutePosition(1)
                 .player(Player.builder().nickname("W SERENA").build())
                 .stack(5000L)
                 .build());
-        expectedHand.getSeats().add(Seat
+        expectedHand.getSeats().put(Player.builder().nickname("matalaha").build(),
+                Seat
                 .builder()
                 .absolutePosition(2)
                 .player(Player.builder().nickname("matalaha").build())
                 .stack(6917L)
                 .build());
-        expectedHand.getSeats().add(Seat
+        expectedHand.getSeats().put(Player.builder().nickname("xTheWindelPilot").build(),
+                Seat
                 .builder()
                 .absolutePosition(3)
                 .player(Player.builder().nickname("xTheWindelPilot").build())
                 .stack(1268L)
                 .build());
-        expectedHand.getSeats().add(Seat
+        expectedHand.getSeats().put(Player.builder().nickname("schlier4").build(),
+                Seat
                 .builder()
                 .absolutePosition(4)
                 .player(Player.builder().nickname("schlier4").build())
                 .stack(8186L)
                 .build());
-        expectedHand.getSeats().add(Seat
+        expectedHand.getSeats().put(Player.builder().nickname("mjmj1971").build(),
+                Seat
                 .builder()
                 .absolutePosition(5)
                 .player(Player.builder().nickname("mjmj1971").build())
                 .stack(10998L)
                 .build());
-        expectedHand.getSeats().add(Seat
+        expectedHand.getSeats().put(Player.builder().nickname("GunDolfAA").build(),
+                Seat
                 .builder()
                 .absolutePosition(6)
                 .player(Player.builder().nickname("GunDolfAA").build())
                 .stack(4523L)
                 .build());
-        expectedHand.getSeats().add(Seat
+        expectedHand.getSeats().put(Player.builder().nickname("Oliver N76").build(),
+                Seat
                 .builder()
                 .absolutePosition(7)
                 .player(Player.builder().nickname("Oliver N76").build())
                 .stack(13836L)
                 .build());
-        expectedHand.getSeats().add(Seat
+        expectedHand.getSeats().put(Player.builder().nickname("H3ll5cream").build(),
+                Seat
                 .builder()
                 .absolutePosition(8)
                 .player(Player.builder().nickname("H3ll5cream").build())
                 .stack(2717L)
                 .build());
-        expectedHand.getSeats().add(Seat
+        expectedHand.getSeats().put(Player.builder().nickname("jcarlos.vale").build(),
+                Seat
                 .builder()
                 .absolutePosition(9)
                 .player(Player.builder().nickname("jcarlos.vale").build())
@@ -180,6 +189,78 @@ public class FileReaderProcessorTest {
                 .value(100L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.BIG_BLIND)
+                .build());
+        //PRE FLOP
+        expectedHand.getSeats().get(Player.builder().nickname("jcarlos.vale").build())
+                .setHoldCards(
+                        HoldCards
+                                .builder()
+                                .player(Player.builder().nickname("jcarlos.vale").build())
+                                .card1("Kc")
+                                .card2("7d")
+                                .build());
+        expectedHand.getActions().add(Action
+                .builder()
+                .player(Player.builder().nickname("H3ll5cream").build())
+                .typeStreet(TypeStreet.PREFLOP)
+                .typeAction(TypeAction.FOLD)
+                .value(0L)
+                .build());
+        expectedHand.getActions().add(Action
+                .builder()
+                .player(Player.builder().nickname("jcarlos.vale").build())
+                .typeStreet(TypeStreet.PREFLOP)
+                .typeAction(TypeAction.FOLD)
+                .value(0L)
+                .build());
+        expectedHand.getActions().add(Action
+                .builder()
+                .player(Player.builder().nickname("W SERENA").build())
+                .typeStreet(TypeStreet.PREFLOP)
+                .typeAction(TypeAction.CALL)
+                .value(100L)
+                .build());
+        expectedHand.getActions().add(Action
+                .builder()
+                .player(Player.builder().nickname("matalaha").build())
+                .typeStreet(TypeStreet.PREFLOP)
+                .typeAction(TypeAction.FOLD)
+                .value(0L)
+                .build());
+        expectedHand.getActions().add(Action
+                .builder()
+                .player(Player.builder().nickname("xTheWindelPilot").build())
+                .typeStreet(TypeStreet.PREFLOP)
+                .typeAction(TypeAction.FOLD)
+                .value(0L)
+                .build());
+        expectedHand.getActions().add(Action
+                .builder()
+                .player(Player.builder().nickname("schlier4").build())
+                .typeStreet(TypeStreet.PREFLOP)
+                .typeAction(TypeAction.FOLD)
+                .value(0L)
+                .build());
+        expectedHand.getActions().add(Action
+                .builder()
+                .player(Player.builder().nickname("mjmj1971").build())
+                .typeStreet(TypeStreet.PREFLOP)
+                .typeAction(TypeAction.CALL)
+                .value(100L)
+                .build());
+        expectedHand.getActions().add(Action
+                .builder()
+                .player(Player.builder().nickname("GunDolfAA").build())
+                .typeStreet(TypeStreet.PREFLOP)
+                .typeAction(TypeAction.FOLD)
+                .value(0L)
+                .build());
+        expectedHand.getActions().add(Action
+                .builder()
+                .player(Player.builder().nickname("Oliver N76").build())
+                .typeStreet(TypeStreet.PREFLOP)
+                .typeAction(TypeAction.CHECK)
+                .value(0L)
                 .build());
 
         List<Hand> expectedHandList = new ArrayList<>();

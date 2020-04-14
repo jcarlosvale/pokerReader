@@ -9,4 +9,5 @@ public class Seat {
     private Integer absolutePosition;
     private Player player;
     private Long stack;
+    private HoldCards holdCards;
 }
