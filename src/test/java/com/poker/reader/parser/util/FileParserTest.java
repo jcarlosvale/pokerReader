@@ -6,10 +6,8 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 import static com.poker.reader.parser.util.FileParser.*;
 import static com.poker.reader.parser.util.FileParserUtil.DATE_TIME_FORMAT;
@@ -56,7 +54,7 @@ public class FileParserTest {
     @Test
     public void extractSeatTest() {
         String line = "Seat 7: Oliver N76 (13836 in chips)";
-        Seat expected = Seat.builder().absolutePosition(7).player(Player.builder().nickname("Oliver N76").build()).stack(13836L)
+        Seat expected = Seat.builder().seatId(7).player(Player.builder().nickname("Oliver N76").build()).stack(13836L)
                 .build();
         Seat actual = extractSeat(line);
         assertEquals(expected, actual);
@@ -222,13 +220,15 @@ public class FileParserTest {
     @Test
     public void extractBoardTest() {
         String line = "Board [7s 5h Jc Qd 8d]";
-        List<String> actual = extractBoard(line);
-        List<String> expected = new ArrayList<>();
-        expected.add("7s");
-        expected.add("5h");
-        expected.add("Jc");
-        expected.add("Qd");
-        expected.add("8d");
+        Board actual = extractBoard(line);
+        Board expected = Board
+                .builder()
+                .card1("7s")
+                .card2("5h")
+                .card3("Jc")
+                .card4("Qd")
+                .card5("8d")
+                .build();
         assertEquals(expected, actual);
     }
 
@@ -237,26 +237,26 @@ public class FileParserTest {
         String line = "Seat 1: W SERENA folded on the River";
         Summary actual = extractSummary(line);
         Summary expected =
-                Summary.builder().seatId(1).value(null).additionalInfoPlayerList(new HashSet<>(Arrays.asList(TypeInfo.FOLDED_ON_THE_RIVER))).build();
+                Summary.builder().seatId(1).value(null).additionalInfoPlayerSet(new HashSet<>(Arrays.asList(TypeInfo.FOLDED_ON_THE_RIVER))).build();
         assertEquals(expected, actual);
 
         line = "Seat 2: matalaha folded before Flop (didn't bet)";
         actual = extractSummary(line);
         expected =
-                Summary.builder().seatId(2).value(null).additionalInfoPlayerList(new HashSet<>(Arrays.asList(TypeInfo.FOLDED_BEFORE_FLOP, TypeInfo.DID_NOT_BET))).build();
+                Summary.builder().seatId(2).value(null).additionalInfoPlayerSet(new HashSet<>(Arrays.asList(TypeInfo.FOLDED_BEFORE_FLOP, TypeInfo.DID_NOT_BET))).build();
         assertEquals(expected, actual);
 
         line = "Seat 5: mjmj1971 (button) collected (440)";
         actual = extractSummary(line);
         expected =
-                Summary.builder().seatId(5).value(440L).additionalInfoPlayerList(new HashSet<>(Arrays.asList(TypeInfo.BUTTON,
+                Summary.builder().seatId(5).value(440L).additionalInfoPlayerSet(new HashSet<>(Arrays.asList(TypeInfo.BUTTON,
                         TypeInfo.COLLECTED))).build();
         assertEquals(expected, actual);
 
         line = "Seat 8: H3ll5cream (big blind) collected (590)";
         actual = extractSummary(line);
         expected =
-                Summary.builder().seatId(8).value(590L).additionalInfoPlayerList(new HashSet<>(Arrays.asList(TypeInfo.BIG_BLIND,
+                Summary.builder().seatId(8).value(590L).additionalInfoPlayerSet(new HashSet<>(Arrays.asList(TypeInfo.BIG_BLIND,
                         TypeInfo.COLLECTED))).build();
         assertEquals(expected, actual);
     }

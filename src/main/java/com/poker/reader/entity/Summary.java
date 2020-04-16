@@ -10,5 +10,5 @@ import java.util.Set;
 public class Summary {
     private Integer seatId;
     private Long value;
-    private Set<TypeInfo> additionalInfoPlayerList;
+    private Set<TypeInfo> additionalInfoPlayerSet;
 }

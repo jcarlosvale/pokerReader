@@ -42,30 +42,30 @@ public class FileParserUtil {
 
     public static LocalDateTime extractLocalDateTime(String line, String startDate, String endDate) {
         String value = extract(line, startDate, endDate);
-        if (value == null) return null;
+        if (value == null) {return null;}
         value = value.substring(0,value.length()-3);  //removing locale and ]
         return LocalDateTime.parse(value, DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
     }
 
     public static Long extractValueFromAction(String line, TypeAction typeAction) {
-        if (null == typeAction) return null;
-        if (typeAction.equals(TypeAction.ANTE))         return extractLongAfter(line, Tokens.ANTE_ACTION);
-        if (typeAction.equals(TypeAction.SMALL_BLIND))  return extractLongAfter(line, Tokens.SMALL_BLIND_ACTION);
-        if (typeAction.equals(TypeAction.BIG_BLIND))    return extractLongAfter(line, Tokens.BIG_BLIND_ACTION);
-        if (typeAction.equals(TypeAction.FOLD))         return 0L;
-        if (typeAction.equals(TypeAction.CALL_ALL_IN))  return extractLong(line, Tokens.CALL_ACTION, Tokens.ALL_IN_ACTION);
-        if (typeAction.equals(TypeAction.CALL))         return extractLongAfter(line, Tokens.CALL_ACTION);
-        if (typeAction.equals(TypeAction.BETS))         return extractLongAfter(line, Tokens.BETS_ACTION);
-        if (typeAction.equals(TypeAction.CHECK))        return 0L;
-        if (typeAction.equals(TypeAction.ALL_IN))       return extractLong(line, " to ", Tokens.ALL_IN_ACTION);
-        if (typeAction.equals(TypeAction.RAISE))        return extractLongAfter(line, " to ");
-        if (typeAction.equals(TypeAction.NO_SHOW_HAND)) return 0L;
+        if (null == typeAction)                         {return null;}
+        if (typeAction.equals(TypeAction.ANTE))         {return extractLongAfter(line, Tokens.ANTE_ACTION);}
+        if (typeAction.equals(TypeAction.SMALL_BLIND))  {return extractLongAfter(line, Tokens.SMALL_BLIND_ACTION);}
+        if (typeAction.equals(TypeAction.BIG_BLIND))    {return extractLongAfter(line, Tokens.BIG_BLIND_ACTION);}
+        if (typeAction.equals(TypeAction.FOLD))         {return 0L;}
+        if (typeAction.equals(TypeAction.CALL_ALL_IN))  {return extractLong(line, Tokens.CALL_ACTION, Tokens.ALL_IN_ACTION);}
+        if (typeAction.equals(TypeAction.CALL))         {return extractLongAfter(line, Tokens.CALL_ACTION);}
+        if (typeAction.equals(TypeAction.BETS))         {return extractLongAfter(line, Tokens.BETS_ACTION);}
+        if (typeAction.equals(TypeAction.CHECK))        {return 0L;}
+        if (typeAction.equals(TypeAction.ALL_IN))       {return extractLong(line, " to ", Tokens.ALL_IN_ACTION);}
+        if (typeAction.equals(TypeAction.RAISE))        {return extractLongAfter(line, " to ");}
+        if (typeAction.equals(TypeAction.NO_SHOW_HAND)) {return 0L;}
         return null;
     }
 
     public static String extractCard(String line, String startToken, String endToken, int cardNumber) {
         String cards = extract(line, startToken, endToken);
-        if (null == cards || cards.isEmpty()) return null;
+        if (null == cards || cards.isEmpty()) {return null;}
         return cards.split(" ")[cardNumber-1];
     }
 
@@ -73,7 +73,9 @@ public class FileParserUtil {
         line = extract(line, startToken, endToken);
         String[] splited = line.split(splitToken);
         ArrayList<String> list = new ArrayList<>();
-        for(String s : splited) list.add(s);
+        for(String s : splited) {
+            list.add(s);
+        }
         return list;
     }
 }

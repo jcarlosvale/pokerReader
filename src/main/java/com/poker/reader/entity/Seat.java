@@ -6,8 +6,9 @@ import lombok.Data;
 @Data
 @Builder
 public class Seat {
-    private Integer absolutePosition;
+    private Integer seatId;
     private Player player;
     private Long stack;
     private HoldCards holdCards;
+    private Summary summary;
 }

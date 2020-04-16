@@ -36,7 +36,7 @@ public class FileParser {
 
 
     public static Seat extractSeat(String line) {
-        return Seat.builder().absolutePosition(extractInteger(line, START_SEAT_POSITION, END_SEAT_POSITION))
+        return Seat.builder().seatId(extractInteger(line, START_SEAT_POSITION, END_SEAT_POSITION))
                 .player(Player.builder().nickname(extract(line, START_PLAYER, END_PLAYER)).build())
                 .stack(extractLong(line, START_STACK, END_STACK)).build();
     }
@@ -76,24 +76,39 @@ public class FileParser {
     }
 
     public static AdditionalInfoPlayer extractAdditionalInfoPlayerUncalledBet(String line) {
-        return AdditionalInfoPlayer.builder().info(TypeInfo.UNCALLED_BET)
+        return AdditionalInfoPlayer.builder()
+                .info(TypeInfo.UNCALLED_BET)
                 .value(extractLong(line, START_UNCALLED_BET, END_UNCALLED_BET))
                 .player(Player.builder().nickname(StringUtils.substringAfter(line, RETURNED_TO).trim()).build())
                 .build();
     }
 
     public static AdditionalInfoPlayer extractAdditionalInfoPlayerCollectedFromPot(String line) {
-        return AdditionalInfoPlayer.builder().info(TypeInfo.COLLECTED)
+        return AdditionalInfoPlayer.builder()
+                .info(TypeInfo.COLLECTED)
                 .value(extractLong(line, START_COLLECTED_FROM_POT, END_COLLECTED_FROM_POT))
-                .player(Player.builder().nickname(StringUtils.substringBefore(line, START_COLLECTED_FROM_POT).trim()).build()).build();
+                .player(Player.builder().nickname(StringUtils.substringBefore(line, START_COLLECTED_FROM_POT).trim()).build())
+                .build();
     }
 
     public static Long extractTotalPot(String line) {
         return extractLong(line, START_TOTAL_POT, END_TOTAL_POT);
     }
 
-    public static List<String> extractBoard(String line) {
-        return extractList(line, START_CARD, END_CARD, " ");
+    public static Board extractBoard(String line) {
+        List<String> listCards = extractList(line, START_BOARD, END_BOARD, " ");
+        if (listCards.size() > 0) {
+            Board board = Board
+                    .builder()
+                    .card1(listCards.get(0))
+                    .card2(listCards.get(1))
+                    .card3(listCards.get(2))
+                    .build();
+            if (listCards.size() > 3) board.setCard4(listCards.get(3));
+            if (listCards.size() > 4) board.setCard5(listCards.get(4));
+            return board;
+        }
+        return null;
     }
 
     public static Summary extractSummary(String line) {
@@ -102,7 +117,7 @@ public class FileParser {
                 .builder()
                 .seatId(extractInteger(line, START_SEAT_POSITION, END_SEAT_POSITION))
                 .value(extractLong(line, START_COLLECTED_SUMMARY, END_COLLECTED_SUMMARY))
-                .additionalInfoPlayerList(typeInfoList)
+                .additionalInfoPlayerSet(typeInfoList)
                 .build();
     }
 

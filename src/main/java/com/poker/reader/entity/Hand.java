@@ -4,10 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Builder
 @Data
@@ -19,6 +16,17 @@ public class Hand {
     private LocalDateTime dateTime;
     private String tableId;
     private Integer button;
+    private Flop flop;
+    private Turn turn;
+    private River river;
+    private Long totalPot;
+    private Board board;
     private final Map<Player,Seat> seats = new HashMap<>();
     private final List<Action> actions = new ArrayList<>();
+    private final List<AdditionalInfoPlayer> additionalInfoPlayerList = new ArrayList<>();
+
+    public Seat getSeatBySeatId(Integer seatId) {
+        Optional<Seat> foundSeat = seats.values().stream().filter(seat -> seat.getSeatId().equals(seatId)).findFirst();
+        return foundSeat.orElse(null);
+    }
 }

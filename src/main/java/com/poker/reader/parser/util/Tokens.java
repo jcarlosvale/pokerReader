@@ -64,6 +64,8 @@ public class Tokens {
     public static final String START_COLLECTED_SUMMARY = "collected (";
     public static final String END_COLLECTED_SUMMARY = ")";
 
+    public static final String START_BOARD = "Board [";
+    public static final String END_BOARD = "]";
 
     //Keywords
     public static final String DEALT_TO = "Dealt to ";
@@ -97,4 +99,5 @@ public class Tokens {
     public static final String SECTION_TURN = "*** TURN ***";
     public static final String SECTION_RIVER = "*** RIVER ***";
     public static final String SECTION_SUMMARY = "*** SUMMARY ***";
+    public static final String SECTION_END_OF_HAND = "";
 }

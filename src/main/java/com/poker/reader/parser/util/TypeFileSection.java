@@ -12,6 +12,7 @@ public enum TypeFileSection {
     TURN(Tokens.SECTION_TURN),
     RIVER(Tokens.SECTION_RIVER),
     SUMMARY(Tokens.SECTION_SUMMARY),
+    END_OF_HAND(""),
     ;
     private String token;
 }
