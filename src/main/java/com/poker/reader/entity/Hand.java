@@ -21,6 +21,7 @@ public class Hand {
     private River river;
     private Long totalPot;
     private Board board;
+    private Tournament tournament;
     private final Map<Player,Seat> seats = new HashMap<>();
     private final List<Action> actions = new ArrayList<>();
     private final List<AdditionalInfoPlayer> additionalInfoPlayerList = new ArrayList<>();

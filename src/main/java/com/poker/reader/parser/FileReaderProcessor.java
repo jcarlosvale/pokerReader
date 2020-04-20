@@ -3,6 +3,7 @@ package com.poker.reader.parser;
 import com.poker.reader.entity.*;
 import com.poker.reader.exception.InvalidSectionFileException;
 import com.poker.reader.parser.util.TypeFileSection;
+import com.poker.reader.validator.HandValidator;
 import lombok.Data;
 import org.apache.commons.io.FileUtils;
 
@@ -22,12 +23,7 @@ import static com.poker.reader.parser.util.TypeFileSection.*;
 @Data
 public class FileReaderProcessor {
 
-    private final LinkedList<Hand> handList;
-    private Tournament tournament;
-
-    public FileReaderProcessor() {
-        handList = new LinkedList<>();
-    }
+    private LinkedList<Hand> handList = new LinkedList<>();
 
     public void readFile(String filePath) throws IOException {
         List<String> lines = FileUtils.readLines(new File(filePath), "utf-8");
@@ -58,11 +54,17 @@ public class FileReaderProcessor {
                     processSummary(line);
                     break;
                 case END_OF_HAND:
+                    validate();
                     break;
                 default:
                     throw new InvalidSectionFileException(section.toString());
             }
         }
+    }
+
+    private boolean validate() {
+        Hand hand = handList.getLast();
+        return HandValidator.validate(hand);
     }
 
     private void processSummary(String line) {
@@ -141,8 +143,9 @@ public class FileReaderProcessor {
 
     protected void processHeader(String line) {
         if (line.contains(START_HAND)) {
-            handList.add(extractHand(line));
-            tournament = extractTournament(line);
+            Hand hand = extractHand(line);
+            hand.setTournament(extractTournament(line));
+            handList.add(hand);
         } else {
             Hand hand = handList.getLast();
             if (line.contains(START_TABLE)) {

@@ -29,11 +29,10 @@ public class FileReaderProcessorTest {
         fileReaderProcessor.readFile(resource.getFile().getAbsolutePath());
 
         Tournament expectedTournament = Tournament.builder().id(2779056951L).buyIn(BigDecimal.valueOf(0.55)).build();
-        assertEquals(expectedTournament, fileReaderProcessor.getTournament());
-
         Hand expectedHand = Hand
                 .builder()
                 .id(208296842229L)
+                .tournament(expectedTournament)
                 .level("VI")
                 .smallBlind(50)
                 .bigBlind(100)
