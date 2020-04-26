@@ -11,10 +11,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+import static com.poker.reader.entity.TypeInfo.*;
 import static com.poker.reader.parser.util.FileParserUtil.DATE_TIME_FORMAT;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -41,157 +40,139 @@ public class FileReaderProcessorTest {
                 .button(5)
                 .build();
 
-        Set<TypeInfo> additionalInfoPlayerSet = new HashSet<>();
-        additionalInfoPlayerSet.add(TypeInfo.FOLDED_ON_THE_RIVER);
-        expectedHand.getSeats().put(Player.builder().nickname("W SERENA").build(),
+        Seat seat =
                 Seat
                 .builder()
                 .seatId(1)
                 .player(Player.builder().nickname("W SERENA").build())
                 .stack(5000L)
-                .summary(Summary
-                        .builder()
-                        .seatId(1)
-                        .additionalInfoPlayerSet(additionalInfoPlayerSet)
-                        .value(null)
-                        .build())
+                .build();
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                .info(FOLDED_ON_THE_RIVER)
                 .build());
+        expectedHand.getSeats().put(Player.builder().nickname("W SERENA").build(),seat);
 
-        additionalInfoPlayerSet = new HashSet<>();
-        additionalInfoPlayerSet.add(TypeInfo.FOLDED_BEFORE_FLOP);
-        additionalInfoPlayerSet.add(TypeInfo.DID_NOT_BET);
-        expectedHand.getSeats().put(Player.builder().nickname("matalaha").build(),
+
+        seat =
                 Seat
                 .builder()
                 .seatId(2)
                 .player(Player.builder().nickname("matalaha").build())
                 .stack(6917L)
-                .summary(Summary
-                        .builder()
-                        .seatId(2)
-                        .additionalInfoPlayerSet(additionalInfoPlayerSet)
-                        .value(null)
-                        .build())
-                .build());
+                .build();
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                        .info(FOLDED_BEFORE_FLOP)
+                        .build());
+        expectedHand.getSeats().put(Player.builder().nickname("matalaha").build(),seat);
 
-        additionalInfoPlayerSet = new HashSet<>();
-        additionalInfoPlayerSet.add(TypeInfo.FOLDED_BEFORE_FLOP);
-        additionalInfoPlayerSet.add(TypeInfo.DID_NOT_BET);
-        expectedHand.getSeats().put(Player.builder().nickname("xTheWindelPilot").build(),
+
+
+        seat =
                 Seat
                 .builder()
                 .seatId(3)
                 .player(Player.builder().nickname("xTheWindelPilot").build())
                 .stack(1268L)
-                .summary(Summary
-                        .builder()
-                        .seatId(3)
-                        .additionalInfoPlayerSet(additionalInfoPlayerSet)
-                        .value(null)
-                        .build())
-                .build());
+                .build();
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                        .info(FOLDED_BEFORE_FLOP)
+                        .build());
+        expectedHand.getSeats().put(Player.builder().nickname("xTheWindelPilot").build(),seat);
 
-        additionalInfoPlayerSet = new HashSet<>();
-        additionalInfoPlayerSet.add(TypeInfo.FOLDED_BEFORE_FLOP);
-        additionalInfoPlayerSet.add(TypeInfo.DID_NOT_BET);
-        expectedHand.getSeats().put(Player.builder().nickname("schlier4").build(),
+
+        seat =
                 Seat
                 .builder()
                 .seatId(4)
-                .summary(Summary
-                        .builder()
-                        .seatId(4)
-                        .additionalInfoPlayerSet(additionalInfoPlayerSet)
-                        .value(null)
-                        .build())
                 .player(Player.builder().nickname("schlier4").build())
                 .stack(8186L)
+                .build();
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                .info(FOLDED_BEFORE_FLOP)
                 .build());
+        expectedHand.getSeats().put(Player.builder().nickname("schlier4").build(), seat);
 
-        additionalInfoPlayerSet = new HashSet<>();
-        additionalInfoPlayerSet.add(TypeInfo.BUTTON);
-        additionalInfoPlayerSet.add(TypeInfo.COLLECTED);
-        expectedHand.getSeats().put(Player.builder().nickname("mjmj1971").build(),
+        seat =
                 Seat
                 .builder()
                 .seatId(5)
                 .player(Player.builder().nickname("mjmj1971").build())
                 .stack(10998L)
-                .summary(Summary
-                        .builder()
-                        .seatId(5)
-                        .additionalInfoPlayerSet(additionalInfoPlayerSet)
-                        .value(440L)
-                        .build())
+                .build();
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                .info(BUTTON)
                 .build());
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                .info(COLLECTED)
+                .value(440L)
+                .build());
+        expectedHand.getSeats().put(Player.builder().nickname("mjmj1971").build(),seat);
 
-        additionalInfoPlayerSet = new HashSet<>();
-        additionalInfoPlayerSet.add(TypeInfo.SMALL_BLIND);
-        additionalInfoPlayerSet.add(TypeInfo.FOLDED_BEFORE_FLOP);
-        expectedHand.getSeats().put(Player.builder().nickname("GunDolfAA").build(),
+        seat =
                 Seat
                 .builder()
                 .seatId(6)
                 .player(Player.builder().nickname("GunDolfAA").build())
                 .stack(4523L)
-                .summary(Summary
-                        .builder()
-                        .seatId(6)
-                        .additionalInfoPlayerSet(additionalInfoPlayerSet)
-                        .value(null)
-                        .build())
+                .build();
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                .info(SMALL_BLIND)
                 .build());
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                .info(FOLDED_BEFORE_FLOP)
+                .build());
+        expectedHand.getSeats().put(Player.builder().nickname("GunDolfAA").build(), seat);
 
-        additionalInfoPlayerSet = new HashSet<>();
-        additionalInfoPlayerSet.add(TypeInfo.BIG_BLIND);
-        additionalInfoPlayerSet.add(TypeInfo.FOLDED_ON_THE_RIVER);
-        expectedHand.getSeats().put(Player.builder().nickname("Oliver N76").build(),
+        seat =
                 Seat
                 .builder()
                 .seatId(7)
                 .player(Player.builder().nickname("Oliver N76").build())
                 .stack(13836L)
-                .summary(Summary
-                        .builder()
-                        .seatId(7)
-                        .additionalInfoPlayerSet(additionalInfoPlayerSet)
-                        .value(null)
-                        .build())
+                .build();
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                .info(BIG_BLIND)
                 .build());
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                .info(FOLDED_ON_THE_RIVER)
+                .build());
+        expectedHand.getSeats().put(Player.builder().nickname("Oliver N76").build(), seat);
 
-        additionalInfoPlayerSet = new HashSet<>();
-        additionalInfoPlayerSet.add(TypeInfo.FOLDED_BEFORE_FLOP);
-        additionalInfoPlayerSet.add(TypeInfo.DID_NOT_BET);
-        expectedHand.getSeats().put(Player.builder().nickname("H3ll5cream").build(),
+        seat =
                 Seat
                 .builder()
                 .seatId(8)
                 .player(Player.builder().nickname("H3ll5cream").build())
                 .stack(2717L)
-                .summary(Summary
-                        .builder()
-                        .seatId(8)
-                        .additionalInfoPlayerSet(additionalInfoPlayerSet)
-                        .value(null)
-                        .build())
+                .build();
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                .info(FOLDED_BEFORE_FLOP)
                 .build());
+        expectedHand.getSeats().put(Player.builder().nickname("H3ll5cream").build(),seat);
 
-        additionalInfoPlayerSet = new HashSet<>();
-        additionalInfoPlayerSet.add(TypeInfo.FOLDED_BEFORE_FLOP);
-        additionalInfoPlayerSet.add(TypeInfo.DID_NOT_BET);
-        expectedHand.getSeats().put(Player.builder().nickname("jcarlos.vale").build(),
+        seat =
                 Seat
                 .builder()
                 .seatId(9)
                 .player(Player.builder().nickname("jcarlos.vale").build())
                 .stack(5000L)
-                .summary(Summary
-                        .builder()
-                        .seatId(9)
-                        .additionalInfoPlayerSet(additionalInfoPlayerSet)
-                        .value(null)
-                        .build())
+                .build();
+        seat.getInfoPlayerAtHandList().add(
+                InfoPlayerAtHand.builder()
+                .info(FOLDED_BEFORE_FLOP)
                 .build());
+        expectedHand.getSeats().put(Player.builder().nickname("jcarlos.vale").build(), seat);
 
         expectedHand.getActions().add(Action
                 .builder()
@@ -448,20 +429,6 @@ public class FileReaderProcessorTest {
                 .value(0L)
                 .build());
 
-        expectedHand.getAdditionalInfoPlayerList()
-                .add(AdditionalInfoPlayer.builder()
-                        .info(TypeInfo.UNCALLED_BET)
-                        .value(300L)
-                        .player(Player.builder().nickname("mjmj1971").build())
-                        .build());
-
-        expectedHand.getAdditionalInfoPlayerList()
-                .add(AdditionalInfoPlayer.builder()
-                        .info(TypeInfo.COLLECTED)
-                        .value(440L)
-                        .player(Player.builder().nickname("mjmj1971").build())
-                        .build());
-
         //SUMMARY
         expectedHand.setTotalPot(440L);
         expectedHand.setBoard(Board.builder()
@@ -482,6 +449,18 @@ public class FileReaderProcessorTest {
         assertEquals(expectedHandList, fileReaderProcessor.getHandList());
     }
 
+    @Test
+    public void processMultipleHandsTest() throws IOException {
+        Resource resource = new ClassPathResource("multiple-hand.txt", getClass().getClassLoader());
+        fileReaderProcessor.readFile(resource.getFile().getAbsolutePath());
+
+        Tournament expectedTournament = Tournament.builder().id(2779056951L).buyIn(BigDecimal.valueOf(0.55)).build();
+
+        for(Hand hand : fileReaderProcessor.getHandList()) {
+            assertEquals(expectedTournament, hand.getTournament());
+        }
+        assertEquals(6, fileReaderProcessor.getHandList().size());
+    }
     @Test
     public void verifySectionTest() {
         String line = "PokerStars Hand #208296842229: Tournament #2779056951, $0.49+$0.06 USD Hold'em No Limit - " +

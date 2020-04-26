@@ -12,5 +12,6 @@ public enum TypeAction {
     RAISE,
     ALL_IN,
     NO_SHOW_HAND,
+    SHOW_HAND,
     ;
 }

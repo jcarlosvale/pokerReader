@@ -10,4 +10,6 @@ public class Action {
     private TypeAction typeAction;
     private Long value;
     private TypeStreet typeStreet;
+    private HoldCards holdCards;
+    private String scoring;
 }

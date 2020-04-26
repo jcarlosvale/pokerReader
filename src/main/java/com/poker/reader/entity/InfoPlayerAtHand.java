@@ -5,8 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class AdditionalInfoPlayer {
+public class InfoPlayerAtHand {
     private TypeInfo info;
     private Long value;
-    private Player player;
 }

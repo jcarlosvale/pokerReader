@@ -52,24 +52,23 @@ public class Tokens {
     public static final String START_RIVER = "] [";
     public static final String END_RIVER = "]";
 
-    public static final String START_UNCALLED_BET = "Uncalled bet (";
-    public static final String END_UNCALLED_BET = ") ";
-
-    public static final String START_COLLECTED_FROM_POT = "collected ";
-    public static final String END_COLLECTED_FROM_POT = " from pot";
+    public static final String START_COLLECTED_FROM_POT = "collected (";
+    public static final String END_COLLECTED_FROM_POT = ")";
 
     public static final String START_TOTAL_POT = "Total pot ";
     public static final String END_TOTAL_POT = " |";
 
-    public static final String START_COLLECTED_SUMMARY = "collected (";
-    public static final String END_COLLECTED_SUMMARY = ")";
-
     public static final String START_BOARD = "Board [";
     public static final String END_BOARD = "]";
 
+    public static final String START_SCORING = "] (";
+    public static final String END_SCORING = ")";
+
+    public static final String START_WON_POT = "won (";
+    public static final String END_WON_POT = ")";
+
     //Keywords
     public static final String DEALT_TO = "Dealt to ";
-    public static final String RETURNED_TO = "returned to ";
 
     //ACTIONS
     public static final String ANTE_ACTION = ": posts the ante ";
@@ -82,22 +81,30 @@ public class Tokens {
     public static final String RAISE_ACTION = ": raises ";
     public static final String ALL_IN_ACTION = " and is all-in";
     public static final String NO_SHOW_HAND_ACTION = " doesn't show hand";
+    public static final String SHOW_HAND_ACTION = " shows [";
 
     //TYPE INFO
-    public static final String UNCALLED_BET_TYPE_INFO           = "Uncalled bet ";
+    public static final String START_COLLECTED_FROM_POT_INFO    = START_COLLECTED_FROM_POT;
     public static final String FOLDED_BEFORE_FLOP_TYPE_INFO     = " folded before Flop";
     public static final String FOLDED_ON_THE_RIVER_TYPE_INFO    = " folded on the River";
-    public static final String DID_NOT_BET_TYPE_INFO            = "(didn't bet)";
     public static final String BUTTON_TYPE_INFO                 = "(button)";
     public static final String BIG_BLIND_TYPE_INFO              = "(big blind)";
     public static final String SMALL_BLIND_TYPE_INFO            = "(small blind)";
+    public static final String FINISHED_THE_TOURNAMENT_INFO     = "finished the tournament";
+    public static final String SHOWED_HAND_INFO                 = "showed [";
+    public static final String WON_INFO                         = "won (";
+    public static final String LOST_INFO                         = "lost with ";
 
-    //FILE SECTION
+
+
+                //FILE SECTION
+    public static final String SECTION_TOKEN = "*** ";
     public static final String SECTION_HEADER = START_HAND;
     public static final String SECTION_PRE_FLOP = "*** HOLE CARDS ***";
     public static final String SECTION_FLOP = "*** FLOP ***";
     public static final String SECTION_TURN = "*** TURN ***";
     public static final String SECTION_RIVER = "*** RIVER ***";
+    public static final String SECTION_SHOWDOWN = "*** SHOW DOWN ***";
     public static final String SECTION_SUMMARY = "*** SUMMARY ***";
     public static final String SECTION_END_OF_HAND = "";
 }

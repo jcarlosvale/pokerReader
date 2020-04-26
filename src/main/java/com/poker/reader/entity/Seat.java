@@ -3,6 +3,9 @@ package com.poker.reader.entity;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @Builder
 public class Seat {
@@ -10,5 +13,5 @@ public class Seat {
     private Player player;
     private Long stack;
     private HoldCards holdCards;
-    private Summary summary;
+    private final Set<InfoPlayerAtHand> infoPlayerAtHandList = new HashSet<>();
 }

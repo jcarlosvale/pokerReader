@@ -6,8 +6,8 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 import static com.poker.reader.parser.util.FileParser.*;
 import static com.poker.reader.parser.util.FileParserUtil.DATE_TIME_FORMAT;
@@ -144,24 +144,34 @@ public class FileParserTest {
                 .typeAction(TypeAction.NO_SHOW_HAND).value(0L).build();
         assertEquals(expected, actual);
 
+        line = "xTheWindelPilot: shows [8s 8h] (four of a kind, Nines)";
+        actual = extractAction(line);
+        expected = Action.builder()
+                .player(Player.builder().nickname("xTheWindelPilot").build())
+                .typeAction(TypeAction.SHOW_HAND)
+                .holdCards(HoldCards.builder()
+                        .player(Player.builder().nickname("xTheWindelPilot").build())
+                        .card1("8s").card2("8h").build())
+                .scoring("four of a kind, Nines").build();
+        assertEquals(expected, actual);
     }
 
     @Test
     public void extractHoldCards() {
         String line = "Dealt to jcarlos.vale [3d Tc]";
-        HoldCards actual = extractHoldCardsFromAction(line);
+        HoldCards actual = FileParser.extractHoldCards(line);
         HoldCards expected =
                 HoldCards.builder().card1("3d").card2("Tc").player(Player.builder().nickname("jcarlos.vale").build()).build();
         assertEquals(expected, actual);
 
         line = "Oliver N76: folds [8c 8s]";
-        actual = extractHoldCardsFromAction(line);
+        actual = FileParser.extractHoldCards(line);
         expected = HoldCards.builder().card1("8c").card2("8s").player(Player.builder().nickname("Oliver N76").build())
                 .build();
         assertEquals(expected, actual);
 
         line = "GunDolfAA: folds";
-        actual = extractHoldCardsFromAction(line);
+        actual = FileParser.extractHoldCards(line);
         expected = HoldCards.builder().card1(null).card2(null).player(Player.builder().nickname("GunDolfAA").build())
                 .build();
         assertEquals(expected, actual);
@@ -192,24 +202,6 @@ public class FileParserTest {
     }
 
     @Test
-    public void extractUncalledBetTest() {
-        String line = "Uncalled bet (300) returned to mjmj1971";
-        AdditionalInfoPlayer actual = extractAdditionalInfoPlayerUncalledBet(line);
-        AdditionalInfoPlayer expected = AdditionalInfoPlayer.builder().info(TypeInfo.UNCALLED_BET).value(300L)
-                .player(Player.builder().nickname("mjmj1971").build()).build();
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void extractAdditionalInfoPlayerCollectedFromPotTest() {
-        String line = "mjmj1971 collected 440 from pot";
-        AdditionalInfoPlayer actual = extractAdditionalInfoPlayerCollectedFromPot(line);
-        AdditionalInfoPlayer expected = AdditionalInfoPlayer.builder().info(TypeInfo.COLLECTED).value(440L)
-                .player(Player.builder().nickname("mjmj1971").build()).build();
-        assertEquals(expected, actual);
-    }
-
-    @Test
     public void extractTotalPotTest() {
         String line = "Total pot 440 | Rake 0";
         Long actual = extractTotalPot(line);
@@ -235,29 +227,50 @@ public class FileParserTest {
     @Test
     public void extractSummaryTest() {
         String line = "Seat 1: W SERENA folded on the River";
-        Summary actual = extractSummary(line);
-        Summary expected =
-                Summary.builder().seatId(1).value(null).additionalInfoPlayerSet(new HashSet<>(Arrays.asList(TypeInfo.FOLDED_ON_THE_RIVER))).build();
+        Set<InfoPlayerAtHand> actual = extractInfoPlayerAtHand(line);
+        Set<InfoPlayerAtHand> expected = new HashSet<>();
+        expected.add(
+                InfoPlayerAtHand.builder()
+                        .info(TypeInfo.FOLDED_ON_THE_RIVER)
+                        .build());
         assertEquals(expected, actual);
+        expected.clear();
 
         line = "Seat 2: matalaha folded before Flop (didn't bet)";
-        actual = extractSummary(line);
-        expected =
-                Summary.builder().seatId(2).value(null).additionalInfoPlayerSet(new HashSet<>(Arrays.asList(TypeInfo.FOLDED_BEFORE_FLOP, TypeInfo.DID_NOT_BET))).build();
+        actual = extractInfoPlayerAtHand(line);
+        expected.add(
+                InfoPlayerAtHand.builder()
+                        .info(TypeInfo.FOLDED_BEFORE_FLOP)
+                        .build());
         assertEquals(expected, actual);
+        expected.clear();
 
         line = "Seat 5: mjmj1971 (button) collected (440)";
-        actual = extractSummary(line);
-        expected =
-                Summary.builder().seatId(5).value(440L).additionalInfoPlayerSet(new HashSet<>(Arrays.asList(TypeInfo.BUTTON,
-                        TypeInfo.COLLECTED))).build();
+        actual = extractInfoPlayerAtHand(line);
+        expected.add(
+                InfoPlayerAtHand.builder()
+                        .info(TypeInfo.BUTTON)
+                        .build());
+        expected.add(
+                InfoPlayerAtHand.builder()
+                        .info(TypeInfo.COLLECTED)
+                        .value(440L)
+                        .build());
         assertEquals(expected, actual);
+        expected.clear();
 
         line = "Seat 8: H3ll5cream (big blind) collected (590)";
-        actual = extractSummary(line);
-        expected =
-                Summary.builder().seatId(8).value(590L).additionalInfoPlayerSet(new HashSet<>(Arrays.asList(TypeInfo.BIG_BLIND,
-                        TypeInfo.COLLECTED))).build();
+        actual = extractInfoPlayerAtHand(line);
+        expected.add(
+                InfoPlayerAtHand.builder()
+                        .info(TypeInfo.BIG_BLIND)
+                        .build());
+        expected.add(
+                InfoPlayerAtHand.builder()
+                        .info(TypeInfo.COLLECTED)
+                        .value(590L)
+                        .build());
         assertEquals(expected, actual);
+        expected.clear();
     }
 }

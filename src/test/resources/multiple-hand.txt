@@ -1,0 +1,347 @@
+﻿PokerStars Hand #208296842229: Tournament #2779056951, $0.49+$0.06 USD Hold'em No Limit - Level VI (50/100) - 2020/01/18 22:02:11 EET [2020/01/18 15:02:11 ET]
+Table '2779056951 40' 9-max Seat #5 is the button
+Seat 1: W SERENA (5000 in chips) 
+Seat 2: matalaha (6917 in chips) 
+Seat 3: xTheWindelPilot (1268 in chips) 
+Seat 4: schlier4 (8186 in chips) 
+Seat 5: mjmj1971 (10998 in chips) 
+Seat 6: GunDolfAA (4523 in chips) 
+Seat 7: Oliver N76 (13836 in chips) 
+Seat 8: H3ll5cream (2717 in chips) 
+Seat 9: jcarlos.vale (5000 in chips) 
+W SERENA: posts the ante 10
+matalaha: posts the ante 10
+xTheWindelPilot: posts the ante 10
+schlier4: posts the ante 10
+mjmj1971: posts the ante 10
+GunDolfAA: posts the ante 10
+Oliver N76: posts the ante 10
+H3ll5cream: posts the ante 10
+jcarlos.vale: posts the ante 10
+GunDolfAA: posts small blind 50
+Oliver N76: posts big blind 100
+*** HOLE CARDS ***
+Dealt to jcarlos.vale [Kc 7d]
+H3ll5cream: folds 
+jcarlos.vale: folds 
+W SERENA: calls 100
+matalaha: folds 
+xTheWindelPilot: folds 
+schlier4: folds 
+mjmj1971: calls 100
+GunDolfAA: folds 
+Oliver N76: checks 
+*** FLOP *** [7s 5h Jc]
+Oliver N76: checks 
+W SERENA: checks 
+mjmj1971: checks 
+*** TURN *** [7s 5h Jc] [Qd]
+Oliver N76: checks 
+W SERENA: checks 
+mjmj1971: checks 
+*** RIVER *** [7s 5h Jc Qd] [8d]
+Oliver N76: checks 
+W SERENA: checks 
+mjmj1971: bets 300
+Oliver N76: folds 
+W SERENA: folds 
+Uncalled bet (300) returned to mjmj1971
+mjmj1971 collected 440 from pot
+mjmj1971: doesn't show hand 
+*** SUMMARY ***
+Total pot 440 | Rake 0 
+Board [7s 5h Jc Qd 8d]
+Seat 1: W SERENA folded on the River
+Seat 2: matalaha folded before Flop (didn't bet)
+Seat 3: xTheWindelPilot folded before Flop (didn't bet)
+Seat 4: schlier4 folded before Flop (didn't bet)
+Seat 5: mjmj1971 (button) collected (440)
+Seat 6: GunDolfAA (small blind) folded before Flop
+Seat 7: Oliver N76 (big blind) folded on the River
+Seat 8: H3ll5cream folded before Flop (didn't bet)
+Seat 9: jcarlos.vale folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #208296897356: Tournament #2779056951, $0.49+$0.06 USD Hold'em No Limit - Level VI (50/100) - 2020/01/18 22:03:38 EET [2020/01/18 15:03:38 ET]
+Table '2779056951 40' 9-max Seat #6 is the button
+Seat 1: W SERENA (4890 in chips) 
+Seat 2: matalaha (6907 in chips) 
+Seat 3: xTheWindelPilot (1258 in chips) 
+Seat 4: schlier4 (8176 in chips) 
+Seat 5: mjmj1971 (11328 in chips) 
+Seat 6: GunDolfAA (4463 in chips) 
+Seat 7: Oliver N76 (13726 in chips) 
+Seat 8: H3ll5cream (2707 in chips) 
+Seat 9: jcarlos.vale (4990 in chips) 
+W SERENA: posts the ante 10
+matalaha: posts the ante 10
+xTheWindelPilot: posts the ante 10
+schlier4: posts the ante 10
+mjmj1971: posts the ante 10
+GunDolfAA: posts the ante 10
+Oliver N76: posts the ante 10
+H3ll5cream: posts the ante 10
+jcarlos.vale: posts the ante 10
+Oliver N76: posts small blind 50
+H3ll5cream: posts big blind 100
+*** HOLE CARDS ***
+Dealt to jcarlos.vale [As 5s]
+jcarlos.vale: folds 
+W SERENA: calls 100
+matalaha: folds 
+xTheWindelPilot: folds 
+schlier4: calls 100
+mjmj1971: calls 100
+GunDolfAA: folds 
+Oliver N76: calls 50
+H3ll5cream: raises 2597 to 2697 and is all-in
+W SERENA: folds 
+schlier4: folds 
+mjmj1971: folds 
+Oliver N76: folds 
+Uncalled bet (2597) returned to H3ll5cream
+H3ll5cream collected 590 from pot
+H3ll5cream: doesn't show hand 
+*** SUMMARY ***
+Total pot 590 | Rake 0 
+Seat 1: W SERENA folded before Flop
+Seat 2: matalaha folded before Flop (didn't bet)
+Seat 3: xTheWindelPilot folded before Flop (didn't bet)
+Seat 4: schlier4 folded before Flop
+Seat 5: mjmj1971 folded before Flop
+Seat 6: GunDolfAA (button) folded before Flop (didn't bet)
+Seat 7: Oliver N76 (small blind) folded before Flop
+Seat 8: H3ll5cream (big blind) collected (590)
+Seat 9: jcarlos.vale folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #208296919055: Tournament #2779056951, $0.49+$0.06 USD Hold'em No Limit - Level VI (50/100) - 2020/01/18 22:04:12 EET [2020/01/18 15:04:12 ET]
+Table '2779056951 40' 9-max Seat #7 is the button
+Seat 1: W SERENA (4780 in chips) 
+Seat 2: matalaha (6897 in chips) 
+Seat 3: xTheWindelPilot (1248 in chips) 
+Seat 4: schlier4 (8066 in chips) 
+Seat 5: mjmj1971 (11218 in chips) 
+Seat 6: GunDolfAA (4453 in chips) 
+Seat 7: Oliver N76 (13616 in chips) 
+Seat 8: H3ll5cream (3187 in chips) 
+Seat 9: jcarlos.vale (4980 in chips) 
+W SERENA: posts the ante 10
+matalaha: posts the ante 10
+xTheWindelPilot: posts the ante 10
+schlier4: posts the ante 10
+mjmj1971: posts the ante 10
+GunDolfAA: posts the ante 10
+Oliver N76: posts the ante 10
+H3ll5cream: posts the ante 10
+jcarlos.vale: posts the ante 10
+H3ll5cream: posts small blind 50
+jcarlos.vale: posts big blind 100
+*** HOLE CARDS ***
+Dealt to jcarlos.vale [7d Qh]
+W SERENA: calls 100
+matalaha: folds 
+xTheWindelPilot: folds 
+schlier4: folds 
+mjmj1971: folds 
+GunDolfAA: folds 
+Oliver N76: folds 
+H3ll5cream: folds 
+jcarlos.vale: checks 
+*** FLOP *** [9c Ts 5s]
+jcarlos.vale: checks 
+W SERENA: bets 500
+jcarlos.vale: folds 
+Uncalled bet (500) returned to W SERENA
+W SERENA collected 340 from pot
+W SERENA: doesn't show hand 
+*** SUMMARY ***
+Total pot 340 | Rake 0 
+Board [9c Ts 5s]
+Seat 1: W SERENA collected (340)
+Seat 2: matalaha folded before Flop (didn't bet)
+Seat 3: xTheWindelPilot folded before Flop (didn't bet)
+Seat 4: schlier4 folded before Flop (didn't bet)
+Seat 5: mjmj1971 folded before Flop (didn't bet)
+Seat 6: GunDolfAA folded before Flop (didn't bet)
+Seat 7: Oliver N76 (button) folded before Flop (didn't bet)
+Seat 8: H3ll5cream (small blind) folded before Flop
+Seat 9: jcarlos.vale (big blind) folded on the Flop
+
+
+
+PokerStars Hand #208296936565: Tournament #2779056951, $0.49+$0.06 USD Hold'em No Limit - Level VI (50/100) - 2020/01/18 22:04:39 EET [2020/01/18 15:04:39 ET]
+Table '2779056951 40' 9-max Seat #8 is the button
+Seat 1: W SERENA (5010 in chips) 
+Seat 2: matalaha (6887 in chips) 
+Seat 3: xTheWindelPilot (1238 in chips) 
+Seat 4: schlier4 (8056 in chips) 
+Seat 5: mjmj1971 (11208 in chips) 
+Seat 6: GunDolfAA (4443 in chips) 
+Seat 7: Oliver N76 (13606 in chips) 
+Seat 8: H3ll5cream (3127 in chips) 
+Seat 9: jcarlos.vale (4870 in chips) 
+W SERENA: posts the ante 10
+matalaha: posts the ante 10
+xTheWindelPilot: posts the ante 10
+schlier4: posts the ante 10
+mjmj1971: posts the ante 10
+GunDolfAA: posts the ante 10
+Oliver N76: posts the ante 10
+H3ll5cream: posts the ante 10
+jcarlos.vale: posts the ante 10
+jcarlos.vale: posts small blind 50
+W SERENA: posts big blind 100
+*** HOLE CARDS ***
+Dealt to jcarlos.vale [5d Qd]
+matalaha: folds 
+xTheWindelPilot: folds 
+schlier4: folds 
+mjmj1971: folds 
+GunDolfAA: folds 
+Oliver N76: folds 
+H3ll5cream: folds 
+jcarlos.vale: folds 
+Uncalled bet (50) returned to W SERENA
+W SERENA collected 190 from pot
+W SERENA: doesn't show hand 
+*** SUMMARY ***
+Total pot 190 | Rake 0 
+Seat 1: W SERENA (big blind) collected (190)
+Seat 2: matalaha folded before Flop (didn't bet)
+Seat 3: xTheWindelPilot folded before Flop (didn't bet)
+Seat 4: schlier4 folded before Flop (didn't bet)
+Seat 5: mjmj1971 folded before Flop (didn't bet)
+Seat 6: GunDolfAA folded before Flop (didn't bet)
+Seat 7: Oliver N76 folded before Flop (didn't bet)
+Seat 8: H3ll5cream (button) folded before Flop (didn't bet)
+Seat 9: jcarlos.vale (small blind) folded before Flop
+
+
+
+PokerStars Hand #208296947668: Tournament #2779056951, $0.49+$0.06 USD Hold'em No Limit - Level VI (50/100) - 2020/01/18 22:04:57 EET [2020/01/18 15:04:57 ET]
+Table '2779056951 40' 9-max Seat #9 is the button
+Seat 1: W SERENA (5140 in chips) 
+Seat 2: matalaha (6877 in chips) 
+Seat 3: xTheWindelPilot (1228 in chips) 
+Seat 4: schlier4 (8046 in chips) 
+Seat 5: mjmj1971 (11198 in chips) 
+Seat 6: GunDolfAA (4433 in chips) 
+Seat 7: Oliver N76 (13596 in chips) 
+Seat 8: H3ll5cream (3117 in chips) 
+Seat 9: jcarlos.vale (4810 in chips) 
+W SERENA: posts the ante 10
+matalaha: posts the ante 10
+xTheWindelPilot: posts the ante 10
+schlier4: posts the ante 10
+mjmj1971: posts the ante 10
+GunDolfAA: posts the ante 10
+Oliver N76: posts the ante 10
+H3ll5cream: posts the ante 10
+jcarlos.vale: posts the ante 10
+W SERENA: posts small blind 50
+matalaha: posts big blind 100
+*** HOLE CARDS ***
+Dealt to jcarlos.vale [9d 4c]
+xTheWindelPilot: folds 
+schlier4: folds 
+mjmj1971: calls 100
+GunDolfAA: folds 
+Oliver N76: folds 
+H3ll5cream: folds 
+jcarlos.vale: folds 
+W SERENA: calls 50
+matalaha: checks 
+*** FLOP *** [6d 6h 3s]
+W SERENA: checks 
+matalaha: checks 
+mjmj1971: checks 
+*** TURN *** [6d 6h 3s] [Td]
+W SERENA: checks 
+matalaha: checks 
+mjmj1971: bets 100
+W SERENA: calls 100
+matalaha: folds 
+*** RIVER *** [6d 6h 3s Td] [2h]
+W SERENA: checks 
+mjmj1971: bets 100
+W SERENA: folds 
+Uncalled bet (100) returned to mjmj1971
+mjmj1971 collected 590 from pot
+mjmj1971: doesn't show hand 
+*** SUMMARY ***
+Total pot 590 | Rake 0 
+Board [6d 6h 3s Td 2h]
+Seat 1: W SERENA (small blind) folded on the River
+Seat 2: matalaha (big blind) folded on the Turn
+Seat 3: xTheWindelPilot folded before Flop (didn't bet)
+Seat 4: schlier4 folded before Flop (didn't bet)
+Seat 5: mjmj1971 collected (590)
+Seat 6: GunDolfAA folded before Flop (didn't bet)
+Seat 7: Oliver N76 folded before Flop (didn't bet)
+Seat 8: H3ll5cream folded before Flop (didn't bet)
+Seat 9: jcarlos.vale (button) folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #208296993434: Tournament #2779056951, $0.49+$0.06 USD Hold'em No Limit - Level VI (50/100) - 2020/01/18 22:06:07 EET [2020/01/18 15:06:07 ET]
+Table '2779056951 40' 9-max Seat #1 is the button
+Seat 1: W SERENA (4930 in chips) 
+Seat 2: matalaha (6767 in chips) 
+Seat 3: xTheWindelPilot (1218 in chips) 
+Seat 4: schlier4 (8036 in chips) 
+Seat 5: mjmj1971 (11578 in chips) 
+Seat 6: GunDolfAA (4423 in chips) 
+Seat 7: Oliver N76 (13586 in chips) 
+Seat 8: H3ll5cream (3107 in chips) 
+Seat 9: jcarlos.vale (4800 in chips) 
+W SERENA: posts the ante 10
+matalaha: posts the ante 10
+xTheWindelPilot: posts the ante 10
+schlier4: posts the ante 10
+mjmj1971: posts the ante 10
+GunDolfAA: posts the ante 10
+Oliver N76: posts the ante 10
+H3ll5cream: posts the ante 10
+jcarlos.vale: posts the ante 10
+matalaha: posts small blind 50
+xTheWindelPilot: posts big blind 100
+*** HOLE CARDS ***
+Dealt to jcarlos.vale [3h Qs]
+schlier4: folds 
+mjmj1971: folds 
+GunDolfAA: calls 100
+Oliver N76: folds 
+H3ll5cream: folds 
+jcarlos.vale: folds 
+W SERENA: calls 100
+matalaha: calls 50
+xTheWindelPilot: raises 1108 to 1208 and is all-in
+GunDolfAA: folds 
+W SERENA: calls 1108
+matalaha: folds 
+*** FLOP *** [9d 9h 9c]
+*** TURN *** [9d 9h 9c] [9s]
+*** RIVER *** [9d 9h 9c 9s] [8c]
+*** SHOW DOWN ***
+xTheWindelPilot: shows [8s 8h] (four of a kind, Nines)
+W SERENA: shows [As 3s] (four of a kind, Nines - Ace kicker)
+W SERENA collected 2706 from pot
+xTheWindelPilot finished the tournament
+*** SUMMARY ***
+Total pot 2706 | Rake 0 
+Board [9d 9h 9c 9s 8c]
+Seat 1: W SERENA (button) showed [As 3s] and won (2706) with four of a kind, Nines
+Seat 2: matalaha (small blind) folded before Flop
+Seat 3: xTheWindelPilot (big blind) showed [8s 8h] and lost with four of a kind, Nines
+Seat 4: schlier4 folded before Flop (didn't bet)
+Seat 5: mjmj1971 folded before Flop (didn't bet)
+Seat 6: GunDolfAA folded before Flop
+Seat 7: Oliver N76 folded before Flop (didn't bet)
+Seat 8: H3ll5cream folded before Flop (didn't bet)
+Seat 9: jcarlos.vale folded before Flop (didn't bet)
+
+
+

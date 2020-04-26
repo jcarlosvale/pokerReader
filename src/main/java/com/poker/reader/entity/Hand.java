@@ -11,11 +11,11 @@ import java.util.*;
 public class Hand {
     private Long id;
     private String level;
+    private Integer button;
     private Integer smallBlind;
     private Integer bigBlind;
     private LocalDateTime dateTime;
     private String tableId;
-    private Integer button;
     private Flop flop;
     private Turn turn;
     private River river;
@@ -24,7 +24,6 @@ public class Hand {
     private Tournament tournament;
     private final Map<Player,Seat> seats = new HashMap<>();
     private final List<Action> actions = new ArrayList<>();
-    private final List<AdditionalInfoPlayer> additionalInfoPlayerList = new ArrayList<>();
 
     public Seat getSeatBySeatId(Integer seatId) {
         Optional<Seat> foundSeat = seats.values().stream().filter(seat -> seat.getSeatId().equals(seatId)).findFirst();

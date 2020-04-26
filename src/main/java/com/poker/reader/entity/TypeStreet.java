@@ -5,5 +5,6 @@ public enum TypeStreet {
     PREFLOP,
     FLOP,
     TURN,
-    RIVER;
+    RIVER,
+    SHOWDOWN;
 }

@@ -11,6 +11,7 @@ public enum TypeFileSection {
     FLOP(Tokens.SECTION_FLOP),
     TURN(Tokens.SECTION_TURN),
     RIVER(Tokens.SECTION_RIVER),
+    SHOWDOWN(Tokens.SECTION_SHOWDOWN),
     SUMMARY(Tokens.SECTION_SUMMARY),
     END_OF_HAND(""),
     ;
