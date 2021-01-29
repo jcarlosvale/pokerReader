@@ -13,5 +13,6 @@ public enum TypeAction {
     ALL_IN,
     NO_SHOW_HAND,
     SHOW_HAND,
+    MUCKS_HAND,
     ;
 }

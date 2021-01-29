@@ -459,7 +459,7 @@ public class FileReaderProcessorTest {
         for(Hand hand : fileReaderProcessor.getHandList()) {
             assertEquals(expectedTournament, hand.getTournament());
         }
-        assertEquals(6, fileReaderProcessor.getHandList().size());
+        assertEquals(15, fileReaderProcessor.getHandList().size());
     }
     @Test
     public void verifySectionTest() {

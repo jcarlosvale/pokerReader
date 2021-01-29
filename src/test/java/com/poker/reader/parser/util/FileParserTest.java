@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.poker.reader.entity.TypeAction.*;
 import static com.poker.reader.parser.util.FileParser.*;
 import static com.poker.reader.parser.util.FileParserUtil.DATE_TIME_FORMAT;
 import static org.junit.Assert.assertEquals;
@@ -141,18 +142,26 @@ public class FileParserTest {
         line = "mjmj1971: doesn't show hand";
         actual = extractAction(line);
         expected = Action.builder().player(Player.builder().nickname("mjmj1971").build())
-                .typeAction(TypeAction.NO_SHOW_HAND).value(0L).build();
+                .typeAction(NO_SHOW_HAND).value(0L).build();
         assertEquals(expected, actual);
 
         line = "xTheWindelPilot: shows [8s 8h] (four of a kind, Nines)";
         actual = extractAction(line);
         expected = Action.builder()
                 .player(Player.builder().nickname("xTheWindelPilot").build())
-                .typeAction(TypeAction.SHOW_HAND)
+                .typeAction(SHOW_HAND)
                 .holdCards(HoldCards.builder()
                         .player(Player.builder().nickname("xTheWindelPilot").build())
                         .card1("8s").card2("8h").build())
                 .scoring("four of a kind, Nines").build();
+        assertEquals(expected, actual);
+
+        line = "GunDolfAA: mucks hand";
+        actual = extractAction(line);
+        expected = Action.builder()
+                .player(Player.builder().nickname("GunDolfAA").build())
+                .typeAction(MUCKS_HAND)
+                .build();
         assertEquals(expected, actual);
     }
 

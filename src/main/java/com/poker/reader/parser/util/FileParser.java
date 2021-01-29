@@ -175,6 +175,7 @@ public class FileParser {
         }
         if (line.contains(Tokens.NO_SHOW_HAND_ACTION)) return TypeAction.NO_SHOW_HAND;
         if (line.contains(SHOW_HAND_ACTION)) return TypeAction.SHOW_HAND;
+        if (line.contains(MUCKS_HAND_ACTION)) return TypeAction.MUCKS_HAND;
         throw new InvalidTypeActionException("TYPE ACTION NOT FOUND AT LINE: " + line);
     }
 

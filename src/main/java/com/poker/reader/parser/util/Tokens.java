@@ -82,6 +82,7 @@ public class Tokens {
     public static final String ALL_IN_ACTION = " and is all-in";
     public static final String NO_SHOW_HAND_ACTION = " doesn't show hand";
     public static final String SHOW_HAND_ACTION = " shows [";
+    public static final String MUCKS_HAND_ACTION = "mucks hand";
 
     //TYPE INFO
     public static final String START_COLLECTED_FROM_POT_INFO    = START_COLLECTED_FROM_POT;
