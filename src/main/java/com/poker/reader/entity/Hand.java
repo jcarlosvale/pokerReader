@@ -3,6 +3,7 @@ package com.poker.reader.entity;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -14,11 +15,12 @@ public class Hand {
     private Integer button;
     private Integer smallBlind;
     private Integer bigBlind;
-    private LocalDateTime dateTime;
+    private LocalDate date;
     private String tableId;
     private Flop flop;
     private Turn turn;
     private River river;
+    private Long sidePot;
     private Long totalPot;
     private Board board;
     private Tournament tournament;

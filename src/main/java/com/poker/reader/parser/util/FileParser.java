@@ -20,15 +20,14 @@ public class FileParser {
 
     public static Tournament extractTournament(String line) {
         return Tournament.builder().id(extractLong(line, START_TOURNAMENT, END_TOURNAMENT))
-                .buyIn(extractBigDecimal(line, START_BUY_IN_PRIZE, END_BUY_IN_PRIZE)
-                        .add(extractBigDecimal(line, START_BUY_IN_RAKE, END_BUY_IN_RAKE))).build();
+                .buyIn(extractBigDecimal(line, START_BUY_IN_PRIZE, END_BUY_IN_PRIZE)).build();
     }
 
     public static Hand extractHand(String line) {
         return Hand.builder().id(extractLong(line, START_HAND, END_HAND)).level(extract(line, START_LEVEL, END_LEVEL))
                 .smallBlind(extractInteger(line, START_SMALL_BLIND, END_SMALL_BLIND))
                 .bigBlind(extractInteger(line, START_BIG_BLIND, END_BIG_BLIND))
-                .dateTime(extractLocalDateTime(line, START_DATE, END_DATE)).build();
+                .date(extractLocalDate(line, START_DATE, END_DATE)).build();
     }
 
     public static String extractTable(String line) {
@@ -41,9 +40,21 @@ public class FileParser {
 
 
     public static Seat extractSeat(String line) {
+        String nickname = extractNickname(line, START_PLAYER, END_PLAYER);
         return Seat.builder().seatId(extractInteger(line, START_SEAT_POSITION, END_SEAT_POSITION))
-                .player(Player.builder().nickname(extract(line, START_PLAYER, END_PLAYER)).build())
-                .stack(extractLong(line, START_STACK, END_STACK)).build();
+                .player(Player.builder().nickname(nickname).build())
+                .stack(extractLong(line, nickname+START_STACK, END_STACK)).build();
+    }
+
+    private static String extractNickname(String line, String startPlayer, String endPlayer) {
+        int startPos = line.indexOf(startPlayer) + 1;
+        int lastPos = -1;
+        for (int i = 0; i < line.length(); i++) {
+            if(line.charAt(i) == endPlayer.charAt(1)) {
+                lastPos = i;
+            }
+        }
+        return line.substring(startPos, lastPos-1).trim();
     }
 
     public static Integer extractSeatId(String line) {
@@ -72,9 +83,12 @@ public class FileParser {
                     .card1(extractCard(line, START_CARD, END_CARD, 1)).card2(extractCard(line, START_CARD, END_CARD, 2))
                     .build();
         } else {
+            String card1 = extractCard(line, START_CARD, END_CARD, 1);
+            String card2 = extractCard(line, START_CARD, END_CARD, 2);
             return HoldCards.builder()
                     .player(Player.builder().nickname(StringUtils.substringBefore(line, ":").trim()).build())
-                    .card1(extractCard(line, START_CARD, END_CARD, 1)).card2(extractCard(line, START_CARD, END_CARD, 2))
+                    .card1(card1)
+                    .card2(card2)
                     .build();
         }
     }
@@ -141,6 +155,14 @@ public class FileParser {
         return extractLong(line, START_TOTAL_POT, END_TOTAL_POT);
     }
 
+    public static Long extractSidePot(String line) {
+        if (line.contains(START_SIDE_POT)) {
+            String sidePotLine = line.substring(line.indexOf(START_SIDE_POT));
+            return extractLong(sidePotLine, START_SIDE_POT, END_SIDE_POT);
+        }
+        return null;
+    }
+
     public static Board extractBoard(String line) {
         List<String> listCards = extractList(line, START_BOARD, END_BOARD, " ");
         if (listCards.size() > 0) {
@@ -158,21 +180,15 @@ public class FileParser {
     }
 
     public static TypeAction selectTypeAction(String line) {
+        if (line.contains(Tokens.ALL_IN_ACTION)) return TypeAction.ALL_IN;
         if (line.contains(Tokens.ANTE_ACTION)) return TypeAction.ANTE;
         if (line.contains(Tokens.SMALL_BLIND_ACTION)) return TypeAction.SMALL_BLIND;
         if (line.contains(Tokens.BIG_BLIND_ACTION)) return TypeAction.BIG_BLIND;
         if (line.contains(Tokens.FOLD_ACTION)) return TypeAction.FOLD;
-        if (line.contains(Tokens.CALL_ACTION)) {
-            if (line.contains(Tokens.ALL_IN_ACTION)) return TypeAction.CALL_ALL_IN;
-            else return TypeAction.CALL;
-        }
+        if (line.contains(Tokens.CALL_ACTION)) return TypeAction.CALL;
         if (line.contains(Tokens.CHECK_ACTION)) return TypeAction.CHECK;
         if (line.contains(Tokens.BETS_ACTION)) return TypeAction.BETS;
-
-        if (line.contains(Tokens.RAISE_ACTION)) {
-            if (line.contains(Tokens.ALL_IN_ACTION)) return TypeAction.ALL_IN;
-            else return TypeAction.RAISE;
-        }
+        if (line.contains(Tokens.RAISE_ACTION)) return TypeAction.RAISE;
         if (line.contains(Tokens.NO_SHOW_HAND_ACTION)) return TypeAction.NO_SHOW_HAND;
         if (line.contains(SHOW_HAND_ACTION)) return TypeAction.SHOW_HAND;
         if (line.contains(MUCKS_HAND_ACTION)) return TypeAction.MUCKS_HAND;

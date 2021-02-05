@@ -6,8 +6,13 @@ import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -35,7 +40,7 @@ public class FileReaderProcessorTest {
                 .level("VI")
                 .smallBlind(50)
                 .bigBlind(100)
-                .dateTime(LocalDateTime.parse("2020/01/18 15:02:11", DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)))
+                .date(LocalDate.parse("2020/01/18", DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)))
                 .tableId("2779056951 40")
                 .button(5)
                 .build();
@@ -497,5 +502,17 @@ public class FileReaderProcessorTest {
         line = "Seat 7: Oliver N76 (big blind) folded on the River\n";
         actual = fileReaderProcessor.verifySection(line);
         assertNull(actual);
+    }
+
+    @Test
+    public void readDirectoryTest() throws URISyntaxException, IOException {
+        URL url = FileReaderProcessorTest.class.getClassLoader().getResource("top");
+        assert url != null;
+        String directory = Paths.get(url.toURI()).toString();
+        List<File> files = fileReaderProcessor.readDirectory(directory);
+        assertEquals(10, files.size());
+        for (File file : files) {
+            fileReaderProcessor.readFile(file.getAbsolutePath());
+        }
     }
 }

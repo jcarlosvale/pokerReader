@@ -40,7 +40,7 @@ public class Tokens {
     public static final String START_PLAYER = ": ";
     public static final String END_PLAYER = " (";
 
-    public static final String START_STACK = "(";
+    public static final String START_STACK = " (";
     public static final String END_STACK = " in chips)";
 
     public static final String START_CARD = " [";
@@ -56,7 +56,10 @@ public class Tokens {
     public static final String END_COLLECTED_FROM_POT = ")";
 
     public static final String START_TOTAL_POT = "Total pot ";
-    public static final String END_TOTAL_POT = " |";
+    public static final String END_TOTAL_POT = " .";
+
+    public static final String START_SIDE_POT = "Side pot ";
+    public static final String END_SIDE_POT = " .";
 
     public static final String START_BOARD = "Board [";
     public static final String END_BOARD = "]";
@@ -98,7 +101,8 @@ public class Tokens {
 
 
 
-                //FILE SECTION
+    //FILE SECTION
+    public static final String SECTION_CHAT_MESSAGE = " said, \"";
     public static final String SECTION_TOKEN = "*** ";
     public static final String SECTION_HEADER = START_HAND;
     public static final String SECTION_PRE_FLOP = "*** HOLE CARDS ***";

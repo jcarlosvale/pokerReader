@@ -5,6 +5,7 @@ import com.poker.reader.exception.InvalidSectionFileException;
 import com.poker.reader.parser.util.TypeFileSection;
 import com.poker.reader.validator.HandValidator;
 import lombok.Data;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -24,16 +25,40 @@ import static com.poker.reader.parser.util.Tokens.*;
 import static com.poker.reader.parser.util.TypeFileSection.*;
 
 @Data
+@Log4j2
 public class FileReaderProcessor {
 
     private final LinkedList<Hand> handList = new LinkedList<>();
     private final Set<Player> players = new HashSet<>();
+    private File file;
+
+    public List<File> readDirectory(String directoryPath) {
+        List<File> files = (List<File>) FileUtils.listFiles(new File(directoryPath), new String[]{"txt"}, false);
+        return files;
+    }
 
     public void readFile(String filePath) throws IOException {
-        List<String> lines = FileUtils.readLines(new File(filePath), "utf-8");
+        readFile(new File(filePath));
+    }
+
+    public void readFile(File file) throws IOException {
+        log.debug(" FILE: " + file.getAbsolutePath());
+        this.file = file;
+        List<String> lines = FileUtils.readLines(file, "utf-8");
+        readFile(lines);
+    }
+
+    private void readFile(List<String> lines) {
         TypeFileSection section = null;
         for (String line : lines) {
+            log.debug(line);
+            if (line.contains("alexandru2111 said, \"putaaaaaa  raise for nothing? **** you and your mother!!!")) {
+                System.out.println(" debug ");
+            }
             TypeFileSection tempSection = verifySection(line);
+            if (tempSection == CHAT_MESSAGE) {
+                continue;
+            }
             if ((tempSection != null) && (tempSection != section)) {
                 section = tempSection;
             }
@@ -158,6 +183,7 @@ public class FileReaderProcessor {
         if (line.contains(SECTION_SUMMARY)) return;
         if (line.contains(START_TOTAL_POT)) {
             hand.setTotalPot(extractTotalPot(line));
+            hand.setSidePot(extractSidePot(line));
         } else
         if (line.contains(START_BOARD)) {
             Board board = extractBoard(line);
@@ -170,6 +196,7 @@ public class FileReaderProcessor {
     }
 
     protected TypeFileSection verifySection(String line) {
+        if (line.contains(SECTION_CHAT_MESSAGE)) return CHAT_MESSAGE;
         if (line.contains(SECTION_HEADER)) {return HEADER;}
         if (line.contains(SECTION_PRE_FLOP)) {return PRE_FLOP;}
         if (line.contains(SECTION_FLOP)) {return TypeFileSection.FLOP;}

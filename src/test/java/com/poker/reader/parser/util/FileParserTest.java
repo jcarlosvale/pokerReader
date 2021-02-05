@@ -4,6 +4,7 @@ import com.poker.reader.entity.*;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -29,9 +30,9 @@ public class FileParserTest {
     public void extractHandTest() {
         String line = "PokerStars Hand #210434850106: Tournament #2834364251, $0.23+$0.02 USD Hold'em No Limit - " +
                 "Level I (10/20) - 2020/03/21 16:33:37 EET [2020/03/21 10:33:37 ET]\n";
-        LocalDateTime dateTime = LocalDateTime.parse("2020/03/21 10:33:37", DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
+        LocalDate date = LocalDate.parse("2020/03/21", DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
         Hand expectedHand =
-                Hand.builder().id(210434850106L).level("I").smallBlind(10).bigBlind(20).dateTime(dateTime).build();
+                Hand.builder().id(210434850106L).level("I").smallBlind(10).bigBlind(20).date(date).build();
         Hand actualHand = extractHand(line);
         assertEquals(expectedHand, actualHand);
     }
@@ -136,7 +137,7 @@ public class FileParserTest {
         line = "VitalikX77: calls 4604 and is all-in";
         actual = extractAction(line);
         expected = Action.builder().player(Player.builder().nickname("VitalikX77").build())
-                .typeAction(TypeAction.CALL_ALL_IN).value(4604L).build();
+                .typeAction(ALL_IN).value(4604L).build();
         assertEquals(expected, actual);
 
         line = "mjmj1971: doesn't show hand";

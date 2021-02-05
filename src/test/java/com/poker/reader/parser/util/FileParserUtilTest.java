@@ -4,6 +4,7 @@ import com.poker.reader.entity.TypeAction;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -69,14 +70,14 @@ public class FileParserUtilTest {
         LocalDateTime expected = LocalDateTime.parse("2020/03/21 10:33:37", DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
         String line = "PokerStars Hand #210434850106: Tournament #2834364251, $0.23+$0.02 USD Hold'em No Limit - " +
                 "Level I (10/20) - 2020/03/21 16:33:37 EET [2020/03/21 10:33:37 ET]\n";
-        LocalDateTime actual = FileParserUtil.extractLocalDateTime(line, Tokens.START_DATE, Tokens.END_DATE);
+        LocalDate actual = FileParserUtil.extractLocalDate(line, Tokens.START_DATE, Tokens.END_DATE);
         assertEquals(expected, actual);
     }
 
     @Test
     public void extractEmptyDateTimeTest() {
         String line = "some text";
-        LocalDateTime actual = FileParserUtil.extractLocalDateTime(line, "some token", "some token");
+        LocalDate actual = FileParserUtil.extractLocalDate(line, "some token", "some token");
         assertNull(actual);
     }
 
