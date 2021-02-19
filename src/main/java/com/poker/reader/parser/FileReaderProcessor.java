@@ -5,8 +5,10 @@ import com.poker.reader.exception.InvalidSectionFileException;
 import com.poker.reader.parser.util.TypeFileSection;
 import com.poker.reader.validator.HandValidator;
 import lombok.Data;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,9 +28,11 @@ import static com.poker.reader.parser.util.TypeFileSection.*;
 
 @Data
 @Log4j2
+@Service
 public class FileReaderProcessor {
 
     private final LinkedList<Hand> handList = new LinkedList<>();
+    @Getter
     private final Set<Player> players = new HashSet<>();
     private File file;
 

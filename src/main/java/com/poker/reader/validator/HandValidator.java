@@ -20,7 +20,7 @@ public class HandValidator {
     }
 
     private static void validatePositions(Hand hand) {
-        log.info("Validating positions, HAND: {}", hand.getId());
+        log.debug("Validating positions, HAND: {}", hand.getId());
         for(Seat seat : hand.getSeats().values()) {
             for(InfoPlayerAtHand infoPlayerAtHand : seat.getInfoPlayerAtHandList()) {
                 if (infoPlayerAtHand.getInfo().equals(TypeInfo.BUTTON)) {
@@ -56,7 +56,7 @@ public class HandValidator {
     }
 
     private static void validatePlayers(Hand hand) {
-        log.info("Validating players and seats, HAND: {}", hand.getId());
+        log.debug("Validating players and seats, HAND: {}", hand.getId());
         for(Map.Entry<Player, Seat> entry : hand.getSeats().entrySet()) {
             if (!entry.getValue().getPlayer().equals(entry.getKey())) {
                 log.error("Error mapping Player: {} and Seat: {}, HAND: {}", entry.getKey().getNickname(),
@@ -73,7 +73,7 @@ public class HandValidator {
             }
         }
 
-        log.info("Validating players and actions.");
+        log.debug("Validating players and actions.");
         Set<Player> players = hand.getSeats().keySet();
         for(Action action : hand.getActions()) {
             if(!players.contains(action.getPlayer())) {
@@ -84,7 +84,7 @@ public class HandValidator {
     }
 
     private static void validateCards(Hand hand) {
-        log.info("Validating flop, HAND: {}", hand.getId());
+        log.debug("Validating flop, HAND: {}", hand.getId());
         Flop flop = hand.getFlop();
         Board board = hand.getBoard();
         if (hand.getFlop() != null || flop != null){
@@ -96,7 +96,7 @@ public class HandValidator {
             }
         }
 
-        log.info("Validating turn.");
+        log.debug("Validating turn.");
         Turn turn = hand.getTurn();
         if (turn != null) {
             if (!board.getCard4().equals(turn.getCard())) {
@@ -105,7 +105,7 @@ public class HandValidator {
             }
         }
 
-        log.info("Validating river.");
+        log.debug("Validating river.");
         River river = hand.getRiver();
         if (river != null) {
             if (!board.getCard5().equals(river.getCard())) {
@@ -114,7 +114,7 @@ public class HandValidator {
             }
         }
 
-        log.info("Validating actions and info player cards.");
+        log.debug("Validating actions and info player cards.");
         for(Action action : hand.getActions()) {
             if (action.getTypeAction().equals(TypeAction.SHOW_HAND)) {
                 if ((action.getHoldCards() == null) ||
@@ -127,7 +127,7 @@ public class HandValidator {
     }
 
     private static void validateTournament(Hand hand) {
-        log.info("Validating Tournament, HAND: {}", hand.getId());
+        log.debug("Validating Tournament, HAND: {}", hand.getId());
         if(null == hand.getTournament()) {
             log.error("Tournament is null.");
             throw new NullPointerException("Tournament is null.");

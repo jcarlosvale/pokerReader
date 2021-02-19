@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: info
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?sslmode=disable&search_path=public;
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+application:
+  folder: C:\\Projects\\pokerReader\\src\\test\\resources\\top
