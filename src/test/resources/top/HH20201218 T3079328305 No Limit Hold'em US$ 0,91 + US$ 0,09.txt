@@ -101,7 +101,7 @@ dady09: folds
 Petrillo717: folds 
 Uncalled bet (578) returned to totyajohnny
 totyajohnny collected 578 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 578 | Rake 0 
 Board [Td Qh 6d]
@@ -166,7 +166,7 @@ dady09: calls 667 and is all-in
 Uncalled bet (299) returned to totyajohnny
 *** RIVER *** [4h 2h As 9d] [Js]
 *** SHOW DOWN ***
-totyajohnny: shows [3d 6d] (high card Ace)
+totyajohnny: shows [3d 6d] (high pairOfCards Ace)
 dady09: shows [4d 4c] (three of a kind, Fours)
 dady09 collected 2765 from pot
 *** SUMMARY ***
@@ -179,7 +179,7 @@ Seat 4: Nogarottoo (small blind) folded before Flop
 Seat 5: Petrillo717 (big blind) folded on the Flop
 Seat 6: baalder folded before Flop (didn't bet)
 Seat 7: PorNoSloniKK folded before Flop (didn't bet)
-Seat 8: totyajohnny showed [3d 6d] and lost with high card Ace
+Seat 8: totyajohnny showed [3d 6d] and lost with high pairOfCards Ace
 Seat 9: camcf63 folded before Flop (didn't bet)
 
 
@@ -219,7 +219,7 @@ Petrillo717: folds
 baalder: folds 
 Uncalled bet (276) returned to totyajohnny
 totyajohnny collected 77 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 77 | Rake 0 
 Seat 1: Asti.wp folded before Flop (didn't bet)
@@ -273,7 +273,7 @@ totyajohnny: bets 330 and is all-in
 PorNoSloniKK: folds 
 Uncalled bet (330) returned to totyajohnny
 totyajohnny collected 77 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 77 | Rake 0 
 Board [6d Ad 3c]
@@ -503,7 +503,7 @@ Asti.wp: folds
 jcarlos.vale: folds 
 Uncalled bet (20) returned to Petrillo717
 Petrillo717 collected 77 from pot
-Petrillo717: doesn't show hand 
+Petrillo717: doesn't show handDTO
 *** SUMMARY ***
 Total pot 77 | Rake 0 
 Seat 1: Asti.wp (small blind) folded before Flop
@@ -620,7 +620,7 @@ Nogarottoo: folds
 Petrillo717: folds 
 Uncalled bet (332) returned to totyajohnny
 totyajohnny collected 332 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 332 | Rake 0 
 Board [8d Qh As]
@@ -785,7 +785,7 @@ Nogarottoo: bets 82
 camcf63: folds 
 Uncalled bet (82) returned to Nogarottoo
 Nogarottoo collected 163 from pot
-Nogarottoo: doesn't show hand 
+Nogarottoo: doesn't show handDTO
 *** SUMMARY ***
 Total pot 163 | Rake 0 
 Board [5h 4c Ac]
@@ -840,7 +840,7 @@ Asti.wp: raises 604 to 1207 and is all-in
 totyajohnny: folds 
 Uncalled bet (604) returned to Asti.wp
 Asti.wp collected 1533 from pot
-Asti.wp: doesn't show hand 
+Asti.wp: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1533 | Rake 0 
 Board [As Qh Ac 4c 4s]
@@ -888,7 +888,7 @@ totyajohnny: bets 552 and is all-in
 Nogarottoo: folds 
 Uncalled bet (552) returned to totyajohnny
 totyajohnny collected 579 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 579 | Rake 0 
 Board [3c Jd 3h]
@@ -932,7 +932,7 @@ dady09: folds
 camcf63: folds 
 Uncalled bet (135) returned to Asti.wp
 Asti.wp collected 193 from pot
-Asti.wp: doesn't show hand 
+Asti.wp: doesn't show handDTO
 *** SUMMARY ***
 Total pot 193 | Rake 0 
 Seat 1: Asti.wp (button) collected (193)
@@ -981,7 +981,7 @@ jcarlos.vale: folds
 dady09: folds 
 Uncalled bet (388) returned to totyajohnny
 totyajohnny collected 776 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 776 | Rake 0 
 Board [Th 8s 6h]
@@ -1024,7 +1024,7 @@ Nogarottoo: folds
 PorNoSloniKK: folds 
 Uncalled bet (80) returned to jcarlos.vale
 jcarlos.vale collected 167 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 167 | Rake 0 
 Seat 1: Asti.wp folded before Flop (didn't bet)
@@ -1183,7 +1183,7 @@ Asti.wp: folds
 Fisering123: folds 
 Uncalled bet (265) returned to totyajohnny
 totyajohnny collected 1059 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1059 | Rake 0 
 Board [5c Kc Th]
@@ -1238,7 +1238,7 @@ dady09: bets 190
 jcarlos.vale: folds 
 Uncalled bet (190) returned to dady09
 dady09 collected 379 from pot
-dady09: doesn't show hand 
+dady09: doesn't show handDTO
 *** SUMMARY ***
 Total pot 379 | Rake 0 
 Board [2c 8s 8d]
@@ -1296,7 +1296,7 @@ totyajohnny: folds
 Asti.wp: folds 
 Uncalled bet (277) returned to dady09
 dady09 collected 554 from pot
-dady09: doesn't show hand 
+dady09: doesn't show handDTO
 *** SUMMARY ***
 Total pot 554 | Rake 0 
 Board [Kc 6s 4s]
@@ -1351,7 +1351,7 @@ Fisering123: bets 1859 and is all-in
 Nogarottoo: folds 
 Uncalled bet (1859) returned to Fisering123
 Fisering123 collected 379 from pot
-Fisering123: doesn't show hand 
+Fisering123: doesn't show handDTO
 *** SUMMARY ***
 Total pot 379 | Rake 0 
 Board [Kh 4h 4c]
@@ -1522,7 +1522,7 @@ Fisering123: bets 1547 and is all-in
 dady09: folds 
 Uncalled bet (1547) returned to Fisering123
 Fisering123 collected 1269 from pot
-Fisering123: doesn't show hand 
+Fisering123: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1269 | Rake 0 
 Board [4c 7s 9s]
@@ -1623,7 +1623,7 @@ Asti.wp: folds
 dady09: folds 
 Uncalled bet (670) returned to totyajohnny
 totyajohnny collected 670 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 670 | Rake 0 
 Seat 1: Asti.wp (big blind) folded before Flop
@@ -1665,7 +1665,7 @@ Asti.wp: folds
 jcarlos.vale: folds 
 Uncalled bet (160) returned to Fisering123
 Fisering123 collected 270 from pot
-Fisering123: doesn't show hand 
+Fisering123: doesn't show handDTO
 *** SUMMARY ***
 Total pot 270 | Rake 0 
 Seat 1: Asti.wp (small blind) folded before Flop
@@ -1715,7 +1715,7 @@ totyajohnny: bets 645
 dady09: folds 
 Uncalled bet (645) returned to totyajohnny
 totyajohnny collected 1290 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1290 | Rake 0 
 Board [3d 9s 7h 5s]
@@ -1913,7 +1913,7 @@ totyajohnny: bets 115
 camcf63: folds 
 Uncalled bet (115) returned to totyajohnny
 totyajohnny collected 230 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 230 | Rake 0 
 Board [Qc 5d Js]
@@ -1966,7 +1966,7 @@ totyajohnny: bets 620
 camcf63: folds 
 Uncalled bet (620) returned to totyajohnny
 totyajohnny collected 620 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 620 | Rake 0 
 Board [2d 4h Ks Ts]
@@ -2101,7 +2101,7 @@ totyajohnny: bets 510
 camcf63: folds 
 Uncalled bet (510) returned to totyajohnny
 totyajohnny collected 510 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 510 | Rake 0 
 Board [7d 2h Kc]
@@ -2155,7 +2155,7 @@ totyajohnny: bets 722
 PassaTempo77: folds 
 Uncalled bet (722) returned to totyajohnny
 totyajohnny collected 722 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 722 | Rake 0 
 Board [Jh Jc 6h]
@@ -2219,7 +2219,7 @@ welton max: checks
 totyajohnny: checks 
 *** SHOW DOWN ***
 welton max: shows [Qh Tc] (a pair of Queens)
-totyajohnny: mucks hand 
+totyajohnny: mucks handDTO
 welton max collected 1471 from pot
 *** SUMMARY ***
 Total pot 1471 | Rake 0 
@@ -2275,7 +2275,7 @@ welton max: calls 71
 *** TURN *** [3h Jc 7c] [8d]
 *** RIVER *** [3h Jc 7c 8d] [Kd]
 *** SHOW DOWN ***
-iceblast56: shows [Ad 2s] (high card Ace)
+iceblast56: shows [Ad 2s] (high pairOfCards Ace)
 welton max: shows [Qh Kc] (a pair of Kings)
 welton max collected 1297 from pot
 iceblast56 finished the tournament in 27th place
@@ -2285,7 +2285,7 @@ Board [3h Jc 7c 8d Kd]
 Seat 1: Asti.wp folded before Flop (didn't bet)
 Seat 2: jcarlos.vale folded before Flop (didn't bet)
 Seat 3: adabrakadabra folded before Flop (didn't bet)
-Seat 4: iceblast56 showed [Ad 2s] and lost with high card Ace
+Seat 4: iceblast56 showed [Ad 2s] and lost with high pairOfCards Ace
 Seat 5: welton max (button) showed [Qh Kc] and won (1297) with a pair of Kings
 Seat 6: PassaTempo77 (small blind) folded before Flop
 Seat 7: Richard_KONO (big blind) folded before Flop
@@ -2326,7 +2326,7 @@ Richard_KONO: folds
 totyajohnny: folds 
 Uncalled bet (192) returned to jcarlos.vale
 jcarlos.vale collected 420 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 420 | Rake 0 
 Seat 1: Asti.wp folded before Flop (didn't bet)
@@ -2372,7 +2372,7 @@ totyajohnny: folds
 camcf63: folds 
 Uncalled bet (1062) returned to Richard_KONO
 Richard_KONO collected 420 from pot
-Richard_KONO: doesn't show hand 
+Richard_KONO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 420 | Rake 0 
 Seat 1: Asti.wp folded before Flop (didn't bet)
@@ -2477,7 +2477,7 @@ welton max: checks
 totyajohnny: checks 
 *** SHOW DOWN ***
 welton max: shows [Ac Td] (a pair of Fives)
-totyajohnny: mucks hand 
+totyajohnny: mucks handDTO
 welton max collected 3213 from pot
 *** SUMMARY ***
 Total pot 3213 | Rake 0 
@@ -2531,7 +2531,7 @@ totyajohnny: bets 690
 camcf63: folds 
 Uncalled bet (690) returned to totyajohnny
 totyajohnny collected 1380 from pot
-totyajohnny: doesn't show hand 
+totyajohnny: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1380 | Rake 0 
 Board [5s Ac 3s]
@@ -2583,8 +2583,8 @@ camcf63: calls 240
 welton max: checks 
 camcf63: checks 
 *** SHOW DOWN ***
-welton max: shows [Ks 4h] (high card King)
-camcf63: shows [Kd Jd] (high card King - Jack kicker)
+welton max: shows [Ks 4h] (high pairOfCards King)
+camcf63: shows [Kd Jd] (high pairOfCards King - Jack kicker)
 camcf63 collected 1125 from pot
 *** SUMMARY ***
 Total pot 1125 | Rake 0 
@@ -2592,10 +2592,10 @@ Board [2s Ts 9d 3c 6c]
 Seat 2: jcarlos.vale folded before Flop (didn't bet)
 Seat 3: adabrakadabra (button) folded before Flop (didn't bet)
 Seat 4: billyjoe9999 (small blind) folded before Flop
-Seat 5: welton max (big blind) showed [Ks 4h] and lost with high card King
+Seat 5: welton max (big blind) showed [Ks 4h] and lost with high pairOfCards King
 Seat 6: PassaTempo77 folded before Flop (didn't bet)
 Seat 7: Richard_KONO folded before Flop (didn't bet)
-Seat 9: camcf63 showed [Kd Jd] and won (1125) with high card King
+Seat 9: camcf63 showed [Kd Jd] and won (1125) with high pairOfCards King
 
 
 
@@ -2706,7 +2706,7 @@ Seat 3: adabrakadabra (5676 in chips)
 Seat 4: billyjoe9999 (2587 in chips) 
 Seat 6: whiskey732 (6049 in chips) 
 Seat 7: Richard_KONO (1307 in chips) 
-Seat 8: Lucie686979 (628 in chips) out of hand (moved from another table into small blind)
+Seat 8: Lucie686979 (628 in chips) out of handDTO (moved from another table into small blind)
 Seat 9: camcf63 (6623 in chips) 
 Lucie686979 will be allowed to play after the button
 m55uu: posts the ante 20
@@ -2779,7 +2779,7 @@ jcarlos.vale: raises 3337 to 3745 and is all-in
 m55uu: folds 
 Uncalled bet (3337) returned to jcarlos.vale
 jcarlos.vale collected 976 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 976 | Rake 0 
 Seat 1: m55uu (small blind) folded before Flop
@@ -2835,7 +2835,7 @@ jcarlos.vale: folds
 adabrakadabra: folds 
 Uncalled bet (160) returned to billyjoe9999
 billyjoe9999 collected 640 from pot
-billyjoe9999: doesn't show hand 
+billyjoe9999: doesn't show handDTO
 *** SUMMARY ***
 Total pot 640 | Rake 0 
 Board [8d Jc 5s Qs]
@@ -2927,7 +2927,7 @@ billyjoe9999: folds
 whiskey732: folds 
 Uncalled bet (320) returned to jcarlos.vale
 jcarlos.vale collected 560 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 560 | Rake 0 
 Seat 1: m55uu folded before Flop (didn't bet)
@@ -2972,7 +2972,7 @@ billyjoe9999: folds
 whiskey732: folds 
 Uncalled bet (80) returned to Richard_KONO
 Richard_KONO collected 320 from pot
-Richard_KONO: doesn't show hand 
+Richard_KONO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 320 | Rake 0 
 Seat 1: m55uu folded before Flop (didn't bet)
@@ -3023,7 +3023,7 @@ Richard_KONO: raises 927 to 1247 and is all-in
 jcarlos.vale: folds 
 Uncalled bet (927) returned to Richard_KONO
 Richard_KONO collected 1280 from pot
-Richard_KONO: doesn't show hand 
+Richard_KONO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1280 | Rake 0 
 Board [5s 4d Qd]
@@ -3119,7 +3119,7 @@ jcarlos.vale: raises 2762 to 3261 and is all-in
 camcf63: folds 
 Uncalled bet (2762) returned to jcarlos.vale
 jcarlos.vale collected 2662 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2662 | Rake 0 
 Board [2c Qh Qc]
@@ -3310,7 +3310,7 @@ billyjoe9999: checks
 jcarlos.vale: checks 
 *** SHOW DOWN ***
 billyjoe9999: shows [Ts Js] (two pair, Kings and Tens)
-jcarlos.vale: mucks hand 
+jcarlos.vale: mucks handDTO
 billyjoe9999 collected 1792 from pot
 *** SUMMARY ***
 Total pot 1792 | Rake 0 
@@ -3357,7 +3357,7 @@ billyjoe9999: folds
 whiskey732: folds 
 Uncalled bet (100) returned to Richard_KONO
 Richard_KONO collected 400 from pot
-Richard_KONO: doesn't show hand 
+Richard_KONO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 400 | Rake 0 
 Seat 1: m55uu folded before Flop (didn't bet)
@@ -3405,7 +3405,7 @@ whiskey732: folds
 Uncalled bet (2137) returned to Richard_KONO
 Richard_KONO collected 698 from pot
 Lucie686979 finished the tournament in 16th place
-Richard_KONO: doesn't show hand 
+Richard_KONO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 698 | Rake 0 
 Seat 1: m55uu folded before Flop (didn't bet)
@@ -3613,7 +3613,7 @@ Richard_KONO: folds
 camcf63: folds 
 Uncalled bet (3593) returned to jcarlos.vale
 jcarlos.vale collected 1250 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1250 | Rake 0 
 Seat 2: jcarlos.vale collected (1250)
@@ -3651,7 +3651,7 @@ Richard_KONO: raises 2285 to 2485 and is all-in
 camcf63: folds 
 Uncalled bet (2285) returned to Richard_KONO
 Richard_KONO collected 550 from pot
-Richard_KONO: doesn't show hand 
+Richard_KONO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 550 | Rake 0 
 Seat 2: jcarlos.vale folded before Flop (didn't bet)
@@ -3769,7 +3769,7 @@ adabrakadabra: folds
 whiskey732: folds 
 Uncalled bet (2560) returned to Richard_KONO
 Richard_KONO collected 625 from pot
-Richard_KONO: doesn't show hand 
+Richard_KONO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 625 | Rake 0 
 Seat 2: jcarlos.vale (button) folded before Flop (didn't bet)
@@ -3802,7 +3802,7 @@ adabrakadabra: folds
 whiskey732: folds 
 Uncalled bet (100) returned to Richard_KONO
 Richard_KONO collected 325 from pot
-Richard_KONO: doesn't show hand 
+Richard_KONO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 325 | Rake 0 
 Seat 2: jcarlos.vale folded before Flop (didn't bet)
@@ -3869,7 +3869,7 @@ Richard_KONO: folds
 camcf63: folds 
 Uncalled bet (100) returned to jcarlos.vale
 jcarlos.vale collected 325 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 325 | Rake 0 
 Seat 2: jcarlos.vale (big blind) collected (325)
@@ -4050,7 +4050,7 @@ LoletsPadre: checks
 pro100zoom777: checks 
 *** SHOW DOWN ***
 LoletsPadre: shows [Js Qd] (two pair, Jacks and Tens)
-pro100zoom777: mucks hand 
+pro100zoom777: mucks handDTO
 LoletsPadre collected 4081 from pot
 *** SUMMARY ***
 Total pot 4081 | Rake 0 
@@ -4411,7 +4411,7 @@ pro100zoom777: folds
 Richard_KONO: folds 
 Uncalled bet (480) returned to jcarlos.vale
 jcarlos.vale collected 950 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 950 | Rake 0 
 Seat 1: SenhorFredo (button) folded before Flop (didn't bet)
@@ -4507,7 +4507,7 @@ LoletsPadre: folds
 whiskey732: folds 
 Uncalled bet (2541) returned to I`m Parasite
 I`m Parasite collected 950 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 950 | Rake 0 
 Seat 1: SenhorFredo folded before Flop (didn't bet)
@@ -4643,7 +4643,7 @@ jcarlos.vale: folds
 I`m Parasite: folds 
 Uncalled bet (370) returned to LoletsPadre
 LoletsPadre collected 950 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 950 | Rake 0 
 Seat 1: SenhorFredo folded before Flop (didn't bet)
@@ -4689,7 +4689,7 @@ I`m Parasite: raises 2691 to 3091 and is all-in
 SenhorFredo: folds 
 Uncalled bet (2691) returned to I`m Parasite
 I`m Parasite collected 1000 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1000 | Rake 0 
 Seat 1: SenhorFredo (big blind) folded before Flop
@@ -4735,7 +4735,7 @@ SenhorFredo: folds
 pro100zoom777: folds 
 Uncalled bet (640) returned to jcarlos.vale
 jcarlos.vale collected 1200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1200 | Rake 0 
 Seat 1: SenhorFredo (small blind) folded before Flop
@@ -4783,16 +4783,16 @@ Richard_KONO: folds
 *** TURN *** [4c 8d 6h] [9c]
 *** RIVER *** [4c 8d 6h 9c] [Tc]
 *** SHOW DOWN ***
-pro100zoom777: shows [Ah Ks] (high card Ace)
-SenhorFredo: shows [5h Kh] (high card King)
+pro100zoom777: shows [Ah Ks] (high pairOfCards Ace)
+SenhorFredo: shows [5h Kh] (high pairOfCards King)
 pro100zoom777 collected 5836 from pot
 SenhorFredo is sitting out
 SenhorFredo finished the tournament in 8th place
 *** SUMMARY ***
 Total pot 5836 | Rake 0 
 Board [4c 8d 6h 9c Tc]
-Seat 1: SenhorFredo (button) showed [5h Kh] and lost with high card King
-Seat 2: pro100zoom777 (small blind) showed [Ah Ks] and won (5836) with high card Ace
+Seat 1: SenhorFredo (button) showed [5h Kh] and lost with high pairOfCards King
+Seat 2: pro100zoom777 (small blind) showed [Ah Ks] and won (5836) with high pairOfCards Ace
 Seat 3: Richard_KONO (big blind) folded before Flop
 Seat 4: LoletsPadre folded before Flop (didn't bet)
 Seat 5: whiskey732 folded before Flop (didn't bet)
@@ -4830,7 +4830,7 @@ pro100zoom777: folds
 Richard_KONO: folds 
 Uncalled bet (200) returned to LoletsPadre
 LoletsPadre collected 575 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 575 | Rake 0 
 Seat 2: pro100zoom777 (button) folded before Flop (didn't bet)
@@ -4872,7 +4872,7 @@ LoletsPadre: folds
 whiskey732: folds 
 Uncalled bet (3191) returned to I`m Parasite
 I`m Parasite collected 1175 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1175 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -5043,7 +5043,7 @@ I`m Parasite: raises 3466 to 3866 and is all-in
 pro100zoom777: folds 
 Uncalled bet (3466) returned to I`m Parasite
 I`m Parasite collected 975 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 975 | Rake 0 
 Seat 2: pro100zoom777 (big blind) folded before Flop
@@ -5125,7 +5125,7 @@ pro100zoom777: folds
 Richard_KONO: folds 
 Uncalled bet (200) returned to LoletsPadre
 LoletsPadre collected 575 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 575 | Rake 0 
 Seat 2: pro100zoom777 (button) folded before Flop (didn't bet)
@@ -5208,7 +5208,7 @@ whiskey732: folds
 adabrakadabra: folds 
 Uncalled bet (640) returned to jcarlos.vale
 jcarlos.vale collected 1175 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1175 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -5299,7 +5299,7 @@ adabrakadabra: folds
 jcarlos.vale: folds 
 Uncalled bet (200) returned to I`m Parasite
 I`m Parasite collected 575 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 575 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -5469,7 +5469,7 @@ LoletsPadre: folds
 adabrakadabra: folds 
 Uncalled bet (9197) returned to jcarlos.vale
 jcarlos.vale collected 1150 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1150 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -5548,7 +5548,7 @@ adabrakadabra: folds
 jcarlos.vale: folds 
 Uncalled bet (300) returned to I`m Parasite
 I`m Parasite collected 900 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 900 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -5622,7 +5622,7 @@ pro100zoom777: folds
 Richard_KONO: folds 
 Uncalled bet (600) returned to I`m Parasite
 I`m Parasite collected 1800 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1800 | Rake 0 
 Seat 2: pro100zoom777 (small blind) folded before Flop
@@ -5659,7 +5659,7 @@ pro100zoom777: folds
 Richard_KONO: folds 
 Uncalled bet (300) returned to LoletsPadre
 LoletsPadre collected 900 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 900 | Rake 0 
 Seat 2: pro100zoom777 (button) folded before Flop (didn't bet)
@@ -5697,7 +5697,7 @@ LoletsPadre: folds
 adabrakadabra: folds 
 Uncalled bet (8332) returned to jcarlos.vale
 jcarlos.vale collected 1800 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1800 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -5734,7 +5734,7 @@ LoletsPadre: folds
 adabrakadabra: folds 
 Uncalled bet (300) returned to jcarlos.vale
 jcarlos.vale collected 900 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 900 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -5771,7 +5771,7 @@ adabrakadabra: folds
 jcarlos.vale: folds 
 Uncalled bet (300) returned to I`m Parasite
 I`m Parasite collected 900 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 900 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -5888,7 +5888,7 @@ pro100zoom777: folds
 Richard_KONO: folds 
 Uncalled bet (300) returned to LoletsPadre
 LoletsPadre collected 900 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 900 | Rake 0 
 Seat 2: pro100zoom777 (button) folded before Flop (didn't bet)
@@ -5929,7 +5929,7 @@ Uncalled bet (80) returned to adabrakadabra
 *** RIVER *** [Ad 5h 3c Tc] [8c]
 *** SHOW DOWN ***
 adabrakadabra: shows [As 6s] (a pair of Aces)
-Richard_KONO: shows [6d Qd] (high card Ace)
+Richard_KONO: shows [6d Qd] (high pairOfCards Ace)
 adabrakadabra collected 1640 from pot
 Richard_KONO is sitting out
 Richard_KONO finished the tournament in 6th place and received $2.45.
@@ -5937,7 +5937,7 @@ Richard_KONO finished the tournament in 6th place and received $2.45.
 Total pot 1640 | Rake 0 
 Board [Ad 5h 3c Tc 8c]
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
-Seat 3: Richard_KONO (button) showed [6d Qd] and lost with high card Ace
+Seat 3: Richard_KONO (button) showed [6d Qd] and lost with high pairOfCards Ace
 Seat 4: LoletsPadre (small blind) folded before Flop
 Seat 6: adabrakadabra (big blind) showed [As 6s] and won (1640) with a pair of Aces
 Seat 7: jcarlos.vale folded before Flop (didn't bet)
@@ -5968,7 +5968,7 @@ adabrakadabra: folds
 jcarlos.vale: folds 
 Uncalled bet (1000) returned to LoletsPadre
 LoletsPadre collected 1750 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -6035,7 +6035,7 @@ I`m Parasite: folds
 pro100zoom777: folds 
 Uncalled bet (8482) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 2: pro100zoom777 (big blind) folded before Flop
@@ -6102,7 +6102,7 @@ LoletsPadre: folds
 adabrakadabra: folds 
 Uncalled bet (600) returned to I`m Parasite
 I`m Parasite collected 1750 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 2: pro100zoom777 (button) folded before Flop (didn't bet)
@@ -6169,7 +6169,7 @@ jcarlos.vale: raises 8832 to 9432 and is all-in
 I`m Parasite: folds 
 Uncalled bet (8832) returned to jcarlos.vale
 jcarlos.vale collected 1450 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1450 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -6316,7 +6316,7 @@ adabrakadabra: folds
 jcarlos.vale: folds 
 Uncalled bet (600) returned to I`m Parasite
 I`m Parasite collected 1750 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -6359,7 +6359,7 @@ I`m Parasite: checks
 adabrakadabra: checks 
 *** SHOW DOWN ***
 I`m Parasite: shows [8c Jh] (a pair of Jacks)
-adabrakadabra: mucks hand 
+adabrakadabra: mucks handDTO
 I`m Parasite collected 2950 from pot
 *** SUMMARY ***
 Total pot 2950 | Rake 0 
@@ -6398,14 +6398,14 @@ Uncalled bet (1774) returned to LoletsPadre
 *** TURN *** [2d 7c Tc] [4h]
 *** RIVER *** [2d 7c Tc 4h] [Ks]
 *** SHOW DOWN ***
-LoletsPadre: shows [As 6h] (high card Ace)
+LoletsPadre: shows [As 6h] (high pairOfCards Ace)
 adabrakadabra: shows [Ah Ad] (a pair of Aces)
 adabrakadabra collected 18018 from pot
 *** SUMMARY ***
 Total pot 18018 | Rake 0 
 Board [2d 7c Tc 4h Ks]
 Seat 2: pro100zoom777 (big blind) folded before Flop
-Seat 4: LoletsPadre showed [As 6h] and lost with high card Ace
+Seat 4: LoletsPadre showed [As 6h] and lost with high pairOfCards Ace
 Seat 6: adabrakadabra showed [Ah Ad] and won (18018) with a pair of Aces
 Seat 7: jcarlos.vale (button) folded before Flop (didn't bet)
 Seat 8: I`m Parasite (small blind) folded before Flop
@@ -6439,7 +6439,7 @@ I`m Parasite: calls 124
 *** RIVER *** [2s 4s 8d 7c] [6d]
 *** SHOW DOWN ***
 LoletsPadre: shows [7s 4d] (two pair, Sevens and Fours)
-I`m Parasite: shows [9d Kh] (high card King)
+I`m Parasite: shows [9d Kh] (high pairOfCards King)
 LoletsPadre collected 4098 from pot
 *** SUMMARY ***
 Total pot 4098 | Rake 0 
@@ -6448,7 +6448,7 @@ Seat 2: pro100zoom777 (small blind) folded before Flop
 Seat 4: LoletsPadre (big blind) showed [7s 4d] and won (4098) with two pair, Sevens and Fours
 Seat 6: adabrakadabra folded before Flop (didn't bet)
 Seat 7: jcarlos.vale folded before Flop (didn't bet)
-Seat 8: I`m Parasite (button) showed [9d Kh] and lost with high card King
+Seat 8: I`m Parasite (button) showed [9d Kh] and lost with high pairOfCards King
 
 
 
@@ -6591,7 +6591,7 @@ I`m Parasite: folds
 pro100zoom777: folds 
 Uncalled bet (3423) returned to LoletsPadre
 LoletsPadre collected 2250 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2250 | Rake 0 
 Seat 2: pro100zoom777 (big blind) folded before Flop
@@ -6624,7 +6624,7 @@ I`m Parasite: folds
 pro100zoom777: folds 
 Uncalled bet (400) returned to LoletsPadre
 LoletsPadre collected 1050 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1050 | Rake 0 
 Seat 2: pro100zoom777 (small blind) folded before Flop
@@ -6658,7 +6658,7 @@ LoletsPadre: folds
 adabrakadabra: folds 
 Uncalled bet (1280) returned to jcarlos.vale
 jcarlos.vale collected 2250 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2250 | Rake 0 
 Seat 2: pro100zoom777 (button) folded before Flop (didn't bet)
@@ -6691,7 +6691,7 @@ LoletsPadre: folds
 adabrakadabra: folds 
 Uncalled bet (400) returned to jcarlos.vale
 jcarlos.vale collected 1050 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1050 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -6724,7 +6724,7 @@ adabrakadabra: folds
 jcarlos.vale: folds 
 Uncalled bet (400) returned to I`m Parasite
 I`m Parasite collected 1050 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1050 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -6831,7 +6831,7 @@ LoletsPadre: folds
 adabrakadabra: folds 
 Uncalled bet (8906) returned to I`m Parasite
 I`m Parasite collected 2250 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2250 | Rake 0 
 Seat 2: pro100zoom777 (button) folded before Flop (didn't bet)
@@ -6898,7 +6898,7 @@ jcarlos.vale: folds
 I`m Parasite: folds 
 Uncalled bet (4598) returned to LoletsPadre
 LoletsPadre collected 2250 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2250 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -6932,7 +6932,7 @@ I`m Parasite: folds
 pro100zoom777: folds 
 Uncalled bet (5998) returned to LoletsPadre
 LoletsPadre collected 2250 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2250 | Rake 0 
 Seat 2: pro100zoom777 (big blind) folded before Flop
@@ -6966,7 +6966,7 @@ pro100zoom777: folds
 LoletsPadre: folds 
 Uncalled bet (1280) returned to jcarlos.vale
 jcarlos.vale collected 2250 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2250 | Rake 0 
 Seat 2: pro100zoom777 (small blind) folded before Flop
@@ -7107,7 +7107,7 @@ I`m Parasite: folds
 pro100zoom777: folds 
 Uncalled bet (5998) returned to LoletsPadre
 LoletsPadre collected 2250 from pot
-LoletsPadre: doesn't show hand 
+LoletsPadre: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2250 | Rake 0 
 Seat 2: pro100zoom777 (big blind) folded before Flop
@@ -7224,7 +7224,7 @@ I`m Parasite: folds
 pro100zoom777: folds 
 Uncalled bet (14914) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop
@@ -7311,7 +7311,7 @@ pro100zoom777: folds
 adabrakadabra: folds 
 Uncalled bet (500) returned to jcarlos.vale
 jcarlos.vale collected 1240 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1240 | Rake 0 
 Seat 2: pro100zoom777 (button) folded before Flop (didn't bet)
@@ -7340,7 +7340,7 @@ adabrakadabra: folds
 jcarlos.vale: folds 
 Uncalled bet (500) returned to I`m Parasite
 I`m Parasite collected 1240 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1240 | Rake 0 
 Seat 2: pro100zoom777 folded before Flop (didn't bet)
@@ -7439,7 +7439,7 @@ jcarlos.vale: raises 1600 to 2600
 I`m Parasite: folds 
 Uncalled bet (1600) returned to jcarlos.vale
 jcarlos.vale collected 2180 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2180 | Rake 0 
 Seat 6: adabrakadabra (button) folded before Flop (didn't bet)
@@ -7469,13 +7469,13 @@ jcarlos.vale: calls 10125
 *** RIVER *** [Ac 2s 8s 9d] [Ts]
 *** SHOW DOWN ***
 adabrakadabra: shows [Js Ad] (a pair of Aces)
-jcarlos.vale: shows [Kd Qd] (high card Ace)
+jcarlos.vale: shows [Kd Qd] (high pairOfCards Ace)
 adabrakadabra collected 26130 from pot
 *** SUMMARY ***
 Total pot 26130 | Rake 0 
 Board [Ac 2s 8s 9d Ts]
 Seat 6: adabrakadabra (big blind) showed [Js Ad] and won (26130) with a pair of Aces
-Seat 7: jcarlos.vale (button) showed [Kd Qd] and lost with high card Ace
+Seat 7: jcarlos.vale (button) showed [Kd Qd] and lost with high pairOfCards Ace
 Seat 8: I`m Parasite (small blind) folded before Flop
 
 
@@ -7497,7 +7497,7 @@ adabrakadabra: folds
 jcarlos.vale: folds 
 Uncalled bet (1000) returned to I`m Parasite
 I`m Parasite collected 2680 from pot
-I`m Parasite: doesn't show hand 
+I`m Parasite: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2680 | Rake 0 
 Seat 6: adabrakadabra (small blind) folded before Flop
@@ -7553,7 +7553,7 @@ jcarlos.vale: raises 1600 to 2600
 adabrakadabra: folds 
 Uncalled bet (1600) returned to jcarlos.vale
 jcarlos.vale collected 2120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2120 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -7617,7 +7617,7 @@ Dealt to jcarlos.vale [8h 7h]
 adabrakadabra: folds 
 Uncalled bet (500) returned to jcarlos.vale
 jcarlos.vale collected 1120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1120 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -7639,7 +7639,7 @@ jcarlos.vale: raises 1600 to 2600
 adabrakadabra: folds 
 Uncalled bet (1600) returned to jcarlos.vale
 jcarlos.vale collected 2120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2120 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -7660,7 +7660,7 @@ Dealt to jcarlos.vale [6h Jd]
 adabrakadabra: folds 
 Uncalled bet (500) returned to jcarlos.vale
 jcarlos.vale collected 1120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1120 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -7705,7 +7705,7 @@ jcarlos.vale: bets 2060
 adabrakadabra: folds 
 Uncalled bet (2060) returned to jcarlos.vale
 jcarlos.vale collected 4120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4120 | Rake 0 
 Board [4d 5d 8d]
@@ -7752,7 +7752,7 @@ Dealt to jcarlos.vale [9c Jc]
 adabrakadabra: folds 
 Uncalled bet (500) returned to jcarlos.vale
 jcarlos.vale collected 1120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1120 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -7841,7 +7841,7 @@ jcarlos.vale: raises 32670 to 35670 and is all-in
 adabrakadabra: folds 
 Uncalled bet (32670) returned to jcarlos.vale
 jcarlos.vale collected 6120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6120 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -7882,7 +7882,7 @@ Dealt to jcarlos.vale [2d 6s]
 adabrakadabra: folds 
 Uncalled bet (500) returned to jcarlos.vale
 jcarlos.vale collected 1120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1120 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -7908,7 +7908,7 @@ jcarlos.vale: bets 3990
 adabrakadabra: folds 
 Uncalled bet (3990) returned to jcarlos.vale
 jcarlos.vale collected 5320 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 5320 | Rake 0 
 Board [3s Kd 7s]
@@ -7952,7 +7952,7 @@ jcarlos.vale: raises 1000 to 2000
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2120 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -7973,7 +7973,7 @@ Dealt to jcarlos.vale [Qc Ah]
 adabrakadabra: folds 
 Uncalled bet (500) returned to jcarlos.vale
 jcarlos.vale collected 1120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1120 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8021,7 +8021,7 @@ jcarlos.vale: bets 1060
 adabrakadabra: folds 
 Uncalled bet (1060) returned to jcarlos.vale
 jcarlos.vale collected 2120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2120 | Rake 0 
 Board [2h 7c 2d Js]
@@ -8044,7 +8044,7 @@ jcarlos.vale: raises 1600 to 2600
 adabrakadabra: folds 
 Uncalled bet (1600) returned to jcarlos.vale
 jcarlos.vale collected 2120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2120 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8065,7 +8065,7 @@ Dealt to jcarlos.vale [7d 6d]
 adabrakadabra: folds 
 Uncalled bet (500) returned to jcarlos.vale
 jcarlos.vale collected 1120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1120 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8113,7 +8113,7 @@ jcarlos.vale: bets 2000
 adabrakadabra: folds 
 Uncalled bet (2000) returned to jcarlos.vale
 jcarlos.vale collected 2120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2120 | Rake 0 
 Board [Kc 6s 6c 3d]
@@ -8136,7 +8136,7 @@ jcarlos.vale: raises 1600 to 2600
 adabrakadabra: folds 
 Uncalled bet (1600) returned to jcarlos.vale
 jcarlos.vale collected 2120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2120 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8157,7 +8157,7 @@ Dealt to jcarlos.vale [8h Qh]
 adabrakadabra: folds 
 Uncalled bet (500) returned to jcarlos.vale
 jcarlos.vale collected 1120 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1120 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8179,7 +8179,7 @@ jcarlos.vale: raises 1920 to 3120
 adabrakadabra: folds 
 Uncalled bet (1920) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8200,7 +8200,7 @@ Dealt to jcarlos.vale [8h 6c]
 adabrakadabra: folds 
 Uncalled bet (600) returned to jcarlos.vale
 jcarlos.vale collected 1350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1350 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8245,7 +8245,7 @@ jcarlos.vale: bets 1275
 adabrakadabra: folds 
 Uncalled bet (1275) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Board [9c 5s 3d]
@@ -8313,7 +8313,7 @@ jcarlos.vale: bets 1275
 adabrakadabra: folds 
 Uncalled bet (1275) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Board [Kh 8d Qs]
@@ -8335,7 +8335,7 @@ Dealt to jcarlos.vale [Kc Ts]
 adabrakadabra: folds 
 Uncalled bet (600) returned to jcarlos.vale
 jcarlos.vale collected 1350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1350 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8398,7 +8398,7 @@ jcarlos.vale: raises 1920 to 3120
 adabrakadabra: folds 
 Uncalled bet (1920) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8419,7 +8419,7 @@ Dealt to jcarlos.vale [Ah 2d]
 adabrakadabra: folds 
 Uncalled bet (600) returned to jcarlos.vale
 jcarlos.vale collected 1350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1350 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8441,7 +8441,7 @@ jcarlos.vale: raises 1920 to 3120
 adabrakadabra: folds 
 Uncalled bet (1920) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8502,7 +8502,7 @@ jcarlos.vale: bets 1275
 adabrakadabra: folds 
 Uncalled bet (1275) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Board [Kd Qh 5d]
@@ -8528,7 +8528,7 @@ jcarlos.vale: bets 5513
 adabrakadabra: folds 
 Uncalled bet (5513) returned to jcarlos.vale
 jcarlos.vale collected 7350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 7350 | Rake 0 
 Board [8c 2c 3s]
@@ -8570,7 +8570,7 @@ Dealt to jcarlos.vale [8s 9s]
 adabrakadabra: folds 
 Uncalled bet (600) returned to jcarlos.vale
 jcarlos.vale collected 1350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1350 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8592,7 +8592,7 @@ jcarlos.vale: raises 1920 to 3120
 adabrakadabra: folds 
 Uncalled bet (1920) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8635,7 +8635,7 @@ jcarlos.vale: raises 1920 to 3120
 adabrakadabra: folds 
 Uncalled bet (1920) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8683,7 +8683,7 @@ jcarlos.vale: raises 1920 to 3120
 adabrakadabra: folds 
 Uncalled bet (1920) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8704,7 +8704,7 @@ Dealt to jcarlos.vale [4d Jd]
 adabrakadabra: folds 
 Uncalled bet (600) returned to jcarlos.vale
 jcarlos.vale collected 1350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1350 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8745,7 +8745,7 @@ Dealt to jcarlos.vale [9h 6d]
 adabrakadabra: folds 
 Uncalled bet (600) returned to jcarlos.vale
 jcarlos.vale collected 1350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1350 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8767,7 +8767,7 @@ jcarlos.vale: raises 1920 to 3120
 adabrakadabra: folds 
 Uncalled bet (1920) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8880,7 +8880,7 @@ Dealt to jcarlos.vale [As Th]
 adabrakadabra: folds 
 Uncalled bet (600) returned to jcarlos.vale
 jcarlos.vale collected 1350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1350 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8902,7 +8902,7 @@ jcarlos.vale: raises 30850 to 32050 and is all-in
 adabrakadabra: folds 
 Uncalled bet (30850) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8923,7 +8923,7 @@ Dealt to jcarlos.vale [Jd As]
 adabrakadabra: folds 
 Uncalled bet (600) returned to jcarlos.vale
 jcarlos.vale collected 1350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1350 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -8945,7 +8945,7 @@ jcarlos.vale: raises 32800 to 34000 and is all-in
 adabrakadabra: folds 
 Uncalled bet (32800) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -8970,7 +8970,7 @@ jcarlos.vale: bets 2400
 adabrakadabra: folds 
 Uncalled bet (2400) returned to jcarlos.vale
 jcarlos.vale collected 2550 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2550 | Rake 0 
 Board [7h Qh 4h]
@@ -9034,7 +9034,7 @@ jcarlos.vale: raises 2560 to 4160
 adabrakadabra: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 3350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -9082,7 +9082,7 @@ jcarlos.vale: raises 2560 to 4160
 adabrakadabra: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 3350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -9103,7 +9103,7 @@ Dealt to jcarlos.vale [Jd 3s]
 adabrakadabra: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9144,7 +9144,7 @@ Dealt to jcarlos.vale [6s 2h]
 adabrakadabra: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9166,7 +9166,7 @@ jcarlos.vale: raises 2560 to 4160
 adabrakadabra: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 3350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -9197,7 +9197,7 @@ jcarlos.vale: bets 6550
 adabrakadabra: folds 
 Uncalled bet (6550) returned to jcarlos.vale
 jcarlos.vale collected 13100 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 13100 | Rake 0 
 Board [2s Th Kd Jh Kh]
@@ -9239,7 +9239,7 @@ Dealt to jcarlos.vale [8h 8s]
 adabrakadabra: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9280,7 +9280,7 @@ Dealt to jcarlos.vale [Kc 4s]
 adabrakadabra: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9378,7 +9378,7 @@ Dealt to jcarlos.vale [6c 5d]
 adabrakadabra: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9400,7 +9400,7 @@ jcarlos.vale: raises 2560 to 4160
 adabrakadabra: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 3350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -9431,7 +9431,7 @@ jcarlos.vale: bets 1675
 adabrakadabra: calls 1675
 *** SHOW DOWN ***
 jcarlos.vale: shows [Ts 6s] (a full house, Tens full of Nines)
-adabrakadabra: mucks hand 
+adabrakadabra: mucks handDTO
 jcarlos.vale collected 6700 from pot
 *** SUMMARY ***
 Total pot 6700 | Rake 0 
@@ -9474,7 +9474,7 @@ Dealt to jcarlos.vale [Ks 3c]
 adabrakadabra: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9525,7 +9525,7 @@ jcarlos.vale: checks
 adabrakadabra: checks 
 *** SHOW DOWN ***
 jcarlos.vale: shows [4h Ah] (a pair of Sevens)
-adabrakadabra: mucks hand 
+adabrakadabra: mucks handDTO
 jcarlos.vale collected 3350 from pot
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
@@ -9590,7 +9590,7 @@ jcarlos.vale: raises 2560 to 4160
 adabrakadabra: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 3350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -9660,7 +9660,7 @@ Dealt to jcarlos.vale [Ks 2d]
 adabrakadabra: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9682,7 +9682,7 @@ jcarlos.vale: raises 2560 to 4160
 adabrakadabra: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 3350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -9703,7 +9703,7 @@ Dealt to jcarlos.vale [6s Td]
 adabrakadabra: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9744,7 +9744,7 @@ Dealt to jcarlos.vale [Ac 8d]
 adabrakadabra: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9766,7 +9766,7 @@ jcarlos.vale: raises 2560 to 4160
 adabrakadabra: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 3350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -9791,7 +9791,7 @@ jcarlos.vale: bets 46600 and is all-in
 adabrakadabra: folds 
 Uncalled bet (46600) returned to jcarlos.vale
 jcarlos.vale collected 8150 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 8150 | Rake 0 
 Board [9c 5c 6c]
@@ -9915,7 +9915,7 @@ Dealt to jcarlos.vale [Ah 8h]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9956,7 +9956,7 @@ Dealt to jcarlos.vale [3d 5c]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -9978,7 +9978,7 @@ jcarlos.vale: raises 3200 to 5200
 adabrakadabra: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -10081,7 +10081,7 @@ Dealt to jcarlos.vale [Js 9s]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10103,7 +10103,7 @@ jcarlos.vale: raises 3200 to 5200
 adabrakadabra: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -10146,7 +10146,7 @@ jcarlos.vale: raises 3200 to 5200
 adabrakadabra: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -10167,7 +10167,7 @@ Dealt to jcarlos.vale [7c 4h]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10189,7 +10189,7 @@ jcarlos.vale: raises 3200 to 5200
 adabrakadabra: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -10210,7 +10210,7 @@ Dealt to jcarlos.vale [5s 8c]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10251,7 +10251,7 @@ Dealt to jcarlos.vale [As Jc]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10303,7 +10303,7 @@ Dealt to jcarlos.vale [7s Td]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10344,7 +10344,7 @@ Dealt to jcarlos.vale [6c Ac]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10387,7 +10387,7 @@ Dealt to jcarlos.vale [7h 8h]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10409,7 +10409,7 @@ jcarlos.vale: raises 3200 to 5200
 adabrakadabra: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -10430,7 +10430,7 @@ Dealt to jcarlos.vale [2d 3s]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10501,7 +10501,7 @@ jcarlos.vale: raises 3200 to 5200
 adabrakadabra: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -10522,7 +10522,7 @@ Dealt to jcarlos.vale [3d Ks]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10565,7 +10565,7 @@ Dealt to jcarlos.vale [Th 7s]
 adabrakadabra: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10634,7 +10634,7 @@ jcarlos.vale: raises 22250 to 25250 and is all-in
 adabrakadabra: folds 
 Uncalled bet (22250) returned to jcarlos.vale
 jcarlos.vale collected 6300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6300 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -10655,7 +10655,7 @@ Dealt to jcarlos.vale [4s 6d]
 adabrakadabra: folds 
 Uncalled bet (1500) returned to jcarlos.vale
 jcarlos.vale collected 3300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3300 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10696,7 +10696,7 @@ Dealt to jcarlos.vale [5h 3s]
 adabrakadabra: folds 
 Uncalled bet (1500) returned to jcarlos.vale
 jcarlos.vale collected 3300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3300 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop
@@ -10718,7 +10718,7 @@ jcarlos.vale: raises 27050 to 30050 and is all-in
 adabrakadabra: folds 
 Uncalled bet (27050) returned to jcarlos.vale
 jcarlos.vale collected 6300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6300 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -10761,7 +10761,7 @@ jcarlos.vale: raises 27050 to 30050 and is all-in
 adabrakadabra: folds 
 Uncalled bet (27050) returned to jcarlos.vale
 jcarlos.vale collected 6300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6300 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -10868,15 +10868,15 @@ Uncalled bet (20000) returned to adabrakadabra
 *** TURN *** [4s 8h 3c] [6h]
 *** RIVER *** [4s 8h 3c 6h] [Td]
 *** SHOW DOWN ***
-jcarlos.vale: shows [Jd As] (high card Ace)
-adabrakadabra: shows [Jh Ad] (high card Ace)
+jcarlos.vale: shows [Jd As] (high pairOfCards Ace)
+adabrakadabra: shows [Jh Ad] (high pairOfCards Ace)
 jcarlos.vale collected 23750 from pot
 adabrakadabra collected 23750 from pot
 *** SUMMARY ***
 Total pot 47500 | Rake 0 
 Board [4s 8h 3c 6h Td]
-Seat 6: adabrakadabra (button) (small blind) showed [Jh Ad] and won (23750) with high card Ace
-Seat 7: jcarlos.vale (big blind) showed [Jd As] and won (23750) with high card Ace
+Seat 6: adabrakadabra (button) (small blind) showed [Jh Ad] and won (23750) with high pairOfCards Ace
+Seat 7: jcarlos.vale (big blind) showed [Jd As] and won (23750) with high pairOfCards Ace
 
 
 
@@ -10894,7 +10894,7 @@ jcarlos.vale: raises 20600 to 23600 and is all-in
 adabrakadabra: folds 
 Uncalled bet (20600) returned to jcarlos.vale
 jcarlos.vale collected 6300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6300 | Rake 0 
 Seat 6: adabrakadabra (big blind) folded before Flop
@@ -10915,7 +10915,7 @@ Dealt to jcarlos.vale [Ad 4h]
 adabrakadabra: folds 
 Uncalled bet (1500) returned to jcarlos.vale
 jcarlos.vale collected 3300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3300 | Rake 0 
 Seat 6: adabrakadabra (button) (small blind) folded before Flop

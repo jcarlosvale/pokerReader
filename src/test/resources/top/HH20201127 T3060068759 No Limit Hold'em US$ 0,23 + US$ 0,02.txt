@@ -160,7 +160,7 @@ JokerTonyT: folds
 jcarlos.vale: folds 
 Uncalled bet (40) returned to (ANEKDOT)777
 (ANEKDOT)777 collected 74 from pot
-(ANEKDOT)777: doesn't show hand 
+(ANEKDOT)777: doesn't show handDTO
 *** SUMMARY ***
 Total pot 74 | Rake 0 
 Seat 2: RapHood folded before Flop (didn't bet)
@@ -214,7 +214,7 @@ EuroKeeper I: bets 380
 JokerTonyT: folds 
 Uncalled bet (380) returned to EuroKeeper I
 EuroKeeper I collected 494 from pot
-EuroKeeper I: doesn't show hand 
+EuroKeeper I: doesn't show handDTO
 *** SUMMARY ***
 Total pot 494 | Rake 0 
 Board [7s 6d 5c 2h]
@@ -270,7 +270,7 @@ clonharek704: checks
 RapHood: checks 
 *** SHOW DOWN ***
 clonharek704: shows [Kh 5c] (two pair, Kings and Sixes)
-RapHood: mucks hand 
+RapHood: mucks handDTO
 clonharek704 collected 74 from pot
 *** SUMMARY ***
 Total pot 74 | Rake 0 
@@ -317,7 +317,7 @@ EuroKeeper I: folds
 clonharek704: folds 
 Uncalled bet (10) returned to AyrtonAA95
 AyrtonAA95 collected 44 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 44 | Rake 0 
 Seat 2: RapHood folded before Flop (didn't bet)
@@ -363,7 +363,7 @@ AyrtonAA95: folds
 (ANEKDOT)777: folds 
 Uncalled bet (40) returned to EuroKeeper I
 EuroKeeper I collected 74 from pot
-EuroKeeper I: doesn't show hand 
+EuroKeeper I: doesn't show handDTO
 *** SUMMARY ***
 Total pot 74 | Rake 0 
 Seat 2: RapHood folded before Flop (didn't bet)
@@ -409,7 +409,7 @@ AyrtonAA95: folds
 RapHood: folds 
 Uncalled bet (30) returned to JokerTonyT
 JokerTonyT collected 74 from pot
-JokerTonyT: doesn't show hand 
+JokerTonyT: doesn't show handDTO
 *** SUMMARY ***
 Total pot 74 | Rake 0 
 Seat 2: RapHood (big blind) folded before Flop
@@ -454,7 +454,7 @@ AyrtonAA95: folds
 RapHood: folds 
 Uncalled bet (10) returned to Jaacck6
 Jaacck6 collected 44 from pot
-Jaacck6: doesn't show hand 
+Jaacck6: doesn't show handDTO
 *** SUMMARY ***
 Total pot 44 | Rake 0 
 Seat 2: RapHood (small blind) folded before Flop
@@ -508,7 +508,7 @@ JokerTonyT: bets 66
 Jaacck6: folds 
 Uncalled bet (66) returned to JokerTonyT
 JokerTonyT collected 106 from pot
-JokerTonyT: doesn't show hand 
+JokerTonyT: doesn't show handDTO
 *** SUMMARY ***
 Total pot 106 | Rake 0 
 Board [Ks 2c 5c As]
@@ -558,7 +558,7 @@ AyrtonAA95: bets 170
 Jaacck6: folds 
 Uncalled bet (170) returned to AyrtonAA95
 AyrtonAA95 collected 257 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 257 | Rake 0 
 Board [3s 2c Qc]
@@ -610,7 +610,7 @@ Jaacck6: folds
 JokerTonyT: folds 
 Uncalled bet (114) returned to jcarlos.vale
 jcarlos.vale collected 152 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 152 | Rake 0 
 Board [Qc 8c Jc]
@@ -712,7 +712,7 @@ AyrtonAA95: raises 210 to 300
 JokerTonyT: folds 
 Uncalled bet (210) returned to AyrtonAA95
 AyrtonAA95 collected 317 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 317 | Rake 0 
 Seat 2: RapHood folded before Flop (didn't bet)
@@ -758,7 +758,7 @@ AyrtonAA95: folds
 (ANEKDOT)777: folds 
 Uncalled bet (36) returned to JokerTonyT
 JokerTonyT collected 107 from pot
-JokerTonyT: doesn't show hand 
+JokerTonyT: doesn't show handDTO
 *** SUMMARY ***
 Total pot 107 | Rake 0 
 Seat 2: RapHood folded before Flop (didn't bet)
@@ -808,7 +808,7 @@ JokerTonyT: bets 87
 RapHood: folds 
 Uncalled bet (87) returned to JokerTonyT
 JokerTonyT collected 197 from pot
-JokerTonyT: doesn't show hand 
+JokerTonyT: doesn't show handDTO
 *** SUMMARY ***
 Total pot 197 | Rake 0 
 Board [3c 2s 8s]
@@ -918,7 +918,7 @@ AyrtonAA95: bets 75
 JokerTonyT: folds 
 Uncalled bet (75) returned to AyrtonAA95
 AyrtonAA95 collected 227 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 227 | Rake 0 
 Board [2h Tc Jc]
@@ -966,7 +966,7 @@ jcarlos.vale: folds
 (ANEKDOT)777: folds 
 Uncalled bet (270) returned to JokerTonyT
 JokerTonyT collected 242 from pot
-JokerTonyT: doesn't show hand 
+JokerTonyT: doesn't show handDTO
 *** SUMMARY ***
 Total pot 242 | Rake 0 
 Seat 2: RapHood folded before Flop (didn't bet)
@@ -1016,7 +1016,7 @@ JokerTonyT: bets 107
 EuroKeeper I: folds 
 Uncalled bet (107) returned to JokerTonyT
 JokerTonyT collected 323 from pot
-JokerTonyT: doesn't show hand 
+JokerTonyT: doesn't show handDTO
 *** SUMMARY ***
 Total pot 323 | Rake 0 
 Board [Kh Ts Th]
@@ -1115,7 +1115,7 @@ clonharek704: calls 212
 clonharek704: checks 
 AyrtonAA95: checks 
 *** SHOW DOWN ***
-clonharek704: shows [3d 5s] (high card Ace)
+clonharek704: shows [3d 5s] (high pairOfCards Ace)
 AyrtonAA95: shows [7h Ah] (a pair of Aces)
 AyrtonAA95 collected 1066 from pot
 *** SUMMARY ***
@@ -1125,7 +1125,7 @@ Seat 2: RapHood folded before Flop (didn't bet)
 Seat 4: JokerTonyT folded before Flop (didn't bet)
 Seat 5: jcarlos.vale folded before Flop (didn't bet)
 Seat 6: EuroKeeper I (button) folded before Flop (didn't bet)
-Seat 7: clonharek704 (small blind) showed [3d 5s] and lost with high card Ace
+Seat 7: clonharek704 (small blind) showed [3d 5s] and lost with high pairOfCards Ace
 Seat 8: AyrtonAA95 (big blind) showed [7h Ah] and won (1066) with a pair of Aces
 Seat 9: (ANEKDOT)777 folded before Flop (didn't bet)
 
@@ -1167,7 +1167,7 @@ AyrtonAA95: folds
 aconteceu: folds 
 Uncalled bet (1336) returned to (ANEKDOT)777
 (ANEKDOT)777 collected 279 from pot
-(ANEKDOT)777: doesn't show hand 
+(ANEKDOT)777: doesn't show handDTO
 *** SUMMARY ***
 Total pot 279 | Rake 0 
 Seat 1: aconteceu folded before Flop
@@ -1270,7 +1270,7 @@ aconteceu: folds
 RapHood: folds 
 Uncalled bet (50) returned to EuroKeeper I
 EuroKeeper I collected 179 from pot
-EuroKeeper I: doesn't show hand 
+EuroKeeper I: doesn't show handDTO
 *** SUMMARY ***
 Total pot 179 | Rake 0 
 Seat 1: aconteceu (small blind) folded before Flop
@@ -1367,7 +1367,7 @@ dimYLiaK: folds
 jcarlos.vale: folds 
 Uncalled bet (50) returned to EuroKeeper I
 EuroKeeper I collected 173 from pot
-EuroKeeper I: doesn't show hand 
+EuroKeeper I: doesn't show handDTO
 *** SUMMARY ***
 Total pot 173 | Rake 0 
 Seat 1: aconteceu folded before Flop (didn't bet)
@@ -1521,7 +1521,7 @@ dimYLiaK: bets 930 and is all-in
 AyrtonAA95: folds 
 Uncalled bet (930) returned to dimYLiaK
 dimYLiaK collected 440 from pot
-dimYLiaK: doesn't show hand 
+dimYLiaK: doesn't show handDTO
 *** SUMMARY ***
 Total pot 440 | Rake 0 
 Board [2h 2s 6h]
@@ -1568,7 +1568,7 @@ AyrtonAA95: folds
 (ANEKDOT)777: folds 
 Uncalled bet (1206) returned to jcarlos.vale
 jcarlos.vale collected 280 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 280 | Rake 0 
 Seat 1: aconteceu folded before Flop (didn't bet)
@@ -1618,7 +1618,7 @@ AyrtonAA95: bets 203
 jcarlos.vale: folds 
 Uncalled bet (203) returned to AyrtonAA95
 AyrtonAA95 collected 616 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 616 | Rake 0 
 Board [Qs 6h 5d]
@@ -1711,7 +1711,7 @@ dimYLiaK: folds
 AyrtonAA95: folds 
 Uncalled bet (1224) returned to (ANEKDOT)777
 (ANEKDOT)777 collected 520 from pot
-(ANEKDOT)777: doesn't show hand 
+(ANEKDOT)777: doesn't show handDTO
 *** SUMMARY ***
 Total pot 520 | Rake 0 
 Seat 1: aconteceu (button) folded before Flop (didn't bet)
@@ -1757,7 +1757,7 @@ dimYLiaK: folds
 jcarlos.vale: folds 
 Uncalled bet (80) returned to EuroKeeper I
 EuroKeeper I collected 280 from pot
-EuroKeeper I: doesn't show hand 
+EuroKeeper I: doesn't show handDTO
 *** SUMMARY ***
 Total pot 280 | Rake 0 
 Seat 1: aconteceu folded before Flop (didn't bet)
@@ -1804,7 +1804,7 @@ EuroKeeper I: folds
 RapHood: folds 
 Uncalled bet (1068) returned to jcarlos.vale
 jcarlos.vale collected 320 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 320 | Rake 0 
 Seat 1: aconteceu folded before Flop (didn't bet)
@@ -2089,7 +2089,7 @@ aconteceu: folds
 hazardlab: folds 
 Uncalled bet (120) returned to AyrtonAA95
 AyrtonAA95 collected 435 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 435 | Rake 0 
 Seat 1: aconteceu (small blind) folded before Flop
@@ -2139,7 +2139,7 @@ hazardlab: folds
 dimYLiaK: folds 
 Uncalled bet (1426) returned to EuroKeeper I
 EuroKeeper I collected 435 from pot
-EuroKeeper I: doesn't show hand 
+EuroKeeper I: doesn't show handDTO
 *** SUMMARY ***
 Total pot 435 | Rake 0 
 Seat 1: aconteceu (button) folded before Flop (didn't bet)
@@ -2189,7 +2189,7 @@ AyrtonAA95: bets 515
 aconteceu: folds 
 Uncalled bet (515) returned to AyrtonAA95
 AyrtonAA95 collected 780 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 780 | Rake 0 
 Board [Kc 8d Jd]
@@ -2236,7 +2236,7 @@ jcarlos.vale: folds
 EuroKeeper I: folds 
 Uncalled bet (790) returned to dimYLiaK
 dimYLiaK collected 420 from pot
-dimYLiaK: doesn't show hand 
+dimYLiaK: doesn't show handDTO
 *** SUMMARY ***
 Total pot 420 | Rake 0 
 Seat 1: aconteceu folded before Flop (didn't bet)
@@ -2282,7 +2282,7 @@ EuroKeeper I: folds
 clonharek704: folds 
 Uncalled bet (1075) returned to dimYLiaK
 dimYLiaK collected 420 from pot
-dimYLiaK: doesn't show hand 
+dimYLiaK: doesn't show handDTO
 *** SUMMARY ***
 Total pot 420 | Rake 0 
 Seat 1: aconteceu folded before Flop (didn't bet)
@@ -2582,7 +2582,7 @@ dimYLiaK: folds
 jcarlos.vale: folds 
 Uncalled bet (120) returned to AyrtonAA95
 AyrtonAA95 collected 405 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 405 | Rake 0 
 Seat 2: hazardlab (button) folded before Flop (didn't bet)
@@ -2631,7 +2631,7 @@ jcarlos.vale: folds
 EuroKeeper I: folds 
 Uncalled bet (120) returned to dimYLiaK
 dimYLiaK collected 465 from pot
-dimYLiaK: doesn't show hand 
+dimYLiaK: doesn't show handDTO
 *** SUMMARY ***
 Total pot 465 | Rake 0 
 Board [Ad 8d 8c]
@@ -2674,7 +2674,7 @@ EuroKeeper I: folds
 clonharek704: folds 
 Uncalled bet (613) returned to jcarlos.vale
 jcarlos.vale collected 405 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 405 | Rake 0 
 Seat 2: hazardlab folded before Flop (didn't bet)
@@ -2716,7 +2716,7 @@ clonharek704: folds
 AyrtonAA95: folds 
 Uncalled bet (883) returned to jcarlos.vale
 jcarlos.vale collected 405 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 405 | Rake 0 
 Seat 2: hazardlab folded before Flop (didn't bet)
@@ -2856,7 +2856,7 @@ AyrtonAA95: folds
 dimYLiaK: folds 
 Uncalled bet (80) returned to jcarlos.vale
 jcarlos.vale collected 260 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 260 | Rake 0 
 Seat 3: dimYLiaK (small blind) folded before Flop
@@ -2927,7 +2927,7 @@ AyrtonAA95: folds
 andrey pyatkin: folds 
 Uncalled bet (1128) returned to jcarlos.vale
 jcarlos.vale collected 680 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 680 | Rake 0 
 Seat 3: dimYLiaK folded before Flop (didn't bet)
@@ -3016,7 +3016,7 @@ dimYLiaK: folds
 clonharek704: folds 
 Uncalled bet (2268) returned to (ANEKDOT)777
 (ANEKDOT)777 collected 920 from pot
-(ANEKDOT)777: doesn't show hand 
+(ANEKDOT)777: doesn't show handDTO
 *** SUMMARY ***
 Total pot 920 | Rake 0 
 Seat 3: dimYLiaK (big blind) folded before Flop
@@ -3054,7 +3054,7 @@ dimYLiaK: folds
 andrey pyatkin: folds 
 Uncalled bet (160) returned to AyrtonAA95
 AyrtonAA95 collected 520 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 520 | Rake 0 
 Seat 3: dimYLiaK (small blind) folded before Flop
@@ -3100,7 +3100,7 @@ jcarlos.vale: bets 825
 andrey pyatkin: folds 
 Uncalled bet (825) returned to jcarlos.vale
 jcarlos.vale collected 1100 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1100 | Rake 0 
 Board [Kc 8s Qh Kd]
@@ -3139,7 +3139,7 @@ jcarlos.vale: folds
 clonharek704: folds 
 Uncalled bet (160) returned to AyrtonAA95
 AyrtonAA95 collected 520 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 520 | Rake 0 
 Seat 3: dimYLiaK folded before Flop (didn't bet)
@@ -3176,7 +3176,7 @@ jcarlos.vale: folds
 clonharek704: folds 
 Uncalled bet (80) returned to AyrtonAA95
 AyrtonAA95 collected 280 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 280 | Rake 0 
 Seat 3: dimYLiaK folded before Flop (didn't bet)
@@ -3220,7 +3220,7 @@ andrey pyatkin: checks
 andrey pyatkin: folds 
 Uncalled bet (320) returned to (ANEKDOT)777
 (ANEKDOT)777 collected 520 from pot
-(ANEKDOT)777: doesn't show hand 
+(ANEKDOT)777: doesn't show handDTO
 *** SUMMARY ***
 Total pot 520 | Rake 0 
 Board [5c Ks 9d 6c]
@@ -3304,7 +3304,7 @@ dimYLiaK: folds
 andrey pyatkin: folds 
 Uncalled bet (1998) returned to jcarlos.vale
 jcarlos.vale collected 520 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 520 | Rake 0 
 Seat 3: dimYLiaK (small blind) folded before Flop
@@ -3341,7 +3341,7 @@ dimYLiaK: folds
 andrey pyatkin: folds 
 Uncalled bet (100) returned to jcarlos.vale
 jcarlos.vale collected 350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 350 | Rake 0 
 Seat 3: dimYLiaK (button) folded before Flop (didn't bet)
@@ -3381,7 +3381,7 @@ clonharek704: calls 373
 *** TURN *** [8c Jd Td] [5c]
 *** RIVER *** [8c Jd Td 5c] [9d]
 *** SHOW DOWN ***
-clonharek704: shows [3d Kh] (high card King)
+clonharek704: shows [3d Kh] (high pairOfCards King)
 (ANEKDOT)777: shows [2d 2h] (a pair of Deuces)
 (ANEKDOT)777 collected 1396 from pot
 *** SUMMARY ***
@@ -3390,7 +3390,7 @@ Board [8c Jd Td 5c 9d]
 Seat 3: dimYLiaK folded before Flop (didn't bet)
 Seat 4: andrey pyatkin (button) folded before Flop (didn't bet)
 Seat 5: jcarlos.vale (small blind) folded before Flop
-Seat 7: clonharek704 (big blind) showed [3d Kh] and lost with high card King
+Seat 7: clonharek704 (big blind) showed [3d Kh] and lost with high pairOfCards King
 Seat 8: AyrtonAA95 folded before Flop (didn't bet)
 Seat 9: (ANEKDOT)777 showed [2d 2h] and won (1396) with a pair of Deuces
 
@@ -3421,7 +3421,7 @@ jcarlos.vale: folds
 clonharek704: folds 
 Uncalled bet (100) returned to AyrtonAA95
 AyrtonAA95 collected 350 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 350 | Rake 0 
 Seat 3: dimYLiaK folded before Flop (didn't bet)
@@ -3458,7 +3458,7 @@ clonharek704: folds
 AyrtonAA95: folds 
 Uncalled bet (100) returned to (ANEKDOT)777
 (ANEKDOT)777 collected 350 from pot
-(ANEKDOT)777: doesn't show hand 
+(ANEKDOT)777: doesn't show handDTO
 *** SUMMARY ***
 Total pot 350 | Rake 0 
 Seat 3: dimYLiaK folded before Flop (didn't bet)
@@ -3511,7 +3511,7 @@ Uncalled bet (20) returned to ErickSayajin
 FlyingButche: shows [Ad Qh] (a pair of Queens)
 ErickSayajin: shows [3h Ah] (a flush, Ace high)
 ErickSayajin collected 778 from side pot
-andrey pyatkin: shows [8s Kd] (high card King)
+andrey pyatkin: shows [8s Kd] (high pairOfCards King)
 jcarlos.vale said, "kraio Erck"
 ErickSayajin collected 2152 from main pot
 FlyingButche finished the tournament in 16th place
@@ -3523,7 +3523,7 @@ Board [Jh Th Qs 4h 3d]
 Seat 1: FlyingButche (big blind) showed [Ad Qh] and lost with a pair of Queens
 Seat 2: tEddy-KBG 77 folded before Flop (didn't bet)
 Seat 3: dimYLiaK folded before Flop (didn't bet)
-Seat 4: andrey pyatkin showed [8s Kd] and lost with high card King
+Seat 4: andrey pyatkin showed [8s Kd] and lost with high pairOfCards King
 Seat 5: jcarlos.vale folded before Flop (didn't bet)
 Seat 6: ErickSayajin showed [3h Ah] and won (2930) with a flush, Ace high
 Seat 7: clonharek704 folded before Flop (didn't bet)
@@ -3562,7 +3562,7 @@ tEddy-KBG 77: folds
 dimYLiaK: folds 
 Uncalled bet (400) returned to ErickSayajin
 ErickSayajin collected 675 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 675 | Rake 0 
 Seat 2: tEddy-KBG 77 (small blind) folded before Flop
@@ -3606,7 +3606,7 @@ dimYLiaK: folds
 jcarlos.vale: folds 
 Uncalled bet (400) returned to ErickSayajin
 ErickSayajin collected 675 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 675 | Rake 0 
 Seat 2: tEddy-KBG 77 (button) folded before Flop (didn't bet)
@@ -3790,7 +3790,7 @@ clonharek704: folds
 (ANEKDOT)777: folds 
 Uncalled bet (600) returned to ErickSayajin
 ErickSayajin collected 875 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 875 | Rake 0 
 Board [Ad As 9h]
@@ -3833,7 +3833,7 @@ tEddy-KBG 77: folds
 Uncalled bet (66) returned to (ANEKDOT)777
 (ANEKDOT)777 collected 243 from pot
 tEddy-KBG 77 finished the tournament in 14th place
-(ANEKDOT)777: doesn't show hand 
+(ANEKDOT)777: doesn't show handDTO
 *** SUMMARY ***
 Total pot 243 | Rake 0 
 Seat 2: tEddy-KBG 77 (big blind) folded before Flop
@@ -3913,7 +3913,7 @@ dimYLiaK: folds
 jcarlos.vale: folds 
 Uncalled bet (100) returned to ErickSayajin
 ErickSayajin collected 350 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 350 | Rake 0 
 Seat 3: dimYLiaK (button) folded before Flop (didn't bet)
@@ -3951,7 +3951,7 @@ ErickSayajin: folds
 clonharek704: folds 
 Uncalled bet (3836) returned to jcarlos.vale
 jcarlos.vale collected 650 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 650 | Rake 0 
 Seat 3: dimYLiaK folded before Flop (didn't bet)
@@ -3991,7 +3991,7 @@ clonharek704 is sitting out
 AyrtonAA95: folds 
 Uncalled bet (4261) returned to jcarlos.vale
 jcarlos.vale collected 650 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 650 | Rake 0 
 Seat 3: dimYLiaK folded before Flop (didn't bet)
@@ -4072,7 +4072,7 @@ AyrtonAA95: folds
 dimYLiaK: folds 
 Uncalled bet (150) returned to jcarlos.vale
 jcarlos.vale collected 425 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 425 | Rake 0 
 Seat 3: dimYLiaK (small blind) folded before Flop
@@ -4106,7 +4106,7 @@ AyrtonAA95 has returned
 jcarlos.vale: folds 
 Uncalled bet (150) returned to ErickSayajin
 ErickSayajin collected 425 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 425 | Rake 0 
 Seat 3: dimYLiaK (button) folded before Flop (didn't bet)
@@ -4143,7 +4143,7 @@ ErickSayajin: bets 900
 clonharek704: folds 
 Uncalled bet (900) returned to ErickSayajin
 ErickSayajin collected 725 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 725 | Rake 0 
 Board [7c 9d 7s]
@@ -4178,7 +4178,7 @@ clonharek704: folds
 AyrtonAA95: folds 
 Uncalled bet (4611) returned to jcarlos.vale
 jcarlos.vale collected 875 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 875 | Rake 0 
 Seat 3: dimYLiaK folded before Flop (didn't bet)
@@ -4212,7 +4212,7 @@ AyrtonAA95: folds
 dimYLiaK: folds 
 Uncalled bet (5161) returned to jcarlos.vale
 jcarlos.vale collected 875 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 ErickSayajin said, "uÃ© dando all win toda hora,vou pagar heim kk"
 *** SUMMARY ***
 Total pot 875 | Rake 0 
@@ -4247,7 +4247,7 @@ dimYLiaK: folds
 jcarlos.vale: folds 
 Uncalled bet (600) returned to ErickSayajin
 ErickSayajin collected 875 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 875 | Rake 0 
 Seat 3: dimYLiaK (small blind) folded before Flop
@@ -4280,7 +4280,7 @@ dimYLiaK: folds
 jcarlos.vale: folds 
 Uncalled bet (150) returned to ErickSayajin
 ErickSayajin collected 425 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 425 | Rake 0 
 Seat 3: dimYLiaK (button) folded before Flop (didn't bet)
@@ -4320,7 +4320,7 @@ ErickSayajin: bets 363
 clonharek704: folds 
 Uncalled bet (363) returned to ErickSayajin
 ErickSayajin collected 725 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 725 | Rake 0 
 Board [Ts Jc 5c Td]
@@ -4355,7 +4355,7 @@ clonharek704: folds
 AyrtonAA95: folds 
 Uncalled bet (5186) returned to jcarlos.vale
 jcarlos.vale collected 875 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 875 | Rake 0 
 Seat 3: dimYLiaK folded before Flop (didn't bet)
@@ -4388,7 +4388,7 @@ clonharek704: folds
 AyrtonAA95: folds 
 Uncalled bet (150) returned to dimYLiaK
 dimYLiaK collected 425 from pot
-dimYLiaK: doesn't show hand 
+dimYLiaK: doesn't show handDTO
 *** SUMMARY ***
 Total pot 425 | Rake 0 
 Seat 3: dimYLiaK (big blind) collected (425)
@@ -4422,7 +4422,7 @@ dimYLiaK: folds
 jcarlos.vale: folds 
 Uncalled bet (300) returned to AyrtonAA95
 AyrtonAA95 collected 875 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 875 | Rake 0 
 Seat 3: dimYLiaK (small blind) folded before Flop
@@ -4459,7 +4459,7 @@ ErickSayajin: bets 738
 clonharek704: folds 
 Uncalled bet (738) returned to ErickSayajin
 ErickSayajin collected 1475 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1475 | Rake 0 
 Board [Ah 9s 7d]
@@ -4503,7 +4503,7 @@ ErickSayajin: bets 900
 clonharek704: folds 
 Uncalled bet (900) returned to ErickSayajin
 ErickSayajin collected 725 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 725 | Rake 0 
 Board [Ts 2d Tc 7h 4c]
@@ -4542,7 +4542,7 @@ dimYLiaK: bets 2847 and is all-in
 AyrtonAA95: folds 
 Uncalled bet (2847) returned to dimYLiaK
 dimYLiaK collected 875 from pot
-dimYLiaK: doesn't show hand 
+dimYLiaK: doesn't show handDTO
 *** SUMMARY ***
 Total pot 875 | Rake 0 
 Board [Ad 4h 4s]
@@ -4577,7 +4577,7 @@ AyrtonAA95: raises 300 to 600
 dimYLiaK: folds 
 Uncalled bet (300) returned to AyrtonAA95
 AyrtonAA95 collected 725 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 725 | Rake 0 
 Seat 3: dimYLiaK (big blind) folded before Flop
@@ -4610,7 +4610,7 @@ AyrtonAA95: folds
 dimYLiaK: folds 
 Uncalled bet (150) returned to jcarlos.vale
 jcarlos.vale collected 425 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 425 | Rake 0 
 Seat 3: dimYLiaK (small blind) folded before Flop
@@ -4644,7 +4644,7 @@ jcarlos.vale: raises 5386 to 5686 and is all-in
 ErickSayajin: folds 
 Uncalled bet (5386) returned to jcarlos.vale
 jcarlos.vale collected 725 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 725 | Rake 0 
 Seat 3: dimYLiaK (button) folded before Flop (didn't bet)
@@ -4741,7 +4741,7 @@ pfeife121: raises 16057 to 16657 and is all-in
 ErickSayajin: folds 
 Uncalled bet (16057) returned to pfeife121
 pfeife121 collected 2475 from pot
-pfeife121: doesn't show hand 
+pfeife121: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2475 | Rake 0 
 Board [Ts 9s Qh]
@@ -4841,7 +4841,7 @@ Ingekek: folds
 jcarlos.vale: folds 
 Uncalled bet (800) returned to pfeife121
 pfeife121 collected 1225 from pot
-pfeife121: doesn't show hand 
+pfeife121: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1225 | Rake 0 
 Seat 1: clonharek704 folded before Flop (didn't bet)
@@ -4940,7 +4940,7 @@ JokerTonyT: raises 480 to 880
 AyrtonAA95: folds 
 Uncalled bet (480) returned to JokerTonyT
 JokerTonyT collected 1025 from pot
-JokerTonyT: doesn't show hand 
+JokerTonyT: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1025 | Rake 0 
 Seat 1: clonharek704 folded before Flop (didn't bet)
@@ -4991,7 +4991,7 @@ clonharek704: folds
 pfeife121: folds 
 Uncalled bet (4536) returned to jcarlos.vale
 jcarlos.vale collected 2425 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2425 | Rake 0 
 Seat 1: clonharek704 (big blind) folded before Flop
@@ -5149,7 +5149,7 @@ pfeife121: folds
 tschepetoo: folds 
 Uncalled bet (6486) returned to jcarlos.vale
 jcarlos.vale collected 1200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1200 | Rake 0 
 Seat 1: clonharek704 folded before Flop (didn't bet)
@@ -5245,7 +5245,7 @@ RapHood is sitting out
 jcarlos.vale: folds 
 Uncalled bet (2968) returned to JokerTonyT
 JokerTonyT collected 1200 from pot
-JokerTonyT: doesn't show hand 
+JokerTonyT: doesn't show handDTO
 RapHood has returned
 *** SUMMARY ***
 Total pot 1200 | Rake 0 
@@ -5292,7 +5292,7 @@ jcarlos.vale: folds
 JokerTonyT: folds 
 Uncalled bet (1200) returned to pfeife121
 pfeife121 collected 1900 from pot
-pfeife121: doesn't show hand 
+pfeife121: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1900 | Rake 0 
 Seat 1: clonharek704 folded before Flop (didn't bet)
@@ -5338,7 +5338,7 @@ JokerTonyT: raises 2868 to 3468 and is all-in
 AyrtonAA95: folds 
 Uncalled bet (2868) returned to JokerTonyT
 JokerTonyT collected 1600 from pot
-JokerTonyT: doesn't show hand 
+JokerTonyT: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1600 | Rake 0 
 Seat 1: clonharek704 folded before Flop (didn't bet)
@@ -5384,7 +5384,7 @@ AyrtonAA95: raises 8567 to 9167 and is all-in
 clonharek704: folds [3s 3d]
 Uncalled bet (8567) returned to AyrtonAA95
 AyrtonAA95 collected 1600 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1600 | Rake 0 
 Seat 1: clonharek704 (big blind) folded before Flop
@@ -5484,7 +5484,7 @@ pfeife121: bets 20270 and is all-in
 ErickSayajin: folds 
 Uncalled bet (20270) returned to pfeife121
 pfeife121 collected 5150 from pot
-pfeife121: doesn't show hand 
+pfeife121: doesn't show handDTO
 *** SUMMARY ***
 Total pot 5150 | Rake 0 
 Board [8d 8c Qd]
@@ -5530,7 +5530,7 @@ pfeife121: bets 1550
 tschepetoo: folds 
 Uncalled bet (1550) returned to pfeife121
 pfeife121 collected 1550 from pot
-pfeife121: doesn't show hand 
+pfeife121: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1550 | Rake 0 
 Board [Qd Ts Kh]
@@ -5720,7 +5720,7 @@ AyrtonAA95: raises 8617 to 9217 and is all-in
 clonharek704: folds 
 Uncalled bet (8617) returned to AyrtonAA95
 AyrtonAA95 collected 1550 from pot
-AyrtonAA95: doesn't show hand 
+AyrtonAA95: doesn't show handDTO
 ErickSayajin said, "n conheÃ§o kk"
 *** SUMMARY ***
 Total pot 1550 | Rake 0 
@@ -5815,7 +5815,7 @@ ErickSayajin: folds
 pfeife121: folds 
 Uncalled bet (4636) returned to jcarlos.vale
 jcarlos.vale collected 2350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 ErickSayajin said, "caramba"
 *** SUMMARY ***
 Total pot 2350 | Rake 0 
@@ -5873,7 +5873,7 @@ ErickSayajin: folds
 Uncalled bet (4350) returned to pfeife121
 jcarlos.vale said, "fui em PoA assitir o ultimo show do Metallica"
 pfeife121 collected 4350 from pot
-pfeife121: doesn't show hand 
+pfeife121: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4350 | Rake 0 
 Board [2c 5s 7h Ts]
@@ -5969,7 +5969,7 @@ RapHood is sitting out
 jcarlos.vale: folds 
 Uncalled bet (800) returned to pfeife121
 pfeife121 collected 2350 from pot
-pfeife121: doesn't show hand 
+pfeife121: doesn't show handDTO
 RapHood has returned
 *** SUMMARY ***
 Total pot 2350 | Rake 0 
@@ -6019,7 +6019,7 @@ jcarlos.vale: folds
 AyrtonAA95: folds 
 Uncalled bet (9581) returned to ErickSayajin
 ErickSayajin collected 3550 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3550 | Rake 0 
 Board [Ts As 3h]
@@ -6066,7 +6066,7 @@ pfeife121: bets 800
 clonharek704: folds 
 Uncalled bet (800) returned to pfeife121
 pfeife121 collected 2350 from pot
-pfeife121: doesn't show hand 
+pfeife121: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2350 | Rake 0 
 Board [Th Ks 4d]
@@ -6111,7 +6111,7 @@ clonharek704: folds
 ErickSayajin: folds 
 Uncalled bet (4286) returned to jcarlos.vale
 jcarlos.vale collected 2350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2350 | Rake 0 
 Seat 1: clonharek704 (small blind) folded before Flop
@@ -6198,7 +6198,7 @@ tschepetoo: folds
 Uncalled bet (1600) returned to pfeife121
 RapHood said, "faz"
 pfeife121 collected 1950 from pot
-pfeife121: doesn't show hand 
+pfeife121: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1950 | Rake 0 
 Seat 1: clonharek704 folded before Flop (didn't bet)
@@ -6253,7 +6253,7 @@ RapHood: folds
 RapHood is sitting out
 Uncalled bet (2350) returned to pfeife121
 pfeife121 collected 2350 from pot
-pfeife121: doesn't show hand 
+pfeife121: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2350 | Rake 0 
 Board [6d 5h 2d]
@@ -6311,7 +6311,7 @@ ErickSayajin: bets 3175
 AyrtonAA95: folds 
 Uncalled bet (3175) returned to ErickSayajin
 ErickSayajin collected 6350 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6350 | Rake 0 
 Board [Ks 6s Js]
@@ -6551,7 +6551,7 @@ pfeife121: folds
 RapHood: folds 
 Uncalled bet (500) returned to jcarlos.vale
 jcarlos.vale collected 1240 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1240 | Rake 0 
 Seat 2: ErickSayajin folded before Flop (didn't bet)
@@ -6581,7 +6581,7 @@ jcarlos.vale: raises 1600 to 2600
 ErickSayajin: folds 
 Uncalled bet (1600) returned to jcarlos.vale
 jcarlos.vale collected 2240 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2240 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -6698,7 +6698,7 @@ RapHood: folds
 jcarlos.vale: folds 
 Uncalled bet (2000) returned to ErickSayajin
 ErickSayajin collected 2740 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2740 | Rake 0 
 Seat 2: ErickSayajin collected (2740)
@@ -6729,7 +6729,7 @@ RapHood is sitting out
 jcarlos.vale: folds 
 Uncalled bet (500) returned to ErickSayajin
 ErickSayajin collected 1240 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1240 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (1240)
@@ -6765,7 +6765,7 @@ Uncalled bet (12939) returned to jcarlos.vale
 *** TURN *** [5s 8h 7d] [2c]
 *** RIVER *** [5s 8h 7d 2c] [Kh]
 *** SHOW DOWN ***
-pfeife121: shows [9h Qs] (high card King)
+pfeife121: shows [9h Qs] (high pairOfCards King)
 jcarlos.vale: shows [Kc Jh] (a pair of Kings)
 jcarlos.vale collected 24714 from pot
 pfeife121 finished the tournament in 4th place and received $1.29.
@@ -6776,7 +6776,7 @@ ErickSayajin said, "chupa kkk"
 Total pot 24714 | Rake 0 
 Board [5s 8h 7d 2c Kh]
 Seat 2: ErickSayajin (small blind) folded before Flop
-Seat 3: pfeife121 (big blind) showed [9h Qs] and lost with high card King
+Seat 3: pfeife121 (big blind) showed [9h Qs] and lost with high pairOfCards King
 Seat 5: RapHood folded before Flop (didn't bet)
 Seat 7: jcarlos.vale (button) showed [Kc Jh] and won (24714) with a pair of Kings
 
@@ -6815,7 +6815,7 @@ RapHood: checks
 jcarlos.vale: checks 
 *** SHOW DOWN ***
 RapHood: shows [Jh Jd] (a pair of Jacks)
-jcarlos.vale: mucks hand 
+jcarlos.vale: mucks handDTO
 RapHood collected 2180 from pot
 ErickSayajin said, "beleza"
 *** SUMMARY ***
@@ -6852,7 +6852,7 @@ jcarlos.vale: bets 2400
 ErickSayajin: folds 
 Uncalled bet (2400) returned to jcarlos.vale
 jcarlos.vale collected 2625 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2625 | Rake 0 
 Board [Ac 5d 7d 6c]
@@ -6920,7 +6920,7 @@ ErickSayajin: folds
 RapHood: folds 
 Uncalled bet (600) returned to jcarlos.vale
 jcarlos.vale collected 1425 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1425 | Rake 0 
 Seat 2: ErickSayajin (button) folded before Flop (didn't bet)
@@ -6948,7 +6948,7 @@ jcarlos.vale: folds
 Uncalled bet (600) returned to ErickSayajin
 RapHood has returned
 ErickSayajin collected 1425 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1425 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (1425)
@@ -6974,7 +6974,7 @@ ErickSayajin: folds
 RapHood: folds 
 Uncalled bet (1920) returned to jcarlos.vale
 jcarlos.vale collected 3225 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3225 | Rake 0 
 Seat 2: ErickSayajin (small blind) folded before Flop
@@ -6999,7 +6999,7 @@ ErickSayajin: folds
 RapHood: folds 
 Uncalled bet (600) returned to jcarlos.vale
 jcarlos.vale collected 1425 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1425 | Rake 0 
 Seat 2: ErickSayajin (button) folded before Flop (didn't bet)
@@ -7024,7 +7024,7 @@ RapHood: folds
 jcarlos.vale: folds 
 Uncalled bet (600) returned to ErickSayajin
 ErickSayajin collected 1425 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1425 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (1425)
@@ -7050,7 +7050,7 @@ ErickSayajin: raises 18463 to 19663 and is all-in
 RapHood: folds 
 Uncalled bet (18463) returned to ErickSayajin
 ErickSayajin collected 2625 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2625 | Rake 0 
 Seat 2: ErickSayajin (small blind) collected (2625)
@@ -7118,7 +7118,7 @@ ErickSayajin: bets 1313
 jcarlos.vale: folds 
 Uncalled bet (1313) returned to ErickSayajin
 ErickSayajin collected 2625 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2625 | Rake 0 
 Board [3c Kc As]
@@ -7149,14 +7149,14 @@ jcarlos.vale: calls 4599
 *** RIVER *** [Jc 3c Td Kc] [6s]
 *** SHOW DOWN ***
 RapHood: shows [Jh Ts] (two pair, Jacks and Tens)
-jcarlos.vale: shows [8s 9s] (high card King)
+jcarlos.vale: shows [8s 9s] (high pairOfCards King)
 RapHood collected 16263 from pot
 *** SUMMARY ***
 Total pot 16263 | Rake 0 
 Board [Jc 3c Td Kc 6s]
 Seat 2: ErickSayajin (small blind) folded before Flop
 Seat 5: RapHood (big blind) showed [Jh Ts] and won (16263) with two pair, Jacks and Tens
-Seat 7: jcarlos.vale (button) showed [8s 9s] and lost with high card King
+Seat 7: jcarlos.vale (button) showed [8s 9s] and lost with high pairOfCards King
 
 
 
@@ -7185,7 +7185,7 @@ RapHood is sitting out
 Uncalled bet (600) returned to jcarlos.vale
 RapHood has returned
 jcarlos.vale collected 1425 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1425 | Rake 0 
 Seat 2: ErickSayajin (button) folded before Flop (didn't bet)
@@ -7227,13 +7227,13 @@ ErickSayajin: checks
 RapHood: checks 
 *** SHOW DOWN ***
 jcarlos.vale: shows [Td Jh] (a pair of Tens)
-ErickSayajin: shows [4d 9d] (high card King)
-RapHood: mucks hand 
+ErickSayajin: shows [4d 9d] (high pairOfCards King)
+RapHood: mucks handDTO
 jcarlos.vale collected 9564 from pot
 *** SUMMARY ***
 Total pot 9564 | Rake 0 
 Board [7h Ts Kd 5c 8d]
-Seat 2: ErickSayajin (big blind) showed [4d 9d] and lost with high card King
+Seat 2: ErickSayajin (big blind) showed [4d 9d] and lost with high pairOfCards King
 Seat 5: RapHood (button) mucked [Ah Jc]
 Seat 7: jcarlos.vale (small blind) showed [Td Jh] and won (9564) with a pair of Tens
 
@@ -7257,7 +7257,7 @@ RapHood: folds
 Uncalled bet (1920) returned to jcarlos.vale
 jcarlos.vale said, ">_<"
 jcarlos.vale collected 3225 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3225 | Rake 0 
 Seat 2: ErickSayajin (small blind) folded before Flop
@@ -7309,7 +7309,7 @@ RapHood: folds
 jcarlos.vale: folds 
 Uncalled bet (800) returned to ErickSayajin
 ErickSayajin collected 1825 from pot
-ErickSayajin: shows [Jh Ad] (high card Ace)
+ErickSayajin: shows [Jh Ad] (high pairOfCards Ace)
 *** SUMMARY ***
 Total pot 1825 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (1825)
@@ -7335,7 +7335,7 @@ ErickSayajin: folds
 RapHood: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 4225 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4225 | Rake 0 
 Seat 2: ErickSayajin (small blind) folded before Flop
@@ -7362,7 +7362,7 @@ jcarlos.vale: raises 2560 to 4160
 ErickSayajin: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 4225 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4225 | Rake 0 
 Seat 2: ErickSayajin (button) folded before Flop
@@ -7389,7 +7389,7 @@ RapHood: folds
 jcarlos.vale: folds 
 Uncalled bet (800) returned to ErickSayajin
 ErickSayajin collected 1825 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1825 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (1825)
@@ -7415,7 +7415,7 @@ ErickSayajin: folds
 RapHood: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 4225 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4225 | Rake 0 
 Seat 2: ErickSayajin (small blind) folded before Flop
@@ -7458,7 +7458,7 @@ RapHood is sitting out
 Uncalled bet (1713) returned to jcarlos.vale
 RapHood has returned
 jcarlos.vale collected 3425 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 jcarlos.vale said, "8)"
 *** SUMMARY ***
 Total pot 3425 | Rake 0 
@@ -7486,7 +7486,7 @@ RapHood: folds
 jcarlos.vale: folds 
 Uncalled bet (800) returned to ErickSayajin
 ErickSayajin collected 1825 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1825 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (1825)
@@ -7511,7 +7511,7 @@ jcarlos.vale: folds
 ErickSayajin: folds 
 Uncalled bet (800) returned to RapHood
 RapHood collected 1825 from pot
-RapHood: doesn't show hand 
+RapHood: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1825 | Rake 0 
 Seat 2: ErickSayajin (small blind) folded before Flop
@@ -7536,7 +7536,7 @@ ErickSayajin: folds
 RapHood: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1825 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1825 | Rake 0 
 Seat 2: ErickSayajin (button) folded before Flop (didn't bet)
@@ -7562,7 +7562,7 @@ jcarlos.vale: raises 2560 to 4160
 ErickSayajin: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 3425 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3425 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -7588,7 +7588,7 @@ ErickSayajin: raises 12725 to 14325 and is all-in
 RapHood: folds 
 Uncalled bet (12725) returned to ErickSayajin
 ErickSayajin collected 3425 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3425 | Rake 0 
 Seat 2: ErickSayajin (small blind) collected (3425)
@@ -7659,7 +7659,7 @@ jcarlos.vale: bets 6409
 ErickSayajin: folds 
 Uncalled bet (6409) returned to jcarlos.vale
 jcarlos.vale collected 8545 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 8545 | Rake 0 
 Board [7h Kh 5h]
@@ -7711,7 +7711,7 @@ RapHood said, "mÃ£o de alface"
 RapHood: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1825 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1825 | Rake 0 
 Seat 2: ErickSayajin (button) folded before Flop (didn't bet)
@@ -7737,7 +7737,7 @@ RapHood: folds
 jcarlos.vale: folds 
 Uncalled bet (800) returned to ErickSayajin
 ErickSayajin collected 1825 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1825 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (1825)
@@ -7764,7 +7764,7 @@ RapHood: folds
 Uncalled bet (10165) returned to ErickSayajin
 ErickSayajin collected 3425 from pot
 jcarlos.vale said, "com sono"
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3425 | Rake 0 
 Seat 2: ErickSayajin (small blind) collected (3425)
@@ -7793,7 +7793,7 @@ ErickSayajin said, "Ã© 21:37 aqui"
 RapHood: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1825 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 RapHood said, "so diversao"
 *** SUMMARY ***
 Total pot 1825 | Rake 0 
@@ -7829,7 +7829,7 @@ ErickSayajin: calls 5125
 jcarlos.vale said, "gg"
 *** SHOW DOWN ***
 ErickSayajin: shows [Kh Kc] (a pair of Kings)
-RapHood: shows [Tc As] (high card Ace)
+RapHood: shows [Tc As] (high pairOfCards Ace)
 RapHood said, "gays"
 ErickSayajin said, "foi bom jogar com voce"
 ErickSayajin collected 14475 from pot
@@ -7838,7 +7838,7 @@ RapHood finished the tournament in 3rd place and received $1.70.
 Total pot 14475 | Rake 0 
 Board [9d 5d 4d 7h 8s]
 Seat 2: ErickSayajin (big blind) showed [Kh Kc] and won (14475) with a pair of Kings
-Seat 5: RapHood (button) showed [Tc As] and lost with high card Ace
+Seat 5: RapHood (button) showed [Tc As] and lost with high pairOfCards Ace
 Seat 7: jcarlos.vale (small blind) folded before Flop
 
 
@@ -7858,7 +7858,7 @@ ErickSayajin: folds
 Uncalled bet (800) returned to jcarlos.vale
 ErickSayajin said, "gg"
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -7880,7 +7880,7 @@ jcarlos.vale: raises 2560 to 4160
 ErickSayajin: folds 
 Uncalled bet (2560) returned to jcarlos.vale
 jcarlos.vale collected 3350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 ErickSayajin said, "boa sorte kk"
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
@@ -7903,7 +7903,7 @@ jcarlos.vale said, "ok, vc tb"
 ErickSayajin: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 1750 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -7924,7 +7924,7 @@ Dealt to jcarlos.vale [4c Kd]
 jcarlos.vale: folds 
 Uncalled bet (800) returned to ErickSayajin
 ErickSayajin collected 1750 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (1750)
@@ -7950,7 +7950,7 @@ ErickSayajin: bets 1675
 jcarlos.vale: folds 
 Uncalled bet (1675) returned to ErickSayajin
 ErickSayajin collected 3350 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
 Board [3h Ad Kh]
@@ -7972,7 +7972,7 @@ Dealt to jcarlos.vale [4d 8s]
 jcarlos.vale: folds 
 Uncalled bet (800) returned to ErickSayajin
 ErickSayajin collected 1750 from pot
-ErickSayajin: shows [Ac Kd] (high card Ace)
+ErickSayajin: shows [Ac Kd] (high pairOfCards Ace)
 *** SUMMARY ***
 Total pot 1750 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (1750)
@@ -7997,7 +7997,7 @@ jcarlos.vale: bets 2513
 ErickSayajin: folds 
 Uncalled bet (2513) returned to jcarlos.vale
 jcarlos.vale collected 3350 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3350 | Rake 0 
 Board [3h 4s Th]
@@ -8020,7 +8020,7 @@ jcarlos.vale: raises 3200 to 5200
 ErickSayajin: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -8041,7 +8041,7 @@ Dealt to jcarlos.vale [Qs 8c]
 ErickSayajin: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -8129,7 +8129,7 @@ ErickSayajin said, "hehe boa"
 jcarlos.vale: folds 
 Uncalled bet (1000) returned to ErickSayajin
 ErickSayajin collected 2200 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (2200)
@@ -8152,7 +8152,7 @@ jcarlos.vale: raises 3200 to 5200
 ErickSayajin: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -8174,7 +8174,7 @@ jcarlos.vale: raises 3200 to 5200
 ErickSayajin: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -8196,7 +8196,7 @@ ErickSayajin: raises 4200 to 6200
 jcarlos.vale: folds 
 Uncalled bet (4200) returned to ErickSayajin
 ErickSayajin collected 4200 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) collected (4200)
@@ -8218,7 +8218,7 @@ jcarlos.vale: raises 3200 to 5200
 ErickSayajin: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -8239,7 +8239,7 @@ Dealt to jcarlos.vale [Ac As]
 ErickSayajin: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -8260,7 +8260,7 @@ Dealt to jcarlos.vale [Kd 2s]
 jcarlos.vale: folds 
 Uncalled bet (1000) returned to ErickSayajin
 ErickSayajin collected 2200 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (2200)
@@ -8282,7 +8282,7 @@ ErickSayajin: raises 2000 to 4000
 jcarlos.vale: folds 
 Uncalled bet (2000) returned to ErickSayajin
 ErickSayajin collected 4200 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) collected (4200)
@@ -8304,7 +8304,7 @@ jcarlos.vale: raises 3200 to 5200
 ErickSayajin: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -8325,7 +8325,7 @@ Dealt to jcarlos.vale [8d 6d]
 ErickSayajin: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -8350,7 +8350,7 @@ ErickSayajin: bets 5300
 jcarlos.vale: folds 
 Uncalled bet (5300) returned to ErickSayajin
 ErickSayajin collected 10600 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 10600 | Rake 0 
 Board [9c As 7d]
@@ -8382,7 +8382,7 @@ jcarlos.vale: folds
 Uncalled bet (4000) returned to ErickSayajin
 jcarlos.vale said, "back"
 ErickSayajin collected 4200 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Board [Ah 5h 9c 2c]
@@ -8404,7 +8404,7 @@ Dealt to jcarlos.vale [6d 3s]
 jcarlos.vale: folds 
 Uncalled bet (1000) returned to ErickSayajin
 ErickSayajin collected 2200 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (2200)
@@ -8425,7 +8425,7 @@ Dealt to jcarlos.vale [Ad 8c]
 ErickSayajin: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -8457,7 +8457,7 @@ jcarlos.vale: bets 6300
 ErickSayajin: folds 
 Uncalled bet (6300) returned to jcarlos.vale
 jcarlos.vale collected 8400 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 8400 | Rake 0 
 Board [Ks Qh Tc 7s 4d]
@@ -8479,7 +8479,7 @@ Dealt to jcarlos.vale [3d 8c]
 ErickSayajin: folds 
 Uncalled bet (1000) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -8501,7 +8501,7 @@ jcarlos.vale: raises 3200 to 5200
 ErickSayajin: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -8554,7 +8554,7 @@ ErickSayajin said, "vamos ficar ate amanha aqui kk"
 ErickSayajin: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 jcarlos.vale said, "nada"
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
@@ -8578,7 +8578,7 @@ ErickSayajin: folds
 Uncalled bet (1000) returned to jcarlos.vale
 ErickSayajin said, "kkkk"
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -8600,7 +8600,7 @@ jcarlos.vale: raises 3200 to 5200
 ErickSayajin: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -8626,7 +8626,7 @@ ErickSayajin: bets 19030 and is all-in
 jcarlos.vale: folds 
 Uncalled bet (19030) returned to ErickSayajin
 ErickSayajin collected 8200 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 8200 | Rake 0 
 Board [Th 2h 2d]
@@ -8648,7 +8648,7 @@ Dealt to jcarlos.vale [6s 8c]
 jcarlos.vale: folds 
 Uncalled bet (1000) returned to ErickSayajin
 ErickSayajin collected 2200 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (2200)
@@ -8674,7 +8674,7 @@ ErickSayajin: bets 2100
 jcarlos.vale: folds 
 Uncalled bet (2100) returned to ErickSayajin
 ErickSayajin collected 4200 from pot
-ErickSayajin: shows [Ad Ks] (high card Ace)
+ErickSayajin: shows [Ad Ks] (high pairOfCards Ace)
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Board [Qd 7c 9d]
@@ -8697,7 +8697,7 @@ jcarlos.vale: raises 3200 to 5200
 ErickSayajin: folds 
 Uncalled bet (3200) returned to jcarlos.vale
 jcarlos.vale collected 4200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4200 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -8729,7 +8729,7 @@ jcarlos.vale: bets 4200
 ErickSayajin: folds 
 Uncalled bet (4200) returned to jcarlos.vale
 jcarlos.vale collected 8400 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 8400 | Rake 0 
 Board [Kh 8d 7s 9d 6d]
@@ -8751,7 +8751,7 @@ Dealt to jcarlos.vale [5d 9c]
 jcarlos.vale: folds 
 Uncalled bet (1000) returned to ErickSayajin
 ErickSayajin collected 2200 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (2200)
@@ -8779,7 +8779,7 @@ jcarlos.vale: bets 4200
 ErickSayajin: folds 
 Uncalled bet (4200) returned to jcarlos.vale
 jcarlos.vale collected 8400 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 8400 | Rake 0 
 Board [2d 4s 6h Tc]
@@ -8801,7 +8801,7 @@ Dealt to jcarlos.vale [4d 3h]
 jcarlos.vale: folds 
 Uncalled bet (1500) returned to ErickSayajin
 ErickSayajin collected 3300 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3300 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (3300)
@@ -8822,7 +8822,7 @@ Dealt to jcarlos.vale [Ts 8h]
 ErickSayajin: folds 
 Uncalled bet (1500) returned to jcarlos.vale
 jcarlos.vale collected 3300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3300 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -8845,7 +8845,7 @@ ErickSayajin: raises 13080 to 20880 and is all-in
 jcarlos.vale: folds 
 Uncalled bet (13080) returned to ErickSayajin
 ErickSayajin collected 15900 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 15900 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (15900)
@@ -8867,7 +8867,7 @@ ErickSayajin: raises 6000 to 9000
 jcarlos.vale: folds 
 Uncalled bet (6000) returned to ErickSayajin
 ErickSayajin collected 6300 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6300 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) collected (6300)
@@ -8889,7 +8889,7 @@ jcarlos.vale: raises 4800 to 7800
 ErickSayajin: folds 
 Uncalled bet (4800) returned to jcarlos.vale
 jcarlos.vale collected 6300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6300 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -8915,7 +8915,7 @@ ErickSayajin: bets 3150
 jcarlos.vale: folds 
 Uncalled bet (3150) returned to ErickSayajin
 ErickSayajin collected 6300 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6300 | Rake 0 
 Board [4s Qd 6s]
@@ -8938,7 +8938,7 @@ jcarlos.vale: raises 4800 to 7800
 ErickSayajin: folds 
 Uncalled bet (4800) returned to jcarlos.vale
 jcarlos.vale collected 6300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6300 | Rake 0 
 Seat 2: ErickSayajin (big blind) folded before Flop
@@ -8961,7 +8961,7 @@ jcarlos.vale: raises 32370 to 38370 and is all-in
 ErickSayajin: folds 
 Uncalled bet (32370) returned to jcarlos.vale
 jcarlos.vale collected 12300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 12300 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) folded before Flop
@@ -8982,7 +8982,7 @@ Dealt to jcarlos.vale [4d Ts]
 jcarlos.vale: folds 
 Uncalled bet (1500) returned to ErickSayajin
 ErickSayajin collected 3300 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3300 | Rake 0 
 Seat 2: ErickSayajin (big blind) collected (3300)
@@ -9004,7 +9004,7 @@ ErickSayajin: raises 21330 to 24330 and is all-in
 jcarlos.vale: folds 
 Uncalled bet (21330) returned to ErickSayajin
 ErickSayajin collected 6300 from pot
-ErickSayajin: doesn't show hand 
+ErickSayajin: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6300 | Rake 0 
 Seat 2: ErickSayajin (button) (small blind) collected (6300)

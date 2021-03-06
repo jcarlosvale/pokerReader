@@ -1,12 +1,11 @@
 package com.poker.reader.parser.util;
 
-import com.poker.reader.entity.TypeAction;
+import com.poker.reader.dto.TypeAction;
 import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,10 +64,10 @@ public class FileParserUtil {
     }
 
     public static String extractCard(String line, String startToken, String endToken, int cardNumber) {
-        String cards = extract(line, startToken, endToken);
-        if (null == cards || cards.isEmpty()) return null;
-        if (cards.split(" ").length < cardNumber) return null;
-        return cards.split(" ")[cardNumber-1];
+        String card = extract(line, startToken, endToken);
+        if (null == card || card.isEmpty()) return null;
+        if (card.split(" ").length < cardNumber) return null;
+        return card.split(" ")[cardNumber-1];
     }
 
     public static List<String> extractList(String line, String startToken, String endToken, String splitToken) {

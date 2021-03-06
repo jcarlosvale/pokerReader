@@ -45,7 +45,7 @@ had3sssss: raises 1406 to 1920
 Izunna: folds 
 Uncalled bet (1406) returned to had3sssss
 had3sssss collected 2171 from pot
-had3sssss: doesn't show hand 
+had3sssss: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2171 | Rake 0 
 Board [9h Th 3h Tc 8c]
@@ -155,7 +155,7 @@ Nitriclol: bets 159
 tolentino_rd: folds 
 Uncalled bet (159) returned to Nitriclol
 Nitriclol collected 531 from pot
-Nitriclol: doesn't show hand 
+Nitriclol: doesn't show handDTO
 *** SUMMARY ***
 Total pot 531 | Rake 0 
 Board [5c 9h 8s Kh 5s]
@@ -212,7 +212,7 @@ Nitriclol: bets 502
 Izunna: folds 
 Uncalled bet (502) returned to Nitriclol
 Nitriclol collected 836 from pot
-Nitriclol: doesn't show hand 
+Nitriclol: doesn't show handDTO
 *** SUMMARY ***
 Total pot 836 | Rake 0 
 Board [Qs 2s Kc Ad 2d]
@@ -333,7 +333,7 @@ GutPewPew: checks
 Izunna: checks 
 *** SHOW DOWN ***
 GutPewPew: shows [Kd 8s] (two pair, Kings and Eights)
-Izunna: mucks hand 
+Izunna: mucks handDTO
 GutPewPew collected 1086 from pot
 *** SUMMARY ***
 Total pot 1086 | Rake 0 
@@ -400,7 +400,7 @@ NotHereFish: checks
 Izunna: checks 
 *** SHOW DOWN ***
 NotHereFish: shows [7c 7h] (two pair, Queens and Sevens)
-Izunna: mucks hand 
+Izunna: mucks handDTO
 NotHereFish collected 1238 from pot
 *** SUMMARY ***
 Total pot 1238 | Rake 0 
@@ -454,7 +454,7 @@ treytaylor20: folds
 tolentino_rd: folds 
 Uncalled bet (225) returned to had3sssss
 had3sssss collected 225 from pot
-had3sssss: doesn't show hand 
+had3sssss: doesn't show handDTO
 *** SUMMARY ***
 Total pot 225 | Rake 0 
 Seat 1: lanerx5 (big blind) folded before Flop
@@ -506,7 +506,7 @@ Nitriclol: folds
 Izunna: folds 
 Uncalled bet (160) returned to GutPewPew
 GutPewPew collected 345 from pot
-GutPewPew: doesn't show hand 
+GutPewPew: doesn't show handDTO
 *** SUMMARY ***
 Total pot 345 | Rake 0 
 Seat 1: lanerx5 (small blind) folded before Flop
@@ -564,15 +564,15 @@ lanerx5: checks
 tolentino_rd: checks 
 lanerx5: checks 
 *** SHOW DOWN ***
-tolentino_rd: shows [Kc 3h] (high card Ace)
-lanerx5: mucks hand 
+tolentino_rd: shows [Kc 3h] (high pairOfCards Ace)
+lanerx5: mucks handDTO
 tolentino_rd collected 145 from pot
 *** SUMMARY ***
 Total pot 145 | Rake 0 
 Board [Td 4c 9d 7d Ad]
 Seat 1: lanerx5 (button) mucked [6h Qh]
 Seat 2: treytaylor20 (small blind) folded before Flop
-Seat 3: tolentino_rd (big blind) showed [Kc 3h] and won (145) with high card Ace
+Seat 3: tolentino_rd (big blind) showed [Kc 3h] and won (145) with high pairOfCards Ace
 Seat 4: jcarlos.vale folded before Flop (didn't bet)
 Seat 5: Nitriclol folded before Flop (didn't bet)
 Seat 6: Izunna folded before Flop (didn't bet)
@@ -628,7 +628,7 @@ NotHereFish: bets 177
 tolentino_rd: calls 177
 *** SHOW DOWN ***
 NotHereFish: shows [9s Ad] (a pair of Aces)
-tolentino_rd: mucks hand 
+tolentino_rd: mucks handDTO
 NotHereFish collected 845 from pot
 *** SUMMARY ***
 Total pot 845 | Rake 0 
@@ -684,7 +684,7 @@ Nitriclol: bets 164
 tolentino_rd: folds 
 Uncalled bet (164) returned to Nitriclol
 Nitriclol collected 545 from pot
-Nitriclol: doesn't show hand 
+Nitriclol: doesn't show handDTO
 *** SUMMARY ***
 Total pot 545 | Rake 0 
 Board [7s Kc Js]
@@ -802,7 +802,7 @@ Izunna: folds
 GutPewPew: folds 
 Uncalled bet (160) returned to lanerx5
 lanerx5 collected 205 from pot
-lanerx5: doesn't show hand 
+lanerx5: doesn't show handDTO
 *** SUMMARY ***
 Total pot 205 | Rake 0 
 Board [2h 6c 4c]
@@ -857,7 +857,7 @@ treytaylor20: bets 5620 and is all-in
 Izunna: folds 
 Uncalled bet (5620) returned to treytaylor20
 treytaylor20 collected 409 from pot
-treytaylor20: doesn't show hand 
+treytaylor20: doesn't show handDTO
 *** SUMMARY ***
 Total pot 409 | Rake 0 
 Board [7d 4d 5d]
@@ -908,7 +908,7 @@ had3sssss: folds
 NotHereFish: folds 
 Uncalled bet (60) returned to Izunna
 Izunna collected 145 from pot
-Izunna: doesn't show hand 
+Izunna: doesn't show handDTO
 *** SUMMARY ***
 Total pot 145 | Rake 0 
 Seat 1: lanerx5 folded before Flop (didn't bet)
@@ -958,7 +958,7 @@ NotHereFish: raises 100 to 140
 lanerx5: folds 
 Uncalled bet (100) returned to NotHereFish
 NotHereFish collected 125 from pot
-NotHereFish: doesn't show hand 
+NotHereFish: doesn't show handDTO
 *** SUMMARY ***
 Total pot 125 | Rake 0 
 Seat 1: lanerx5 (big blind) folded before Flop
@@ -1019,7 +1019,7 @@ had3sssss: bets 600
 tolentino_rd: folds 
 Uncalled bet (600) returned to had3sssss
 had3sssss collected 769 from pot
-had3sssss: doesn't show hand 
+had3sssss: doesn't show handDTO
 *** SUMMARY ***
 Total pot 769 | Rake 0 
 Board [3s 6h 9d 8h 3d]
@@ -1097,7 +1097,7 @@ Seat 9: NotHereFish folded before Flop (didn't bet)
 PokerStars Hand #222697991674: Tournament #3099770291, $0.98+$0.12 USD Hold'em No Limit - Level III (25/50) - 2021/01/16 20:22:48 EET [2021/01/16 13:22:48 ET]
 Table '3099770291 62' 9-max Seat #2 is the button
 Seat 2: treytaylor20 (5932 in chips) 
-Seat 3: 812b4 (5000 in chips) out of hand (moved from another table into small blind)
+Seat 3: 812b4 (5000 in chips) out of handDTO (moved from another table into small blind)
 Seat 4: jcarlos.vale (9673 in chips) 
 Seat 6: Izunna (2385 in chips) 
 Seat 7: GutPewPew (4843 in chips) 
@@ -1121,7 +1121,7 @@ treytaylor20: folds
 jcarlos.vale: folds 
 Uncalled bet (25) returned to Izunna
 Izunna collected 86 from pot
-Izunna: doesn't show hand 
+Izunna: doesn't show handDTO
 *** SUMMARY ***
 Total pot 86 | Rake 0 
 Seat 2: treytaylor20 (button) folded before Flop (didn't bet)
@@ -1139,7 +1139,7 @@ Seat 1: judith.f (4651 in chips)
 Seat 2: treytaylor20 (5926 in chips) 
 Seat 3: 812b4 (5000 in chips) 
 Seat 4: jcarlos.vale (9642 in chips) 
-Seat 5: phantofant (5000 in chips) out of hand (moved from another table into small blind)
+Seat 5: phantofant (5000 in chips) out of handDTO (moved from another table into small blind)
 Seat 6: Izunna (2440 in chips) 
 Seat 7: GutPewPew (4837 in chips) 
 Seat 8: had3sssss (6634 in chips) 
@@ -1167,7 +1167,7 @@ Izunna: folds
 GutPewPew: folds 
 Uncalled bet (300) returned to 812b4
 812b4 collected 173 from pot
-812b4: doesn't show hand 
+812b4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 173 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -1231,7 +1231,7 @@ had3sssss: bets 611
 812b4: calls 611
 *** SHOW DOWN ***
 had3sssss: shows [8c 5s] (three of a kind, Fives)
-812b4: mucks hand 
+812b4: mucks handDTO
 had3sssss collected 2134 from pot
 *** SUMMARY ***
 Total pot 2134 | Rake 0 
@@ -1288,7 +1288,7 @@ judith.f: bets 300
 NotHereFish: folds 
 Uncalled bet (300) returned to judith.f
 judith.f collected 424 from pot
-judith.f: doesn't show hand 
+judith.f: doesn't show handDTO
 *** SUMMARY ***
 Total pot 424 | Rake 0 
 Board [9h 2s 6h]
@@ -1344,7 +1344,7 @@ GutPewPew: bets 503
 812b4: folds 
 Uncalled bet (503) returned to GutPewPew
 GutPewPew collected 729 from pot
-GutPewPew: doesn't show hand 
+GutPewPew: doesn't show handDTO
 *** SUMMARY ***
 Total pot 729 | Rake 0 
 Board [4c 9h 5d]
@@ -1400,7 +1400,7 @@ NotHereFish: raises 208 to 258
 phantofant: folds 
 Uncalled bet (208) returned to NotHereFish
 NotHereFish collected 579 from pot
-NotHereFish: doesn't show hand 
+NotHereFish: doesn't show handDTO
 *** SUMMARY ***
 Total pot 579 | Rake 0 
 Board [9d 7d Th]
@@ -1516,7 +1516,7 @@ jcarlos.vale: bets 120
 judith.f: folds 
 Uncalled bet (120) returned to jcarlos.vale
 jcarlos.vale collected 378 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 378 | Rake 0 
 Board [7c 6h 4c]
@@ -1627,7 +1627,7 @@ Izunna: folds
 Ebzhd: folds 
 Uncalled bet (394) returned to 812b4
 812b4 collected 394 from pot
-812b4: doesn't show hand 
+812b4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 394 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -1732,7 +1732,7 @@ MWCHESS: folds
 had3sssss: folds 
 Uncalled bet (300) returned to 812b4
 812b4 collected 214 from pot
-812b4: doesn't show hand 
+812b4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 214 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -1781,7 +1781,7 @@ had3sssss: folds
 NotHereFish: folds 
 Uncalled bet (78) returned to judith.f
 judith.f collected 222 from pot
-judith.f: doesn't show hand 
+judith.f: doesn't show handDTO
 *** SUMMARY ***
 Total pot 222 | Rake 0 
 Seat 1: judith.f collected (222)
@@ -1832,7 +1832,7 @@ judith.f: folds
 had3sssss: folds 
 Uncalled bet (318) returned to NotHereFish
 NotHereFish collected 396 from pot
-NotHereFish: doesn't show hand 
+NotHereFish: doesn't show handDTO
 *** SUMMARY ***
 Total pot 396 | Rake 0 
 Seat 1: judith.f (big blind) folded before Flop
@@ -1893,7 +1893,7 @@ MWCHESS: bets 1046
 812b4: folds 
 Uncalled bet (1046) returned to MWCHESS
 MWCHESS collected 2092 from pot
-MWCHESS: doesn't show hand 
+MWCHESS: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2092 | Rake 0 
 Board [7d Tc 4h 2d]
@@ -1945,7 +1945,7 @@ jcarlos.vale: bets 120
 812b4: folds 
 Uncalled bet (120) returned to jcarlos.vale
 jcarlos.vale collected 406 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 406 | Rake 0 
 Board [2h 9s 3c]
@@ -2065,7 +2065,7 @@ phantofant: bets 180
 trueJamaican: folds 
 Uncalled bet (180) returned to phantofant
 phantofant collected 484 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 484 | Rake 0 
 Board [7s Jh 6c Ad]
@@ -2121,7 +2121,7 @@ uht25: folds
 trueJamaican: folds 
 Uncalled bet (180) returned to bolemanyi54
 bolemanyi54 collected 492 from pot
-bolemanyi54: doesn't show hand 
+bolemanyi54: doesn't show handDTO
 *** SUMMARY ***
 Total pot 492 | Rake 0 
 Board [2h 6h Ks]
@@ -2205,7 +2205,7 @@ Seat 4: jcarlos.vale (9901 in chips)
 Seat 5: phantofant (3904 in chips) 
 Seat 6: uht25 (9886 in chips) 
 Seat 7: MWCHESS (1169 in chips) 
-Seat 8: Louuuu2k (5000 in chips) out of hand (moved from another table into small blind)
+Seat 8: Louuuu2k (5000 in chips) out of handDTO (moved from another table into small blind)
 Seat 9: NotHereFish (5236 in chips) 
 Louuuu2k will be allowed to play after the button
 judith.f: posts the ante 9
@@ -2237,7 +2237,7 @@ NotHereFish: folds
 judith.f: folds 
 Uncalled bet (80) returned to phantofant
 phantofant collected 392 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 392 | Rake 0 
 Board [Ad 7c Jc]
@@ -2299,7 +2299,7 @@ trueJamaican: bets 630
 phantofant: calls 630
 *** SHOW DOWN ***
 trueJamaican: shows [3h Ah] (two pair, Aces and Eights)
-phantofant: mucks hand 
+phantofant: mucks handDTO
 trueJamaican collected 2691 from pot
 *** SUMMARY ***
 Total pot 2691 | Rake 0 
@@ -2528,7 +2528,7 @@ jcarlos.vale: folds
 MWCHESS: folds 
 Uncalled bet (238) returned to dow_jones4
 dow_jones4 collected 721 from pot
-dow_jones4: doesn't show hand 
+dow_jones4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 721 | Rake 0 
 Board [Ks 5d 2h]
@@ -2588,7 +2588,7 @@ Louuuu2k: checks
 jcarlos.vale: checks 
 *** SHOW DOWN ***
 Louuuu2k: shows [8s Ac] (two pair, Nines and Eights)
-jcarlos.vale: mucks hand 
+jcarlos.vale: mucks handDTO
 Louuuu2k collected 537 from pot
 *** SUMMARY ***
 Total pot 537 | Rake 0 
@@ -2717,7 +2717,7 @@ trueJamaican: bets 778
 phantofant: calls 778
 *** SHOW DOWN ***
 trueJamaican: shows [Qs Kh] (a pair of Queens)
-phantofant: mucks hand 
+phantofant: mucks handDTO
 trueJamaican collected 3325 from pot
 *** SUMMARY ***
 Total pot 3325 | Rake 0 
@@ -2773,7 +2773,7 @@ phantofant: bets 240
 dow_jones4: folds 
 Uncalled bet (240) returned to phantofant
 phantofant collected 272 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 272 | Rake 0 
 Board [Ts 5d 7d Ac]
@@ -2791,7 +2791,7 @@ Seat 9: NotHereFish (button) folded before Flop (didn't bet)
 PokerStars Hand #222699397593: Tournament #3099770291, $0.98+$0.12 USD Hold'em No Limit - Level VI (50/100) - 2021/01/16 20:50:39 EET [2021/01/16 13:50:39 ET]
 Table '3099770291 62' 9-max Seat #1 is the button
 Seat 1: judith.f (6596 in chips) 
-Seat 2: Burton Feingold (5000 in chips) out of hand (moved from another table into small blind)
+Seat 2: Burton Feingold (5000 in chips) out of handDTO (moved from another table into small blind)
 Seat 3: dow_jones4 (5396 in chips) 
 Seat 4: jcarlos.vale (9611 in chips) 
 Seat 5: phantofant (1379 in chips) 
@@ -2877,7 +2877,7 @@ phantofant: folds
 NotHereFish: folds 
 Uncalled bet (450) returned to dow_jones4
 dow_jones4 collected 640 from pot
-dow_jones4: doesn't show hand 
+dow_jones4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 640 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -2929,7 +2929,7 @@ NotHereFish: raises 1050 to 1700
 dow_jones4: folds 
 Uncalled bet (1050) returned to NotHereFish
 NotHereFish collected 1540 from pot
-NotHereFish: doesn't show hand 
+NotHereFish: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1540 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -2982,7 +2982,7 @@ uht25: bets 100
 MWCHESS: folds 
 Uncalled bet (100) returned to uht25
 uht25 collected 290 from pot
-uht25: doesn't show hand 
+uht25: doesn't show handDTO
 *** SUMMARY ***
 Total pot 290 | Rake 0 
 Board [Ts 9s Jc]
@@ -3051,7 +3051,7 @@ Louuuu2k: folds
 jcarlos.vale: folds 
 Uncalled bet (100) returned to phantofant
 phantofant collected 490 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 490 | Rake 0 
 Board [4s Jh Js 6d As]
@@ -3110,8 +3110,8 @@ jcarlos.vale: checks
 NotHereFish: checks 
 jcarlos.vale: checks 
 *** SHOW DOWN ***
-NotHereFish: shows [Ah Jc] (high card Ace)
-jcarlos.vale: shows [Qc Ad] (high card Ace - King+Queen kicker)
+NotHereFish: shows [Ah Jc] (high pairOfCards Ace)
+jcarlos.vale: shows [Qc Ad] (high pairOfCards Ace - King+Queen kicker)
 jcarlos.vale collected 660 from pot
 *** SUMMARY ***
 Total pot 660 | Rake 0 
@@ -3119,12 +3119,12 @@ Board [9h 3s 4h Kd 5s]
 Seat 1: judith.f folded before Flop (didn't bet)
 Seat 2: Burton Feingold folded before Flop (didn't bet)
 Seat 3: dow_jones4 folded before Flop (didn't bet)
-Seat 4: jcarlos.vale showed [Qc Ad] and won (660) with high card Ace
+Seat 4: jcarlos.vale showed [Qc Ad] and won (660) with high pairOfCards Ace
 Seat 5: phantofant folded before Flop (didn't bet)
 Seat 6: uht25 folded before Flop (didn't bet)
 Seat 7: MWCHESS (button) folded before Flop (didn't bet)
 Seat 8: Louuuu2k (small blind) folded before Flop
-Seat 9: NotHereFish (big blind) showed [Ah Jc] and lost with high card Ace
+Seat 9: NotHereFish (big blind) showed [Ah Jc] and lost with high pairOfCards Ace
 
 
 
@@ -3174,7 +3174,7 @@ jcarlos.vale: bets 300
 phantofant: folds 
 Uncalled bet (300) returned to jcarlos.vale
 jcarlos.vale collected 840 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 840 | Rake 0 
 Board [5d 4d Qd 7s 3c]
@@ -3225,7 +3225,7 @@ judith.f: folds
 Burton Feingold: folds 
 Uncalled bet (100) returned to NotHereFish
 NotHereFish collected 340 from pot
-NotHereFish: doesn't show hand 
+NotHereFish: doesn't show handDTO
 *** SUMMARY ***
 Total pot 340 | Rake 0 
 Seat 1: judith.f (small blind) folded before Flop
@@ -3279,7 +3279,7 @@ jcarlos.vale: bets 200
 dow_jones4: folds 
 Uncalled bet (200) returned to jcarlos.vale
 jcarlos.vale collected 660 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 660 | Rake 0 
 Board [4s Ac 5c]
@@ -3339,7 +3339,7 @@ jcarlos.vale: bets 200
 phantofant: folds 
 Uncalled bet (200) returned to jcarlos.vale
 jcarlos.vale collected 340 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 340 | Rake 0 
 Board [Js 3s 5h 2c 4c]
@@ -3390,7 +3390,7 @@ jcarlos.vale: folds
 phantofant: folds 
 Uncalled bet (100) returned to NotHereFish
 NotHereFish collected 340 from pot
-NotHereFish: doesn't show hand 
+NotHereFish: doesn't show handDTO
 *** SUMMARY ***
 Total pot 340 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -3504,7 +3504,7 @@ MWCHESS: folds
 dow_jones4: folds 
 Uncalled bet (666) returned to jcarlos.vale
 jcarlos.vale collected 888 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 888 | Rake 0 
 Board [2h Ad 7h]
@@ -3561,7 +3561,7 @@ Uncalled bet (1313) returned to Louuuu2k
 *** TURN *** [3c Qc Kh] [7h]
 *** RIVER *** [3c Qc Kh 7h] [2h]
 *** SHOW DOWN ***
-Louuuu2k: shows [As Tc] (high card Ace)
+Louuuu2k: shows [As Tc] (high pairOfCards Ace)
 phantofant: shows [Ks Qh] (two pair, Kings and Queens)
 phantofant collected 2498 from pot
 *** SUMMARY ***
@@ -3574,7 +3574,7 @@ Seat 4: jcarlos.vale folded before Flop (didn't bet)
 Seat 5: phantofant showed [Ks Qh] and won (2498) with two pair, Kings and Queens
 Seat 6: uht25 (button) folded before Flop (didn't bet)
 Seat 7: MWCHESS (small blind) folded before Flop
-Seat 8: Louuuu2k (big blind) showed [As Tc] and lost with high card Ace
+Seat 8: Louuuu2k (big blind) showed [As Tc] and lost with high pairOfCards Ace
 Seat 9: NotHereFish folded before Flop
 
 
@@ -3615,7 +3615,7 @@ NotHereFish: folds
 jcarlos.vale: folds 
 Uncalled bet (989) returned to Louuuu2k
 Louuuu2k collected 852 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 852 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -3673,7 +3673,7 @@ uht25: bets 540
 judith.f: folds 
 Uncalled bet (540) returned to uht25
 uht25 collected 1624 from pot
-uht25: doesn't show hand 
+uht25: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1624 | Rake 0 
 Board [6s Qc 5h Ks]
@@ -3724,7 +3724,7 @@ judith.f: raises 156 to 276
 Burton Feingold: folds 
 Uncalled bet (156) returned to judith.f
 judith.f collected 348 from pot
-judith.f: doesn't show hand 
+judith.f: doesn't show handDTO
 *** SUMMARY ***
 Total pot 348 | Rake 0 
 Seat 1: judith.f (small blind) collected (348)
@@ -3777,7 +3777,7 @@ Burton Feingold: bets 390
 judith.f: folds 
 Uncalled bet (390) returned to Burton Feingold
 Burton Feingold collected 780 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 780 | Rake 0 
 Board [Ac 4c 2s]
@@ -3836,7 +3836,7 @@ NotHereFish: folds
 judith.f: folds 
 Uncalled bet (360) returned to phantofant
 phantofant collected 1548 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1548 | Rake 0 
 Board [As 6s Ah]
@@ -3950,7 +3950,7 @@ phantofant: bets 360
 NotHereFish: folds 
 Uncalled bet (360) returned to phantofant
 phantofant collected 1308 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1308 | Rake 0 
 Board [7s 2d As 4h]
@@ -4007,7 +4007,7 @@ phantofant: folds
 MWCHESS: folds 
 Uncalled bet (720) returned to judith.f
 judith.f collected 996 from pot
-judith.f: doesn't show hand 
+judith.f: doesn't show handDTO
 *** SUMMARY ***
 Total pot 996 | Rake 0 
 Board [3h Jc Ks]
@@ -4062,7 +4062,7 @@ Louuuu2k: bets 451
 phantofant: folds 
 Uncalled bet (451) returned to Louuuu2k
 Louuuu2k collected 1368 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1368 | Rake 0 
 Board [2c 6s 7s]
@@ -4118,7 +4118,7 @@ NotHereFish: bets 600
 Burton Feingold: folds 
 Uncalled bet (600) returned to NotHereFish
 NotHereFish collected 1728 from pot
-NotHereFish: doesn't show hand 
+NotHereFish: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1728 | Rake 0 
 Board [5c 2h Td]
@@ -4236,7 +4236,7 @@ Burton Feingold: bets 510
 phantofant: folds 
 Uncalled bet (510) returned to Burton Feingold
 Burton Feingold collected 510 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 510 | Rake 0 
 Board [9d 2c 2d]
@@ -4293,7 +4293,7 @@ Louuuu2k: bets 465
 phantofant: folds 
 Uncalled bet (465) returned to Louuuu2k
 Louuuu2k collected 1410 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1410 | Rake 0 
 Board [Js 2d 6c]
@@ -4344,7 +4344,7 @@ dow_jones4: folds
 jcarlos.vale: folds 
 Uncalled bet (180) returned to uht25
 uht25 collected 510 from pot
-uht25: doesn't show hand 
+uht25: doesn't show handDTO
 *** SUMMARY ***
 Total pot 510 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -4398,7 +4398,7 @@ Burton Feingold: bets 405
 phantofant: folds 
 Uncalled bet (405) returned to Burton Feingold
 Burton Feingold collected 810 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 810 | Rake 0 
 Board [Qh Qs Jc]
@@ -4448,7 +4448,7 @@ jcarlos.vale: folds
 phantofant: folds 
 Uncalled bet (75) returned to uht25
 uht25 collected 285 from pot
-uht25: doesn't show hand 
+uht25: doesn't show handDTO
 *** SUMMARY ***
 Total pot 285 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -4504,7 +4504,7 @@ jcarlos.vale: folds
 MWCHESS: folds 
 Uncalled bet (555) returned to Burton Feingold
 Burton Feingold collected 1110 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1110 | Rake 0 
 Board [6s 9d 8s]
@@ -4566,7 +4566,7 @@ NotHereFish: checks
 phantofant: checks 
 *** SHOW DOWN ***
 NotHereFish: shows [Kc Ks] (a pair of Kings)
-phantofant: mucks hand 
+phantofant: mucks handDTO
 NotHereFish collected 1652 from pot
 *** SUMMARY ***
 Total pot 1652 | Rake 0 
@@ -4628,7 +4628,7 @@ uht25: bets 1160
 jcarlos.vale: folds 
 Uncalled bet (1160) returned to uht25
 uht25 collected 1740 from pot
-uht25: doesn't show hand 
+uht25: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1740 | Rake 0 
 Board [Qd 5c As 4d Kh]
@@ -4688,7 +4688,7 @@ NotHereFish: folds
 judith.f: folds 
 Uncalled bet (300) returned to Burton Feingold
 Burton Feingold collected 585 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 585 | Rake 0 
 Board [5c 7h 6d]
@@ -4749,7 +4749,7 @@ jcarlos.vale: bets 450
 uht25: folds 
 Uncalled bet (450) returned to jcarlos.vale
 jcarlos.vale collected 1590 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1590 | Rake 0 
 Board [Kc 9c 7c Kh Ks]
@@ -4802,7 +4802,7 @@ phantofant: folds
 NotHereFish: folds 
 Uncalled bet (4419) returned to judith.f
 judith.f collected 1410 from pot
-judith.f: doesn't show hand 
+judith.f: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1410 | Rake 0 
 Seat 1: judith.f (button) collected (1410)
@@ -4852,7 +4852,7 @@ dow_jones4: folds
 jcarlos.vale: folds 
 Uncalled bet (180) returned to uht25
 uht25 collected 510 from pot
-uht25: doesn't show hand 
+uht25: doesn't show handDTO
 *** SUMMARY ***
 Total pot 510 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -4906,7 +4906,7 @@ Louuuu2k: bets 300
 jcarlos.vale: folds 
 Uncalled bet (300) returned to Louuuu2k
 Louuuu2k collected 909 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 909 | Rake 0 
 Board [4d 3c 4h]
@@ -5019,8 +5019,8 @@ uht25: calls 4459
 *** TURN *** [6d 2s Js] [9d]
 *** RIVER *** [6d 2s Js 9d] [7c]
 *** SHOW DOWN ***
-uht25: shows [As Kc] (high card Ace)
-NotHereFish: shows [Ac Qs] (high card Ace - lower kicker)
+uht25: shows [As Kc] (high pairOfCards Ace)
+NotHereFish: shows [Ac Qs] (high pairOfCards Ace - lower kicker)
 uht25 collected 11880 from pot
 NotHereFish finished the tournament
 *** SUMMARY ***
@@ -5031,10 +5031,10 @@ Seat 2: Burton Feingold folded before Flop (didn't bet)
 Seat 3: dow_jones4 folded before Flop (didn't bet)
 Seat 4: jcarlos.vale folded before Flop (didn't bet)
 Seat 5: phantofant (button) folded before Flop (didn't bet)
-Seat 6: uht25 (small blind) showed [As Kc] and won (11880) with high card Ace
+Seat 6: uht25 (small blind) showed [As Kc] and won (11880) with high pairOfCards Ace
 Seat 7: MWCHESS (big blind) folded before Flop
 Seat 8: Louuuu2k folded before Flop (didn't bet)
-Seat 9: NotHereFish showed [Ac Qs] and lost with high card Ace
+Seat 9: NotHereFish showed [Ac Qs] and lost with high pairOfCards Ace
 
 
 
@@ -5075,7 +5075,7 @@ phantofant: folds
 uht25: folds 
 Uncalled bet (3372) returned to MWCHESS
 MWCHESS collected 944 from pot
-MWCHESS: doesn't show hand 
+MWCHESS: doesn't show handDTO
 *** SUMMARY ***
 Total pot 944 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -5126,7 +5126,7 @@ phantofant: bets 200
 judith.f: folds 
 Uncalled bet (200) returned to phantofant
 phantofant collected 1044 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1044 | Rake 0 
 Board [Qs 3c Qc]
@@ -5151,7 +5151,7 @@ Seat 5: phantofant (4463 in chips)
 Seat 6: uht25 (15162 in chips) 
 Seat 7: MWCHESS (4298 in chips) 
 Seat 8: Louuuu2k (2500 in chips) 
-Seat 9: gucio51 (5000 in chips) out of hand (moved from another table into small blind)
+Seat 9: gucio51 (5000 in chips) out of handDTO (moved from another table into small blind)
 gucio51 will be allowed to play after the button
 judith.f: posts the ante 18
 Burton Feingold: posts the ante 18
@@ -5180,7 +5180,7 @@ uht25: bets 500
 Burton Feingold: folds 
 Uncalled bet (500) returned to uht25
 uht25 collected 1324 from pot
-uht25: doesn't show hand 
+uht25: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1324 | Rake 0 
 Board [7h Tc 2c]
@@ -5241,7 +5241,7 @@ Burton Feingold: bets 762
 gucio51: folds 
 Uncalled bet (762) returned to Burton Feingold
 Burton Feingold collected 1524 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1524 | Rake 0 
 Board [6c 4c 2h 8d Jh]
@@ -5298,7 +5298,7 @@ Burton Feingold: bets 200
 jcarlos.vale: folds 
 Uncalled bet (200) returned to Burton Feingold
 Burton Feingold collected 662 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 662 | Rake 0 
 Board [Ac Tc Td]
@@ -5352,7 +5352,7 @@ jcarlos.vale: folds
 phantofant: folds 
 Uncalled bet (200) returned to MWCHESS
 MWCHESS collected 662 from pot
-MWCHESS: doesn't show hand 
+MWCHESS: doesn't show handDTO
 *** SUMMARY ***
 Total pot 662 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -5413,7 +5413,7 @@ phantofant: checks
 uht25: checks 
 *** SHOW DOWN ***
 phantofant: shows [5s 8h] (a pair of Eights)
-uht25: mucks hand 
+uht25: mucks handDTO
 phantofant collected 962 from pot
 *** SUMMARY ***
 Total pot 962 | Rake 0 
@@ -5469,7 +5469,7 @@ Burton Feingold: bets 691
 judith.f: folds 
 Uncalled bet (691) returned to Burton Feingold
 Burton Feingold collected 1382 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1382 | Rake 0 
 Board [9c 3c 4c]
@@ -5525,7 +5525,7 @@ Louuuu2k: bets 2174 and is all-in
 MWCHESS: folds 
 Uncalled bet (2174) returned to Louuuu2k
 Louuuu2k collected 562 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 562 | Rake 0 
 Board [Th 9h Qh]
@@ -5577,7 +5577,7 @@ Louuuu2k: folds
 gucio51: folds 
 Uncalled bet (200) returned to MWCHESS
 MWCHESS collected 662 from pot
-MWCHESS: doesn't show hand 
+MWCHESS: doesn't show handDTO
 *** SUMMARY ***
 Total pot 662 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -5628,7 +5628,7 @@ Louuuu2k: folds
 gucio51: folds 
 Uncalled bet (100) returned to judith.f
 judith.f collected 362 from pot
-judith.f: doesn't show hand 
+judith.f: doesn't show handDTO
 *** SUMMARY ***
 Total pot 362 | Rake 0 
 Seat 1: judith.f (big blind) collected (362)
@@ -5679,7 +5679,7 @@ Burton Feingold: folds
 uht25: folds 
 Uncalled bet (4090) returned to MWCHESS
 MWCHESS collected 1655 from pot
-MWCHESS: doesn't show hand 
+MWCHESS: doesn't show handDTO
 dow_jones4 has returned
 *** SUMMARY ***
 Total pot 1655 | Rake 0 
@@ -5739,7 +5739,7 @@ Burton Feingold: bets 865
 jcarlos.vale: folds 
 Uncalled bet (865) returned to Burton Feingold
 Burton Feingold collected 1730 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1730 | Rake 0 
 Board [5s Qh 4h 9s Tc]
@@ -5796,7 +5796,7 @@ MWCHESS: folds
 Burton Feingold: folds 
 Uncalled bet (1826) returned to dow_jones4
 dow_jones4 collected 1430 from pot
-dow_jones4: doesn't show hand 
+dow_jones4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1430 | Rake 0 
 Board [7c 4s 2d]
@@ -5847,7 +5847,7 @@ jcarlos.vale: folds
 phantofant: folds 
 Uncalled bet (250) returned to MWCHESS
 MWCHESS collected 805 from pot
-MWCHESS: doesn't show hand 
+MWCHESS: doesn't show handDTO
 *** SUMMARY ***
 Total pot 805 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -5897,7 +5897,7 @@ phantofant: folds
 uht25: folds 
 Uncalled bet (325) returned to judith.f
 judith.f collected 805 from pot
-judith.f: doesn't show hand 
+judith.f: doesn't show handDTO
 *** SUMMARY ***
 Total pot 805 | Rake 0 
 Seat 1: judith.f collected (805)
@@ -5954,7 +5954,7 @@ phantofant: bets 250
 MWCHESS: folds 
 Uncalled bet (250) returned to phantofant
 phantofant collected 805 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 805 | Rake 0 
 Board [8d Th 7s Kc]
@@ -6008,7 +6008,7 @@ Burton Feingold: folds
 jcarlos.vale: folds 
 Uncalled bet (5180) returned to MWCHESS
 MWCHESS collected 1930 from pot
-MWCHESS: doesn't show hand 
+MWCHESS: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1930 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -6179,7 +6179,7 @@ Burton Feingold: folds
 dow_jones4: folds 
 Uncalled bet (400) returned to jcarlos.vale
 jcarlos.vale collected 785 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 785 | Rake 0 
 Seat 1: judith.f (button) folded before Flop (didn't bet)
@@ -6225,7 +6225,7 @@ dow_jones4: raises 2596 to 2846 and is all-in
 jcarlos.vale: folds 
 Uncalled bet (2596) returned to dow_jones4
 dow_jones4 collected 660 from pot
-dow_jones4: doesn't show hand 
+dow_jones4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 660 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -6283,7 +6283,7 @@ jcarlos.vale: bets 4395
 Burton Feingold: folds 
 Uncalled bet (4395) returned to jcarlos.vale
 jcarlos.vale collected 5860 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 5860 | Rake 0 
 Board [2s 3h 8d Ah]
@@ -6335,7 +6335,7 @@ jcarlos.vale: folds
 phantofant: folds 
 Uncalled bet (125) returned to uht25
 uht25 collected 430 from pot
-uht25: doesn't show hand 
+uht25: doesn't show handDTO
 *** SUMMARY ***
 Total pot 430 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -6383,7 +6383,7 @@ uht25: folds
 Louuuu2k: folds 
 Uncalled bet (4690) returned to yana11169
 yana11169 collected 785 from pot
-yana11169: doesn't show hand 
+yana11169: doesn't show handDTO
 *** SUMMARY ***
 Total pot 785 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -6405,7 +6405,7 @@ Seat 3: dow_jones4 (3196 in chips) is sitting out
 Seat 4: jcarlos.vale (10845 in chips) 
 Seat 5: phantofant (3738 in chips) 
 Seat 6: uht25 (13009 in chips) 
-Seat 7: parker1818 (11670 in chips) out of hand (moved from another table into small blind)
+Seat 7: parker1818 (11670 in chips) out of handDTO (moved from another table into small blind)
 Seat 8: Louuuu2k (6465 in chips) 
 Seat 9: yana11169 (5475 in chips) 
 parker1818 will be allowed to play after the button
@@ -6433,7 +6433,7 @@ yana11169: folds
 uht25: folds 
 Uncalled bet (750) returned to Louuuu2k
 Louuuu2k collected 910 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 910 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -6482,7 +6482,7 @@ yana11169: folds
 judith.f: folds 
 Uncalled bet (250) returned to parker1818
 parker1818 collected 805 from pot
-parker1818: doesn't show hand 
+parker1818: doesn't show handDTO
 *** SUMMARY ***
 Total pot 805 | Rake 0 
 Seat 1: judith.f (big blind) folded before Flop
@@ -6534,7 +6534,7 @@ dow_jones4: folds
 phantofant: folds 
 Uncalled bet (2525) returned to Burton Feingold
 Burton Feingold collected 1248 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1248 | Rake 0 
 Seat 1: judith.f (small blind) folded before Flop
@@ -6645,7 +6645,7 @@ dow_jones4: folds
 jcarlos.vale: folds 
 Uncalled bet (600) returned to yana11169
 yana11169 collected 948 from pot
-yana11169: doesn't show hand 
+yana11169: doesn't show handDTO
 *** SUMMARY ***
 Total pot 948 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -6698,7 +6698,7 @@ jcarlos.vale: folds
 phantofant: folds 
 Uncalled bet (390) returned to judith.f
 judith.f collected 948 from pot
-judith.f: doesn't show hand 
+judith.f: doesn't show handDTO
 *** SUMMARY ***
 Total pot 948 | Rake 0 
 Seat 1: judith.f collected (948)
@@ -6814,7 +6814,7 @@ phantofant: folds
 uht25: folds 
 Uncalled bet (150) returned to parker1818
 parker1818 collected 498 from pot
-parker1818: doesn't show hand 
+parker1818: doesn't show handDTO
 *** SUMMARY ***
 Total pot 498 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -6874,7 +6874,7 @@ Burton Feingold: folds
 parker1818: folds 
 Uncalled bet (362) returned to Louuuu2k
 Louuuu2k collected 1098 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1098 | Rake 0 
 Board [6s 8h Kh]
@@ -6984,7 +6984,7 @@ phantofant: bets 300
 judith.f: folds 
 Uncalled bet (300) returned to phantofant
 phantofant collected 948 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 948 | Rake 0 
 Board [Jc 6h 3d]
@@ -7034,7 +7034,7 @@ yana11169: folds
 judith.f: folds 
 Uncalled bet (150) returned to Burton Feingold
 Burton Feingold collected 498 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 498 | Rake 0 
 Seat 1: judith.f (small blind) folded before Flop
@@ -7088,7 +7088,7 @@ yana11169: raises 3636 to 4236 and is all-in
 jcarlos.vale: folds 
 Uncalled bet (3636) returned to yana11169
 yana11169 collected 3408 from pot
-yana11169: doesn't show hand 
+yana11169: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3408 | Rake 0 
 Board [3c 7h Ah]
@@ -7150,7 +7150,7 @@ dow_jones4: folds
 dow_jones4 is sitting out
 Uncalled bet (679) returned to jcarlos.vale
 jcarlos.vale collected 3316 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3316 | Rake 0 
 Board [5s 7c 2s Jh]
@@ -7265,7 +7265,7 @@ phantofant: folds
 uht25: folds 
 Uncalled bet (400) returned to Burton Feingold
 Burton Feingold collected 1425 from pot
-Burton Feingold: doesn't show hand 
+Burton Feingold: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1425 | Rake 0 
 Board [Ac 5h 5c]
@@ -7383,7 +7383,7 @@ parker1818: folds
 Louuuu2k: folds 
 Uncalled bet (400) returned to dow_jones4
 dow_jones4 collected 1225 from pot
-dow_jones4: doesn't show hand 
+dow_jones4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1225 | Rake 0 
 Seat 1: judith.f folded before Flop (didn't bet)
@@ -7499,7 +7499,7 @@ phantofant: folds
 uht25: folds 
 Uncalled bet (6154) returned to parker1818
 parker1818 collected 2425 from pot
-parker1818: doesn't show hand 
+parker1818: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2425 | Rake 0 
 Seat 1: judith.f (big blind) folded before Flop
@@ -7554,7 +7554,7 @@ parker1818: bets 400
 judith.f: folds 
 Uncalled bet (400) returned to parker1818
 parker1818 collected 2625 from pot
-parker1818: doesn't show hand 
+parker1818: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2625 | Rake 0 
 Board [3c Qc 8s]
@@ -7610,13 +7610,13 @@ Uncalled bet (6443) returned to dow_jones4
 *** RIVER *** [Jc 4s Kd 8d] [6c]
 *** SHOW DOWN ***
 dow_jones4: shows [Kc As] (a pair of Kings)
-judith.f: shows [Td Ad] (high card Ace)
+judith.f: shows [Td Ad] (high pairOfCards Ace)
 dow_jones4 collected 3295 from pot
 judith.f finished the tournament in 1224th place
 *** SUMMARY ***
 Total pot 3295 | Rake 0 
 Board [Jc 4s Kd 8d 6c]
-Seat 1: judith.f (button) showed [Td Ad] and lost with high card Ace
+Seat 1: judith.f (button) showed [Td Ad] and lost with high pairOfCards Ace
 Seat 2: Burton Feingold (small blind) folded before Flop
 Seat 3: dow_jones4 (big blind) showed [Kc As] and won (3295) with a pair of Kings
 Seat 4: jcarlos.vale folded before Flop (didn't bet)
@@ -7660,7 +7660,7 @@ dow_jones4: folds
 jcarlos.vale: folds 
 Uncalled bet (400) returned to Louuuu2k
 Louuuu2k collected 1200 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1200 | Rake 0 
 Seat 2: Burton Feingold (button) folded before Flop (didn't bet)
@@ -7712,7 +7712,7 @@ jcarlos.vale: bets 1669
 parker1818: folds 
 Uncalled bet (1669) returned to jcarlos.vale
 jcarlos.vale collected 2225 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2225 | Rake 0 
 Board [2c Td 5s]
@@ -7824,7 +7824,7 @@ uht25: folds
 parker1818: folds 
 Uncalled bet (472) returned to Louuuu2k
 Louuuu2k collected 1200 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1200 | Rake 0 
 Seat 1: dregan1 folded before Flop (didn't bet)
@@ -7874,7 +7874,7 @@ Louuuu2k: folds
 phantofant: folds 
 Uncalled bet (8229) returned to parker1818
 parker1818 collected 1425 from pot
-parker1818: doesn't show hand 
+parker1818: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1425 | Rake 0 
 Seat 1: dregan1 folded before Flop (didn't bet)
@@ -7990,7 +7990,7 @@ parker1818: folds
 dregan1: folds 
 Uncalled bet (500) returned to phantofant
 phantofant collected 2020 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2020 | Rake 0 
 Board [Jc 2s 5h 6s Kd]
@@ -8106,7 +8106,7 @@ dow_jones4: folds
 phantofant: folds 
 Uncalled bet (4727) returned to yana11169
 yana11169 collected 2020 from pot
-yana11169: doesn't show hand 
+yana11169: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2020 | Rake 0 
 Seat 1: dregan1 (button) folded before Flop (didn't bet)
@@ -8167,7 +8167,7 @@ phantofant: bets 3440 and is all-in
 jcarlos.vale: folds 
 Uncalled bet (3440) returned to phantofant
 phantofant collected 2520 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2520 | Rake 0 
 Board [4c 5h Jd Js 6h]
@@ -8217,7 +8217,7 @@ dow_jones4: folds
 jcarlos.vale: folds 
 Uncalled bet (250) returned to phantofant
 phantofant collected 770 from pot
-phantofant: doesn't show hand 
+phantofant: doesn't show handDTO
 *** SUMMARY ***
 Total pot 770 | Rake 0 
 Seat 1: dregan1 folded before Flop (didn't bet)
@@ -8267,7 +8267,7 @@ phantofant: folds
 uht25: folds 
 Uncalled bet (1000) returned to dregan1
 dregan1 collected 1520 from pot
-dregan1: doesn't show hand 
+dregan1: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1520 | Rake 0 
 Seat 1: dregan1 collected (1520)
@@ -8321,7 +8321,7 @@ parker1818: bets 500
 uht25: folds 
 Uncalled bet (500) returned to parker1818
 parker1818 collected 1270 from pot
-parker1818: doesn't show hand 
+parker1818: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1270 | Rake 0 
 Board [6c 8s 2s]
@@ -8373,7 +8373,7 @@ Louuuu2k: folds
 dow_jones4: folds 
 Uncalled bet (7404) returned to parker1818
 parker1818 collected 3270 from pot
-parker1818: doesn't show hand 
+parker1818: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3270 | Rake 0 
 Seat 1: dregan1 folded before Flop (didn't bet)
@@ -8610,7 +8610,7 @@ Louuuu2k: bets 1800
 phantofant: folds 
 Uncalled bet (1800) returned to Louuuu2k
 Louuuu2k collected 6660 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6660 | Rake 0 
 Board [Ah 2d Js]
@@ -8673,7 +8673,7 @@ Louuuu2k: bets 4177
 Ajinak: calls 4177
 *** SHOW DOWN ***
 Louuuu2k: shows [Kc Ac] (a full house, Kings full of Aces)
-Ajinak: mucks hand 
+Ajinak: mucks handDTO
 Louuuu2k collected 14588 from pot
 *** SUMMARY ***
 Total pot 14588 | Rake 0 
@@ -8774,7 +8774,7 @@ phantofant: folds
 uht25: folds 
 Uncalled bet (8634) returned to parker1818
 parker1818 collected 1860 from pot
-parker1818: doesn't show hand 
+parker1818: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1860 | Rake 0 
 Seat 1: dregan1 folded before Flop (didn't bet)
@@ -8824,7 +8824,7 @@ uht25: folds
 parker1818: folds 
 Uncalled bet (600) returned to Louuuu2k
 Louuuu2k collected 1860 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1860 | Rake 0 
 Seat 1: dregan1 folded before Flop (didn't bet)
@@ -8883,7 +8883,7 @@ dow_jones4: bets 4455
 Louuuu2k: folds 
 Uncalled bet (4455) returned to dow_jones4
 dow_jones4 collected 7072 from pot
-dow_jones4: doesn't show hand 
+dow_jones4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 7072 | Rake 0 
 Board [Ts Kc 4s 3c]
@@ -8934,7 +8934,7 @@ Louuuu2k: raises 1200 to 1800
 yana11169: folds 
 Uncalled bet (1200) returned to Louuuu2k
 Louuuu2k collected 1560 from pot
-Louuuu2k: doesn't show hand 
+Louuuu2k: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1560 | Rake 0 
 Seat 1: dregan1 folded before Flop (didn't bet)
@@ -9100,7 +9100,7 @@ dow_jones4: bets 600
 Ajinak: folds 
 Uncalled bet (600) returned to dow_jones4
 dow_jones4 collected 1560 from pot
-dow_jones4: doesn't show hand 
+dow_jones4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1560 | Rake 0 
 Board [2s 8c 4s]
@@ -9152,7 +9152,7 @@ jcarlos.vale: raises 7145 to 7745 and is all-in
 dow_jones4: folds 
 Uncalled bet (7145) returned to jcarlos.vale
 jcarlos.vale collected 1560 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1560 | Rake 0 
 Seat 1: dregan1 folded before Flop (didn't bet)
@@ -9202,7 +9202,7 @@ jcarlos.vale: folds
 Switc4: folds 
 Uncalled bet (8674) returned to parker1818
 parker1818 collected 1860 from pot
-parker1818: doesn't show hand 
+parker1818: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1860 | Rake 0 
 Seat 1: dregan1 folded before Flop (didn't bet)
@@ -9370,7 +9370,7 @@ stefani3112: folds
 Edyard1000: folds 
 Uncalled bet (7515) returned to jcarlos.vale
 jcarlos.vale collected 2200 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 1: Borameumlk folded before Flop (didn't bet)
@@ -9490,7 +9490,7 @@ Edyard1000: raises 10500 to 13300
 ekleraki1918: calls 10500
 *** SHOW DOWN ***
 Edyard1000: shows [Jd Ad] (a full house, Jacks full of Sixes)
-ekleraki1918: mucks hand 
+ekleraki1918: mucks handDTO
 Edyard1000 collected 34612 from pot
 *** SUMMARY ***
 Total pot 34612 | Rake 0 
@@ -9542,7 +9542,7 @@ ekleraki1918: folds
 jcarlos.vale: folds 
 Uncalled bet (7026) returned to Borameumlk
 Borameumlk collected 2200 from pot
-Borameumlk: doesn't show hand 
+Borameumlk: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 1: Borameumlk collected (2200)

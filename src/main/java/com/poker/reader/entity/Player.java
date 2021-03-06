@@ -5,8 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Builder
@@ -14,6 +14,13 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Data
 public class Player {
+
+    public static final String PREFIX_TABLE = "player_";
+
     @Id
+    @Column(name = PREFIX_TABLE + "nickname")
     private String nickname;
+
+    @OneToMany(mappedBy = "player", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    List<Seat> seats;
 }

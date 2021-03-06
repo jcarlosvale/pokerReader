@@ -1,6 +1,6 @@
 package com.poker.reader.parser;
 
-import com.poker.reader.entity.*;
+import com.poker.reader.dto.*;
 import com.poker.reader.parser.util.TypeFileSection;
 import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
@@ -13,12 +13,11 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.poker.reader.entity.TypeInfo.*;
+import static com.poker.reader.dto.TypeInfo.*;
 import static com.poker.reader.parser.util.FileParserUtil.DATE_TIME_FORMAT;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -32,11 +31,11 @@ public class FileReaderProcessorTest {
         Resource resource = new ClassPathResource("one-hand.txt", getClass().getClassLoader());
         fileReaderProcessor.readFile(resource.getFile().getAbsolutePath());
 
-        Tournament expectedTournament = Tournament.builder().id(2779056951L).buyIn(BigDecimal.valueOf(0.55)).build();
-        Hand expectedHand = Hand
+        TournamentDTO expectedTournamentDTO = TournamentDTO.builder().id(2779056951L).buyIn(BigDecimal.valueOf(0.55)).build();
+        HandDTO expectedHandDTO = HandDTO
                 .builder()
                 .id(208296842229L)
-                .tournament(expectedTournament)
+                .tournamentDTO(expectedTournamentDTO)
                 .level("VI")
                 .smallBlind(50)
                 .bigBlind(100)
@@ -45,398 +44,398 @@ public class FileReaderProcessorTest {
                 .button(5)
                 .build();
 
-        Seat seat =
-                Seat
+        SeatDTO seatDTO =
+                SeatDTO
                 .builder()
                 .seatId(1)
-                .player(Player.builder().nickname("W SERENA").build())
+                .playerDTO(PlayerDTO.builder().nickname("W SERENA").build())
                 .stack(5000L)
                 .build();
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                 .info(FOLDED_ON_THE_RIVER)
                 .build());
-        expectedHand.getSeats().put(Player.builder().nickname("W SERENA").build(),seat);
+        expectedHandDTO.getSeats().put(PlayerDTO.builder().nickname("W SERENA").build(), seatDTO);
 
 
-        seat =
-                Seat
+        seatDTO =
+                SeatDTO
                 .builder()
                 .seatId(2)
-                .player(Player.builder().nickname("matalaha").build())
+                .playerDTO(PlayerDTO.builder().nickname("matalaha").build())
                 .stack(6917L)
                 .build();
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                         .info(FOLDED_BEFORE_FLOP)
                         .build());
-        expectedHand.getSeats().put(Player.builder().nickname("matalaha").build(),seat);
+        expectedHandDTO.getSeats().put(PlayerDTO.builder().nickname("matalaha").build(), seatDTO);
 
 
 
-        seat =
-                Seat
+        seatDTO =
+                SeatDTO
                 .builder()
                 .seatId(3)
-                .player(Player.builder().nickname("xTheWindelPilot").build())
+                .playerDTO(PlayerDTO.builder().nickname("xTheWindelPilot").build())
                 .stack(1268L)
                 .build();
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                         .info(FOLDED_BEFORE_FLOP)
                         .build());
-        expectedHand.getSeats().put(Player.builder().nickname("xTheWindelPilot").build(),seat);
+        expectedHandDTO.getSeats().put(PlayerDTO.builder().nickname("xTheWindelPilot").build(), seatDTO);
 
 
-        seat =
-                Seat
+        seatDTO =
+                SeatDTO
                 .builder()
                 .seatId(4)
-                .player(Player.builder().nickname("schlier4").build())
+                .playerDTO(PlayerDTO.builder().nickname("schlier4").build())
                 .stack(8186L)
                 .build();
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                 .info(FOLDED_BEFORE_FLOP)
                 .build());
-        expectedHand.getSeats().put(Player.builder().nickname("schlier4").build(), seat);
+        expectedHandDTO.getSeats().put(PlayerDTO.builder().nickname("schlier4").build(), seatDTO);
 
-        seat =
-                Seat
+        seatDTO =
+                SeatDTO
                 .builder()
                 .seatId(5)
-                .player(Player.builder().nickname("mjmj1971").build())
+                .playerDTO(PlayerDTO.builder().nickname("mjmj1971").build())
                 .stack(10998L)
                 .build();
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                 .info(BUTTON)
                 .build());
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                 .info(COLLECTED)
                 .value(440L)
                 .build());
-        expectedHand.getSeats().put(Player.builder().nickname("mjmj1971").build(),seat);
+        expectedHandDTO.getSeats().put(PlayerDTO.builder().nickname("mjmj1971").build(), seatDTO);
 
-        seat =
-                Seat
+        seatDTO =
+                SeatDTO
                 .builder()
                 .seatId(6)
-                .player(Player.builder().nickname("GunDolfAA").build())
+                .playerDTO(PlayerDTO.builder().nickname("GunDolfAA").build())
                 .stack(4523L)
                 .build();
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                 .info(SMALL_BLIND)
                 .build());
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                 .info(FOLDED_BEFORE_FLOP)
                 .build());
-        expectedHand.getSeats().put(Player.builder().nickname("GunDolfAA").build(), seat);
+        expectedHandDTO.getSeats().put(PlayerDTO.builder().nickname("GunDolfAA").build(), seatDTO);
 
-        seat =
-                Seat
+        seatDTO =
+                SeatDTO
                 .builder()
                 .seatId(7)
-                .player(Player.builder().nickname("Oliver N76").build())
+                .playerDTO(PlayerDTO.builder().nickname("Oliver N76").build())
                 .stack(13836L)
                 .build();
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                 .info(BIG_BLIND)
                 .build());
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                 .info(FOLDED_ON_THE_RIVER)
                 .build());
-        expectedHand.getSeats().put(Player.builder().nickname("Oliver N76").build(), seat);
+        expectedHandDTO.getSeats().put(PlayerDTO.builder().nickname("Oliver N76").build(), seatDTO);
 
-        seat =
-                Seat
+        seatDTO =
+                SeatDTO
                 .builder()
                 .seatId(8)
-                .player(Player.builder().nickname("H3ll5cream").build())
+                .playerDTO(PlayerDTO.builder().nickname("H3ll5cream").build())
                 .stack(2717L)
                 .build();
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                 .info(FOLDED_BEFORE_FLOP)
                 .build());
-        expectedHand.getSeats().put(Player.builder().nickname("H3ll5cream").build(),seat);
+        expectedHandDTO.getSeats().put(PlayerDTO.builder().nickname("H3ll5cream").build(), seatDTO);
 
-        seat =
-                Seat
+        seatDTO =
+                SeatDTO
                 .builder()
                 .seatId(9)
-                .player(Player.builder().nickname("jcarlos.vale").build())
+                .playerDTO(PlayerDTO.builder().nickname("jcarlos.vale").build())
                 .stack(5000L)
                 .build();
-        seat.getInfoPlayerAtHandList().add(
+        seatDTO.getInfoPlayerAtHandList().add(
                 InfoPlayerAtHand.builder()
                 .info(FOLDED_BEFORE_FLOP)
                 .build());
-        expectedHand.getSeats().put(Player.builder().nickname("jcarlos.vale").build(), seat);
+        expectedHandDTO.getSeats().put(PlayerDTO.builder().nickname("jcarlos.vale").build(), seatDTO);
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("W SERENA").build())
+                .playerDTO(PlayerDTO.builder().nickname("W SERENA").build())
                 .value(10L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.ANTE)
                 .build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("matalaha").build())
+                .playerDTO(PlayerDTO.builder().nickname("matalaha").build())
                 .value(10L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.ANTE)
                 .build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("xTheWindelPilot").build())
+                .playerDTO(PlayerDTO.builder().nickname("xTheWindelPilot").build())
                 .value(10L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.ANTE)
                 .build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("schlier4").build())
+                .playerDTO(PlayerDTO.builder().nickname("schlier4").build())
                 .value(10L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.ANTE)
                 .build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("mjmj1971").build())
+                .playerDTO(PlayerDTO.builder().nickname("mjmj1971").build())
                 .value(10L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.ANTE)
                 .build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("GunDolfAA").build())
+                .playerDTO(PlayerDTO.builder().nickname("GunDolfAA").build())
                 .value(10L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.ANTE)
                 .build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("Oliver N76").build())
+                .playerDTO(PlayerDTO.builder().nickname("Oliver N76").build())
                 .value(10L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.ANTE)
                 .build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("H3ll5cream").build())
+                .playerDTO(PlayerDTO.builder().nickname("H3ll5cream").build())
                 .value(10L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.ANTE)
                 .build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("jcarlos.vale").build())
+                .playerDTO(PlayerDTO.builder().nickname("jcarlos.vale").build())
                 .value(10L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.ANTE)
                 .build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("GunDolfAA").build())
+                .playerDTO(PlayerDTO.builder().nickname("GunDolfAA").build())
                 .value(50L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.SMALL_BLIND)
                 .build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("Oliver N76").build())
+                .playerDTO(PlayerDTO.builder().nickname("Oliver N76").build())
                 .value(100L)
                 .typeStreet(TypeStreet.ANTE)
                 .typeAction(TypeAction.BIG_BLIND)
                 .build());
 
         //PRE FLOP
-        expectedHand.getSeats().get(Player.builder().nickname("jcarlos.vale").build())
+        expectedHandDTO.getSeats().get(PlayerDTO.builder().nickname("jcarlos.vale").build())
                 .setHoldCards(
                         HoldCards
                                 .builder()
-                                .player(Player.builder().nickname("jcarlos.vale").build())
+                                .playerDTO(PlayerDTO.builder().nickname("jcarlos.vale").build())
                                 .card1("Kc")
                                 .card2("7d")
                                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("H3ll5cream").build())
+                .playerDTO(PlayerDTO.builder().nickname("H3ll5cream").build())
                 .typeStreet(TypeStreet.PREFLOP)
                 .typeAction(TypeAction.FOLD)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("jcarlos.vale").build())
+                .playerDTO(PlayerDTO.builder().nickname("jcarlos.vale").build())
                 .typeStreet(TypeStreet.PREFLOP)
                 .typeAction(TypeAction.FOLD)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("W SERENA").build())
+                .playerDTO(PlayerDTO.builder().nickname("W SERENA").build())
                 .typeStreet(TypeStreet.PREFLOP)
                 .typeAction(TypeAction.CALL)
                 .value(100L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("matalaha").build())
+                .playerDTO(PlayerDTO.builder().nickname("matalaha").build())
                 .typeStreet(TypeStreet.PREFLOP)
                 .typeAction(TypeAction.FOLD)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("xTheWindelPilot").build())
+                .playerDTO(PlayerDTO.builder().nickname("xTheWindelPilot").build())
                 .typeStreet(TypeStreet.PREFLOP)
                 .typeAction(TypeAction.FOLD)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("schlier4").build())
+                .playerDTO(PlayerDTO.builder().nickname("schlier4").build())
                 .typeStreet(TypeStreet.PREFLOP)
                 .typeAction(TypeAction.FOLD)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("mjmj1971").build())
+                .playerDTO(PlayerDTO.builder().nickname("mjmj1971").build())
                 .typeStreet(TypeStreet.PREFLOP)
                 .typeAction(TypeAction.CALL)
                 .value(100L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("GunDolfAA").build())
+                .playerDTO(PlayerDTO.builder().nickname("GunDolfAA").build())
                 .typeStreet(TypeStreet.PREFLOP)
                 .typeAction(TypeAction.FOLD)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("Oliver N76").build())
+                .playerDTO(PlayerDTO.builder().nickname("Oliver N76").build())
                 .typeStreet(TypeStreet.PREFLOP)
                 .typeAction(TypeAction.CHECK)
                 .value(0L)
                 .build());
 
         //FLOP
-        expectedHand.setFlop(Flop.builder().card1("7s").card2("5h").card3("Jc").build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.setFlop(Flop.builder().card1("7s").card2("5h").card3("Jc").build());
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("Oliver N76").build())
+                .playerDTO(PlayerDTO.builder().nickname("Oliver N76").build())
                 .typeStreet(TypeStreet.FLOP)
                 .typeAction(TypeAction.CHECK)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("W SERENA").build())
+                .playerDTO(PlayerDTO.builder().nickname("W SERENA").build())
                 .typeStreet(TypeStreet.FLOP)
                 .typeAction(TypeAction.CHECK)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("mjmj1971").build())
+                .playerDTO(PlayerDTO.builder().nickname("mjmj1971").build())
                 .typeStreet(TypeStreet.FLOP)
                 .typeAction(TypeAction.CHECK)
                 .value(0L)
                 .build());
 
         //TURN
-        expectedHand.setTurn(Turn.builder().card("Qd").build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.setTurn(Turn.builder().card("Qd").build());
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("Oliver N76").build())
+                .playerDTO(PlayerDTO.builder().nickname("Oliver N76").build())
                 .typeStreet(TypeStreet.TURN)
                 .typeAction(TypeAction.CHECK)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("W SERENA").build())
+                .playerDTO(PlayerDTO.builder().nickname("W SERENA").build())
                 .typeStreet(TypeStreet.TURN)
                 .typeAction(TypeAction.CHECK)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("mjmj1971").build())
+                .playerDTO(PlayerDTO.builder().nickname("mjmj1971").build())
                 .typeStreet(TypeStreet.TURN)
                 .typeAction(TypeAction.CHECK)
                 .value(0L)
                 .build());
 
         //RIVER
-        expectedHand.setRiver(River.builder().card("8d").build());
+        expectedHandDTO.setRiver(River.builder().card("8d").build());
 
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("Oliver N76").build())
+                .playerDTO(PlayerDTO.builder().nickname("Oliver N76").build())
                 .typeStreet(TypeStreet.RIVER)
                 .typeAction(TypeAction.CHECK)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("W SERENA").build())
+                .playerDTO(PlayerDTO.builder().nickname("W SERENA").build())
                 .typeStreet(TypeStreet.RIVER)
                 .typeAction(TypeAction.CHECK)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("mjmj1971").build())
+                .playerDTO(PlayerDTO.builder().nickname("mjmj1971").build())
                 .typeStreet(TypeStreet.RIVER)
                 .typeAction(TypeAction.BETS)
                 .value(300L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("Oliver N76").build())
+                .playerDTO(PlayerDTO.builder().nickname("Oliver N76").build())
                 .typeStreet(TypeStreet.RIVER)
                 .typeAction(TypeAction.FOLD)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("W SERENA").build())
+                .playerDTO(PlayerDTO.builder().nickname("W SERENA").build())
                 .typeStreet(TypeStreet.RIVER)
                 .typeAction(TypeAction.FOLD)
                 .value(0L)
                 .build());
-        expectedHand.getActions().add(Action
+        expectedHandDTO.getActions().add(Action
                 .builder()
-                .player(Player.builder().nickname("mjmj1971").build())
+                .playerDTO(PlayerDTO.builder().nickname("mjmj1971").build())
                 .typeStreet(TypeStreet.RIVER)
                 .typeAction(TypeAction.NO_SHOW_HAND)
                 .value(0L)
                 .build());
 
         //SUMMARY
-        expectedHand.setTotalPot(440L);
-        expectedHand.setBoard(Board.builder()
+        expectedHandDTO.setTotalPot(440L);
+        expectedHandDTO.setBoard(Board.builder()
                 .card1("7s")
                 .card2("5h")
                 .card3("Jc")
@@ -444,14 +443,14 @@ public class FileReaderProcessorTest {
                 .card5("8d")
                 .build());
 
-        List<Hand> expectedHandList = new ArrayList<>();
-        expectedHandList.add(expectedHand);
+        List<HandDTO> expectedHandDTOList = new ArrayList<>();
+        expectedHandDTOList.add(expectedHandDTO);
 
-        System.out.println(expectedHandList);
+        System.out.println(expectedHandDTOList);
 
-        System.out.println(fileReaderProcessor.getHandList());
+        System.out.println(fileReaderProcessor.getHandDTOList());
 
-        assertEquals(expectedHandList, fileReaderProcessor.getHandList());
+        assertEquals(expectedHandDTOList, fileReaderProcessor.getHandDTOList());
     }
 
     @Test
@@ -459,12 +458,12 @@ public class FileReaderProcessorTest {
         Resource resource = new ClassPathResource("multiple-hand.txt", getClass().getClassLoader());
         fileReaderProcessor.readFile(resource.getFile().getAbsolutePath());
 
-        Tournament expectedTournament = Tournament.builder().id(2779056951L).buyIn(BigDecimal.valueOf(0.55)).build();
+        TournamentDTO expectedTournamentDTO = TournamentDTO.builder().id(2779056951L).buyIn(BigDecimal.valueOf(0.55)).build();
 
-        for(Hand hand : fileReaderProcessor.getHandList()) {
-            assertEquals(expectedTournament, hand.getTournament());
+        for(HandDTO handDTO : fileReaderProcessor.getHandDTOList()) {
+            assertEquals(expectedTournamentDTO, handDTO.getTournamentDTO());
         }
-        assertEquals(15, fileReaderProcessor.getHandList().size());
+        assertEquals(15, fileReaderProcessor.getHandDTOList().size());
     }
     @Test
     public void verifySectionTest() {

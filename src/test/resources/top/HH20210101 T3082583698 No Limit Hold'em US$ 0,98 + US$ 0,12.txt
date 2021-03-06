@@ -159,7 +159,7 @@ ScheminVirgo: bets 198
 RCABelVedeRVerd: folds 
 Uncalled bet (198) returned to ScheminVirgo
 ScheminVirgo collected 496 from pot
-ScheminVirgo: doesn't show hand 
+ScheminVirgo: doesn't show handDTO
 *** SUMMARY ***
 Total pot 496 | Rake 0 
 Board [Jd 8s Kc Qs]
@@ -276,7 +276,7 @@ kalimero1848: bets 115
 RCABelVedeRVerd: folds 
 Uncalled bet (115) returned to kalimero1848
 kalimero1848 collected 231 from pot
-kalimero1848: doesn't show hand 
+kalimero1848: doesn't show handDTO
 *** SUMMARY ***
 Total pot 231 | Rake 0 
 Board [Ad 2d 7c]
@@ -387,7 +387,7 @@ kalimero1848: folds
 84nurik84: folds 
 Uncalled bet (15) returned to marquitopoker4
 marquitopoker4 collected 62 from pot
-marquitopoker4: doesn't show hand 
+marquitopoker4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 62 | Rake 0 
 Seat 1: marquitopoker4 (big blind) collected (62)
@@ -411,7 +411,7 @@ Seat 5: RCABelVedeRVerd (5249 in chips) is sitting out
 Seat 6: Mimishka004 (4631 in chips) 
 Seat 7: kalimero1848 (4980 in chips) 
 Seat 8: 84nurik84 (4716 in chips) 
-Seat 9: 48621537590 (5000 in chips) out of hand (moved from another table into small blind)
+Seat 9: 48621537590 (5000 in chips) out of handDTO (moved from another table into small blind)
 48621537590 will be allowed to play after the button
 marquitopoker4: posts the ante 4
 Lokobarys Ninja: posts the ante 4
@@ -450,7 +450,7 @@ Lokobarys Ninja: checks
 *** SHOW DOWN ***
 Lokobarys Ninja: shows [Jh 9h] (two pair, Kings and Jacks)
 4RING8: shows [Ts Js] (two pair, Kings and Jacks)
-84nurik84: mucks hand 
+84nurik84: mucks handDTO
 Lokobarys Ninja collected 211 from pot
 4RING8 collected 211 from pot
 *** SUMMARY ***
@@ -512,7 +512,7 @@ kalimero1848: checks
 kalimero1848: checks 
 *** SHOW DOWN ***
 4RING8: shows [Qh Kc] (two pair, Kings and Sevens)
-kalimero1848: mucks hand 
+kalimero1848: mucks handDTO
 4RING8 collected 915 from pot
 *** SUMMARY ***
 Total pot 915 | Rake 0 
@@ -578,17 +578,17 @@ jcarlos.vale: checks
 kalimero1848: checks 
 84nurik84: checks 
 *** SHOW DOWN ***
-4RING8: shows [9s As] (high card Ace)
+4RING8: shows [9s As] (high pairOfCards Ace)
 jcarlos.vale: shows [Jc 8h] (a pair of Jacks)
-kalimero1848: mucks hand 
-84nurik84: mucks hand 
+kalimero1848: mucks handDTO
+84nurik84: mucks handDTO
 jcarlos.vale collected 205 from pot
 *** SUMMARY ***
 Total pot 205 | Rake 0 
 Board [6c 4s Qh Js 5c]
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
 Seat 2: Lokobarys Ninja (button) folded before Flop (didn't bet)
-Seat 3: 4RING8 (small blind) showed [9s As] and lost with high card Ace
+Seat 3: 4RING8 (small blind) showed [9s As] and lost with high pairOfCards Ace
 Seat 4: jcarlos.vale (big blind) showed [Jc 8h] and won (205) with a pair of Jacks
 Seat 5: RCABelVedeRVerd folded before Flop (didn't bet)
 Seat 6: Mimishka004 folded before Flop (didn't bet)
@@ -646,8 +646,8 @@ kalimero1848: checks
 84nurik84: checks 
 *** SHOW DOWN ***
 jcarlos.vale: shows [3c 5d] (two pair, Nines and Threes)
-kalimero1848: mucks hand 
-84nurik84: mucks hand 
+kalimero1848: mucks handDTO
+84nurik84: mucks handDTO
 jcarlos.vale collected 205 from pot
 *** SUMMARY ***
 Total pot 205 | Rake 0 
@@ -712,7 +712,7 @@ RCABelVedeRVerd: folds
 Mimishka004: folds 
 Uncalled bet (165) returned to kalimero1848
 kalimero1848 collected 165 from pot
-kalimero1848: doesn't show hand 
+kalimero1848: doesn't show handDTO
 *** SUMMARY ***
 Total pot 165 | Rake 0 
 Board [7d 5c Th 3d]
@@ -767,7 +767,7 @@ Mimishka004: folds
 kalimero1848: folds 
 Uncalled bet (60) returned to 84nurik84
 84nurik84 collected 145 from pot
-84nurik84: doesn't show hand 
+84nurik84: doesn't show handDTO
 *** SUMMARY ***
 Total pot 145 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -1043,7 +1043,7 @@ RCABelVedeRVerd: calls 50
 RCABelVedeRVerd: checks 
 *** SHOW DOWN ***
 4RING8: shows [4d Ah] (two pair, Tens and Fours)
-RCABelVedeRVerd: mucks hand 
+RCABelVedeRVerd: mucks handDTO
 4RING8 collected 279 from pot
 *** SUMMARY ***
 Total pot 279 | Rake 0 
@@ -1160,7 +1160,7 @@ marquitopoker4: checks
 marquitopoker4: folds 
 Uncalled bet (375) returned to 4RING8
 4RING8 collected 1438 from pot
-4RING8: doesn't show hand 
+4RING8: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1438 | Rake 0 
 Board [As 4c 7c Ad Ts]
@@ -1396,7 +1396,7 @@ jcarlos.vale: bets 100
 48621537590: folds 
 Uncalled bet (100) returned to jcarlos.vale
 jcarlos.vale collected 339 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 339 | Rake 0 
 Board [8d 3c Qc 7s 7c]
@@ -1448,7 +1448,7 @@ marquitopoker4: folds
 Lokobarys Ninja: folds 
 Uncalled bet (150) returned to jcarlos.vale
 jcarlos.vale collected 329 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 329 | Rake 0 
 Seat 1: marquitopoker4 (big blind) folded before Flop
@@ -1502,7 +1502,7 @@ marquitopoker4: bets 50
 Lokobarys Ninja: folds 
 Uncalled bet (50) returned to marquitopoker4
 marquitopoker4 collected 154 from pot
-marquitopoker4: doesn't show hand 
+marquitopoker4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 154 | Rake 0 
 Board [9d Tc Qc]
@@ -1562,7 +1562,7 @@ Lokobarys Ninja: folds
 Uncalled bet (150) returned to jcarlos.vale
 kalimero1848 has returned
 jcarlos.vale collected 364 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 364 | Rake 0 
 Board [9c Jh 3h Ac]
@@ -1617,7 +1617,7 @@ jcarlos.vale: checks
 jcarlos.vale: folds 
 Uncalled bet (201) returned to 84nurik84
 84nurik84 collected 402 from pot
-84nurik84: doesn't show hand 
+84nurik84: doesn't show handDTO
 *** SUMMARY ***
 Total pot 402 | Rake 0 
 Board [Ks Kh Qd]
@@ -1836,7 +1836,7 @@ kalimero1848: folds
 84nurik84: folds 
 Uncalled bet (96) returned to jcarlos.vale
 jcarlos.vale collected 222 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 222 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -1897,7 +1897,7 @@ kalimero1848: folds
 48621537590: folds 
 Uncalled bet (3073) returned to 84nurik84
 84nurik84 collected 2358 from pot
-84nurik84: doesn't show hand 
+84nurik84: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2358 | Rake 0 
 Board [7h 5s 4s 6h 9c]
@@ -1959,7 +1959,7 @@ kalimero1848: checks
 kalimero1848: checks 
 *** SHOW DOWN ***
 4RING8: shows [Qs Ad] (two pair, Aces and Deuces)
-kalimero1848: mucks hand 
+kalimero1848: mucks handDTO
 4RING8 collected 816 from pot
 *** SUMMARY ***
 Total pot 816 | Rake 0 
@@ -2131,7 +2131,7 @@ richard5189: bets 441
 Lokobarys Ninja: folds 
 Uncalled bet (441) returned to richard5189
 richard5189 collected 882 from pot
-richard5189: doesn't show hand 
+richard5189: doesn't show handDTO
 *** SUMMARY ***
 Total pot 882 | Rake 0 
 Board [Ac 7h 2h]
@@ -2245,7 +2245,7 @@ RCABelVedeRVerd is sitting out
 Mimishka004: folds 
 Uncalled bet (111) returned to marquitopoker4
 marquitopoker4 collected 281 from pot
-marquitopoker4: doesn't show hand 
+marquitopoker4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 281 | Rake 0 
 Seat 1: marquitopoker4 collected (281)
@@ -2296,7 +2296,7 @@ Mimishka004: folds
 richard5189: folds 
 Uncalled bet (111) returned to marquitopoker4
 marquitopoker4 collected 281 from pot
-marquitopoker4: doesn't show hand 
+marquitopoker4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 281 | Rake 0 
 Seat 1: marquitopoker4 collected (281)
@@ -2421,9 +2421,9 @@ richard5189: checks
 Mimishka004: checks 
 richard5189: checks 
 *** SHOW DOWN ***
-84nurik84: shows [9s 8s] (high card Queen)
-Mimishka004: shows [5h Kh] (high card King)
-richard5189: shows [Ah Ks] (high card Ace)
+84nurik84: shows [9s 8s] (high pairOfCards Queen)
+Mimishka004: shows [5h Kh] (high pairOfCards King)
+richard5189: shows [Ah Ks] (high pairOfCards Ace)
 richard5189 collected 653 from pot
 *** SUMMARY ***
 Total pot 653 | Rake 0 
@@ -2433,9 +2433,9 @@ Seat 2: Lokobarys Ninja folded before Flop (didn't bet)
 Seat 3: 4RING8 folded before Flop (didn't bet)
 Seat 4: jcarlos.vale folded before Flop (didn't bet)
 Seat 5: RCABelVedeRVerd folded before Flop (didn't bet)
-Seat 6: Mimishka004 showed [5h Kh] and lost with high card King
-Seat 7: richard5189 (button) showed [Ah Ks] and won (653) with high card Ace
-Seat 8: 84nurik84 (small blind) showed [9s 8s] and lost with high card Queen
+Seat 6: Mimishka004 showed [5h Kh] and lost with high pairOfCards King
+Seat 7: richard5189 (button) showed [Ah Ks] and won (653) with high pairOfCards Ace
+Seat 8: 84nurik84 (small blind) showed [9s 8s] and lost with high pairOfCards Queen
 Seat 9: 48621537590 (big blind) folded before Flop
 
 
@@ -2548,7 +2548,7 @@ Lokobarys Ninja: folds
 4RING8: calls 425
 *** SHOW DOWN ***
 84nurik84: shows [Qd Js] (a straight, Eight to Queen)
-4RING8: mucks hand 
+4RING8: mucks handDTO
 84nurik84 collected 2137 from pot
 *** SUMMARY ***
 Total pot 2137 | Rake 0 
@@ -2600,7 +2600,7 @@ Lokobarys Ninja: folds
 4RING8: folds 
 Uncalled bet (240) returned to 48621537590
 48621537590 collected 281 from pot
-48621537590: doesn't show hand 
+48621537590: doesn't show handDTO
 *** SUMMARY ***
 Total pot 281 | Rake 0 
 Seat 1: marquitopoker4 (button) folded before Flop (didn't bet)
@@ -2660,7 +2660,7 @@ richard5189: bets 320
 4RING8: folds 
 Uncalled bet (320) returned to richard5189
 richard5189 collected 881 from pot
-richard5189: doesn't show hand 
+richard5189: doesn't show handDTO
 *** SUMMARY ***
 Total pot 881 | Rake 0 
 Board [7s Jh 2c 9d]
@@ -2876,8 +2876,8 @@ Mimishka004: checks
 *** SHOW DOWN ***
 84nurik84: shows [Qd 9s] (a pair of Sixes)
 marquitopoker4: shows [Ad Kc] (two pair, Kings and Sixes)
-RCABelVedeRVerd: mucks hand 
-Mimishka004: mucks hand 
+RCABelVedeRVerd: mucks handDTO
+Mimishka004: mucks handDTO
 marquitopoker4 collected 944 from pot
 *** SUMMARY ***
 Total pot 944 | Rake 0 
@@ -3053,7 +3053,7 @@ Lokobarys Ninja: folds
 4RING8: folds 
 Uncalled bet (120) returned to 84nurik84
 84nurik84 collected 330 from pot
-84nurik84: doesn't show hand 
+84nurik84: doesn't show handDTO
 *** SUMMARY ***
 Total pot 330 | Rake 0 
 Seat 1: marquitopoker4 (button) folded before Flop (didn't bet)
@@ -3102,7 +3102,7 @@ Lokobarys Ninja: folds
 jcarlos.vale: folds 
 Uncalled bet (120) returned to 84nurik84
 84nurik84 collected 340 from pot
-84nurik84: doesn't show hand 
+84nurik84: doesn't show handDTO
 *** SUMMARY ***
 Total pot 340 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -3153,7 +3153,7 @@ jcarlos.vale: folds
 RCABelVedeRVerd: folds 
 Uncalled bet (100) returned to richard5189
 richard5189 collected 340 from pot
-richard5189: doesn't show hand 
+richard5189: doesn't show handDTO
 *** SUMMARY ***
 Total pot 340 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -3207,7 +3207,7 @@ Mimishka004: checks
 Mimishka004: folds 
 Uncalled bet (320) returned to 84nurik84
 84nurik84 collected 640 from pot
-84nurik84: doesn't show hand 
+84nurik84: doesn't show handDTO
 *** SUMMARY ***
 Total pot 640 | Rake 0 
 Board [9h 3d Ah]
@@ -3356,7 +3356,7 @@ richard5189: folds
 remedy74: folds 
 Uncalled bet (160) returned to jcarlos.vale
 jcarlos.vale collected 340 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 340 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -3541,7 +3541,7 @@ marquitopoker4: bets 840
 richard5189: calls 840
 *** SHOW DOWN ***
 marquitopoker4: shows [Td Ac] (two pair, Aces and Kings)
-richard5189: mucks hand 
+richard5189: mucks handDTO
 marquitopoker4 collected 4152 from pot
 *** SUMMARY ***
 Total pot 4152 | Rake 0 
@@ -3670,7 +3670,7 @@ RCABelVedeRVerd: checks
 BigMoneyJoe1: checks 
 *** SHOW DOWN ***
 RCABelVedeRVerd: shows [Jh Qd] (a pair of Jacks)
-BigMoneyJoe1: mucks hand 
+BigMoneyJoe1: mucks handDTO
 RCABelVedeRVerd collected 1188 from pot
 *** SUMMARY ***
 Total pot 1188 | Rake 0 
@@ -3834,7 +3834,7 @@ marquitopoker4: folds
 richard5189: folds 
 Uncalled bet (274) returned to 84nurik84
 84nurik84 collected 831 from pot
-84nurik84: doesn't show hand 
+84nurik84: doesn't show handDTO
 *** SUMMARY ***
 Total pot 831 | Rake 0 
 Board [3s Ks 4s]
@@ -3895,7 +3895,7 @@ BigMoneyJoe1: bets 600
 84nurik84: folds 
 Uncalled bet (600) returned to BigMoneyJoe1
 BigMoneyJoe1 collected 1428 from pot
-BigMoneyJoe1: doesn't show hand 
+BigMoneyJoe1: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1428 | Rake 0 
 Board [9c Th Ks Kd]
@@ -3998,7 +3998,7 @@ Lokobarys Ninja: folds
 *** TURN *** [5s 9d 4d] [Kd]
 *** RIVER *** [5s 9d 4d Kd] [8d]
 *** SHOW DOWN ***
-4RING8: shows [Ac Qs] (high card Ace)
+4RING8: shows [Ac Qs] (high pairOfCards Ace)
 richard5189: shows [Qd As] (a flush, King high)
 richard5189 collected 3084 from pot
 4RING8 finished the tournament
@@ -4007,7 +4007,7 @@ Total pot 3084 | Rake 0
 Board [5s 9d 4d Kd 8d]
 Seat 1: marquitopoker4 (small blind) folded before Flop
 Seat 2: Lokobarys Ninja (big blind) folded before Flop
-Seat 3: 4RING8 showed [Ac Qs] and lost with high card Ace
+Seat 3: 4RING8 showed [Ac Qs] and lost with high pairOfCards Ace
 Seat 4: jcarlos.vale folded before Flop (didn't bet)
 Seat 5: RCABelVedeRVerd folded before Flop (didn't bet)
 Seat 6: Mimishka004 folded before Flop (didn't bet)
@@ -4162,7 +4162,7 @@ BigMoneyJoe1: checks
 BigMoneyJoe1: checks 
 *** SHOW DOWN ***
 84nurik84: shows [Ah Qs] (a pair of Aces)
-BigMoneyJoe1: mucks hand 
+BigMoneyJoe1: mucks handDTO
 84nurik84 collected 1694 from pot
 *** SUMMARY ***
 Total pot 1694 | Rake 0 
@@ -4215,7 +4215,7 @@ RCABelVedeRVerd: folds
 Mimishka004: folds 
 Uncalled bet (165) returned to 84nurik84
 84nurik84 collected 510 from pot
-84nurik84: doesn't show hand 
+84nurik84: doesn't show handDTO
 *** SUMMARY ***
 Total pot 510 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -4329,7 +4329,7 @@ RCABelVedeRVerd: bets 1800
 BigMoneyJoe1: calls 1800
 *** SHOW DOWN ***
 RCABelVedeRVerd: shows [Tc Kc] (three of a kind, Kings)
-BigMoneyJoe1: mucks hand 
+BigMoneyJoe1: mucks handDTO
 RCABelVedeRVerd collected 7020 from pot
 *** SUMMARY ***
 Total pot 7020 | Rake 0 
@@ -4387,7 +4387,7 @@ BigMoneyJoe1: bets 255
 richard5189: folds 
 Uncalled bet (255) returned to BigMoneyJoe1
 BigMoneyJoe1 collected 510 from pot
-BigMoneyJoe1: doesn't show hand 
+BigMoneyJoe1: doesn't show handDTO
 *** SUMMARY ***
 Total pot 510 | Rake 0 
 Board [8s Ts 6c 7h]
@@ -4570,7 +4570,7 @@ ganadormx: folds
 RCABelVedeRVerd: folds 
 Uncalled bet (600) returned to 84nurik84
 84nurik84 collected 1744 from pot
-84nurik84: doesn't show hand 
+84nurik84: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1744 | Rake 0 
 Board [2d As Ts]
@@ -4620,7 +4620,7 @@ RCABelVedeRVerd is sitting out
 ganadormx: folds 
 Uncalled bet (100) returned to jcarlos.vale
 jcarlos.vale collected 362 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 362 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -4680,7 +4680,7 @@ richard5189: raises 781 to 981
 jcarlos.vale: folds 
 Uncalled bet (781) returned to richard5189
 richard5189 collected 1562 from pot
-richard5189: doesn't show hand 
+richard5189: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1562 | Rake 0 
 Board [9s 5c Th Js 8s]
@@ -4742,7 +4742,7 @@ Mimishka004: bets 1823
 84nurik84: calls 1823
 *** SHOW DOWN ***
 Mimishka004: shows [7c 7h] (three of a kind, Sevens)
-84nurik84: mucks hand 
+84nurik84: mucks handDTO
 Mimishka004 collected 9170 from pot
 *** SUMMARY ***
 Total pot 9170 | Rake 0 
@@ -4844,7 +4844,7 @@ richard5189: folds
 84nurik84: folds 
 Uncalled bet (202) returned to marquitopoker4
 marquitopoker4 collected 662 from pot
-marquitopoker4: doesn't show hand 
+marquitopoker4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 662 | Rake 0 
 Seat 1: marquitopoker4 collected (662)
@@ -4897,7 +4897,7 @@ Lokobarys Ninja: folds
 Lokobarys Ninja is sitting out
 Uncalled bet (853) returned to applefriend
 applefriend collected 1462 from pot
-applefriend: doesn't show hand 
+applefriend: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1462 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -4954,7 +4954,7 @@ marquitopoker4: folds
 Mimishka004: folds 
 Uncalled bet (746) returned to richard5189
 richard5189 collected 1492 from pot
-richard5189: doesn't show hand 
+richard5189: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1492 | Rake 0 
 Board [2h Th 5h]
@@ -5005,7 +5005,7 @@ marquitopoker4: folds
 Lokobarys Ninja: folds 
 Uncalled bet (3975) returned to ganadormx
 ganadormx collected 662 from pot
-ganadormx: doesn't show hand 
+ganadormx: doesn't show handDTO
 *** SUMMARY ***
 Total pot 662 | Rake 0 
 Seat 1: marquitopoker4 (small blind) folded before Flop
@@ -5174,14 +5174,14 @@ Mimishka004: calls 2530
 *** RIVER *** [4d 2c 3s 9d] [7c]
 *** SHOW DOWN ***
 Mimishka004: shows [As Ah] (a pair of Aces)
-Lokobarys Ninja: shows [Kh Ac] (high card Ace)
+Lokobarys Ninja: shows [Kh Ac] (high pairOfCards Ace)
 Mimishka004 collected 5704 from pot
 Lokobarys Ninja finished the tournament
 *** SUMMARY ***
 Total pot 5704 | Rake 0 
 Board [4d 2c 3s 9d 7c]
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
-Seat 2: Lokobarys Ninja showed [Kh Ac] and lost with high card Ace
+Seat 2: Lokobarys Ninja showed [Kh Ac] and lost with high pairOfCards Ace
 Seat 3: maajussi1 folded before Flop (didn't bet)
 Seat 4: jcarlos.vale (button) folded before Flop (didn't bet)
 Seat 5: RCABelVedeRVerd (small blind) folded before Flop
@@ -5227,7 +5227,7 @@ Mimishka004: folds
 richard5189: folds 
 Uncalled bet (400) returned to jcarlos.vale
 jcarlos.vale collected 805 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 805 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -5281,7 +5281,7 @@ maajussi1: bets 250
 84nurik84: folds 
 Uncalled bet (250) returned to maajussi1
 maajussi1 collected 1305 from pot
-maajussi1: doesn't show hand 
+maajussi1: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1305 | Rake 0 
 Board [5c Qd 8s]
@@ -5441,7 +5441,7 @@ Tooninone: folds
 Vitrex555: folds 
 Uncalled bet (4675) returned to marquitopoker4
 marquitopoker4 collected 910 from pot
-marquitopoker4: doesn't show hand 
+marquitopoker4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 910 | Rake 0 
 Seat 1: marquitopoker4 (small blind) collected (910)
@@ -5490,7 +5490,7 @@ Tooninone: folds
 maajussi1: folds 
 Uncalled bet (252) returned to marquitopoker4
 marquitopoker4 collected 805 from pot
-marquitopoker4: doesn't show hand 
+marquitopoker4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 805 | Rake 0 
 Seat 1: marquitopoker4 (button) collected (805)
@@ -5541,7 +5541,7 @@ jcarlos.vale: folds
 richard5189: folds 
 Uncalled bet (500) returned to Tooninone
 Tooninone collected 1055 from pot
-Tooninone: doesn't show hand 
+Tooninone: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1055 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -5606,7 +5606,7 @@ jcarlos.vale: bets 500
 Vitrex555: folds 
 Uncalled bet (500) returned to jcarlos.vale
 jcarlos.vale collected 2430 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2430 | Rake 0 
 Board [2d 8s 7s 2s Ah]
@@ -5712,7 +5712,7 @@ RCABelVedeRVerd: folds
 Mimishka004: folds 
 Uncalled bet (125) returned to richard5189
 richard5189 collected 430 from pot
-richard5189: doesn't show hand 
+richard5189: doesn't show handDTO
 *** SUMMARY ***
 Total pot 430 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -6256,7 +6256,7 @@ richard5189: folds
 Serghio2902: folds 
 Uncalled bet (600) returned to maajussi1
 maajussi1 collected 948 from pot
-maajussi1: doesn't show hand 
+maajussi1: doesn't show handDTO
 *** SUMMARY ***
 Total pot 948 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -6417,7 +6417,7 @@ marquitopoker4: bets 2630 and is all-in
 xxMich@ilxx: folds 
 Uncalled bet (2630) returned to marquitopoker4
 marquitopoker4 collected 798 from pot
-marquitopoker4: doesn't show hand 
+marquitopoker4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 798 | Rake 0 
 Board [8h 9c 8c]
@@ -6468,7 +6468,7 @@ xxMich@ilxx: folds
 maajussi1: folds 
 Uncalled bet (3000) returned to marquitopoker4
 marquitopoker4 collected 948 from pot
-marquitopoker4: doesn't show hand 
+marquitopoker4: doesn't show handDTO
 *** SUMMARY ***
 Total pot 948 | Rake 0 
 Seat 1: marquitopoker4 (button) collected (948)
@@ -6582,7 +6582,7 @@ jcarlos.vale: folds
 RCABelVedeRVerd: folds 
 Uncalled bet (300) returned to richard5189
 richard5189 collected 948 from pot
-richard5189: doesn't show hand 
+richard5189: doesn't show handDTO
 *** SUMMARY ***
 Total pot 948 | Rake 0 
 Seat 1: marquitopoker4 folded before Flop (didn't bet)
@@ -6643,7 +6643,7 @@ Mimishka004: checks
 maajussi1: checks 
 *** SHOW DOWN ***
 Mimishka004: shows [Td 2c] (three of a kind, Tens)
-maajussi1: mucks hand 
+maajussi1: mucks handDTO
 Mimishka004 collected 2072 from pot
 *** SUMMARY ***
 Total pot 2072 | Rake 0 
@@ -6812,7 +6812,7 @@ jcarlos.vale: bets 800
 Serghio2902: folds 
 Uncalled bet (800) returned to jcarlos.vale
 jcarlos.vale collected 2705 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2705 | Rake 0 
 Board [Ac As 2d]
@@ -6864,7 +6864,7 @@ marquitopoker4: folds
 maajussi1: folds 
 Uncalled bet (800) returned to richard5189
 richard5189 collected 1625 from pot
-richard5189: doesn't show hand 
+richard5189: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1625 | Rake 0 
 Seat 1: marquitopoker4 (big blind) folded before Flop
@@ -6970,7 +6970,7 @@ xxMich@ilxx: folds
 maajussi1: folds 
 Uncalled bet (200) returned to jcarlos.vale
 jcarlos.vale collected 600 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 600 | Rake 0 
 Seat 2: xxMich@ilxx (button) folded before Flop (didn't bet)
@@ -7025,7 +7025,7 @@ jcarlos.vale: folds
 RCABelVedeRVerd: folds 
 Uncalled bet (400) returned to Vitrex555
 Vitrex555 collected 1425 from pot
-Vitrex555: doesn't show hand 
+Vitrex555: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1425 | Rake 0 
 Board [6c 2d 6s]
@@ -7086,7 +7086,7 @@ Vitrex555: folds
 xxMich@ilxx: folds 
 Uncalled bet (1200) returned to maajussi1
 maajussi1 collected 2225 from pot
-maajussi1: doesn't show hand 
+maajussi1: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2225 | Rake 0 
 Board [2h Kd 6h]
@@ -7258,7 +7258,7 @@ Vitrex555: folds
 richard5189: calls 800
 *** SHOW DOWN ***
 Serghio2902: shows [Jc Ts] (three of a kind, Tens)
-richard5189: mucks hand 
+richard5189: mucks handDTO
 Serghio2902 collected 3025 from pot
 *** SUMMARY ***
 Total pot 3025 | Rake 0 
@@ -7309,7 +7309,7 @@ Serghio2902: folds
 Vitrex555: folds 
 Uncalled bet (200) returned to Zwuggl56
 Zwuggl56 collected 625 from pot
-Zwuggl56: doesn't show hand 
+Zwuggl56: doesn't show handDTO
 *** SUMMARY ***
 Total pot 625 | Rake 0 
 Seat 1: Zwuggl56 (big blind) collected (625)
@@ -7551,7 +7551,7 @@ RCABelVedeRVerd: folds
 Uncalled bet (1500) returned to jcarlos.vale
 *** SHOW DOWN ***
 jcarlos.vale: shows [2h 2s] (three of a kind, Deuces)
-richard5189: shows [Th Jc] (high card King)
+richard5189: shows [Th Jc] (high pairOfCards King)
 jcarlos.vale collected 3081 from pot
 richard5189 finished the tournament in 1011th place
 *** SUMMARY ***
@@ -7563,7 +7563,7 @@ Seat 3: maajussi1 (button) folded before Flop (didn't bet)
 Seat 4: jcarlos.vale (small blind) showed [2h 2s] and won (3081) with three of a kind, Deuces
 Seat 5: RCABelVedeRVerd (big blind) folded on the River
 Seat 6: Mimishka004 folded before Flop (didn't bet)
-Seat 7: richard5189 showed [Th Jc] and lost with high card King
+Seat 7: richard5189 showed [Th Jc] and lost with high pairOfCards King
 Seat 8: Serghio2902 folded before Flop (didn't bet)
 
 
@@ -7603,7 +7603,7 @@ RCABelVedeRVerd: raises 13715 to 14215 and is all-in
 Mimishka004: folds 
 Uncalled bet (13715) returned to RCABelVedeRVerd
 RCABelVedeRVerd collected 1270 from pot
-RCABelVedeRVerd: shows [Ac Kh] (high card Ace)
+RCABelVedeRVerd: shows [Ac Kh] (high pairOfCards Ace)
 *** SUMMARY ***
 Total pot 1270 | Rake 0 
 Seat 1: Zwuggl56 folded before Flop (didn't bet)
@@ -7660,7 +7660,7 @@ RtoG: raises 2346 to 4692
 Mimishka004: folds 
 Uncalled bet (2346) returned to RtoG
 RtoG collected 7588 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 7588 | Rake 0 
 Board [6s Jc 8c 3s]
@@ -7833,7 +7833,7 @@ RtoG: bets 9563 and is all-in
 xxMich@ilxx: folds 
 Uncalled bet (9563) returned to RtoG
 RtoG collected 6020 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6020 | Rake 0 
 Board [5d 4s Ts]
@@ -7889,7 +7889,7 @@ Serghio2902: folds
 xxMich@ilxx: folds 
 Uncalled bet (3500) returned to maajussi1
 maajussi1 collected 3520 from pot
-maajussi1: doesn't show hand 
+maajussi1: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3520 | Rake 0 
 Board [Qs 3s 2c]
@@ -7949,7 +7949,7 @@ RtoG: raises 1500 to 2500
 maajussi1: folds 
 Uncalled bet (1500) returned to RtoG
 RtoG collected 7095 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 7095 | Rake 0 
 Board [7c 8d Ks Ah]
@@ -8057,7 +8057,7 @@ jcarlos.vale: folds
 RCABelVedeRVerd: folds 
 Uncalled bet (1000) returned to sergucci82
 sergucci82 collected 1520 from pot
-sergucci82: doesn't show hand 
+sergucci82: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1520 | Rake 0 
 Seat 1: sergucci82 collected (1520)
@@ -8110,18 +8110,18 @@ maajussi1: calls 2866
 *** TURN *** [3s Ac 4s] [6h]
 *** RIVER *** [3s Ac 4s 6h] [7c]
 *** SHOW DOWN ***
-Mimishka004: shows [Kh 9h] (high card Ace)
-maajussi1: shows [9d Tc] (high card Ace - lower kicker)
+Mimishka004: shows [Kh 9h] (high pairOfCards Ace)
+maajussi1: shows [9d Tc] (high pairOfCards Ace - lower kicker)
 Mimishka004 collected 7252 from pot
 *** SUMMARY ***
 Total pot 7252 | Rake 0 
 Board [3s Ac 4s 6h 7c]
 Seat 1: sergucci82 folded before Flop (didn't bet)
 Seat 2: xxMich@ilxx folded before Flop (didn't bet)
-Seat 3: maajussi1 showed [9d Tc] and lost with high card Ace
+Seat 3: maajussi1 showed [9d Tc] and lost with high pairOfCards Ace
 Seat 4: jcarlos.vale (button) folded before Flop (didn't bet)
 Seat 5: RCABelVedeRVerd (small blind) folded before Flop
-Seat 6: Mimishka004 (big blind) showed [Kh 9h] and won (7252) with high card Ace
+Seat 6: Mimishka004 (big blind) showed [Kh 9h] and won (7252) with high pairOfCards Ace
 Seat 7: RtoG folded before Flop (didn't bet)
 Seat 8: Serghio2902 folded before Flop (didn't bet)
 Seat 9: samax15 folded before Flop (didn't bet)
@@ -8285,7 +8285,7 @@ RtoG: bets 1200
 samax15: folds 
 Uncalled bet (1200) returned to RtoG
 RtoG collected 1860 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1860 | Rake 0 
 Board [5h 7c 2d]
@@ -8340,7 +8340,7 @@ RtoG: bets 1200
 Mimishka004: folds 
 Uncalled bet (1200) returned to RtoG
 RtoG collected 3720 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3720 | Rake 0 
 Board [Js 7c 3d]
@@ -8394,7 +8394,7 @@ sergucci82: bets 1307
 xxMich@ilxx: folds 
 Uncalled bet (1307) returned to sergucci82
 sergucci82 collected 3960 from pot
-sergucci82: doesn't show hand 
+sergucci82: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3960 | Rake 0 
 Board [5h Jh Tc]
@@ -8444,7 +8444,7 @@ sergucci82: folds
 xxMich@ilxx: folds 
 Uncalled bet (300) returned to maajussi1
 maajussi1 collected 960 from pot
-maajussi1: doesn't show hand 
+maajussi1: doesn't show handDTO
 *** SUMMARY ***
 Total pot 960 | Rake 0 
 Seat 1: sergucci82 (button) folded before Flop (didn't bet)
@@ -8546,7 +8546,7 @@ jcarlos.vale: folds
 RCABelVedeRVerd: folds 
 Uncalled bet (600) returned to RtoG
 RtoG collected 1860 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1860 | Rake 0 
 Seat 1: sergucci82 folded before Flop (didn't bet)
@@ -8710,7 +8710,7 @@ RtoG: raises 600 to 1200
 Serghio2902: folds 
 Uncalled bet (600) returned to RtoG
 RtoG collected 1560 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1560 | Rake 0 
 Seat 1: sergucci82 folded before Flop (didn't bet)
@@ -8765,7 +8765,7 @@ RtoG: calls 5656
 *** TURN *** [3d Kc 2s] [Jc]
 *** RIVER *** [3d Kc 2s Jc] [6h]
 *** SHOW DOWN ***
-maajussi1: shows [Ac 9c] (high card Ace)
+maajussi1: shows [Ac 9c] (high pairOfCards Ace)
 RtoG: shows [4h Kh] (a pair of Kings)
 RtoG collected 17012 from pot
 maajussi1 finished the tournament in 731st place
@@ -8774,7 +8774,7 @@ Total pot 17012 | Rake 0
 Board [3d Kc 2s Jc 6h]
 Seat 1: sergucci82 folded before Flop (didn't bet)
 Seat 2: xxMich@ilxx folded before Flop (didn't bet)
-Seat 3: maajussi1 showed [Ac 9c] and lost with high card Ace
+Seat 3: maajussi1 showed [Ac 9c] and lost with high pairOfCards Ace
 Seat 4: jcarlos.vale folded on the Flop
 Seat 5: RCABelVedeRVerd folded before Flop (didn't bet)
 Seat 6: Mimishka004 folded before Flop (didn't bet)
@@ -8816,7 +8816,7 @@ samax15: folds
 sergucci82: folds 
 Uncalled bet (1120) returned to jcarlos.vale
 jcarlos.vale collected 2150 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2150 | Rake 0 
 Seat 1: sergucci82 (big blind) folded before Flop
@@ -8926,7 +8926,7 @@ neebimozgi123: bets 700
 jcarlos.vale: calls 700
 *** SHOW DOWN ***
 neebimozgi123: shows [3h Th] (two pair, Jacks and Threes)
-jcarlos.vale: mucks hand 
+jcarlos.vale: mucks handDTO
 neebimozgi123 collected 8640 from pot
 *** SUMMARY ***
 Total pot 8640 | Rake 0 
@@ -8981,7 +8981,7 @@ neebimozgi123: folds
 jcarlos.vale: folds 
 Uncalled bet (11799) returned to sergucci82
 sergucci82 collected 2200 from pot
-sergucci82: doesn't show hand 
+sergucci82: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2200 | Rake 0 
 Seat 1: sergucci82 collected (2200)
@@ -9330,7 +9330,7 @@ samax15: folds
 samax15 is sitting out
 Uncalled bet (350) returned to sergucci82
 sergucci82 collected 1150 from pot
-sergucci82: doesn't show hand 
+sergucci82: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1150 | Rake 0 
 Seat 1: sergucci82 (big blind) collected (1150)
@@ -9630,7 +9630,7 @@ RCABelVedeRVerd is sitting out
 Mimishka004: folds 
 Uncalled bet (1280) returned to jcarlos.vale
 jcarlos.vale collected 2585 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2585 | Rake 0 
 Seat 1: DimaAlienKO folded before Flop (didn't bet)
@@ -9850,7 +9850,7 @@ samax15: folds
 samax15 is sitting out
 Uncalled bet (400) returned to DimaAlienKO
 DimaAlienKO collected 1385 from pot
-DimaAlienKO: doesn't show hand 
+DimaAlienKO: doesn't show handDTO
 samax15 has returned
 *** SUMMARY ***
 Total pot 1385 | Rake 0 
@@ -9905,7 +9905,7 @@ Pisein31415: raises 11452 to 12252 and is all-in
 DimaAlienKO: folds 
 Uncalled bet (11452) returned to Pisein31415
 Pisein31415 collected 2185 from pot
-Pisein31415: doesn't show hand 
+Pisein31415: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2185 | Rake 0 
 Seat 1: DimaAlienKO (small blind) folded before Flop
@@ -9958,7 +9958,7 @@ neebimozgi123: folds
 Uncalled bet (1280) returned to jcarlos.vale
 samax15 has returned
 jcarlos.vale collected 2585 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2585 | Rake 0 
 Seat 1: DimaAlienKO (button) folded before Flop (didn't bet)
@@ -10011,7 +10011,7 @@ RtoG: calls 10707
 *** TURN *** [2s 6h 9s] [8d]
 *** RIVER *** [2s 6h 9s 8d] [Ad]
 *** SHOW DOWN ***
-RtoG: shows [Jh Th] (high card Ace)
+RtoG: shows [Jh Th] (high pairOfCards Ace)
 Pisein31415: shows [Kc Ac] (a pair of Aces)
 Pisein31415 collected 27999 from pot
 *** SUMMARY ***
@@ -10023,7 +10023,7 @@ Seat 3: neebimozgi123 (small blind) folded before Flop
 Seat 4: jcarlos.vale (big blind) folded before Flop
 Seat 5: RCABelVedeRVerd folded before Flop (didn't bet)
 Seat 6: Mimishka004 folded before Flop (didn't bet)
-Seat 7: RtoG showed [Jh Th] and lost with high card Ace
+Seat 7: RtoG showed [Jh Th] and lost with high pairOfCards Ace
 Seat 8: Serghio2902 folded before Flop (didn't bet)
 Seat 9: samax15 folded before Flop (didn't bet)
 
@@ -10136,7 +10136,7 @@ Serghio2902: folds
 Mimishka004: folds 
 Uncalled bet (1600) returned to RtoG
 RtoG collected 5785 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 5785 | Rake 0 
 Board [3h Kc 9c]
@@ -10199,7 +10199,7 @@ RtoG: bets 3000
 neebimozgi123: folds 
 Uncalled bet (3000) returned to RtoG
 RtoG collected 11175 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 11175 | Rake 0 
 Board [6c 4h 6d Qc]
@@ -10300,7 +10300,7 @@ Serghio2902: folds
 samax15: folds 
 Uncalled bet (1600) returned to jcarlos.vale
 jcarlos.vale collected 3175 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3175 | Rake 0 
 Seat 1: DimaAlienKO folded before Flop (didn't bet)
@@ -10351,7 +10351,7 @@ samax15: folds
 samax15 is sitting out
 Uncalled bet (500) returned to DimaAlienKO
 DimaAlienKO collected 1675 from pot
-DimaAlienKO: doesn't show hand 
+DimaAlienKO: doesn't show handDTO
 samax15 has returned
 *** SUMMARY ***
 Total pot 1675 | Rake 0 
@@ -10461,7 +10461,7 @@ jcarlos.vale: calls 5459
 *** RIVER *** [Kd 3d 9s 7c] [5s]
 *** SHOW DOWN ***
 jcarlos.vale: shows [Qc Qs] (a pair of Queens)
-Serghio2902: shows [Ac Qd] (high card Ace)
+Serghio2902: shows [Ac Qd] (high pairOfCards Ace)
 jcarlos.vale collected 18293 from pot
 Serghio2902 finished the tournament in 521st place and received $1.80.
 *** SUMMARY ***
@@ -10474,7 +10474,7 @@ Seat 4: jcarlos.vale showed [Qc Qs] and won (18293) with a pair of Queens
 Seat 5: RCABelVedeRVerd folded before Flop (didn't bet)
 Seat 6: Mimishka004 folded before Flop (didn't bet)
 Seat 7: RtoG folded before Flop (didn't bet)
-Seat 8: Serghio2902 showed [Ac Qd] and lost with high card Ace
+Seat 8: Serghio2902 showed [Ac Qd] and lost with high pairOfCards Ace
 Seat 9: samax15 folded before Flop (didn't bet)
 
 
@@ -10748,7 +10748,7 @@ Pisein31415: bets 3600
 Mimishka004: folds 
 Uncalled bet (3600) returned to Pisein31415
 Pisein31415 collected 7410 from pot
-Pisein31415: doesn't show hand 
+Pisein31415: doesn't show handDTO
 *** SUMMARY ***
 Total pot 7410 | Rake 0 
 Board [Th 5h 9h Tc]
@@ -10799,7 +10799,7 @@ calve88: folds
 samax15: folds 
 Uncalled bet (1200) returned to DimaAlienKO
 DimaAlienKO collected 3810 from pot
-DimaAlienKO: doesn't show hand 
+DimaAlienKO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3810 | Rake 0 
 Seat 1: DimaAlienKO collected (3810)
@@ -10975,7 +10975,7 @@ Pisein31415: bets 1200
 neebimozgi123: folds 
 Uncalled bet (1200) returned to Pisein31415
 Pisein31415 collected 3210 from pot
-Pisein31415: doesn't show hand 
+Pisein31415: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3210 | Rake 0 
 Board [7d Ad Td]
@@ -11029,7 +11029,7 @@ RtoG: bets 3600
 Pisein31415: folds 
 Uncalled bet (3600) returned to RtoG
 RtoG collected 7410 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 7410 | Rake 0 
 Board [9d 8c 9c]
@@ -11083,7 +11083,7 @@ samax15 has returned
 RCABelVedeRVerd: folds 
 Uncalled bet (11318) returned to calve88
 calve88 collected 3810 from pot
-calve88: doesn't show hand 
+calve88: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3810 | Rake 0 
 Seat 1: DimaAlienKO folded before Flop (didn't bet)
@@ -11144,7 +11144,7 @@ DimaAlienKO: bets 3600
 Mimishka004: folds 
 Uncalled bet (3600) returned to DimaAlienKO
 DimaAlienKO collected 11010 from pot
-DimaAlienKO: doesn't show hand 
+DimaAlienKO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 11010 | Rake 0 
 Board [Ks As Qh 7d]
@@ -11200,7 +11200,7 @@ Mimishka004: folds
 Uncalled bet (600) returned to RtoG
 jcarlos.vale has returned
 RtoG collected 2010 from pot
-RtoG: doesn't show hand 
+RtoG: doesn't show handDTO
 *** SUMMARY ***
 Total pot 2010 | Rake 0 
 Seat 1: DimaAlienKO folded before Flop (didn't bet)
@@ -11253,7 +11253,7 @@ RtoG: folds
 calve88: folds 
 Uncalled bet (1200) returned to Pisein31415
 Pisein31415 collected 3810 from pot
-Pisein31415: doesn't show hand 
+Pisein31415: doesn't show handDTO
 *** SUMMARY ***
 Total pot 3810 | Rake 0 
 Seat 1: DimaAlienKO folded before Flop (didn't bet)
@@ -11369,7 +11369,7 @@ jcarlos.vale: bets 5558
 Pisein31415: folds 
 Uncalled bet (5558) returned to jcarlos.vale
 jcarlos.vale collected 7410 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 7410 | Rake 0 
 Board [5c 6s Ac]
@@ -11537,7 +11537,7 @@ neebimozgi123: folds
 jcarlos.vale: folds 
 Uncalled bet (3069) returned to Pisein31415
 Pisein31415 collected 9300 from pot
-Pisein31415: doesn't show hand 
+Pisein31415: doesn't show handDTO
 *** SUMMARY ***
 Total pot 9300 | Rake 0 
 Board [Th Qh Ts]
@@ -11641,7 +11641,7 @@ neebimozgi123: calls 15824
 *** TURN *** [6h 5s 4d] [9d]
 *** RIVER *** [6h 5s 4d 9d] [Jd]
 *** SHOW DOWN ***
-Mimishka004: shows [Ts 8s] (high card Jack)
+Mimishka004: shows [Ts 8s] (high pairOfCards Jack)
 neebimozgi123: shows [Td Qd] (a flush, Queen high)
 neebimozgi123 collected 41648 from pot
 Mimishka004 finished the tournament in 363rd place and received $2.50.
@@ -11653,7 +11653,7 @@ Seat 2: Pisein31415 folded before Flop (didn't bet)
 Seat 3: neebimozgi123 showed [Td Qd] and won (41648) with a flush, Queen high
 Seat 4: jcarlos.vale (button) folded before Flop (didn't bet)
 Seat 5: RCABelVedeRVerd (small blind) folded before Flop
-Seat 6: Mimishka004 (big blind) showed [Ts 8s] and lost with high card Jack
+Seat 6: Mimishka004 (big blind) showed [Ts 8s] and lost with high pairOfCards Jack
 Seat 7: RtoG folded before Flop (didn't bet)
 Seat 8: calve88 folded before Flop (didn't bet)
 Seat 9: samax15 folded before Flop (didn't bet)
@@ -11814,7 +11814,7 @@ DimaAlienKO: folds
 Pisein31415: folds 
 Uncalled bet (2240) returned to jcarlos.vale
 jcarlos.vale collected 4300 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 4300 | Rake 0 
 Seat 1: DimaAlienKO (small blind) folded before Flop
@@ -11866,7 +11866,7 @@ DimaAlienKO: folds
 neebimozgi123: folds 
 Uncalled bet (12045) returned to jcarlos.vale
 jcarlos.vale collected 16060 from pot
-jcarlos.vale: doesn't show hand 
+jcarlos.vale: doesn't show handDTO
 *** SUMMARY ***
 Total pot 16060 | Rake 0 
 Board [6h Th 2c]
@@ -11972,7 +11972,7 @@ jcarlos.vale: folds
 RCABelVedeRVerd: folds 
 Uncalled bet (1600) returned to Rariontz_1990
 Rariontz_1990 collected 5925 from pot
-Rariontz_1990: doesn't show hand 
+Rariontz_1990: doesn't show handDTO
 *** SUMMARY ***
 Total pot 5925 | Rake 0 
 Board [Th Tc 5c]
@@ -12032,7 +12032,7 @@ RtoG: bets 14562
 DeadManRay66: calls 14562
 *** SHOW DOWN ***
 RtoG: shows [7s 6s] (three of a kind, Sixes)
-DeadManRay66: mucks hand 
+DeadManRay66: mucks handDTO
 RtoG collected 58249 from pot
 *** SUMMARY ***
 Total pot 58249 | Rake 0 
@@ -12194,7 +12194,7 @@ DeadManRay66: folds
 DimaAlienKO: folds 
 Uncalled bet (15290) returned to Rariontz_1990
 Rariontz_1990 collected 5000 from pot
-Rariontz_1990: doesn't show hand 
+Rariontz_1990: doesn't show handDTO
 *** SUMMARY ***
 Total pot 5000 | Rake 0 
 Seat 1: DimaAlienKO (big blind) folded before Flop
@@ -12241,7 +12241,7 @@ Pisein31415: folds
 Rariontz_1990: folds 
 Uncalled bet (6600) returned to DeadManRay66
 DeadManRay66 collected 6600 from pot
-DeadManRay66: doesn't show hand 
+DeadManRay66: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6600 | Rake 0 
 Seat 1: DimaAlienKO (small blind) folded before Flop
@@ -12296,7 +12296,7 @@ Pisein31415: bets 5019
 sumatrix: folds 
 Uncalled bet (5019) returned to Pisein31415
 Pisein31415 collected 9125 from pot
-Pisein31415: doesn't show hand 
+Pisein31415: doesn't show handDTO
 *** SUMMARY ***
 Total pot 9125 | Rake 0 
 Board [6d Kc 7d 5s]
@@ -12475,7 +12475,7 @@ RCABelVedeRVerd: folds
 Rariontz_1990: folds 
 Uncalled bet (1600) returned to Pisein31415
 Pisein31415 collected 5125 from pot
-Pisein31415: doesn't show hand 
+Pisein31415: doesn't show handDTO
 *** SUMMARY ***
 Total pot 5125 | Rake 0 
 Seat 1: DimaAlienKO folded before Flop (didn't bet)
@@ -12529,7 +12529,7 @@ DimaAlienKO: bets 3200
 RtoG: folds 
 Uncalled bet (3200) returned to DimaAlienKO
 DimaAlienKO collected 8325 from pot
-DimaAlienKO: doesn't show hand 
+DimaAlienKO: doesn't show handDTO
 *** SUMMARY ***
 Total pot 8325 | Rake 0 
 Board [9h 5d Js]
@@ -12710,7 +12710,7 @@ DimaAlienKO: bets 1800
 RtoG: raises 7200 to 9000
 DimaAlienKO: calls 7200
 *** SHOW DOWN ***
-RtoG: shows [6d Kd] (high card King)
+RtoG: shows [6d Kd] (high pairOfCards King)
 DimaAlienKO: shows [Ts Ks] (a pair of Tens)
 DimaAlienKO collected 38250 from pot
 *** SUMMARY ***
@@ -12722,7 +12722,7 @@ Seat 3: neebimozgi123 folded before Flop (didn't bet)
 Seat 4: jcarlos.vale folded before Flop (didn't bet)
 Seat 5: RCABelVedeRVerd folded before Flop (didn't bet)
 Seat 6: Rariontz_1990 folded before Flop (didn't bet)
-Seat 7: RtoG showed [6d Kd] and lost with high card King
+Seat 7: RtoG showed [6d Kd] and lost with high pairOfCards King
 Seat 8: sumatrix (button) folded before Flop (didn't bet)
 Seat 9: DeadManRay66 (small blind) folded before Flop
 
@@ -12775,7 +12775,7 @@ DimaAlienKO: folds
 goszary: folds 
 Uncalled bet (3600) returned to sumatrix
 sumatrix collected 6750 from pot
-sumatrix: doesn't show hand 
+sumatrix: doesn't show handDTO
 *** SUMMARY ***
 Total pot 6750 | Rake 0 
 Board [8h Ts 8s Qc]
@@ -12888,7 +12888,7 @@ davies/crabtree: bets 4836
 jcarlos.vale: folds 
 Uncalled bet (4836) returned to davies/crabtree
 davies/crabtree collected 9300 from pot
-davies/crabtree: doesn't show hand 
+davies/crabtree: doesn't show handDTO
 *** SUMMARY ***
 Total pot 9300 | Rake 0 
 Board [Ad Qh Ac]
@@ -12999,7 +12999,7 @@ korol.al: bets 5508
 BOBO 1307: folds 
 Uncalled bet (5508) returned to korol.al
 korol.al collected 14700 from pot
-korol.al: doesn't show hand 
+korol.al: doesn't show handDTO
 *** SUMMARY ***
 Total pot 14700 | Rake 0 
 Board [4s Jc 2c]
@@ -13123,7 +13123,7 @@ HFQuaresma: bets 33172
 BOBO 1307: folds 
 Uncalled bet (33172) returned to HFQuaresma
 HFQuaresma collected 50260 from pot
-HFQuaresma: doesn't show hand 
+HFQuaresma: doesn't show handDTO
 *** SUMMARY ***
 Total pot 50260 | Rake 0 
 Board [Th Qd 6s 7d Kc]
@@ -13178,7 +13178,7 @@ davies/crabtree: bets 8910
 BOBO 1307: folds 
 Uncalled bet (8910) returned to davies/crabtree
 davies/crabtree collected 12375 from pot
-davies/crabtree: doesn't show hand 
+davies/crabtree: doesn't show handDTO
 *** SUMMARY ***
 Total pot 12375 | Rake 0 
 Board [4d Kc 8d]
@@ -13236,7 +13236,7 @@ avensisken: bets 5288
 korol.al: folds 
 Uncalled bet (5288) returned to avensisken
 avensisken collected 10575 from pot
-avensisken: doesn't show hand 
+avensisken: doesn't show handDTO
 *** SUMMARY ***
 Total pot 10575 | Rake 0 
 Board [3d Kd Qd Qc]
@@ -13295,7 +13295,7 @@ HFQuaresma: bets 9430
 avensisken: folds 
 Uncalled bet (9430) returned to HFQuaresma
 HFQuaresma collected 28575 from pot
-HFQuaresma: doesn't show hand 
+HFQuaresma: doesn't show handDTO
 *** SUMMARY ***
 Total pot 28575 | Rake 0 
 Board [Ks 9d 4c]
@@ -13356,7 +13356,7 @@ korol.al: bets 4360
 marka19: calls 4360
 *** SHOW DOWN ***
 korol.al: shows [Kh Th] (two pair, Kings and Sevens)
-marka19: mucks hand 
+marka19: mucks handDTO
 korol.al collected 23295 from pot
 *** SUMMARY ***
 Total pot 23295 | Rake 0 
@@ -13422,7 +13422,7 @@ marka19: bets 2000
 HFQuaresma: calls 2000
 *** SHOW DOWN ***
 marka19: shows [9c Qc] (a full house, Sixes full of Queens)
-HFQuaresma: mucks hand 
+HFQuaresma: mucks handDTO
 marka19 collected 19575 from pot
 *** SUMMARY ***
 Total pot 19575 | Rake 0 

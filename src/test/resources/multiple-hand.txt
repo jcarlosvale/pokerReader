@@ -47,7 +47,7 @@ Oliver N76: folds
 W SERENA: folds 
 Uncalled bet (300) returned to mjmj1971
 mjmj1971 collected 440 from pot
-mjmj1971: doesn't show hand 
+mjmj1971: doesn't show handDTO
 *** SUMMARY ***
 Total pot 440 | Rake 0 
 Board [7s 5h Jc Qd 8d]
@@ -102,7 +102,7 @@ mjmj1971: folds
 Oliver N76: folds 
 Uncalled bet (2597) returned to H3ll5cream
 H3ll5cream collected 590 from pot
-H3ll5cream: doesn't show hand 
+H3ll5cream: doesn't show handDTO
 *** SUMMARY ***
 Total pot 590 | Rake 0 
 Seat 1: W SERENA folded before Flop
@@ -156,7 +156,7 @@ W SERENA: bets 500
 jcarlos.vale: folds 
 Uncalled bet (500) returned to W SERENA
 W SERENA collected 340 from pot
-W SERENA: doesn't show hand 
+W SERENA: doesn't show handDTO
 *** SUMMARY ***
 Total pot 340 | Rake 0 
 Board [9c Ts 5s]
@@ -206,7 +206,7 @@ H3ll5cream: folds
 jcarlos.vale: folds 
 Uncalled bet (50) returned to W SERENA
 W SERENA collected 190 from pot
-W SERENA: doesn't show hand 
+W SERENA: doesn't show handDTO
 *** SUMMARY ***
 Total pot 190 | Rake 0 
 Seat 1: W SERENA (big blind) collected (190)
@@ -270,7 +270,7 @@ mjmj1971: bets 100
 W SERENA: folds 
 Uncalled bet (100) returned to mjmj1971
 mjmj1971 collected 590 from pot
-mjmj1971: doesn't show hand 
+mjmj1971: doesn't show handDTO
 *** SUMMARY ***
 Total pot 590 | Rake 0 
 Board [6d 6h 3s Td 2h]
@@ -380,7 +380,7 @@ GunDolfAA: bets 618
 W SERENA: folds
 Uncalled bet (618) returned to GunDolfAA
 GunDolfAA collected 1236 from pot
-GunDolfAA: doesn't show hand
+GunDolfAA: doesn't show handDTO
 *** SUMMARY ***
 Total pot 1236 | Rake 0
 Board [8s Ks 6c]
@@ -489,7 +489,7 @@ GunDolfAA: folds
 Oliver N76: folds
 Uncalled bet (840) returned to W SERENA
 W SERENA collected 408 from pot
-W SERENA: doesn't show hand
+W SERENA: doesn't show handDTO
 *** SUMMARY ***
 Total pot 408 | Rake 0
 Seat 1: W SERENA collected (408)
@@ -607,7 +607,7 @@ matalaha: checks
 GunDolfAA: checks
 *** SHOW DOWN ***
 matalaha: shows [Ts Qs] (a pair of Tens)
-GunDolfAA: mucks hand
+GunDolfAA: mucks handDTO
 matalaha collected 1958 from pot
 *** SUMMARY ***
 Total pot 1958 | Rake 0
@@ -724,15 +724,15 @@ schlier4: checks
 VitalikX77: checks
 schlier4: checks
 *** SHOW DOWN ***
-W SERENA: shows [Ts 3s] (high card Jack)
+W SERENA: shows [Ts 3s] (high pairOfCards Jack)
 VitalikX77: shows [7s 9s] (a pair of Sevens)
-schlier4: mucks hand
+schlier4: mucks handDTO
 VitalikX77 collected 2682 from pot
 W SERENA finished the tournament
 *** SUMMARY ***
 Total pot 2682 | Rake 0
 Board [Js 2d 6d 4c 7d]
-Seat 1: W SERENA (small blind) showed [Ts 3s] and lost with high card Jack
+Seat 1: W SERENA (small blind) showed [Ts 3s] and lost with high pairOfCards Jack
 Seat 2: matalaha (big blind) folded before Flop
 Seat 3: VitalikX77 showed [7s 9s] and won (2682) with a pair of Sevens
 Seat 4: schlier4 mucked [5s As]
@@ -776,7 +776,7 @@ VitalikX77: folds
 schlier4: folds
 Uncalled bet (120) returned to mjmj1971
 mjmj1971 collected 396 from pot
-mjmj1971: doesn't show hand
+mjmj1971: doesn't show handDTO
 *** SUMMARY ***
 Total pot 396 | Rake 0
 Seat 2: matalaha (button) folded before Flop (didn't bet)
@@ -825,7 +825,7 @@ schlier4: folds
 mjmj1971: folds
 Uncalled bet (408) returned to hyha692
 hyha692 collected 408 from pot
-hyha692: doesn't show hand
+hyha692: doesn't show handDTO
 *** SUMMARY ***
 Total pot 408 | Rake 0
 Seat 1: hyha692 collected (408)

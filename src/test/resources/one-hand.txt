@@ -47,7 +47,7 @@ Oliver N76: folds
 W SERENA: folds
 Uncalled bet (300) returned to mjmj1971
 mjmj1971 collected 440 from pot
-mjmj1971: doesn't show hand
+mjmj1971: doesn't show handDTO
 *** SUMMARY ***
 Total pot 440 | Rake 0
 Board [7s 5h Jc Qd 8d]

@@ -1,6 +1,6 @@
 package com.poker.reader.parser.util;
 
-import com.poker.reader.entity.*;
+import com.poker.reader.dto.*;
 import com.poker.reader.exception.InvalidInfoPlayerAtHand;
 import com.poker.reader.exception.InvalidTypeActionException;
 import org.apache.commons.lang3.StringUtils;
@@ -11,20 +11,20 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.poker.reader.entity.TypeInfo.COLLECTED;
-import static com.poker.reader.entity.TypeInfo.WON;
+import static com.poker.reader.dto.TypeInfo.COLLECTED;
+import static com.poker.reader.dto.TypeInfo.WON;
 import static com.poker.reader.parser.util.FileParserUtil.*;
 import static com.poker.reader.parser.util.Tokens.*;
 
 public class FileParser {
 
-    public static Tournament extractTournament(String line) {
-        return Tournament.builder().id(extractLong(line, START_TOURNAMENT, END_TOURNAMENT))
+    public static TournamentDTO extractTournament(String line) {
+        return TournamentDTO.builder().id(extractLong(line, START_TOURNAMENT, END_TOURNAMENT))
                 .buyIn(extractBigDecimal(line, START_BUY_IN_PRIZE, END_BUY_IN_PRIZE)).build();
     }
 
-    public static Hand extractHand(String line) {
-        return Hand.builder().id(extractLong(line, START_HAND, END_HAND)).level(extract(line, START_LEVEL, END_LEVEL))
+    public static HandDTO extractHand(String line) {
+        return HandDTO.builder().id(extractLong(line, START_HAND, END_HAND)).level(extract(line, START_LEVEL, END_LEVEL))
                 .smallBlind(extractInteger(line, START_SMALL_BLIND, END_SMALL_BLIND))
                 .bigBlind(extractInteger(line, START_BIG_BLIND, END_BIG_BLIND))
                 .date(extractLocalDate(line, START_DATE, END_DATE)).build();
@@ -39,10 +39,10 @@ public class FileParser {
     }
 
 
-    public static Seat extractSeat(String line) {
+    public static SeatDTO extractSeat(String line) {
         String nickname = extractNickname(line, START_PLAYER, END_PLAYER);
-        return Seat.builder().seatId(extractInteger(line, START_SEAT_POSITION, END_SEAT_POSITION))
-                .player(Player.builder().nickname(nickname).build())
+        return SeatDTO.builder().seatId(extractInteger(line, START_SEAT_POSITION, END_SEAT_POSITION))
+                .playerDTO(PlayerDTO.builder().nickname(nickname).build())
                 .stack(extractLong(line, nickname+START_STACK, END_STACK)).build();
     }
 
@@ -65,7 +65,7 @@ public class FileParser {
         TypeAction typeAction = selectTypeAction(line);
         Action action =
                 Action.builder()
-                .player(Player.builder().nickname(StringUtils.substringBefore(line, ":").trim()).build())
+                .playerDTO(PlayerDTO.builder().nickname(StringUtils.substringBefore(line, ":").trim()).build())
                 .typeAction(typeAction)
                 .value(extractValueFromAction(line, typeAction))
                 .build();
@@ -79,14 +79,14 @@ public class FileParser {
     public static HoldCards extractHoldCards(String line) {
         if (line.contains(DEALT_TO)) {
             return HoldCards.builder()
-                    .player(Player.builder().nickname(extract(line, DEALT_TO, START_CARD)).build())
+                    .playerDTO(PlayerDTO.builder().nickname(extract(line, DEALT_TO, START_CARD)).build())
                     .card1(extractCard(line, START_CARD, END_CARD, 1)).card2(extractCard(line, START_CARD, END_CARD, 2))
                     .build();
         } else {
             String card1 = extractCard(line, START_CARD, END_CARD, 1);
             String card2 = extractCard(line, START_CARD, END_CARD, 2);
             return HoldCards.builder()
-                    .player(Player.builder().nickname(StringUtils.substringBefore(line, ":").trim()).build())
+                    .playerDTO(PlayerDTO.builder().nickname(StringUtils.substringBefore(line, ":").trim()).build())
                     .card1(card1)
                     .card2(card2)
                     .build();

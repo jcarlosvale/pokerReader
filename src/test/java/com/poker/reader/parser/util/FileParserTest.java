@@ -1,16 +1,15 @@
 package com.poker.reader.parser.util;
 
-import com.poker.reader.entity.*;
+import com.poker.reader.dto.*;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.poker.reader.entity.TypeAction.*;
+import static com.poker.reader.dto.TypeAction.*;
 import static com.poker.reader.parser.util.FileParser.*;
 import static com.poker.reader.parser.util.FileParserUtil.DATE_TIME_FORMAT;
 import static org.junit.Assert.assertEquals;
@@ -21,9 +20,9 @@ public class FileParserTest {
     public void extractTournamentTest() {
         String line = "PokerStars Hand #210434850106: Tournament #2834364251, $0.23+$0.02 USD Hold'em No Limit - " +
                 "Level I (10/20) - 2020/03/21 16:33:37 EET [2020/03/21 10:33:37 ET]\n";
-        Tournament expectedTournament = Tournament.builder().id(2834364251L).buyIn(BigDecimal.valueOf(0.25)).build();
-        Tournament actualTournament = extractTournament(line);
-        assertEquals(expectedTournament, actualTournament);
+        TournamentDTO expectedTournamentDTO = TournamentDTO.builder().id(2834364251L).buyIn(BigDecimal.valueOf(0.25)).build();
+        TournamentDTO actualTournamentDTO = extractTournament(line);
+        assertEquals(expectedTournamentDTO, actualTournamentDTO);
     }
 
     @Test
@@ -31,10 +30,10 @@ public class FileParserTest {
         String line = "PokerStars Hand #210434850106: Tournament #2834364251, $0.23+$0.02 USD Hold'em No Limit - " +
                 "Level I (10/20) - 2020/03/21 16:33:37 EET [2020/03/21 10:33:37 ET]\n";
         LocalDate date = LocalDate.parse("2020/03/21", DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
-        Hand expectedHand =
-                Hand.builder().id(210434850106L).level("I").smallBlind(10).bigBlind(20).date(date).build();
-        Hand actualHand = extractHand(line);
-        assertEquals(expectedHand, actualHand);
+        HandDTO expectedHandDTO =
+                HandDTO.builder().id(210434850106L).level("I").smallBlind(10).bigBlind(20).date(date).build();
+        HandDTO actualHandDTO = extractHand(line);
+        assertEquals(expectedHandDTO, actualHandDTO);
     }
 
     @Test
@@ -56,9 +55,9 @@ public class FileParserTest {
     @Test
     public void extractSeatTest() {
         String line = "Seat 7: Oliver N76 (13836 in chips)";
-        Seat expected = Seat.builder().seatId(7).player(Player.builder().nickname("Oliver N76").build()).stack(13836L)
+        SeatDTO expected = SeatDTO.builder().seatId(7).playerDTO(PlayerDTO.builder().nickname("Oliver N76").build()).stack(13836L)
                 .build();
-        Seat actual = extractSeat(line);
+        SeatDTO actual = extractSeat(line);
         assertEquals(expected, actual);
     }
 
@@ -100,59 +99,59 @@ public class FileParserTest {
         String line = "H3ll5cream: raises 2597 to 2697 and is all-in";
         Action actual = extractAction(line);
         Action expected =
-                Action.builder().player(Player.builder().nickname("H3ll5cream").build()).typeAction(TypeAction.ALL_IN).value(2697L).build();
+                Action.builder().playerDTO(PlayerDTO.builder().nickname("H3ll5cream").build()).typeAction(TypeAction.ALL_IN).value(2697L).build();
         assertEquals(expected, actual);
 
         line = "GunDolfAA: raises 360 to 480";
         actual = extractAction(line);
-        expected = Action.builder().player(Player.builder().nickname("GunDolfAA").build()).typeAction(TypeAction.RAISE)
+        expected = Action.builder().playerDTO(PlayerDTO.builder().nickname("GunDolfAA").build()).typeAction(TypeAction.RAISE)
                 .value(480L).build();
         assertEquals(expected, actual);
 
         line = "W SERENA: calls 480";
         actual = extractAction(line);
-        expected = Action.builder().player(Player.builder().nickname("W SERENA").build()).typeAction(TypeAction.CALL)
+        expected = Action.builder().playerDTO(PlayerDTO.builder().nickname("W SERENA").build()).typeAction(TypeAction.CALL)
                 .value(480L).build();
         assertEquals(expected, actual);
 
 
         line = "H3ll5cream: folds ";
         actual = extractAction(line);
-        expected = Action.builder().player(Player.builder().nickname("H3ll5cream").build()).typeAction(TypeAction.FOLD)
+        expected = Action.builder().playerDTO(PlayerDTO.builder().nickname("H3ll5cream").build()).typeAction(TypeAction.FOLD)
                 .value(0L).build();
         assertEquals(expected, actual);
 
         line = "mjmj1971: checks ";
         actual = extractAction(line);
-        expected = Action.builder().player(Player.builder().nickname("mjmj1971").build()).typeAction(TypeAction.CHECK)
+        expected = Action.builder().playerDTO(PlayerDTO.builder().nickname("mjmj1971").build()).typeAction(TypeAction.CHECK)
                 .value(0L).build();
         assertEquals(expected, actual);
 
         line = "GunDolfAA: bets 120";
         actual = extractAction(line);
-        expected = Action.builder().player(Player.builder().nickname("GunDolfAA").build()).typeAction(TypeAction.BETS)
+        expected = Action.builder().playerDTO(PlayerDTO.builder().nickname("GunDolfAA").build()).typeAction(TypeAction.BETS)
                 .value(120L).build();
         assertEquals(expected, actual);
 
         line = "VitalikX77: calls 4604 and is all-in";
         actual = extractAction(line);
-        expected = Action.builder().player(Player.builder().nickname("VitalikX77").build())
+        expected = Action.builder().playerDTO(PlayerDTO.builder().nickname("VitalikX77").build())
                 .typeAction(ALL_IN).value(4604L).build();
         assertEquals(expected, actual);
 
         line = "mjmj1971: doesn't show hand";
         actual = extractAction(line);
-        expected = Action.builder().player(Player.builder().nickname("mjmj1971").build())
+        expected = Action.builder().playerDTO(PlayerDTO.builder().nickname("mjmj1971").build())
                 .typeAction(NO_SHOW_HAND).value(0L).build();
         assertEquals(expected, actual);
 
         line = "xTheWindelPilot: shows [8s 8h] (four of a kind, Nines)";
         actual = extractAction(line);
         expected = Action.builder()
-                .player(Player.builder().nickname("xTheWindelPilot").build())
+                .playerDTO(PlayerDTO.builder().nickname("xTheWindelPilot").build())
                 .typeAction(SHOW_HAND)
                 .holdCards(HoldCards.builder()
-                        .player(Player.builder().nickname("xTheWindelPilot").build())
+                        .playerDTO(PlayerDTO.builder().nickname("xTheWindelPilot").build())
                         .card1("8s").card2("8h").build())
                 .scoring("four of a kind, Nines").build();
         assertEquals(expected, actual);
@@ -160,7 +159,7 @@ public class FileParserTest {
         line = "GunDolfAA: mucks hand";
         actual = extractAction(line);
         expected = Action.builder()
-                .player(Player.builder().nickname("GunDolfAA").build())
+                .playerDTO(PlayerDTO.builder().nickname("GunDolfAA").build())
                 .typeAction(MUCKS_HAND)
                 .build();
         assertEquals(expected, actual);
@@ -171,18 +170,18 @@ public class FileParserTest {
         String line = "Dealt to jcarlos.vale [3d Tc]";
         HoldCards actual = FileParser.extractHoldCards(line);
         HoldCards expected =
-                HoldCards.builder().card1("3d").card2("Tc").player(Player.builder().nickname("jcarlos.vale").build()).build();
+                HoldCards.builder().card1("3d").card2("Tc").playerDTO(PlayerDTO.builder().nickname("jcarlos.vale").build()).build();
         assertEquals(expected, actual);
 
         line = "Oliver N76: folds [8c 8s]";
         actual = FileParser.extractHoldCards(line);
-        expected = HoldCards.builder().card1("8c").card2("8s").player(Player.builder().nickname("Oliver N76").build())
+        expected = HoldCards.builder().card1("8c").card2("8s").playerDTO(PlayerDTO.builder().nickname("Oliver N76").build())
                 .build();
         assertEquals(expected, actual);
 
         line = "GunDolfAA: folds";
         actual = FileParser.extractHoldCards(line);
-        expected = HoldCards.builder().card1(null).card2(null).player(Player.builder().nickname("GunDolfAA").build())
+        expected = HoldCards.builder().card1(null).card2(null).playerDTO(PlayerDTO.builder().nickname("GunDolfAA").build())
                 .build();
         assertEquals(expected, actual);
     }

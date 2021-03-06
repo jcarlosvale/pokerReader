@@ -1,4 +1,4 @@
-package com.poker.reader.entity;
+package com.poker.reader.dto;
 
 import lombok.Builder;
 import lombok.Data;

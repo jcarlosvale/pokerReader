@@ -1,6 +1,6 @@
 package com.poker.reader.parser;
 
-import com.poker.reader.entity.*;
+import com.poker.reader.dto.*;
 import com.poker.reader.exception.InvalidSectionFileException;
 import com.poker.reader.parser.util.TypeFileSection;
 import com.poker.reader.validator.HandValidator;
@@ -17,11 +17,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import static com.poker.reader.entity.TypeStreet.FLOP;
-import static com.poker.reader.entity.TypeStreet.RIVER;
-import static com.poker.reader.entity.TypeStreet.SHOWDOWN;
-import static com.poker.reader.entity.TypeStreet.TURN;
-import static com.poker.reader.entity.TypeStreet.*;
+import static com.poker.reader.dto.TypeStreet.FLOP;
+import static com.poker.reader.dto.TypeStreet.RIVER;
+import static com.poker.reader.dto.TypeStreet.SHOWDOWN;
+import static com.poker.reader.dto.TypeStreet.TURN;
+import static com.poker.reader.dto.TypeStreet.*;
 import static com.poker.reader.parser.util.FileParser.*;
 import static com.poker.reader.parser.util.Tokens.*;
 import static com.poker.reader.parser.util.TypeFileSection.*;
@@ -31,9 +31,10 @@ import static com.poker.reader.parser.util.TypeFileSection.*;
 @Service
 public class FileReaderProcessor {
 
-    private final LinkedList<Hand> handList = new LinkedList<>();
     @Getter
-    private final Set<Player> players = new HashSet<>();
+    private final LinkedList<HandDTO> handDTOList = new LinkedList<>();
+    @Getter
+    private final Set<PlayerDTO> playerDTOS = new HashSet<>();
     private File file;
 
     public List<File> readDirectory(String directoryPath) {
@@ -104,98 +105,98 @@ public class FileReaderProcessor {
     }
 
     private boolean validate() {
-        Hand hand = handList.getLast();
-        return HandValidator.validate(hand);
+        HandDTO handDTO = handDTOList.getLast();
+        return HandValidator.validate(handDTO);
     }
 
     private void processRiver(String line) {
-        Hand hand = handList.getLast();
+        HandDTO handDTO = handDTOList.getLast();
         if (line.contains(SECTION_RIVER)) {
             River river = extractRiver(line);
-            hand.setRiver(river);
+            handDTO.setRiver(river);
         }
     }
 
     private void processTurn(String line) {
-        Hand hand = handList.getLast();
+        HandDTO handDTO = handDTOList.getLast();
         if (line.contains(SECTION_TURN)) {
             Turn turn = extractTurn(line);
-            hand.setTurn(turn);
+            handDTO.setTurn(turn);
         }
     }
 
     private void processFlop(String line) {
-        Hand hand = handList.getLast();
+        HandDTO handDTO = handDTOList.getLast();
         if (line.contains(SECTION_FLOP)) {
             Flop flop = extractFlop(line);
-            hand.setFlop(flop);
+            handDTO.setFlop(flop);
         }
     }
 
     private void processPreFlop(String line) {
-        Hand hand = handList.getLast();
+        HandDTO handDTO = handDTOList.getLast();
         if (line.contains(SECTION_PRE_FLOP)) { return;}
         if (line.contains(DEALT_TO)) {
             HoldCards holdCards = extractHoldCards(line);
-            hand.getSeats().get(holdCards.getPlayer()).setHoldCards(holdCards);
+            handDTO.getSeats().get(holdCards.getPlayerDTO()).setHoldCards(holdCards);
         }
     }
 
     protected void processHeader(String line) {
         if (line.contains(START_HAND)) {
-            Hand hand = extractHand(line);
-            hand.setTournament(extractTournament(line));
-            handList.add(hand);
+            HandDTO handDTO = extractHand(line);
+            handDTO.setTournamentDTO(extractTournament(line));
+            handDTOList.add(handDTO);
         } else {
-            Hand hand = handList.getLast();
+            HandDTO handDTO = handDTOList.getLast();
             if (line.contains(START_TABLE)) {
                 String tableId = extractTable(line);
                 Integer button = extractButton(line);
-                hand.setTableId(tableId);
-                hand.setButton(button);
+                handDTO.setTableId(tableId);
+                handDTO.setButton(button);
             } else
             if (line.contains(START_SEAT_POSITION)) {
-                Seat seat = extractSeat(line);
-                hand.getSeats().put(seat.getPlayer(),seat);
-                players.add(seat.getPlayer());
+                SeatDTO seatDTO = extractSeat(line);
+                handDTO.getSeats().put(seatDTO.getPlayerDTO(), seatDTO);
+                playerDTOS.add(seatDTO.getPlayerDTO());
             }
         }
     }
 
     private void processActions(String line, TypeStreet typeStreet) {
-        Hand hand = handList.getLast();
+        HandDTO handDTO = handDTOList.getLast();
         if (isAction(line)) {
             Action action = extractAction(line);
             action.setTypeStreet(typeStreet);
-            hand.getActions().add(action);
+            handDTO.getActions().add(action);
             HoldCards holdCards = action.getHoldCards();
             if (holdCards != null) {
-                hand.getSeats().get(holdCards.getPlayer()).setHoldCards(holdCards);
+                handDTO.getSeats().get(holdCards.getPlayerDTO()).setHoldCards(holdCards);
             }
         }
     }
 
     private boolean isAction(String line) {
-        for (Player player : players) {
-            if (line.contains(player.getNickname()+":")) return true;
+        for (PlayerDTO playerDTO : playerDTOS) {
+            if (line.contains(playerDTO.getNickname()+":")) return true;
         }
         return false;
     }
 
     private void processSummary(String line) {
-        Hand hand = handList.getLast();
+        HandDTO handDTO = handDTOList.getLast();
         if (line.contains(SECTION_SUMMARY)) return;
         if (line.contains(START_TOTAL_POT)) {
-            hand.setTotalPot(extractTotalPot(line));
-            hand.setSidePot(extractSidePot(line));
+            handDTO.setTotalPot(extractTotalPot(line));
+            handDTO.setSidePot(extractSidePot(line));
         } else
         if (line.contains(START_BOARD)) {
             Board board = extractBoard(line);
-            hand.setBoard(board);
+            handDTO.setBoard(board);
         } else{
             Integer seatId = extractSeatId(line);
-            Seat seat = hand.getSeatBySeatId(seatId);
-            hand.getSeats().get(seat.getPlayer()).getInfoPlayerAtHandList().addAll(extractInfoPlayerAtHand(line));
+            SeatDTO seatDTO = handDTO.getSeatBySeatId(seatId);
+            handDTO.getSeats().get(seatDTO.getPlayerDTO()).getInfoPlayerAtHandList().addAll(extractInfoPlayerAtHand(line));
         }
     }
 

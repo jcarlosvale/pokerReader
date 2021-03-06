@@ -1,4 +1,4 @@
-package com.poker.reader.entity;
+package com.poker.reader.dto;
 
 import lombok.Builder;
 import lombok.Data;
@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class Action {
-    private Player player;
+    private PlayerDTO playerDTO;
     private TypeAction typeAction;
     private Long value;
     private TypeStreet typeStreet;
