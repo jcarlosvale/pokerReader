@@ -4,27 +4,35 @@ import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.dto.HandDTO;
 import com.poker.reader.dto.PlayerDTO;
 import com.poker.reader.dto.SeatDTO;
-import com.poker.reader.entity.PairOfCards;
-import com.poker.reader.entity.Player;
-import com.poker.reader.mapper.CardsMapper;
-import com.poker.reader.mapper.PlayerMapper;
+import com.poker.reader.entity.*;
+import com.poker.reader.mapper.ReaderMapper;
 import com.poker.reader.parser.FileReaderProcessor;
+import com.poker.reader.repository.HandRepository;
 import com.poker.reader.repository.PlayerRepository;
+import com.poker.reader.repository.TournamentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @Log4j2
 @RequiredArgsConstructor
+@Transactional
 public class FileReaderService {
 
-    private final PlayerRepository playerRepository;
+    private final TournamentService tournamentService;
+    private final HandService handService;
+    private final PlayerService playerService;
+    private final PairOfCardsService pairOfCardsService;
+    private final SeatService seatService;
+
     private final FileReaderProcessor fileReaderProcessor;
     private final PokerReaderProperties pokerReaderProperties;
 
@@ -35,33 +43,24 @@ public class FileReaderService {
         int count = 0;
         for (File file : files) {
             log.info("File {} / {}: {}", ++count, files.size(), file.getAbsolutePath());
-            fileReaderProcessor.readFile(file.getAbsolutePath());
+            processFile(file);
             listFiles.add(file.getAbsolutePath());
         }
-        savePlayers();
         return listFiles;
     }
 
-    private void savePlayers() {
-//        log.info(" Persisting {} Players", fileReaderProcessor.getPlayerDTOS().size());
-//        log.info(" Persisting {} Hands", fileReaderProcessor.getHandDTOList().size());
-//        //players
-//        Map<PlayerDTO, Player> playerSet =
-//                fileReaderProcessor.getPlayerDTOS().stream().collect(Collectors.toMap(playerDTO -> playerDTO, PlayerMapper::toEntity));
-//        //hands
-//        for(HandDTO handDTO : fileReaderProcessor.getHandDTOList()) {
-//            for(Map.Entry<PlayerDTO, SeatDTO> entry: handDTO.getSeats().entrySet()) {
-//                if(entry.getValue().getHoldCards() != null) {
-//                    PairOfCards pairOfCardsFromSeat =  CardsMapper.fromHoldCards(entry.getValue().getHoldCards());
-//                    Set<PairOfCards> pairOfCards = playerSet.get(entry.getKey()).getCard();
-//                    if (pairOfCards == null) {
-//                        pairOfCards = new HashSet<>();
-//                    }
-//                    pairOfCards.add(pairOfCardsFromSeat);
-//                }
-//            }
-//        }
-//        playerRepository.saveAll(playerSet.values());
-//        playerRepository.flush();
+    protected void processFile(File file) throws IOException {
+        fileReaderProcessor.readFile(file.getAbsolutePath());
+        LinkedList<HandDTO> handDTOList = fileReaderProcessor.getHandDTOList();
+        Set<Tournament> tournamentSet = new HashSet<>();
+        for (HandDTO handDTO : handDTOList) {
+            Tournament tournament = tournamentService.findOrPersist(handDTO.getTournamentDTO());
+            Hand hand = handService.findOrPersist(tournament, handDTO);
+            for(Map.Entry<PlayerDTO, SeatDTO> seatDTOEntry : handDTO.getSeats().entrySet()) {
+                Player player = playerService.findOrPersist(seatDTOEntry.getKey());
+                PairOfCards pairOfCards = pairOfCardsService.findOrPersist(seatDTOEntry.getValue().getHoldCards());
+                Seat seat = seatService.findOrPersist(hand, player, pairOfCards, seatDTOEntry.getValue());
+            }
+        }
     }
 }

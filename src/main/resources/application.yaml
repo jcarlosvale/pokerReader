@@ -3,7 +3,7 @@ server:
 
 logging:
   level:
-    root: info
+    root: debug
 
 spring:
   jpa:
@@ -12,7 +12,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
+  #      ddl-auto: update
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?sslmode=disable&search_path=public;
     username: postgres
@@ -20,4 +21,4 @@ spring:
     driver-class-name: org.postgresql.Driver
 
 application:
-  folder: C:\\Projects\\pokerReader\\src\\test\\resources\\top
+  folder: C:\\Projects\\pokerReader\\src\\test\\resources\\teste

@@ -34,9 +34,15 @@ public class Seat {
     @JoinColumn(name = PREFIX_TABLE + "player")
     private Player player;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne
     @JoinColumn(name = PREFIX_TABLE + "id_poc")
     private PairOfCards pairOfCards;
+
+    @Column(name = PREFIX_TABLE + "card1")
+    private String card1;
+
+    @Column(name = PREFIX_TABLE + "card2")
+    private String card2;
 
     @Column(name = PREFIX_TABLE + "stack")
     private Long stack;

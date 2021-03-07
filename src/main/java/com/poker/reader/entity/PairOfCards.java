@@ -5,11 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.List;
-import java.util.Objects;
-
-import static com.poker.reader.util.Util.faceValue;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Card1 is always the highest card
@@ -25,7 +23,7 @@ public class PairOfCards {
 
     @Id
     @Column(name = PREFIX_TABLE + "id")
-    Long id;
+    String id;
 
     @Column(name = PREFIX_TABLE + "card1")
     Character card1;
@@ -35,27 +33,4 @@ public class PairOfCards {
 
     @Column(name = PREFIX_TABLE + "suited")
     Boolean isSuited;
-
-    @OneToMany(mappedBy = "pairOfCards", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private List<Seat> seat;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PairOfCards pairOfCards = (PairOfCards) o;
-
-        return (isSuited == pairOfCards.isSuited) &&
-                ((faceValue(card1) == faceValue(pairOfCards.card1) && faceValue(card2) == faceValue(pairOfCards.card2)) ||
-                (faceValue(card1) == faceValue(pairOfCards.card2) && faceValue(card2) == faceValue(pairOfCards.card1)));
-    }
-
-    @Override
-    public int hashCode() {
-        if (faceValue(card1) > faceValue(card2)) {
-            return Objects.hash(isSuited, card1, card2);
-        } else {
-            return Objects.hash(isSuited, card2, card1);
-        }
-    }
 }
