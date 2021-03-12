@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 
 @Service
 @Log4j2
@@ -27,9 +29,15 @@ public class HandService {
         Hand hand = ReaderMapper.toEntity(handDTO);
         if (!handCache.contains(hand.getId())) {
             hand.setTournament(tournament);
-            hand = handRepository.save(hand);
+            hand = handRepository.findById(hand.getId()).orElse(handRepository.save(hand));
             handCache.put(hand.getId(), hand);
         }
         return handCache.get(hand.getId());
+    }
+
+    public Hand find(Long handId) {
+        return Objects.nonNull(handCache.get(handId)) ?
+                handCache.get(handId) :
+                handRepository.findById(handId).orElse(null);
     }
 }

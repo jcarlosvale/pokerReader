@@ -3,7 +3,7 @@ server:
 
 logging:
   level:
-    root: debug
+    root: info
 
 spring:
   jpa:
@@ -13,12 +13,14 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
-  #      ddl-auto: update
+#      ddl-auto: update
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?sslmode=disable&search_path=public;
     username: postgres
-    password: postgres
+    #password: postgres
+    password: admin
     driver-class-name: org.postgresql.Driver
 
 application:
-  folder: C:\\Projects\\pokerReader\\src\\test\\resources\\teste
+#  folder: C:\\Projects\\pokerReader\\src\\test\\resources\\teste
+  folder: C:\\Pessoal\\Projects\\pstar\\reader\\src\\test\\resources\\teste

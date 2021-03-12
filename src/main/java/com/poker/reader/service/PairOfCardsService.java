@@ -62,13 +62,14 @@ public class PairOfCardsService {
                     }
                     String id = cards[i] + cards[j];
                     pairOfCards.setId(pairOfCardId);
+                    pairOfCards.setIsSuited(cards[i].charAt(1) == cards[j].charAt(1));
                     cardsNormalized.put(id, pairOfCards);
                 }
             }
         }
         //null values
         for (String s: cards) {
-            cardsNormalized.put(s, PairOfCards.builder().id(Character.toString(s.charAt(0))).card1(s.charAt(0)).build());
+            cardsNormalized.put(s, PairOfCards.builder().id(Character.toString(s.charAt(0))).card1(s.charAt(0)).isSuited(false).build());
         }
 
         log.debug("LOADED NORMALIZED CARDS");

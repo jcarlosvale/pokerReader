@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -23,9 +25,15 @@ public class TournamentService {
         log.debug("Tournament {}", tournamentDTO);
         Tournament tournament = ReaderMapper.toEntity(tournamentDTO);
         if (!tournamentCache.contains(tournament.getId())) {
-            tournament = tournamentRepository.save(tournament);
+            tournament = tournamentRepository.findById(tournament.getId()).orElse(tournamentRepository.save(tournament));
             tournamentCache.put(tournament.getId(), tournament);
         }
         return tournamentCache.get(tournament.getId());
+    }
+
+    public Tournament find(Long tournamentId) {
+        return Objects.nonNull(tournamentCache.get(tournamentId)) ?
+                tournamentCache.get(tournamentId) :
+                tournamentRepository.findById(tournamentId).orElse(null);
     }
 }

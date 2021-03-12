@@ -4,17 +4,14 @@ import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.dto.HandDTO;
 import com.poker.reader.dto.PlayerDTO;
 import com.poker.reader.dto.SeatDTO;
-import com.poker.reader.entity.*;
-import com.poker.reader.mapper.ReaderMapper;
+import com.poker.reader.entity.Hand;
+import com.poker.reader.entity.PairOfCards;
+import com.poker.reader.entity.Player;
+import com.poker.reader.entity.Tournament;
 import com.poker.reader.parser.FileReaderProcessor;
-import com.poker.reader.repository.HandRepository;
-import com.poker.reader.repository.PlayerRepository;
-import com.poker.reader.repository.TournamentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
@@ -52,14 +49,18 @@ public class FileReaderService {
     protected void processFile(File file) throws IOException {
         fileReaderProcessor.readFile(file.getAbsolutePath());
         LinkedList<HandDTO> handDTOList = fileReaderProcessor.getHandDTOList();
-        Set<Tournament> tournamentSet = new HashSet<>();
         for (HandDTO handDTO : handDTOList) {
-            Tournament tournament = tournamentService.findOrPersist(handDTO.getTournamentDTO());
-            Hand hand = handService.findOrPersist(tournament, handDTO);
-            for(Map.Entry<PlayerDTO, SeatDTO> seatDTOEntry : handDTO.getSeats().entrySet()) {
-                Player player = playerService.findOrPersist(seatDTOEntry.getKey());
-                PairOfCards pairOfCards = pairOfCardsService.findOrPersist(seatDTOEntry.getValue().getHoldCards());
-                Seat seat = seatService.findOrPersist(hand, player, pairOfCards, seatDTOEntry.getValue());
+            if (Objects.nonNull(handService.find(handDTO.getId()))) {
+                log.info("Tournament {}, Hand {} already in the database", handDTO.getTournamentDTO(), handDTO.getId());
+            } else {
+                log.info("Saving in the database Tournament {}, Hand {}", handDTO.getTournamentDTO(), handDTO.getId());
+                Tournament tournament = tournamentService.findOrPersist(handDTO.getTournamentDTO());
+                Hand hand = handService.findOrPersist(tournament, handDTO);
+                for (Map.Entry<PlayerDTO, SeatDTO> seatDTOEntry : handDTO.getSeats().entrySet()) {
+                    Player player = playerService.findOrPersist(seatDTOEntry.getKey());
+                    PairOfCards pairOfCards = pairOfCardsService.findOrPersist(seatDTOEntry.getValue().getHoldCards());
+                    seatService.findOrPersist(hand, player, pairOfCards, seatDTOEntry.getValue());
+                }
             }
         }
     }

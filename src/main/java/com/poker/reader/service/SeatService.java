@@ -29,11 +29,8 @@ public class SeatService {
         if (!seatCache.contains(seat.getId())) {
             seat.setHand(hand);
             seat.setPlayer(player);
-            if(pairOfCards != null) {
-                System.out.println(pairOfCards);
-            }
             seat.setPairOfCards(pairOfCards);
-            seat = seatRepository.save(seat);
+            seat = seatRepository.findFirstBySeatIdAndHandAndPlayer(seat.getSeatId(), seat.getHand(), seat.getPlayer()).orElse(seatRepository.save(seat));
             seatCache.put(seat.getId(), seat);
         }
         return seatCache.get(seat.getId());

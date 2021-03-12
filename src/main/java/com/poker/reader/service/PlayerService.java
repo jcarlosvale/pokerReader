@@ -23,7 +23,7 @@ public class PlayerService {
         log.debug("Player {}", playerDTO);
         Player player = ReaderMapper.toEntity(playerDTO);
         if(!playerCache.contains(player.getNickname())) {
-            player = playerRepository.save(player);
+            player = playerRepository.findById(player.getNickname()).orElse(playerRepository.save(player));
             playerCache.put(player.getNickname(), player);
         }
         return playerCache.get(player.getNickname());
