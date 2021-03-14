@@ -37,9 +37,9 @@ public class FileReaderService {
         List<String> listFiles = new ArrayList<>();
         String directory = pokerReaderProperties.getFolder();
         List<File> files = fileReaderProcessor.readDirectory(directory);
-        int count = 0;
-        for (File file : files) {
-            log.info("File {} / {}: {}", ++count, files.size(), file.getAbsolutePath());
+        for (int i = 0; i < files.size(); i++) {
+            File file = files.get(i);
+            log.info("File {} / {}: {}", i+1, files.size(), file.getAbsolutePath());
             processFile(file);
             listFiles.add(file.getAbsolutePath());
         }
@@ -49,7 +49,9 @@ public class FileReaderService {
     protected void processFile(File file) throws IOException {
         fileReaderProcessor.readFile(file.getAbsolutePath());
         LinkedList<HandDTO> handDTOList = fileReaderProcessor.getHandDTOList();
-        for (HandDTO handDTO : handDTOList) {
+        for (int i = 0; i < handDTOList.size(); i++) {
+            HandDTO handDTO = handDTOList.get(i);
+            log.info("Hand {} / {}: Tournament {} HandId {}", i+1, handDTOList.size(), handDTO.getTournamentDTO().getId(), handDTO.getId());
             if (Objects.nonNull(handService.find(handDTO.getId()))) {
                 log.info("Tournament {}, Hand {} already in the database", handDTO.getTournamentDTO(), handDTO.getId());
             } else {

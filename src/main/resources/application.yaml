@@ -10,17 +10,18 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
+    show-sql: false
     hibernate:
-      ddl-auto: create
-#      ddl-auto: update
+#      ddl-auto: create
+      ddl-auto: update
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres?sslmode=disable&search_path=public;
     username: postgres
-    #password: postgres
-    password: admin
+    password: postgres
+#    password: admin
     driver-class-name: org.postgresql.Driver
 
 application:
+  folder: C:\Projects\pokerReader\src\test\resources\top
 #  folder: C:\\Projects\\pokerReader\\src\\test\\resources\\teste
-  folder: C:\\Pessoal\\Projects\\pstar\\reader\\src\\test\\resources\\teste
+#  folder: C:\\Pessoal\\Projects\\pstar\\reader\\src\\test\\resources\\teste
