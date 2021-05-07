@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
-import org.springframework.stereotype.Service;
 import validator.HandValidator;
 
 import java.io.File;
@@ -23,7 +22,6 @@ import static parser.Tokens.*;
 
 @Data
 @Log4j2
-@Service
 public class FileReaderProcessor {
 
     @Getter
@@ -207,5 +205,9 @@ public class FileReaderProcessor {
         if (line.equals(SECTION_END_OF_HAND)) {return TypeFileSection.END_OF_HAND;}
         if(line.contains(SECTION_TOKEN)) {throw new InvalidSectionFileException("FOUND A NOT EVALUATED SECTION: " + line);}
         return null;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Executed successfully");
     }
 }
