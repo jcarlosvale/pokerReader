@@ -16,57 +16,68 @@ import static dto.TypeInfo.WON;
 
 public class FileParser {
 
+    //reviewed
     public static TournamentDTO extractTournament(String line) {
-        return TournamentDTO.builder().id(FileParserUtil.extractLong(line, Tokens.START_TOURNAMENT, Tokens.END_TOURNAMENT))
-                .buyIn(FileParserUtil.extractBigDecimal(line, Tokens.START_BUY_IN_PRIZE, Tokens.END_BUY_IN_PRIZE)).build();
+        return TournamentDTO.builder()
+                .id(FileParserUtil.extractLong(line, Tokens.START_TOURNAMENT, Tokens.END_TOURNAMENT))
+                .buyIn(FileParserUtil.extractBigDecimal(line, Tokens.START_BUY_IN_PRIZE, Tokens.END_BUY_IN_PRIZE))
+                .build();
     }
 
+    //reviewed
     public static HandDTO extractHand(String line) {
-        return HandDTO.builder().id(FileParserUtil.extractLong(line, Tokens.START_HAND, Tokens.END_HAND)).level(FileParserUtil.extract(line, Tokens.START_LEVEL, Tokens.END_LEVEL))
+        return HandDTO.builder()
+                .id(FileParserUtil.extractLong(line, Tokens.START_HAND, Tokens.END_HAND))
+                .level(FileParserUtil.extract(line, Tokens.START_LEVEL, Tokens.END_LEVEL))
                 .smallBlind(FileParserUtil.extractInteger(line, Tokens.START_SMALL_BLIND, Tokens.END_SMALL_BLIND))
                 .bigBlind(FileParserUtil.extractInteger(line, Tokens.START_BIG_BLIND, Tokens.END_BIG_BLIND))
                 .date(FileParserUtil.extractLocalDate(line, Tokens.START_DATE, Tokens.END_DATE)).build();
     }
 
+    //reviewed
     public static String extractTable(String line) {
         return FileParserUtil.extract(line, Tokens.START_TABLE, Tokens.END_TABLE);
     }
 
+    //reviewed
     public static Integer extractButton(String line) {
         return FileParserUtil.extractInteger(line, Tokens.START_BUTTON, Tokens.END_BUTTON);
     }
 
-
+    //reviewed
     public static SeatDTO extractSeat(String line) {
-        String nickname = extractNickname(line, Tokens.START_PLAYER, Tokens.END_PLAYER);
-        return SeatDTO.builder().seatId(FileParserUtil.extractInteger(line, Tokens.START_SEAT_POSITION, Tokens.END_SEAT_POSITION))
+        String nickname = extractNickname(line);
+        return SeatDTO.builder()
+                .seatId(FileParserUtil.extractInteger(line, Tokens.START_SEAT_POSITION, Tokens.END_SEAT_POSITION))
                 .playerDTO(PlayerDTO.builder().nickname(nickname).build())
-                .stack(FileParserUtil.extractLong(line, nickname+ Tokens.START_STACK, Tokens.END_STACK)).build();
+                .stack(FileParserUtil.extractLong(line, nickname + Tokens.START_STACK, Tokens.END_STACK)).build();
     }
 
-    private static String extractNickname(String line, String startPlayer, String endPlayer) {
-        int startPos = line.indexOf(startPlayer) + 1;
+    //reviewed
+    public static String extractNickname(String line) {
+        int startPos = line.indexOf(Tokens.START_PLAYER) + 1;
         int lastPos = -1;
-        for (int i = 0; i < line.length(); i++) {
-            if(line.charAt(i) == endPlayer.charAt(1)) {
+        for (var i = 0; i < line.length(); i++) {
+            if (line.charAt(i) == Tokens.END_PLAYER.charAt(1)) {
                 lastPos = i;
             }
         }
-        return line.substring(startPos, lastPos-1).trim();
+        return line.substring(startPos, lastPos - 1).trim();
     }
 
     public static Integer extractSeatId(String line) {
         return FileParserUtil.extractInteger(line, Tokens.START_SEAT_POSITION, Tokens.END_SEAT_POSITION);
     }
 
+    //reviewed
     public static Action extractAction(String line) {
-        TypeAction typeAction = selectTypeAction(line);
-        Action action =
+        var typeAction = selectTypeAction(line);
+        var action =
                 Action.builder()
-                .playerDTO(PlayerDTO.builder().nickname(StringUtils.substringBefore(line, ":").trim()).build())
-                .typeAction(typeAction)
-                .value(FileParserUtil.extractValueFromAction(line, typeAction))
-                .build();
+                        .playerDTO(PlayerDTO.builder().nickname(StringUtils.substringBefore(line, ":").trim()).build())
+                        .typeAction(typeAction)
+                        .value(FileParserUtil.extractValueFromAction(line, typeAction))
+                        .build();
         if (typeAction.equals(TypeAction.SHOW_HAND)) {
             action.setHoldCards(extractHoldCards(line));
             action.setScoring(FileParserUtil.extract(line, Tokens.START_SCORING, Tokens.END_SCORING));
@@ -77,8 +88,10 @@ public class FileParser {
     public static HoldCards extractHoldCards(String line) {
         if (line.contains(Tokens.DEALT_TO)) {
             return HoldCards.builder()
-                    .playerDTO(PlayerDTO.builder().nickname(FileParserUtil.extract(line, Tokens.DEALT_TO, Tokens.START_CARD)).build())
-                    .card1(FileParserUtil.extractCard(line, Tokens.START_CARD, Tokens.END_CARD, 1)).card2(FileParserUtil.extractCard(line, Tokens.START_CARD, Tokens.END_CARD, 2))
+                    .playerDTO(PlayerDTO.builder()
+                            .nickname(FileParserUtil.extract(line, Tokens.DEALT_TO, Tokens.START_CARD)).build())
+                    .card1(FileParserUtil.extractCard(line, Tokens.START_CARD, Tokens.END_CARD, 1))
+                    .card2(FileParserUtil.extractCard(line, Tokens.START_CARD, Tokens.END_CARD, 2))
                     .build();
         } else {
             String card1 = FileParserUtil.extractCard(line, Tokens.START_CARD, Tokens.END_CARD, 1);
@@ -93,7 +106,8 @@ public class FileParser {
 
     public static Flop extractFlop(String line) {
         return Flop.builder().card1(FileParserUtil.extractCard(line, Tokens.START_CARD, Tokens.END_CARD, 1))
-                .card2(FileParserUtil.extractCard(line, Tokens.START_CARD, Tokens.END_CARD, 2)).card3(FileParserUtil.extractCard(line, Tokens.START_CARD, Tokens.END_CARD, 3))
+                .card2(FileParserUtil.extractCard(line, Tokens.START_CARD, Tokens.END_CARD, 2))
+                .card3(FileParserUtil.extractCard(line, Tokens.START_CARD, Tokens.END_CARD, 3))
                 .build();
     }
 
@@ -108,7 +122,7 @@ public class FileParser {
     public static Set<InfoPlayerAtHand> extractInfoPlayerAtHand(String line) {
         Set<InfoPlayerAtHand> infoPlayerAtHandSet = new HashSet<>();
         List<TypeInfo> typeInfoList = selectTypeInfo(line);
-        for(TypeInfo infoPlayerAtHand : typeInfoList) {
+        for (TypeInfo infoPlayerAtHand : typeInfoList) {
             switch (infoPlayerAtHand) {
                 case COLLECTED:
                     infoPlayerAtHandSet.add(extractCollectedInfo(line));
@@ -121,9 +135,9 @@ public class FileParser {
                 case SHOWED_HAND:
                 case LOST:
                     infoPlayerAtHandSet.add(
-                        InfoPlayerAtHand.builder()
-                                .info(infoPlayerAtHand)
-                                .build());
+                            InfoPlayerAtHand.builder()
+                                    .info(infoPlayerAtHand)
+                                    .build());
                     break;
                 case WON:
                     infoPlayerAtHandSet.add(extractWonInfo(line));

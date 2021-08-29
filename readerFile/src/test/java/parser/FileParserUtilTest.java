@@ -1,7 +1,7 @@
 package parser;
 
 import dto.TypeAction;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -9,13 +9,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static parser.FileParserUtil.DATE_TIME_FORMAT;
 import static parser.Tokens.END_CARD;
 import static parser.Tokens.START_CARD;
 
-public class FileParserUtilTest {
+class FileParserUtilTest {
 
     @Test
     public void extractEmptyLongTest() {

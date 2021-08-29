@@ -14,11 +14,13 @@ public class FileParserUtil {
 
     public static final String DATE_TIME_FORMAT = "yyyy/MM/dd";
 
+    //reviewed
     public static Integer extractInteger(String line, String startToken, String endToken) {
         String value = extract(line, startToken, endToken);
         return (StringUtils.isNotBlank(value)) ? Integer.valueOf(value) : null;
     }
 
+    //reviewed
     public static Long extractLong(String line, String startToken, String endToken) {
         String value = extract(line, startToken, endToken);
         return (StringUtils.isNotBlank(value)) ? Long.valueOf(value) : null;
@@ -29,17 +31,20 @@ public class FileParserUtil {
         return (StringUtils.isNotBlank(value)) ? Long.valueOf(value.trim()) : null;
     }
 
+    //reviewed
     public static BigDecimal extractBigDecimal(String line, String startToken, String endToken) {
         String value = extract(line, startToken, endToken);
         return (StringUtils.isNotBlank(value)) ? new BigDecimal(value).setScale(2, RoundingMode.HALF_EVEN) :
                 BigDecimal.ZERO;
     }
 
+    //reviewed
     public static String extract(String line, String startToken, String endToken) {
         String value = StringUtils.substringBetween(line, startToken, endToken);
         return (StringUtils.isNotBlank(value)) ? value.trim() : null;
     }
 
+    //reviewed
     public static LocalDate extractLocalDate(String line, String startDate, String endDate) {
         String value = extract(line, startDate, endDate);
         if (value == null) {return null;}

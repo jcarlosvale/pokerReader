@@ -1,7 +1,11 @@
 package processor;
 
 import dto.*;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
@@ -17,18 +21,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static dto.TypeInfo.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static parser.FileParserUtil.DATE_TIME_FORMAT;
 
-public class FileReaderProcessorTest {
+class FileReaderProcessorTest {
 
     FileReaderProcessor fileReaderProcessor = new FileReaderProcessor();
 
+    @BeforeAll
+    public static void changeLogLevel() {
+        final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+        logger.setLevel(Level.INFO);
+    }
+
     @Test
-    public void processOneHandTest() throws IOException {
+    void processOneHandTest() throws IOException {
         Resource resource = new ClassPathResource("one-hand.txt", getClass().getClassLoader());
-        fileReaderProcessor.readFile(resource.getFile().getAbsolutePath());
+        fileReaderProcessor.processFile(resource.getFile().getAbsolutePath());
 
         TournamentDTO expectedTournamentDTO = TournamentDTO.builder().id(2779056951L).buyIn(BigDecimal.valueOf(0.49)).build();
         HandDTO expectedHandDTO = HandDTO
@@ -445,17 +455,17 @@ public class FileReaderProcessorTest {
         List<HandDTO> expectedHandDTOList = new ArrayList<>();
         expectedHandDTOList.add(expectedHandDTO);
 
-        System.out.println(expectedHandDTOList);
+        //System.out.println(expectedHandDTOList);
 
-        System.out.println(fileReaderProcessor.getHandDTOList());
+        //System.out.println(fileReaderProcessor.getHandDTOList());
 
         assertEquals(expectedHandDTOList, fileReaderProcessor.getHandDTOList());
     }
 
     @Test
-    public void processMultipleHandsTest() throws IOException {
+    void processMultipleHandsTest() throws IOException {
         Resource resource = new ClassPathResource("multiple-hand.txt", getClass().getClassLoader());
-        fileReaderProcessor.readFile(resource.getFile().getAbsolutePath());
+        fileReaderProcessor.processFile(resource.getFile().getAbsolutePath());
 
         TournamentDTO expectedTournamentDTO = TournamentDTO.builder().id(2779056951L).buyIn(BigDecimal.valueOf(0.49)).build();
 
@@ -465,36 +475,36 @@ public class FileReaderProcessorTest {
         assertEquals(15, fileReaderProcessor.getHandDTOList().size());
     }
     @Test
-    public void verifySectionTest() {
+    void verifySectionTest() {
         String line = "PokerStars Hand #208296842229: Tournament #2779056951, $0.49+$0.06 USD Hold'em No Limit - " +
                 "Level VI (50/100) - 2020/01/18 22:02:11 EET [2020/01/18 15:02:11 ET]";
-        TypeFileSection actual = fileReaderProcessor.verifySection(line);
-        TypeFileSection expected = TypeFileSection.HEADER;
+        TypeFileSectionEnum actual = fileReaderProcessor.verifySection(line);
+        TypeFileSectionEnum expected = TypeFileSectionEnum.HEADER;
         assertEquals(expected, actual);
 
         line = "*** HOLE CARDS ***";
         actual = fileReaderProcessor.verifySection(line);
-        expected = TypeFileSection.PRE_FLOP;
+        expected = TypeFileSectionEnum.PRE_FLOP;
         assertEquals(expected, actual);
 
         line = "*** FLOP *** [7s 5h Jc]";
         actual = fileReaderProcessor.verifySection(line);
-        expected = TypeFileSection.FLOP;
+        expected = TypeFileSectionEnum.FLOP;
         assertEquals(expected, actual);
 
         line = "*** TURN *** [7s 5h Jc] [Qd]";
         actual = fileReaderProcessor.verifySection(line);
-        expected = TypeFileSection.TURN;
+        expected = TypeFileSectionEnum.TURN;
         assertEquals(expected, actual);
 
         line = "*** RIVER *** [7s 5h Jc Qd] [8d]";
         actual = fileReaderProcessor.verifySection(line);
-        expected = TypeFileSection.RIVER;
+        expected = TypeFileSectionEnum.RIVER;
         assertEquals(expected, actual);
 
         line = "*** SUMMARY ***";
         actual = fileReaderProcessor.verifySection(line);
-        expected = TypeFileSection.SUMMARY;
+        expected = TypeFileSectionEnum.SUMMARY;
         assertEquals(expected, actual);
 
         line = "Seat 7: Oliver N76 (big blind) folded on the River\n";
@@ -503,14 +513,14 @@ public class FileReaderProcessorTest {
     }
 
     @Test
-    public void readDirectoryTest() throws URISyntaxException, IOException {
+    void readDirectoryTest() throws URISyntaxException, IOException {
         URL url = FileReaderProcessorTest.class.getClassLoader().getResource("top");
         assert url != null;
         String directory = Paths.get(url.toURI()).toString();
         List<File> files = fileReaderProcessor.readDirectory(directory);
         assertEquals(10, files.size());
         for (File file : files) {
-            fileReaderProcessor.readFile(file.getAbsolutePath());
+            fileReaderProcessor.processFile(file.getAbsolutePath());
         }
     }
 }

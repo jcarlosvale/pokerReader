@@ -1,7 +1,7 @@
 package parser;
 
 import dto.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,11 +10,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static dto.TypeAction.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static parser.FileParser.*;
 import static parser.FileParserUtil.DATE_TIME_FORMAT;
 
-public class FileParserTest {
+class FileParserTest {
 
     @Test
     public void extractTournamentTest() {

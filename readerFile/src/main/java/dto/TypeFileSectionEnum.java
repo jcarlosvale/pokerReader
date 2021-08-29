@@ -6,7 +6,7 @@ import parser.Tokens;
 
 @AllArgsConstructor
 @Getter
-public enum TypeFileSection {
+public enum TypeFileSectionEnum {
     CHAT_MESSAGE(Tokens.SECTION_CHAT_MESSAGE),
     HEADER(Tokens.SECTION_HEADER),
     PRE_FLOP(Tokens.SECTION_PRE_FLOP),
