@@ -26,8 +26,9 @@ import static com.poker.reader.parser.util.TypeFileSection.*;
 
 @Data
 @Log4j2
-public class FileReaderProcessor {
+public class FileReader {
 
+    private final FileProcessor fileProcessor = new FileProcessor();
     private final LinkedList<Hand> handList = new LinkedList<>();
     private final Set<Player> players = new HashSet<>();
     private File file;
@@ -52,9 +53,6 @@ public class FileReaderProcessor {
         TypeFileSection section = null;
         for (String line : lines) {
             log.debug(line);
-            if (line.contains("alexandru2111 said, \"putaaaaaa  raise for nothing? **** you and your mother!!!")) {
-                System.out.println(" debug ");
-            }
             TypeFileSection tempSection = verifySection(line);
             if (tempSection == CHAT_MESSAGE) {
                 continue;

@@ -13,7 +13,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,14 +22,14 @@ import static com.poker.reader.parser.util.FileParserUtil.DATE_TIME_FORMAT;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-public class FileReaderProcessorTest {
+public class FileReaderTest {
 
-    FileReaderProcessor fileReaderProcessor = new FileReaderProcessor();
+    FileReader fileReader = new FileReader();
 
     @Test
     public void processOneHandTest() throws IOException {
         Resource resource = new ClassPathResource("one-hand.txt", getClass().getClassLoader());
-        fileReaderProcessor.readFile(resource.getFile().getAbsolutePath());
+        fileReader.readFile(resource.getFile().getAbsolutePath());
 
         Tournament expectedTournament = Tournament.builder().id(2779056951L).buyIn(BigDecimal.valueOf(0.55)).build();
         Hand expectedHand = Hand
@@ -449,70 +448,70 @@ public class FileReaderProcessorTest {
 
         System.out.println(expectedHandList);
 
-        System.out.println(fileReaderProcessor.getHandList());
+        System.out.println(fileReader.getHandList());
 
-        assertEquals(expectedHandList, fileReaderProcessor.getHandList());
+        assertEquals(expectedHandList, fileReader.getHandList());
     }
 
     @Test
     public void processMultipleHandsTest() throws IOException {
         Resource resource = new ClassPathResource("multiple-hand.txt", getClass().getClassLoader());
-        fileReaderProcessor.readFile(resource.getFile().getAbsolutePath());
+        fileReader.readFile(resource.getFile().getAbsolutePath());
 
         Tournament expectedTournament = Tournament.builder().id(2779056951L).buyIn(BigDecimal.valueOf(0.55)).build();
 
-        for(Hand hand : fileReaderProcessor.getHandList()) {
+        for(Hand hand : fileReader.getHandList()) {
             assertEquals(expectedTournament, hand.getTournament());
         }
-        assertEquals(15, fileReaderProcessor.getHandList().size());
+        assertEquals(15, fileReader.getHandList().size());
     }
     @Test
     public void verifySectionTest() {
         String line = "PokerStars Hand #208296842229: Tournament #2779056951, $0.49+$0.06 USD Hold'em No Limit - " +
                 "Level VI (50/100) - 2020/01/18 22:02:11 EET [2020/01/18 15:02:11 ET]";
-        TypeFileSection actual = fileReaderProcessor.verifySection(line);
+        TypeFileSection actual = fileReader.verifySection(line);
         TypeFileSection expected = TypeFileSection.HEADER;
         assertEquals(expected, actual);
 
         line = "*** HOLE CARDS ***";
-        actual = fileReaderProcessor.verifySection(line);
+        actual = fileReader.verifySection(line);
         expected = TypeFileSection.PRE_FLOP;
         assertEquals(expected, actual);
 
         line = "*** FLOP *** [7s 5h Jc]";
-        actual = fileReaderProcessor.verifySection(line);
+        actual = fileReader.verifySection(line);
         expected = TypeFileSection.FLOP;
         assertEquals(expected, actual);
 
         line = "*** TURN *** [7s 5h Jc] [Qd]";
-        actual = fileReaderProcessor.verifySection(line);
+        actual = fileReader.verifySection(line);
         expected = TypeFileSection.TURN;
         assertEquals(expected, actual);
 
         line = "*** RIVER *** [7s 5h Jc Qd] [8d]";
-        actual = fileReaderProcessor.verifySection(line);
+        actual = fileReader.verifySection(line);
         expected = TypeFileSection.RIVER;
         assertEquals(expected, actual);
 
         line = "*** SUMMARY ***";
-        actual = fileReaderProcessor.verifySection(line);
+        actual = fileReader.verifySection(line);
         expected = TypeFileSection.SUMMARY;
         assertEquals(expected, actual);
 
         line = "Seat 7: Oliver N76 (big blind) folded on the River\n";
-        actual = fileReaderProcessor.verifySection(line);
+        actual = fileReader.verifySection(line);
         assertNull(actual);
     }
 
     @Test
     public void readDirectoryTest() throws URISyntaxException, IOException {
-        URL url = FileReaderProcessorTest.class.getClassLoader().getResource("top");
+        URL url = FileReaderTest.class.getClassLoader().getResource("top");
         assert url != null;
         String directory = Paths.get(url.toURI()).toString();
-        List<File> files = fileReaderProcessor.readDirectory(directory);
+        List<File> files = fileReader.readDirectory(directory);
         assertEquals(10, files.size());
         for (File file : files) {
-            fileReaderProcessor.readFile(file.getAbsolutePath());
+            fileReader.readFile(file.getAbsolutePath());
         }
     }
 }

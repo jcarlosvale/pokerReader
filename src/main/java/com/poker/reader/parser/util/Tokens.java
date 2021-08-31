@@ -1,5 +1,8 @@
 package com.poker.reader.parser.util;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Tokens {
     private Tokens() {}
 
@@ -99,8 +102,6 @@ public class Tokens {
     public static final String WON_INFO                         = "won (";
     public static final String LOST_INFO                         = "lost with ";
 
-
-
     //FILE SECTION
     public static final String SECTION_CHAT_MESSAGE = " said, \"";
     public static final String SECTION_TOKEN = "*** ";
@@ -112,4 +113,12 @@ public class Tokens {
     public static final String SECTION_SHOWDOWN = "*** SHOW DOWN ***";
     public static final String SECTION_SUMMARY = "*** SUMMARY ***";
     public static final String SECTION_END_OF_HAND = "";
+
+    //Util Sets
+    public static final Set<String> SEAT_TOKENS_SET = new HashSet<>();
+    static {
+        for (int i = 0; i < 15; i++) {
+            SEAT_TOKENS_SET.add("Seat " + i + ":");
+        }
+    }
 }

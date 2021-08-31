@@ -1,0 +1,118 @@
+PokerStars Hand #208296842229: Tournament #2779056951, $0.49+$0.06 USD Hold'em No Limit - Level VI (50/100) - 2020/01/18 22:02:11 EET [2020/01/18 15:02:11 ET]
+Table '2779056951 40' 9-max Seat #5 is the button
+Seat 1: W SERENA (5000 in chips)
+Seat 2: matalaha (6917 in chips)
+Seat 3: xTheWindelPilot (1268 in chips)
+Seat 4: schlier4 (8186 in chips)
+Seat 5: mjmj1971 (10998 in chips)
+Seat 6: GunDolfAA (4523 in chips)
+Seat 7: Oliver N76 (13836 in chips)
+Seat 8: H3ll5cream (2717 in chips)
+Seat 9: jcarlos.vale (5000 in chips)
+W SERENA: posts the ante 10
+matalaha: posts the ante 10
+xTheWindelPilot: posts the ante 10
+schlier4: posts the ante 10
+mjmj1971: posts the ante 10
+GunDolfAA: posts the ante 10
+Oliver N76: posts the ante 10
+H3ll5cream: posts the ante 10
+jcarlos.vale: posts the ante 10
+GunDolfAA: posts small blind 50
+Oliver N76: posts big blind 100
+*** HOLE CARDS ***
+Dealt to jcarlos.vale [Kc 7d]
+H3ll5cream: folds
+jcarlos.vale: folds
+W SERENA: calls 100
+matalaha: folds
+xTheWindelPilot: folds
+schlier4: folds
+mjmj1971: calls 100
+GunDolfAA: folds
+Oliver N76: checks
+*** FLOP *** [7s 5h Jc]
+Oliver N76: checks
+W SERENA: checks
+mjmj1971: checks
+*** TURN *** [7s 5h Jc] [Qd]
+Oliver N76: checks
+W SERENA: checks
+mjmj1971: checks
+*** RIVER *** [7s 5h Jc Qd] [8d]
+Oliver N76: checks
+W SERENA: checks
+mjmj1971: bets 300
+Oliver N76: folds
+W SERENA: folds
+Uncalled bet (300) returned to mjmj1971
+mjmj1971 collected 440 from pot
+mjmj1971: doesn't show hand
+*** SUMMARY ***
+Total pot 440 | Rake 0
+Board [7s 5h Jc Qd 8d]
+Seat 1: W SERENA folded on the River
+Seat 2: matalaha folded before Flop (didn't bet)
+Seat 3: xTheWindelPilot folded before Flop (didn't bet)
+Seat 4: schlier4 folded before Flop (didn't bet)
+Seat 5: mjmj1971 (button) collected (440)
+Seat 6: GunDolfAA (small blind) folded before Flop
+Seat 7: Oliver N76 (big blind) folded on the River
+Seat 8: H3ll5cream folded before Flop (didn't bet)
+Seat 9: jcarlos.vale folded before Flop (didn't bet)
+
+
+
+PokerStars Hand #221582700422: Tournament #3074230175, $0.98+$0.12 USD Hold'em No Limit - Level I (15/30) - 2020/12/18 22:30:03 EET [2020/12/18 15:30:03 ET]
+Table '3074230175 2' 9-max Seat #1 is the button
+Seat 1: LauriOy (3000 in chips)
+Seat 2: LEE MARVIN17 (3000 in chips)
+Seat 3: Gerason93 (3000 in chips)
+Seat 4: Gj,tlf777 (3000 in chips)
+Seat 5: jcarlos.vale (3000 in chips)
+Seat 6: SoChute (3000 in chips)
+Seat 7: Phisie (3000 in chips)
+Seat 8: Elena19years (3000 in chips)
+Seat 9: evstraliss (3000 in chips)
+LauriOy: posts the ante 4
+LEE MARVIN17: posts the ante 4
+Gerason93: posts the ante 4
+Gj,tlf777: posts the ante 4
+jcarlos.vale: posts the ante 4
+SoChute: posts the ante 4
+Phisie: posts the ante 4
+Elena19years: posts the ante 4
+evstraliss: posts the ante 4
+LEE MARVIN17: posts small blind 15
+Gerason93: posts big blind 30
+*** HOLE CARDS ***
+Dealt to jcarlos.vale [7h Ks]
+Phisie is disconnected
+Gj,tlf777: folds
+jcarlos.vale: folds
+SoChute: folds
+Phisie: folds
+Elena19years: folds
+evstraliss: folds
+LauriOy: calls 30
+LEE MARVIN17: folds
+Gerason93: checks
+*** FLOP *** [9d Qd Qs]
+Gerason93: checks
+LauriOy: bets 30
+Gerason93: folds
+Uncalled bet (30) returned to LauriOy
+LauriOy collected 111 from pot
+LauriOy: doesn't show hand
+*** SUMMARY ***
+Total pot 111 | Rake 0
+Board [9d Qd Qs]
+Seat 1: LauriOy (button) collected (111)
+Seat 2: LEE MARVIN17 (small blind) folded before Flop
+Seat 3: Gerason93 (big blind) folded on the Flop
+Seat 4: Gj,tlf777 folded before Flop (didn't bet)
+Seat 5: jcarlos.vale folded before Flop (didn't bet)
+Seat 6: SoChute folded before Flop (didn't bet)
+Seat 7: Phisie folded before Flop (didn't bet)
+Seat 8: Elena19years folded before Flop (didn't bet)
+Seat 9: evstraliss folded before Flop (didn't bet)
