@@ -6,20 +6,25 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 class FileProcessorTest {
 
-    private final FileProcessor fileProcessor = new FileProcessor();
+    private FileProcessor fileProcessor;
 
+    @BeforeEach
+    void setup() {
+        fileProcessor = new FileProcessor();
+    }
     @Test
-    void loadPlayersOneHand() throws IOException {
+    void processOneHandNoshowdown() throws IOException {
         //GIVEN
         Resource resource = new ClassPathResource("one-hand.txt", getClass().getClassLoader());
         List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
-        Set<String> expectedResult =
+        Set<String> expectedPlayers =
                 Set.of("W SERENA",
                         "matalaha",
                         "xTheWindelPilot",
@@ -31,20 +36,24 @@ class FileProcessorTest {
                         "jcarlos.vale");
 
         //WHEN
-        Set<String> actualResult = fileProcessor.loadPlayers(lines);
+        fileProcessor.process(lines);
 
         //THEN
-        assertThat(actualResult)
-                .hasSize(expectedResult.size())
-                .hasSameElementsAs(expectedResult);
+        assertThat(fileProcessor.getPlayers())
+                .hasSize(expectedPlayers.size())
+                .hasSameElementsAs(expectedPlayers);
+        assertThat(fileProcessor.getHandsOfPlayers())
+                .isEmpty();
+        assertThat(fileProcessor.getHands())
+                .hasSize(1);
     }
 
     @Test
-    void loadPlayersTwoHands() throws IOException {
+    void processTwoHandsNoshowdown() throws IOException {
         //GIVEN
         Resource resource = new ClassPathResource("two-hands.txt", getClass().getClassLoader());
         List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
-        Set<String> expectedResult =
+        Set<String> expectedPlayers =
                 Set.of("W SERENA",
                         "matalaha",
                         "xTheWindelPilot",
@@ -64,36 +73,15 @@ class FileProcessorTest {
                         "evstraliss");
 
         //WHEN
-        Set<String> actualResult = fileProcessor.loadPlayers(lines);
+        fileProcessor.process(lines);
 
         //THEN
-        assertThat(actualResult)
-                .hasSize(expectedResult.size())
-                .hasSameElementsAs(expectedResult);
-    }
-
-    @Test
-    void loadPlayersEmptyLines() {
-        //GIVEN
-
-        //WHEN
-        Set<String> actualResult = fileProcessor.loadPlayers(List.of());
-
-        //THEN
-        assertThat(actualResult)
+        assertThat(fileProcessor.getPlayers())
+                .hasSize(expectedPlayers.size())
+                .hasSameElementsAs(expectedPlayers);
+        assertThat(fileProcessor.getHandsOfPlayers())
                 .isEmpty();
+        assertThat(fileProcessor.getHands())
+                .hasSize(2);
     }
-
-    @Test
-    void loadPlayersNullLines() {
-        //GIVEN
-
-        //WHEN
-        Set<String> actualResult = fileProcessor.loadPlayers(null);
-
-        //THEN
-        assertThat(actualResult)
-                .isEmpty();
-    }
-
 }
