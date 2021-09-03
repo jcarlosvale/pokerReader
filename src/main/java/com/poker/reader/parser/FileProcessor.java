@@ -102,8 +102,8 @@ public class FileProcessor {
         } else {
             return lines
                     .stream()
-                    .filter(line -> line.startsWith("Seat ") && line.endsWith(" in chips)"))
-                    .map(seatLine -> StringUtils.substringBetween(seatLine, ": ", " (").trim())
+                    .filter(line -> line.startsWith("Seat ") && line.contains(" in chips)"))
+                    .map(seatLine -> seatLine.substring(seatLine.indexOf(":")+1, seatLine.lastIndexOf("(")).trim())
                     .collect(Collectors.toSet());
         }
     }

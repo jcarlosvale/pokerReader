@@ -1,0 +1,59 @@
+PokerStars Hand #220859585341: Tournament #3060068759, $0.23+$0.02 USD Hold'em No Limit - Level VII (100/200) - 2020/11/28 1:16:56 EET [2020/11/27 18:16:56 ET]
+Table '3060068759 4' 9-max Seat #8 is the button
+Seat 1: FlyingButche (1023 in chips)
+Seat 2: tEddy-KBG 77 (334 in chips) is sitting out
+Seat 3: dimYLiaK (3267 in chips)
+Seat 4: andrey pyatkin (634 in chips)
+Seat 5: jcarlos.vale (2568 in chips)
+Seat 6: ErickSayajin (12526 in chips)
+Seat 7: clonharek704 (5217 in chips)
+Seat 8: AyrtonAA95 (8620 in chips)
+Seat 9: (ANEKDOT)777 (1596 in chips)
+FlyingButche: posts the ante 25
+tEddy-KBG 77: posts the ante 25
+dimYLiaK: posts the ante 25
+andrey pyatkin: posts the ante 25
+jcarlos.vale: posts the ante 25
+ErickSayajin: posts the ante 25
+clonharek704: posts the ante 25
+AyrtonAA95: posts the ante 25
+(ANEKDOT)777: posts the ante 25
+(ANEKDOT)777: posts small blind 100
+FlyingButche: posts big blind 200
+*** HOLE CARDS ***
+Dealt to jcarlos.vale [9d Ts]
+tEddy-KBG 77: folds
+dimYLiaK: folds
+andrey pyatkin: raises 409 to 609 and is all-in
+jcarlos.vale: folds
+ErickSayajin: raises 409 to 1018
+clonharek704: folds
+AyrtonAA95: folds
+(ANEKDOT)777: folds
+FlyingButche: calls 798 and is all-in
+Uncalled bet (20) returned to ErickSayajin
+*** FLOP *** [Jh Th Qs]
+*** TURN *** [Jh Th Qs] [4h]
+*** RIVER *** [Jh Th Qs 4h] [3d]
+*** SHOW DOWN ***
+FlyingButche: shows [Ad Qh] (a pair of Queens)
+ErickSayajin: shows [3h Ah] (a flush, Ace high)
+ErickSayajin collected 778 from side pot
+andrey pyatkin: shows [8s Kd] (high card King)
+jcarlos.vale said, "kraio Erck"
+ErickSayajin collected 2152 from main pot
+FlyingButche finished the tournament in 16th place
+andrey pyatkin finished the tournament in 17th place
+jcarlos.vale said, "que oconta"
+*** SUMMARY ***
+Total pot 2930 Main pot 2152. Side pot 778. | Rake 0
+Board [Jh Th Qs 4h 3d]
+Seat 1: FlyingButche (big blind) showed [Ad Qh] and lost with a pair of Queens
+Seat 2: tEddy-KBG 77 folded before Flop (didn't bet)
+Seat 3: dimYLiaK folded before Flop (didn't bet)
+Seat 4: andrey pyatkin showed [8s Kd] and lost with high card King
+Seat 5: jcarlos.vale folded before Flop (didn't bet)
+Seat 6: ErickSayajin showed [3h Ah] and won (2930) with a flush, Ace high
+Seat 7: clonharek704 folded before Flop (didn't bet)
+Seat 8: AyrtonAA95 (button) folded before Flop (didn't bet)
+Seat 9: (ANEKDOT)777 (small blind) folded before Flop
