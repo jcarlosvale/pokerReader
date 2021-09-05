@@ -1,5 +1,6 @@
 package com.poker.reader.parser;
 
+import com.poker.reader.analyser.Analyse;
 import com.poker.reader.dto.FileSection;
 import com.poker.reader.dto.HandDto;
 import com.poker.reader.dto.RawCardsDto;
@@ -28,6 +29,17 @@ public class FileProcessor {
     public void process(final List<String> lines) {
         extractHands(lines);
         processHands();
+    }
+
+    public StringBuilder getAnalysis() {
+        StringBuilder result = new StringBuilder();
+        result
+                .append("Total hands: ").append(hands.size())
+                .append("\n")
+                .append("Total players: ").append(players.size())
+                .append("\n")
+                .append(Analyse.handsOfPlayers(players, handsOfPlayers));
+        return result;
     }
 
     private void processHands() {

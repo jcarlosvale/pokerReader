@@ -136,6 +136,7 @@ class FileProcessorTest {
         assertThat(fileProcessor.getHandsOfPlayers()).hasSize(62);
         assertThat(fileProcessor.getHands()).hasSize(396);
         assertThat(FileProcessorUtil.countHands(fileProcessor.getHandsOfPlayers())).isEqualTo(239);
+        System.out.println(fileProcessor.getAnalysis());
     }
 
 }

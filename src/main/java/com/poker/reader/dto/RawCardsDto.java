@@ -1,9 +1,9 @@
 package com.poker.reader.dto;
 
+import lombok.Data;
+
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
-
-import lombok.Data;
 
 @Data
 public class RawCardsDto {
@@ -19,9 +19,9 @@ public class RawCardsDto {
         this.card2 = rawData.substring(3,5);
     }
 
-    public static void main(String[] args) {
-        String test = "Seat 2: tEddy-KBG 77 (334 in chips) is sitting out";
-        System.out.println();
-
+    @Override
+    public String toString() {
+        return card1 + card2;
     }
+
 }
