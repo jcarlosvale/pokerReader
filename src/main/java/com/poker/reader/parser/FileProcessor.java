@@ -3,18 +3,15 @@ package com.poker.reader.parser;
 import com.poker.reader.dto.FileSection;
 import com.poker.reader.dto.HandDto;
 import com.poker.reader.dto.RawCardsDto;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 import lombok.Getter;
+import lombok.extern.java.Log;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
+@Log
 @Getter
 public class FileProcessor {
 
@@ -24,7 +21,7 @@ public class FileProcessor {
 
     public FileProcessor() {
         hands = new ArrayList<>();
-        players = new HashSet<>();
+        players = new TreeSet<>();
         handsOfPlayers = new HashMap<>();
     }
 
@@ -58,7 +55,7 @@ public class FileProcessor {
             HandDto handDto = null;
             FileSection currentSection = null;
             for(String line: lines) {
-                if (line.startsWith("PokerStars Hand #")) {
+                if (line.contains("PokerStars Hand #") && line.contains(": Tournament #")) {
 
                     currentSection = FileSection.HEADER;
                     if (handDto != null) {
@@ -103,7 +100,9 @@ public class FileProcessor {
             return lines
                     .stream()
                     .filter(line -> line.startsWith("Seat ") && line.contains(" in chips)"))
-                    .map(seatLine -> seatLine.substring(seatLine.indexOf(":")+1, seatLine.lastIndexOf("(")).trim())
+                    .map(seatLine -> StringUtils.substringBefore(seatLine, "in chips)"))
+                    .map(seatLine -> seatLine.substring(seatLine.indexOf(":")+1, seatLine.lastIndexOf("(")).trim()
+                    )
                     .collect(Collectors.toSet());
         }
     }

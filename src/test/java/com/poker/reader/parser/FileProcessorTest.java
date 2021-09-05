@@ -1,18 +1,20 @@
 package com.poker.reader.parser;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-
 import com.poker.reader.dto.RawCardsDto;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import com.poker.reader.parser.util.FileProcessorUtil;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 class FileProcessorTest {
 
@@ -123,16 +125,17 @@ class FileProcessorTest {
     @Test
     void processHugeFileExample() throws IOException {
         //GIVEN
-        Resource resource = new ClassPathResource("/top/HH20201227 T3082657132 No Limit Hold'em US$ 0,98 + US$ 0,12.txt", getClass().getClassLoader());
+        Resource resource = new ClassPathResource("huge-file.txt", getClass().getClassLoader());
         List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
 
         //WHEN
         fileProcessor.process(lines);
 
         //THEN
-        assertThat(fileProcessor.getPlayers()).hasSize(11);
-        assertThat(fileProcessor.getHandsOfPlayers()).hasSize(4);
-        assertThat(fileProcessor.getHands()).hasSize(14);
+        assertThat(fileProcessor.getPlayers()).hasSize(67);
+        assertThat(fileProcessor.getHandsOfPlayers()).hasSize(62);
+        assertThat(fileProcessor.getHands()).hasSize(396);
+        assertThat(FileProcessorUtil.countHands(fileProcessor.getHandsOfPlayers())).isEqualTo(239);
     }
 
 }
