@@ -4,6 +4,7 @@ import com.poker.reader.entity.*;
 import com.poker.reader.exception.InvalidSectionFileException;
 import com.poker.reader.parser.util.TypeFileSection;
 import com.poker.reader.validator.HandValidator;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
@@ -33,9 +34,8 @@ public class FileReader {
     private final Set<Player> players = new HashSet<>();
     private File file;
 
-    public List<File> readDirectory(String directoryPath) {
-        List<File> files = (List<File>) FileUtils.listFiles(new File(directoryPath), new String[]{"txt"}, false);
-        return files;
+    public static List<File> readDirectory(String directoryPath) {
+        return (List<File>) FileUtils.listFiles(new File(directoryPath), new String[]{"txt"}, false);
     }
 
     public void readFile(String filePath) throws IOException {
@@ -205,5 +205,32 @@ public class FileReader {
         if (line.equals(SECTION_END_OF_HAND)) {return END_OF_HAND;}
         if(line.contains(SECTION_TOKEN)) {throw new InvalidSectionFileException("FOUND A NOT EVALUATED SECTION: " + line);}
         return null;
+    }
+
+    public static void main(String[] args) throws IOException {
+        String inputDirectory = args[0];
+        String outputDirectory = "c:\\temp";
+
+        FileProcessor fileProcessor = new FileProcessor();
+
+        List<File> files = readDirectory(inputDirectory);
+        int count = 1;
+        for(File file: files) {
+            String fileName = file.getName();
+            System.out.println("Processing " + fileName);
+            long start = System.currentTimeMillis();
+            List<String> lines = FileUtils.readLines(file, "utf-8");
+            fileProcessor.process(lines);
+            saveProcess(outputDirectory, fileName, fileProcessor.getAnalysis());
+            System.out.println("Processed " + count + "/" + files.size() + " " + (System.currentTimeMillis() - start) + "ms");
+            count++;
+        }
+    }
+
+    private static void saveProcess(String outputDirectory, String fileNameProcessed, StringBuilder analysis)
+            throws IOException {
+        String directory = outputDirectory + "\\output";
+        String fileName = "result-" + fileNameProcessed;
+        FileUtils.write(new File(directory + File.separator + fileName), analysis.toString(), "UTF-8");
     }
 }

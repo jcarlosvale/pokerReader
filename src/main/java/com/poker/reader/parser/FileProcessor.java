@@ -27,8 +27,15 @@ public class FileProcessor {
     }
 
     public void process(final List<String> lines) {
+        clearData();
         extractHands(lines);
         processHands();
+    }
+
+    private void clearData() {
+        hands.clear();
+        players.clear();
+        handsOfPlayers.clear();
     }
 
     public StringBuilder getAnalysis() {
@@ -55,8 +62,13 @@ public class FileProcessor {
                 .stream()
                 .filter(line -> line.contains(": shows ["))
                 .forEach(line -> {
+/*
+                    if(line.equals("[ro]hoi: shows [Jh Qs] (two pair, Queens and Fives)")) {
+                        log.info(line);
+                    }
+*/
                     String player = StringUtils.substringBefore(line,": ");
-                    RawCardsDto rawCardsDto = new RawCardsDto(StringUtils.substringBetween(line, "[", "]"));
+                    RawCardsDto rawCardsDto = new RawCardsDto(line.substring(line.lastIndexOf("[") + 1, line.lastIndexOf("]")));
                     handsOfPlayers.computeIfAbsent(player, s -> new ArrayList<>()).add(rawCardsDto);
                 });
         }

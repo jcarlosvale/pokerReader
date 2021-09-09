@@ -139,4 +139,22 @@ class FileProcessorTest {
         System.out.println(fileProcessor.getAnalysis());
     }
 
+    @Test
+    void evaluateFileException() throws IOException {
+        //GIVEN
+        Resource resource = new ClassPathResource("exception-case.txt", getClass().getClassLoader());
+        List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
+
+        //WHEN
+        fileProcessor.process(lines);
+
+        //THEN
+        assertThat(fileProcessor.getPlayers()).hasSize(71);
+        assertThat(fileProcessor.getHandsOfPlayers()).hasSize(57);
+        assertThat(fileProcessor.getHands()).hasSize(203);
+        assertThat(FileProcessorUtil.countHands(fileProcessor.getHandsOfPlayers())).isEqualTo(145);
+        System.out.println(fileProcessor.getAnalysis());
+    }
+
+
 }

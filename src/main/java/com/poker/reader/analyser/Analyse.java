@@ -2,14 +2,15 @@ package com.poker.reader.analyser;
 
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.RawCardsDto;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public final class Analyse {
 
-    private Analyse () {
-
-    }
+    private Analyse () {}
 
     public static List<AnalysedPlayer> handsOfPlayers(Set<String> players,
                                                       Map<String, List<RawCardsDto>> handsOfPlayers) {
@@ -81,7 +82,7 @@ public final class Analyse {
 
     }
 
-    private static List<Integer> calculateChenFormulaFrom(List<String> normalisedCards) {
+    public static List<Integer> calculateChenFormulaFrom(List<String> normalisedCards) {
         List<Integer> result = new ArrayList<>();
         for(String hand: normalisedCards) {
             result.add(calculateChenFormulaFrom(hand));
