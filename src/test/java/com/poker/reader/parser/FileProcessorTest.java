@@ -1,5 +1,7 @@
 package com.poker.reader.parser;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poker.reader.dto.RawCardsDto;
 import com.poker.reader.parser.util.FileProcessorUtil;
 import org.apache.commons.io.FileUtils;
@@ -149,12 +151,33 @@ class FileProcessorTest {
         fileProcessor.process(lines);
 
         //THEN
-        assertThat(fileProcessor.getPlayers()).hasSize(71);
-        assertThat(fileProcessor.getHandsOfPlayers()).hasSize(57);
-        assertThat(fileProcessor.getHands()).hasSize(203);
-        assertThat(FileProcessorUtil.countHands(fileProcessor.getHandsOfPlayers())).isEqualTo(145);
+        assertThat(fileProcessor.getPlayers()).hasSize(4);
+        assertThat(fileProcessor.getHandsOfPlayers()).hasSize(49);
+        assertThat(fileProcessor.getHands()).hasSize(156);
+        assertThat(FileProcessorUtil.countHands(fileProcessor.getHandsOfPlayers())).isEqualTo(129);
         System.out.println(fileProcessor.getAnalysis());
     }
 
+    @Test
+    void analysedPlayers() throws IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
 
+        //GIVEN
+        Resource resource = new ClassPathResource("exception-case.txt", getClass().getClassLoader());
+        List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
+
+        //WHEN
+        fileProcessor.process(lines);
+
+        //THEN
+        fileProcessor.getAnalysedPlayers().stream()
+                .map(analysedPlayer -> {
+                    try {
+                        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(analysedPlayer);
+                    } catch (JsonProcessingException e) {
+                        return null;
+                    }
+                })
+                .forEach(System.out::println);
+    }
 }

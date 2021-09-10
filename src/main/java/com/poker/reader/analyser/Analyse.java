@@ -1,9 +1,11 @@
 package com.poker.reader.analyser;
 
 import com.poker.reader.dto.AnalysedPlayer;
+import com.poker.reader.dto.HandOfPlayerDto;
 import com.poker.reader.dto.RawCardsDto;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,25 +20,27 @@ public final class Analyse {
         List<AnalysedPlayer> analysedPlayers = new ArrayList<>();
 
         for(String player: players) {
-            AnalysedPlayer analysedPlayer = null;
+            AnalysedPlayer analysedPlayer;
             if (handsOfPlayers.containsKey(player)) {
-                List<String> normalisedCards = normaliseCards(handsOfPlayers.get(player));
+                List<HandOfPlayerDto> normalisedCards = normaliseCards(player, handsOfPlayers.get(player));
                 normalisedCards.sort(Analyse::handsOfPlayersComparator);
                 Collections.reverse(normalisedCards);
 
-                List<Integer> chenValues = calculateChenFormulaFrom(normalisedCards);
+                long chenAverage = calculateAverage(normalisedCards);
 
                 analysedPlayer = AnalysedPlayer.builder()
                         .player(player)
                         .rawCards(handsOfPlayers.get(player))
-                        .normalisedCards(normalisedCards)
-                        .chenValues(chenValues)
-                        .chenAverage(Math.round(chenValues.stream().mapToInt(number-> number).average().orElseGet(() -> 0D)))
+                        .hands(normalisedCards)
+                        .chenAverage(chenAverage)
                         .build();
 
             } else { //NO HANDS
                 analysedPlayer = AnalysedPlayer.builder()
                         .player(player)
+                        .rawCards(new ArrayList<>())
+                        .hands(new ArrayList<>())
+                        .chenAverage(-100)
                         .build();
             }
             analysedPlayers.add(analysedPlayer);
@@ -44,7 +48,21 @@ public final class Analyse {
         return analysedPlayers;
     }
 
-    private static int handsOfPlayersComparator(String normalisedCards1, String normalisedCards2) {
+    private static long calculateAverage(List<HandOfPlayerDto> normalisedCards) {
+
+        int totalCount = normalisedCards.stream().mapToInt(HandOfPlayerDto::getCount).sum();
+        double sum = normalisedCards.stream().mapToDouble(handOfPlayer -> handOfPlayer.getCount() * handOfPlayer.getChen()).sum();
+
+        if(totalCount == 0) return -100;
+        else return Math.round(sum / totalCount);
+
+    }
+
+    private static int handsOfPlayersComparator(HandOfPlayerDto handOfPlayer1, HandOfPlayerDto handOfPlayer2) {
+
+        String normalisedCards1 = handOfPlayer1.getCards();
+        String normalisedCards2 = handOfPlayer2.getCards();
+
         int card1 = valueOf(normalisedCards1.charAt(0));
         int card2 = valueOf(normalisedCards1.charAt(1));
 
@@ -139,25 +157,38 @@ public final class Analyse {
         return (card - '0')/2.0;
     }
 
-    private static List<String> normaliseCards(List<RawCardsDto> rawCardsDtoList) {
-        List<String> result = new ArrayList<>();
+    private static List<HandOfPlayerDto> normaliseCards(String player, List<RawCardsDto> rawCardsDtoList) {
+
+        Map<String, Integer> mapNormalisedCards = new HashMap<>();
+
         for(RawCardsDto rawCard: rawCardsDtoList) {
+            String normalisedCards = normaliseCards(rawCard);
+            mapNormalisedCards.put(normalisedCards, mapNormalisedCards.getOrDefault(normalisedCards, 0)+1);
+        }
+        List<HandOfPlayerDto> handOfPlayerDtoList = new ArrayList<>();
+        mapNormalisedCards.forEach((cards, counter) -> handOfPlayerDtoList.add(
+                HandOfPlayerDto.builder()
+                        .cards(cards)
+                        .chen(calculateChenFormulaFrom(cards))
+                        .count(counter)
+                        .build()));
+        return handOfPlayerDtoList;
+    }
 
-            char faceCard1 = faceCard(rawCard.getCard1());
-            char faceCard2 = faceCard(rawCard.getCard2());
+    private static String normaliseCards(RawCardsDto rawCard) {
+        char faceCard1 = faceCard(rawCard.getCard1());
+        char faceCard2 = faceCard(rawCard.getCard2());
 
-            if(faceCard1 == faceCard2) { //PAIR
-                result.add(""+faceCard1 + faceCard2);
-            } else { //NOT PAIR
-                char suited = isSuited(rawCard.getCard1(), rawCard.getCard2()) ? 's' : 'o';
-                if (valueOf(faceCard2) > valueOf(faceCard1)) {
-                    result.add(""+faceCard2 + faceCard1 + suited);
-                } else {
-                    result.add(""+faceCard1 + faceCard2 + suited);
-                }
+        if(faceCard1 == faceCard2) { //PAIR
+            return ""+faceCard1 + faceCard2;
+        } else { //NOT PAIR
+            char suited = isSuited(rawCard.getCard1(), rawCard.getCard2()) ? 's' : 'o';
+            if (valueOf(faceCard2) > valueOf(faceCard1)) {
+                return ""+faceCard2 + faceCard1 + suited;
+            } else {
+                return ""+faceCard1 + faceCard2 + suited;
             }
         }
-        return result;
     }
 
     private static int valueOf(char faceCard) {
