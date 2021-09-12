@@ -1,10 +1,8 @@
 package com.poker.reader.parser;
 
+import com.google.common.base.Preconditions;
 import com.poker.reader.analyser.Analyse;
-import com.poker.reader.dto.AnalysedPlayer;
-import com.poker.reader.dto.FileSection;
-import com.poker.reader.dto.HandDto;
-import com.poker.reader.dto.RawCardsDto;
+import com.poker.reader.dto.*;
 import lombok.Getter;
 import lombok.extern.java.Log;
 import org.apache.commons.lang3.StringUtils;
@@ -17,20 +15,28 @@ import java.util.stream.Collectors;
 @Getter
 public class FileProcessor {
 
+    private String tournament;
     private final List<HandDto> hands;
     private final Set<String> players;
     private final Map<String, List<RawCardsDto>> handsOfPlayers;
 
     public FileProcessor() {
+        tournament = null;
         hands = new ArrayList<>();
         players = new TreeSet<>();
         handsOfPlayers = new HashMap<>();
     }
 
-    public void process(final List<String> lines) {
+    public Optional<FileProcessedDto> process(final List<String> lines) {
         clearData();
         extractHands(lines);
         processHands();
+        return Optional.of(
+                FileProcessedDto.builder()
+                .analysedPlayers(Analyse.handsOfPlayers(players, handsOfPlayers))
+                .totalHands(hands.size())
+                .totalPlayers(players.size())
+                .build());
     }
 
     private void clearData() {
@@ -93,6 +99,13 @@ public class FileProcessor {
 
                     String handId = StringUtils.substringBetween(line, "PokerStars Hand #", ": Tournament ");
                     String tournamentId = StringUtils.substringBetween(line, ": Tournament #", ", ");
+
+                    if(tournament == null) {
+                        tournament = tournamentId;
+                    } else {
+                        Preconditions.checkArgument(tournamentId.equals(tournament), "invalid file tournament!");
+                    }
+
                     handDto = new HandDto(handId, tournamentId);
                 }
 

@@ -1,15 +1,14 @@
 package com.poker.reader.dto;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import lombok.Getter;
+import lombok.Setter;
 
-import com.google.common.base.Preconditions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class HandDto {
 
