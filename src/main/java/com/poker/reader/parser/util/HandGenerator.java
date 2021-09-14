@@ -1,6 +1,7 @@
 package com.poker.reader.parser.util;
 
-import com.poker.reader.analyser.Analyse;
+import static com.poker.reader.parser.util.Chen.calculateChenFormulaFrom;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class HandGenerator {
         Map<Integer, List<String>> mapOfChen = new TreeMap<>();
         List<String> hands  = generateNormalisedCards();
         for(String hand: hands) {
-            int chen = Analyse.calculateChenFormulaFrom(hand);
+            int chen = calculateChenFormulaFrom(hand);
             mapOfChen.computeIfAbsent(chen, s -> new ArrayList<>()).add(hand);
         }
         mapOfChen.forEach((integer, cards) -> System.out.println(integer + " --> " + cards));
@@ -43,7 +44,7 @@ public class HandGenerator {
         int minChen = Integer.MAX_VALUE;
 
         for(String card: cards) {
-            int chen = Analyse.calculateChenFormulaFrom(card);
+            int chen = calculateChenFormulaFrom(card);
             System.out.println(card + ":" + chen);
             maxChen = Math.max(maxChen, chen);
             minChen = Math.min(minChen, chen);

@@ -1,32 +1,31 @@
 package com.poker.reader.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.poker.reader.parser.util.Chen;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import lombok.Builder;
 import lombok.Data;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AnalysedPlayer {
-    private String player;
-    private List<RawCardsDto> rawCards;
-    private List<HandOfPlayerDto> hands;
-    private long chenAverage;
+    private final String player;
+    private final TreeMap<NormalisedCardsDto, Integer> normalisedCardsMap;
 
-    @Override
-    public String toString() {
-        return  "\n"
-                + player + ":"
-                //normalised cards
-                + "\n\t" + hands.stream().map(handOfPlayerDto -> "(" + handOfPlayerDto.getCount() + ")" + handOfPlayerDto.getCards()).collect(Collectors.joining(", "))
-                //avg chen
-                + "\n\t" + "Chen Average: "
-                + chenAverage
-                //raw cards
-                + "\n\t" + rawCards
-                + "[" + rawCards.size() + "]";
+    public long averageChen() {
+        int count = 0;
+        double sum = 0;
+        for(Entry<NormalisedCardsDto, Integer> entry : normalisedCardsMap.entrySet()) {
+            count += entry.getValue();
+            sum += entry.getKey().getChen() * entry.getValue();
+        }
+        if(count == 0) return Chen.MIN;
+        else return Math.round(sum / count);
+    }
+
+    public int getCountShowdownCards() {
+        return this.normalisedCardsMap.values().stream().mapToInt(value -> value).sum();
     }
 }

@@ -1,130 +1,151 @@
 package com.poker.reader.parser;
 
-import com.google.common.base.Preconditions;
-import com.poker.reader.analyser.Analyse;
-import com.poker.reader.dto.*;
-import lombok.Getter;
+import static com.google.common.base.Preconditions.checkArgument;
+
+import com.poker.reader.dto.AnalysedPlayer;
+import com.poker.reader.dto.FileProcessedDto;
+import com.poker.reader.dto.NormalisedCardsDto;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import lombok.NonNull;
 import lombok.extern.java.Log;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 @Log
-@Getter
 public class FileProcessor {
 
     private String tournament;
-    private final List<HandDto> hands;
+    private final List<LinesOfHand> hands;
     private final Set<String> players;
-    private final Map<String, List<RawCardsDto>> handsOfPlayers;
+    private final Map<String, AnalysedPlayer> analysedPlayerMap;
 
     public FileProcessor() {
         tournament = null;
         hands = new ArrayList<>();
         players = new TreeSet<>();
-        handsOfPlayers = new HashMap<>();
+        analysedPlayerMap = new HashMap<>();
     }
 
+    /**
+     * Process the files:
+     * - clear collection
+     * - extract hands, the lines by section
+     * - collect players and cards
+     * - generate the File Processed DTO
+     * @param lines
+     * @return
+     */
     public Optional<FileProcessedDto> process(final List<String> lines) {
         clearData();
         extractHands(lines);
         processHands();
         return Optional.of(
                 FileProcessedDto.builder()
-                .analysedPlayers(Analyse.handsOfPlayers(players, handsOfPlayers))
+                .analysedPlayers(new ArrayList<>(analysedPlayerMap.values()))
                 .totalHands(hands.size())
                 .totalPlayers(players.size())
                 .build());
     }
 
+    /**
+     * Clear collections
+     */
     private void clearData() {
         hands.clear();
         players.clear();
-        handsOfPlayers.clear();
+        analysedPlayerMap.clear();
+        tournament = null;
     }
 
-    public StringBuilder getAnalysis() {
-        StringBuilder result = new StringBuilder();
-        result
-                .append("Total hands: ").append(hands.size())
-                .append("\n")
-                .append("Total players: ").append(players.size())
-                .append("\n")
-                .append(Analyse.handsOfPlayers(players, handsOfPlayers));
-        return result;
-    }
-
-    public List<AnalysedPlayer> getAnalysedPlayers() {
-        return Analyse.handsOfPlayers(players, handsOfPlayers);
-    }
-
+    /**
+     * Extracts players and cards
+     */
     private void processHands() {
         hands.forEach(hand -> {
-            players.addAll(loadPlayers(hand.getLinesFromSection(FileSection.HEADER)));
-            extractHandsOfPlayers(hand.getLinesFromSection(FileSection.SHOWDOWN));
+            players.addAll(extractPlayers(hand.getLinesFromSection(FileSection.HEADER)));
+            extractCardsFromPlayers(hand.getLinesFromSection(FileSection.SHOWDOWN));
         });
     }
 
-    private void extractHandsOfPlayers(List<String> lines) {
-        if (!CollectionUtils.isEmpty(lines)) {
-            lines
-                .stream()
-                .filter(line -> line.contains(": shows ["))
-                .forEach(line -> {
-/*
-                    if(line.equals("[ro]hoi: shows [Jh Qs] (two pair, Queens and Fives)")) {
-                        log.info(line);
-                    }
-*/
-                    String player = StringUtils.substringBefore(line,": ");
-                    RawCardsDto rawCardsDto = new RawCardsDto(line.substring(line.lastIndexOf("[") + 1, line.lastIndexOf("]")));
-                    handsOfPlayers.computeIfAbsent(player, s -> new ArrayList<>()).add(rawCardsDto);
-                });
+    /**
+     * Extract cards
+     * @param lines
+     */
+    private void extractCardsFromPlayers(List<String> lines) {
+        if(CollectionUtils.isEmpty(lines)) return;
+        lines
+            .stream()
+            .filter(line -> line.contains(": shows ["))
+            .forEach(line -> {
+                String player = StringUtils.substringBefore(line,": shows [");
+                NormalisedCardsDto normalisedCardsDto = new NormalisedCardsDto(line.substring(line.lastIndexOf("[") + 1, line.lastIndexOf("]")));
+                if (analysedPlayerMap.containsKey(player)) {
+                    AnalysedPlayer analysedPlayer = analysedPlayerMap.get(player);
+                    TreeMap<NormalisedCardsDto, Integer> normalisedCardsMap = analysedPlayer.getNormalisedCardsMap();
+                    normalisedCardsMap.put(normalisedCardsDto, normalisedCardsMap.getOrDefault(normalisedCardsDto, 0) + 1);
+                } else {
+                    TreeMap<NormalisedCardsDto, Integer> normalisedCardsMap = new TreeMap<>();
+                    normalisedCardsMap.put(normalisedCardsDto, 1);
+                    AnalysedPlayer analysedPlayer =
+                            AnalysedPlayer.builder()
+                                    .player(player)
+                                    .normalisedCardsMap(normalisedCardsMap)
+                                    .build();
+                    analysedPlayerMap.put(player, analysedPlayer);
+                }
+            });
+    }
+
+    /**
+     * Extract the hands from lines of file.
+     * @param lines
+     */
+    private void extractHands(@NonNull List<String> lines) {
+        LinesOfHand linesOfHand = null;
+        FileSection currentSection = null;
+        for(String line: lines) {
+            if (line.trim().isEmpty()) continue;
+            if (line.contains("PokerStars Hand #") && line.contains(": Tournament #")) {
+                currentSection = FileSection.HEADER;
+                if (linesOfHand != null) {
+                    hands.add(linesOfHand);
+                }
+                String handId = StringUtils.substringBetween(line, "PokerStars Hand #", ": Tournament ");
+                String tournamentId = StringUtils.substringBetween(line, ": Tournament #", ", ");
+                if(tournament == null) {
+                    tournament = tournamentId;
+                } else {
+                    checkArgument(tournamentId.equals(tournament), "invalid file tournament!");
+                }
+                linesOfHand = new LinesOfHand(handId, tournamentId);
+            }
+            FileSection fileSection = extractSection(line);
+            if (Objects.nonNull(fileSection)) {
+                currentSection = fileSection;
+            }
+            if (linesOfHand != null) {
+                linesOfHand.addLine(currentSection, line);
+            }
+        }
+        if (linesOfHand != null) {
+            hands.add(linesOfHand);
         }
     }
 
-    private void extractHands(List<String> lines) {
-        if (!CollectionUtils.isEmpty(lines)) {
-            HandDto handDto = null;
-            FileSection currentSection = null;
-            for(String line: lines) {
-                if (line.contains("PokerStars Hand #") && line.contains(": Tournament #")) {
-
-                    currentSection = FileSection.HEADER;
-                    if (handDto != null) {
-                        hands.add(handDto);
-                    }
-
-                    String handId = StringUtils.substringBetween(line, "PokerStars Hand #", ": Tournament ");
-                    String tournamentId = StringUtils.substringBetween(line, ": Tournament #", ", ");
-
-                    if(tournament == null) {
-                        tournament = tournamentId;
-                    } else {
-                        Preconditions.checkArgument(tournamentId.equals(tournament), "invalid file tournament!");
-                    }
-
-                    handDto = new HandDto(handId, tournamentId);
-                }
-
-                FileSection fileSection = extractSection(line);
-                if (Objects.nonNull(fileSection)) {
-                    currentSection = fileSection;
-                }
-
-                if (handDto != null) {
-                    handDto.addLine(currentSection, line);
-                }
-            }
-
-            if (handDto != null) {
-                hands.add(handDto);
-            }
-        }
-    }
-
+    /**
+     * Extracts section if present any string
+     * @param line
+     * @return
+     */
     private FileSection extractSection(final String line) {
         if (line.contains("*** HOLE CARDS ***"))  return FileSection.PRE_FLOP;
         if (line.contains("*** FLOP ***"))        return FileSection.FLOP;
@@ -135,7 +156,12 @@ public class FileProcessor {
         return null;
     }
 
-    private Set<String> loadPlayers(final List<String> lines) {
+    /**
+     * Extract players from lines
+     * @param lines
+     * @return
+     */
+    private Set<String> extractPlayers(final List<String> lines) {
         if (CollectionUtils.isEmpty(lines)) {
             return Set.of();
         } else {
