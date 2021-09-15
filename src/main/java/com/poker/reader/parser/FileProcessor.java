@@ -50,10 +50,11 @@ public class FileProcessor {
         processHands();
         return Optional.of(
                 FileProcessedDto.builder()
-                .analysedPlayers(new ArrayList<>(analysedPlayerMap.values()))
-                .totalHands(hands.size())
-                .totalPlayers(players.size())
-                .build());
+                        .tournament(tournament)
+                        .players(players)
+                        .analysedPlayers(new ArrayList<>(analysedPlayerMap.values()))
+                        .totalHands(hands.size())
+                        .build());
     }
 
     /**

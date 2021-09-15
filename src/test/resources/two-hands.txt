@@ -63,7 +63,7 @@ Seat 9: jcarlos.vale folded before Flop (didn't bet)
 
 
 
-PokerStars Hand #221582700422: Tournament #3074230175, $0.98+$0.12 USD Hold'em No Limit - Level I (15/30) - 2020/12/18 22:30:03 EET [2020/12/18 15:30:03 ET]
+PokerStars Hand #221582700422: Tournament #2779056951, $0.98+$0.12 USD Hold'em No Limit - Level I (15/30) - 2020/12/18 22:30:03 EET [2020/12/18 15:30:03 ET]
 Table '3074230175 2' 9-max Seat #1 is the button
 Seat 1: LauriOy (3000 in chips)
 Seat 2: LEE MARVIN17 (3000 in chips)

@@ -2,10 +2,12 @@ package com.poker.reader.parser.util;
 
 import static com.poker.reader.parser.util.CardUtil.valueOf;
 
+/**
+ * https://www.thepokerbank.com/strategy/basic/starting-hand-selection/chen-formula/
+ */
 public class Chen {
 
     public static final long MIN = -100;
-
 
     /**
      *

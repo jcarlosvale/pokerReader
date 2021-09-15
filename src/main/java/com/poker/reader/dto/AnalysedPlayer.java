@@ -1,6 +1,7 @@
 package com.poker.reader.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.common.base.Objects;
 import com.poker.reader.parser.util.Chen;
 import java.util.Map.Entry;
 import java.util.TreeMap;
@@ -27,5 +28,22 @@ public class AnalysedPlayer {
 
     public int getCountShowdownCards() {
         return this.normalisedCardsMap.values().stream().mapToInt(value -> value).sum();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AnalysedPlayer that = (AnalysedPlayer) o;
+        return Objects.equal(player, that.player) && normalisedCardsMap.equals(that.normalisedCardsMap);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(player, normalisedCardsMap);
     }
 }

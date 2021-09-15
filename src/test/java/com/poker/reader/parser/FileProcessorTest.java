@@ -9,6 +9,7 @@ import com.poker.reader.dto.NormalisedCardsDto;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.TreeMap;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +25,7 @@ class FileProcessorTest {
     void setup() {
         fileProcessor = new FileProcessor();
     }
-/*
+
     @Test
     void processOneHandNoshowdown() throws IOException {
         //GIVEN
@@ -42,15 +43,12 @@ class FileProcessorTest {
                         "jcarlos.vale");
 
         //WHEN
-        fileProcessor.process(lines);
+        FileProcessedDto fileProcessed = fileProcessor.process(lines).get();
 
         //THEN
-        assertThat(fileProcessor.getPlayers())
-                .containsExactlyInAnyOrderElementsOf(expectedPlayers);
-        assertThat(fileProcessor.getAnalysedPlayerMap())
-                .isEmpty();
-        assertThat(fileProcessor.getHands())
-                .hasSize(1);
+        assertThat(fileProcessed.getTournament()).isEqualTo("2779056951");
+        assertThat(fileProcessed.getPlayers()).containsExactlyInAnyOrderElementsOf(expectedPlayers);
+        assertThat(fileProcessed.getTotalHands()).isEqualTo(1);
     }
 
     @Test
@@ -78,15 +76,13 @@ class FileProcessorTest {
                         "evstraliss");
 
         //WHEN
-        fileProcessor.process(lines);
+        FileProcessedDto fileProcessed = fileProcessor.process(lines).get();
 
         //THEN
-        assertThat(fileProcessor.getPlayers())
+        assertThat(fileProcessed.getTournament()).isEqualTo("2779056951");
+        assertThat(fileProcessed.getPlayers())
                 .containsExactlyInAnyOrderElementsOf(expectedPlayers);
-        assertThat(fileProcessor.getAnalysedPlayerMap())
-                .isEmpty();
-        assertThat(fileProcessor.getHands())
-                .hasSize(2);
+        assertThat(fileProcessed.getTotalHands()).isEqualTo(2);
     }
 
     @Test
@@ -104,24 +100,24 @@ class FileProcessorTest {
                         "AyrtonAA95",
                         "(ANEKDOT)777",
                         "jcarlos.vale");
-        Map<String, AnalysedPlayer> expectedHandsOfPlayers = new HashMap<>();
-        expectedHandsOfPlayers.put("FlyingButche", mockAnalysedPlayer("FlyingButche", "Ad Qh"));
-        expectedHandsOfPlayers.put("ErickSayajin", mockAnalysedPlayer("ErickSayajin", "3h Ah"));
-        expectedHandsOfPlayers.put("andrey pyatkin", mockAnalysedPlayer("andrey pyatkin", "8s Kd"));
+        AnalysedPlayer [] expectedHandsOfPlayers = new AnalysedPlayer [] {
+        mockAnalysedPlayer("FlyingButche", "Ad Qh"),
+        mockAnalysedPlayer("ErickSayajin", "3h Ah"),
+        mockAnalysedPlayer("andrey pyatkin", "8s Kd")};
 
         //WHEN
         FileProcessedDto fileProcessed = fileProcessor.process(lines).get();
 
         //THEN
-        assertThat(fileProcessed.getAnalysedPlayers())
+        assertThat(fileProcessed.getTournament()).isEqualTo("3060068759");
+        assertThat(fileProcessed.getPlayers())
                 .containsExactlyInAnyOrderElementsOf(expectedPlayers);
-        assertThat(fileProcessed.getAnalysedPlayerMap())
-                .containsExactlyEntriesOf(expectedHandsOfPlayers);
-        assertThat(fileProcessed.getHands())
-                .hasSize(1);
+        assertThat(fileProcessed.getAnalysedPlayers().contains(mockAnalysedPlayer("FlyingButche", "Ad Qh")))
+                .isTrue();
+        assertThat(fileProcessed.getTotalHands()).isEqualTo(1);
     }
 
- */
+
 
     @Test
     void processHugeFileExample() throws IOException {
@@ -133,7 +129,8 @@ class FileProcessorTest {
         FileProcessedDto fileProcessed = fileProcessor.process(lines).get();
 
         //THEN
-        assertThat(fileProcessed.getTotalPlayers()).isEqualTo(67);
+        assertThat(fileProcessed.getTournament()).isEqualTo("3082657132");
+        assertThat(fileProcessed.getPlayers().size()).isEqualTo(67);
         assertThat(fileProcessed.getAnalysedPlayers()).hasSize(62);
         assertThat(fileProcessed.getTotalHands()).isEqualTo(396);
         assertThat(countHands(fileProcessed.getAnalysedPlayers())).isEqualTo(239);
@@ -149,7 +146,7 @@ class FileProcessorTest {
         FileProcessedDto fileProcessed = fileProcessor.process(lines).get();
 
         //THEN
-        assertThat(fileProcessed.getTotalPlayers()).isEqualTo(4);
+        assertThat(fileProcessed.getPlayers().size()).isEqualTo(4);
         assertThat(fileProcessed.getAnalysedPlayers()).hasSize(49);
         assertThat(fileProcessed.getTotalHands()).isEqualTo(156);
         assertThat(countHands(fileProcessed.getAnalysedPlayers())).isEqualTo(129);
@@ -167,6 +164,9 @@ class FileProcessorTest {
         fileProcessor.process(lines);
 
         //THEN
+        NormalisedCardsDto x = new NormalisedCardsDto("Qs 2h");
+        NormalisedCardsDto y = new NormalisedCardsDto("2h Qs");
+        System.out.println(x.equals(y));
     }
 
     private AnalysedPlayer mockAnalysedPlayer(String player, String cards) {
