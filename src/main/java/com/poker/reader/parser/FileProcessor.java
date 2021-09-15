@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -44,17 +43,16 @@ public class FileProcessor {
      * @param lines
      * @return
      */
-    public Optional<FileProcessedDto> process(final List<String> lines) {
+    public FileProcessedDto process(final List<String> lines) {
         clearData();
         extractHands(lines);
         processHands();
-        return Optional.of(
-                FileProcessedDto.builder()
-                        .tournament(tournament)
-                        .players(players)
-                        .analysedPlayers(new ArrayList<>(analysedPlayerMap.values()))
-                        .totalHands(hands.size())
-                        .build());
+        return FileProcessedDto.builder()
+                .tournament(tournament)
+                .players(players)
+                .analysedPlayers(new ArrayList<>(analysedPlayerMap.values()))
+                .totalHands(hands.size())
+                .build();
     }
 
     /**
@@ -91,7 +89,7 @@ public class FileProcessor {
                 NormalisedCardsDto normalisedCardsDto = new NormalisedCardsDto(line.substring(line.lastIndexOf("[") + 1, line.lastIndexOf("]")));
                 if (analysedPlayerMap.containsKey(player)) {
                     AnalysedPlayer analysedPlayer = analysedPlayerMap.get(player);
-                    TreeMap<NormalisedCardsDto, Integer> normalisedCardsMap = analysedPlayer.getNormalisedCardsMap();
+                    TreeMap<NormalisedCardsDto, Integer> normalisedCardsMap = new TreeMap<>(analysedPlayer.getNormalisedCardsMap());
                     normalisedCardsMap.put(normalisedCardsDto, normalisedCardsMap.getOrDefault(normalisedCardsDto, 0) + 1);
                 } else {
                     TreeMap<NormalisedCardsDto, Integer> normalisedCardsMap = new TreeMap<>();

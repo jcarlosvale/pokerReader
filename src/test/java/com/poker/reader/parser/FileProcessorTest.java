@@ -43,7 +43,7 @@ class FileProcessorTest {
                         "jcarlos.vale");
 
         //WHEN
-        FileProcessedDto fileProcessed = fileProcessor.process(lines).get();
+        FileProcessedDto fileProcessed = fileProcessor.process(lines);
 
         //THEN
         assertThat(fileProcessed.getTournament()).isEqualTo("2779056951");
@@ -76,7 +76,7 @@ class FileProcessorTest {
                         "evstraliss");
 
         //WHEN
-        FileProcessedDto fileProcessed = fileProcessor.process(lines).get();
+        FileProcessedDto fileProcessed = fileProcessor.process(lines);
 
         //THEN
         assertThat(fileProcessed.getTournament()).isEqualTo("2779056951");
@@ -106,7 +106,7 @@ class FileProcessorTest {
         mockAnalysedPlayer("andrey pyatkin", "8s Kd")};
 
         //WHEN
-        FileProcessedDto fileProcessed = fileProcessor.process(lines).get();
+        FileProcessedDto fileProcessed = fileProcessor.process(lines);
 
         //THEN
         assertThat(fileProcessed.getTournament()).isEqualTo("3060068759");
@@ -126,7 +126,7 @@ class FileProcessorTest {
         List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
 
         //WHEN
-        FileProcessedDto fileProcessed = fileProcessor.process(lines).get();
+        FileProcessedDto fileProcessed = fileProcessor.process(lines);
 
         //THEN
         assertThat(fileProcessed.getTournament()).isEqualTo("3082657132");
@@ -143,7 +143,7 @@ class FileProcessorTest {
         List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
 
         //WHEN
-        FileProcessedDto fileProcessed = fileProcessor.process(lines).get();
+        FileProcessedDto fileProcessed = fileProcessor.process(lines);
 
         //THEN
         assertThat(fileProcessed.getPlayers().size()).isEqualTo(4);

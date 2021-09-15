@@ -4,6 +4,8 @@ import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.poker.reader.parser.util.CardUtil.valueOf;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
 import com.poker.reader.parser.util.Chen;
 import lombok.Data;
@@ -32,6 +34,22 @@ public class NormalisedCardsDto implements Comparable<NormalisedCardsDto> {
         this.pair = card1 == card2;
         this.suited = rawData.charAt(1) == rawData.charAt(4);
         this.chen = Chen.calculateChenFormulaFrom(card1, card2, pair, suited);
+    }
+
+    @JsonCreator
+    public NormalisedCardsDto(
+            @JsonProperty("rawData") String rawData,
+            @JsonProperty("card1") char card1,
+            @JsonProperty("card2") char card2,
+            @JsonProperty("suited") boolean suited,
+            @JsonProperty("pair") boolean pair,
+            @JsonProperty("chen") int chen) {
+        this.rawData = rawData;
+        this.card1 = card1;
+        this.card2 = card2;
+        this.suited = suited;
+        this.pair = pair;
+        this.chen = chen;
     }
 
     @Override

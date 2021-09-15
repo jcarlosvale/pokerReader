@@ -1,10 +1,12 @@
 package com.poker.reader.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
 import com.poker.reader.parser.util.Chen;
+import java.util.Map;
 import java.util.Map.Entry;
-import java.util.TreeMap;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,9 +15,9 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AnalysedPlayer {
     private final String player;
-    private final TreeMap<NormalisedCardsDto, Integer> normalisedCardsMap;
+    private final Map<NormalisedCardsDto, Integer> normalisedCardsMap;
 
-    public long averageChen() {
+    public long getAverageChen() {
         int count = 0;
         double sum = 0;
         for(Entry<NormalisedCardsDto, Integer> entry : normalisedCardsMap.entrySet()) {
@@ -28,6 +30,14 @@ public class AnalysedPlayer {
 
     public int getCountShowdownCards() {
         return this.normalisedCardsMap.values().stream().mapToInt(value -> value).sum();
+    }
+
+    @JsonCreator
+    public AnalysedPlayer(
+            @JsonProperty("player") String player,
+            @JsonProperty("normalisedCardsMap") Map<NormalisedCardsDto, Integer> normalisedCardsMap) {
+        this.player = player;
+        this.normalisedCardsMap = normalisedCardsMap;
     }
 
     @Override

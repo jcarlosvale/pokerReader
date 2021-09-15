@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FileProcessedDto {
-    private String tournament;
+public class FileConsolidatedDto {
+    private Set<String> tournaments;
     private int totalHands;
     private Set<String> players;
     private List<AnalysedPlayer> analysedPlayers;
@@ -21,13 +21,17 @@ public class FileProcessedDto {
         return players.size();
     }
 
+    public int getTotalTournaments() {
+        return tournaments.size();
+    }
+
     @JsonCreator
-    public FileProcessedDto(
-            @JsonProperty("tournament") String tournament,
+    public FileConsolidatedDto(
+            @JsonProperty("tournaments") Set<String> tournaments,
             @JsonProperty("totalHands") int totalHands,
             @JsonProperty("players") Set<String> players,
             @JsonProperty("analysedPlayers") List<AnalysedPlayer> analysedPlayers) {
-        this.tournament = tournament;
+        this.tournaments = tournaments;
         this.totalHands = totalHands;
         this.players = players;
         this.analysedPlayers = analysedPlayers;
