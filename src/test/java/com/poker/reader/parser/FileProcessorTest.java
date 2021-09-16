@@ -1,16 +1,19 @@
 package com.poker.reader.parser;
 
+import static com.poker.reader.parser.util.DtoOperationsUtil.getCountShowdownCards;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.FileProcessedDto;
 import com.poker.reader.dto.NormalisedCardsDto;
+import com.poker.reader.parser.util.DtoOperationsUtil;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -100,10 +103,6 @@ class FileProcessorTest {
                         "AyrtonAA95",
                         "(ANEKDOT)777",
                         "jcarlos.vale");
-        AnalysedPlayer [] expectedHandsOfPlayers = new AnalysedPlayer [] {
-        mockAnalysedPlayer("FlyingButche", "Ad Qh"),
-        mockAnalysedPlayer("ErickSayajin", "3h Ah"),
-        mockAnalysedPlayer("andrey pyatkin", "8s Kd")};
 
         //WHEN
         FileProcessedDto fileProcessed = fileProcessor.process(lines);
@@ -152,33 +151,19 @@ class FileProcessorTest {
         assertThat(countHands(fileProcessed.getAnalysedPlayers())).isEqualTo(129);
     }
 
-    @Test
-    void analysedPlayers() throws IOException {
-        final ObjectMapper objectMapper = new ObjectMapper();
-
-        //GIVEN
-        Resource resource = new ClassPathResource("exception-case.txt", getClass().getClassLoader());
-        List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
-
-        //WHEN
-        fileProcessor.process(lines);
-
-        //THEN
-        NormalisedCardsDto x = new NormalisedCardsDto("Qs 2h");
-        NormalisedCardsDto y = new NormalisedCardsDto("2h Qs");
-        System.out.println(x.equals(y));
-    }
-
     private AnalysedPlayer mockAnalysedPlayer(String player, String cards) {
-        TreeMap<NormalisedCardsDto, Integer> treeMap = new TreeMap<>();
-        treeMap.put(new NormalisedCardsDto(cards), 1);
-        return AnalysedPlayer.builder().player(player).normalisedCardsMap(treeMap).build();
+        Map<NormalisedCardsDto, Integer> map = new HashMap<>();
+        map.put(DtoOperationsUtil.toNormalisedCardsDto(cards), 1);
+
+        List<String> rawCardsList = new ArrayList<>();
+        rawCardsList.add(cards);
+        return new AnalysedPlayer(player, map, rawCardsList);
     }
 
     private int countHands(Collection<AnalysedPlayer> analysedPlayerCollection) {
         int count = 0;
         for(AnalysedPlayer analysedPlayer:analysedPlayerCollection) {
-            count += analysedPlayer.getCountShowdownCards();
+            count += getCountShowdownCards(analysedPlayer.getNormalisedCardsMap());
         }
         return count;
     }

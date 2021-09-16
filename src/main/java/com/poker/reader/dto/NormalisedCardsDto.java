@@ -1,55 +1,28 @@
 package com.poker.reader.dto;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.poker.reader.parser.util.CardUtil.valueOf;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Objects;
-import com.poker.reader.parser.util.Chen;
 import lombok.Data;
 
 @Data
 public class NormalisedCardsDto implements Comparable<NormalisedCardsDto> {
-    private final String rawData;
     private final char card1;
     private final char card2;
     private final boolean suited;
     private final boolean pair;
-    private final int chen;
-
-
-    public NormalisedCardsDto(String rawData) {
-        checkNotNull(rawData, "cards must be not null");
-        checkArgument(rawData.length() > 4, "invalid format of rawdata " + rawData);
-        this.rawData = rawData;
-        if(valueOf(rawData.charAt(0)) >= valueOf(rawData.charAt(3))) {
-            this.card1 = rawData.charAt(0);
-            this.card2 = rawData.charAt(3);
-        } else {
-            this.card1 = rawData.charAt(3);
-            this.card2 = rawData.charAt(0);
-        }
-        this.pair = card1 == card2;
-        this.suited = rawData.charAt(1) == rawData.charAt(4);
-        this.chen = Chen.calculateChenFormulaFrom(card1, card2, pair, suited);
-    }
 
     @JsonCreator
     public NormalisedCardsDto(
-            @JsonProperty("rawData") String rawData,
             @JsonProperty("card1") char card1,
             @JsonProperty("card2") char card2,
             @JsonProperty("suited") boolean suited,
-            @JsonProperty("pair") boolean pair,
-            @JsonProperty("chen") int chen) {
-        this.rawData = rawData;
+            @JsonProperty("pair") boolean pair)
+    {
         this.card1 = card1;
         this.card2 = card2;
         this.suited = suited;
         this.pair = pair;
-        this.chen = chen;
     }
 
     @Override
@@ -88,12 +61,11 @@ public class NormalisedCardsDto implements Comparable<NormalisedCardsDto> {
             return false;
         }
         NormalisedCardsDto that = (NormalisedCardsDto) o;
-        return card1 == that.card1 && card2 == that.card2 && suited == that.suited && pair == that.pair
-                && chen == that.chen;
+        return card1 == that.card1 && card2 == that.card2 && suited == that.suited && pair == that.pair;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(rawData, card1, card2, suited, pair, chen);
+        return Objects.hashCode(card1, card2, suited, pair);
     }
 }

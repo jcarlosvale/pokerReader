@@ -5,13 +5,13 @@ import static com.google.common.base.Preconditions.checkArgument;
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.FileProcessedDto;
 import com.poker.reader.dto.NormalisedCardsDto;
+import com.poker.reader.parser.util.DtoOperationsUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import lombok.NonNull;
@@ -47,12 +47,8 @@ public class FileProcessor {
         clearData();
         extractHands(lines);
         processHands();
-        return FileProcessedDto.builder()
-                .tournament(tournament)
-                .players(players)
-                .analysedPlayers(new ArrayList<>(analysedPlayerMap.values()))
-                .totalHands(hands.size())
-                .build();
+        return new FileProcessedDto
+                (tournament, hands.size(), players.size(), players, new ArrayList<>(analysedPlayerMap.values()));
     }
 
     /**
@@ -86,19 +82,23 @@ public class FileProcessor {
             .filter(line -> line.contains(": shows ["))
             .forEach(line -> {
                 String player = StringUtils.substringBefore(line,": shows [");
-                NormalisedCardsDto normalisedCardsDto = new NormalisedCardsDto(line.substring(line.lastIndexOf("[") + 1, line.lastIndexOf("]")));
+                String rawData = line.substring(line.lastIndexOf("[") + 1, line.lastIndexOf("]"));
+                NormalisedCardsDto normalisedCardsDto = DtoOperationsUtil.toNormalisedCardsDto(rawData);
                 if (analysedPlayerMap.containsKey(player)) {
                     AnalysedPlayer analysedPlayer = analysedPlayerMap.get(player);
-                    TreeMap<NormalisedCardsDto, Integer> normalisedCardsMap = new TreeMap<>(analysedPlayer.getNormalisedCardsMap());
+                    analysedPlayer.getRawCards().add(rawData);
+                    Map<NormalisedCardsDto, Integer> normalisedCardsMap = analysedPlayer.getNormalisedCardsMap();
                     normalisedCardsMap.put(normalisedCardsDto, normalisedCardsMap.getOrDefault(normalisedCardsDto, 0) + 1);
                 } else {
-                    TreeMap<NormalisedCardsDto, Integer> normalisedCardsMap = new TreeMap<>();
+                    Map<NormalisedCardsDto, Integer> normalisedCardsMap = new HashMap<>();
                     normalisedCardsMap.put(normalisedCardsDto, 1);
+
+                    List<String> rawCardsList = new ArrayList<>();
+                    rawCardsList.add(rawData);
+
                     AnalysedPlayer analysedPlayer =
-                            AnalysedPlayer.builder()
-                                    .player(player)
-                                    .normalisedCardsMap(normalisedCardsMap)
-                                    .build();
+                            new AnalysedPlayer(player, normalisedCardsMap, rawCardsList);
+
                     analysedPlayerMap.put(player, analysedPlayer);
                 }
             });

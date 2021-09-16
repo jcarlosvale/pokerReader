@@ -106,12 +106,7 @@ public class FileMergeProcessor {
             fileConsolidatedDto = objectMapper.readValue(new File(consolidatedFile), FileConsolidatedDto.class);
         } else {
             fileConsolidatedDto =
-                    FileConsolidatedDto.builder()
-                            .tournaments(new HashSet<>())
-                            .totalHands(0)
-                            .players(new HashSet<>())
-                            .analysedPlayers(new ArrayList<>())
-                            .build();
+                    new FileConsolidatedDto(0, 0, 0, new HashSet<>(), new HashSet<>(), new ArrayList<>());
         }
     }
 
