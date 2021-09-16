@@ -1,7 +1,11 @@
 package com.poker.reader.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.FileProcessedDto;
+import com.poker.reader.parser.processor.FileHtmlProcessor;
+import com.poker.reader.parser.processor.FileMergeProcessor;
+import com.poker.reader.parser.processor.FileProcessor;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -69,11 +73,20 @@ public class FileReader {
         fileMergeProcessor.mergeFiles(filesToMerge);
     }
 
+    private static void generatePlayersTableFile(String outputDirectory) throws IOException {
+        FileMergeProcessor fileMergeProcessor = new FileMergeProcessor(outputDirectory);
+        List<AnalysedPlayer> analysedPlayersList = fileMergeProcessor.loadConsolidatedFile()
+                .getAnalysedPlayers();
+        FileHtmlProcessor.updatePlayersTableFile(analysedPlayersList);
+    }
+
     public static void main(String[] args) throws IOException {
         String inputDirectory = args[0];
         String outputDirectory = "c:\\temp";
-        processFilesFromDirectory(inputDirectory, outputDirectory);
-        mergeFilesFromDirectory(outputDirectory + "\\output", outputDirectory);
+//        processFilesFromDirectory(inputDirectory, outputDirectory);
+//        mergeFilesFromDirectory(outputDirectory + "\\output", outputDirectory);
+        generatePlayersTableFile(outputDirectory);
         log.info("END");
     }
+
 }

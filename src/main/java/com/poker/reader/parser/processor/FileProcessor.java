@@ -1,10 +1,12 @@
-package com.poker.reader.parser;
+package com.poker.reader.parser.processor;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.FileProcessedDto;
 import com.poker.reader.dto.NormalisedCardsDto;
+import com.poker.reader.parser.FileSection;
+import com.poker.reader.parser.LinesOfHand;
 import com.poker.reader.parser.util.DtoOperationsUtil;
 import java.util.ArrayList;
 import java.util.HashMap;

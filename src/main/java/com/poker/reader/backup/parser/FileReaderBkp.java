@@ -43,7 +43,6 @@ import static com.poker.reader.backup.parser.util.TypeFileSection.HEADER;
 import static com.poker.reader.backup.parser.util.TypeFileSection.PRE_FLOP;
 import static com.poker.reader.backup.parser.util.TypeFileSection.SUMMARY;
 
-
 import com.poker.reader.backup.entity.Action;
 import com.poker.reader.backup.entity.Board;
 import com.poker.reader.backup.entity.Flop;
@@ -57,7 +56,7 @@ import com.poker.reader.backup.entity.TypeStreet;
 import com.poker.reader.backup.exception.InvalidSectionFileException;
 import com.poker.reader.backup.parser.util.TypeFileSection;
 import com.poker.reader.backup.validator.HandValidator;
-import com.poker.reader.parser.FileProcessor;
+import com.poker.reader.parser.processor.FileProcessor;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;

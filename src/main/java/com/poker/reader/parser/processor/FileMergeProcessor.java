@@ -1,4 +1,4 @@
-package com.poker.reader.parser;
+package com.poker.reader.parser.processor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poker.reader.dto.AnalysedPlayer;
@@ -107,13 +107,13 @@ public class FileMergeProcessor {
         return mapOfAnalysedPlayersByPlayer;
     }
 
-    private void loadConsolidatedFile() throws IOException {
+    public FileConsolidatedDto loadConsolidatedFile() throws IOException {
         if (Files.exists(Paths.get(consolidatedFile))) {
             fileConsolidatedDto = objectMapper.readValue(new File(consolidatedFile), FileConsolidatedDto.class);
         } else {
             fileConsolidatedDto =
                     new FileConsolidatedDto(0, 0, 0, new HashSet<>(), new HashSet<>(), new ArrayList<>());
         }
+        return fileConsolidatedDto;
     }
-
 }

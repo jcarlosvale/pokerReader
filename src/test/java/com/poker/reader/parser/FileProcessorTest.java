@@ -1,18 +1,15 @@
 package com.poker.reader.parser;
 
+import static com.poker.reader.parser.TestUtil.mockAnalysedPlayer;
 import static com.poker.reader.parser.util.DtoOperationsUtil.getCountShowdownCards;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.FileProcessedDto;
-import com.poker.reader.dto.NormalisedCardsDto;
-import com.poker.reader.parser.util.DtoOperationsUtil;
+import com.poker.reader.parser.processor.FileProcessor;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -149,15 +146,6 @@ class FileProcessorTest {
         assertThat(fileProcessed.getAnalysedPlayers()).hasSize(49);
         assertThat(fileProcessed.getTotalHands()).isEqualTo(156);
         assertThat(countHands(fileProcessed.getAnalysedPlayers())).isEqualTo(129);
-    }
-
-    private AnalysedPlayer mockAnalysedPlayer(String player, String cards) {
-        Map<NormalisedCardsDto, Integer> map = new HashMap<>();
-        map.put(DtoOperationsUtil.toNormalisedCardsDto(cards), 1);
-
-        List<String> rawCardsList = new ArrayList<>();
-        rawCardsList.add(cards);
-        return new AnalysedPlayer(player, map, rawCardsList);
     }
 
     private int countHands(Collection<AnalysedPlayer> analysedPlayerCollection) {
