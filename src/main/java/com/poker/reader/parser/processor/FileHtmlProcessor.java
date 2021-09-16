@@ -10,6 +10,7 @@ import static j2html.TagCreator.tr;
 
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.NormalisedCardsDto;
+import com.poker.reader.parser.util.DtoOperationsUtil;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
@@ -25,6 +26,7 @@ import org.springframework.core.io.Resource;
 public class FileHtmlProcessor {
 
     public static void updatePlayersTableFile(List<AnalysedPlayer> playerList) throws IOException {
+        log.info("Generating file...");
         Resource resource = new ClassPathResource("/html/headerTable.txt", FileHtmlProcessor.class.getClassLoader());
         List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
         lines.add(generatePlayersTable(playerList));
@@ -43,16 +45,30 @@ public class FileHtmlProcessor {
     private static String generateTableHead() {
         return thead(tr(
                 th("player"),
+                th("chen avg"),
                 th("cards"))).render();
     }
 
     private static String generatePlayersTableRows(List<AnalysedPlayer> playerList) {
+        //alphabetically
         playerList.sort(Comparator.comparing(AnalysedPlayer::getPlayer));
         return tbody(
-                each(playerList, (integer, analysedPlayer) -> tr(attrs(".table-active"),
+                each(playerList, (integer, analysedPlayer) -> {
+                    long avgChenValue = DtoOperationsUtil.getAverageChen(analysedPlayer.getNormalisedCardsMap());
+                    String className = classNameFromChenValue(avgChenValue);
+                    return tr(attrs(className),
                         td(analysedPlayer.getPlayer()),
-                        td(formatCards(analysedPlayer.getNormalisedCardsMap()))
-                ))).render();
+                        td(String.valueOf(avgChenValue)),
+                        td(formatCards(analysedPlayer.getNormalisedCardsMap())));
+                }
+                )).render();
+    }
+
+    private static String classNameFromChenValue(long avgChenValue) {
+        if (avgChenValue >= 10) return ".bg-primary";
+        if (avgChenValue >= 8) return ".bg-success";
+        if (avgChenValue >= 5) return ".table-warning";
+        return ".bg-danger";
     }
 
     private static String formatCards(Map<NormalisedCardsDto, Integer> normalisedCardsMap) {
