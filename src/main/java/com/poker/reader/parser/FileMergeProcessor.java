@@ -42,6 +42,10 @@ public class FileMergeProcessor {
             log.info("Merged " + count + "/" + filesToMerge.size() + " " + (end - start) + "ms");
             count++;
         }
+        //set #players
+        fileConsolidatedDto.setTotalPlayers(fileConsolidatedDto.getPlayers().size());
+        fileConsolidatedDto.setTotalTournaments(fileConsolidatedDto.getTournaments().size());
+        //set #tournaments
         FileUtils.write(new File(consolidatedFile),
                 objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(fileConsolidatedDto) , "UTF-8");
     }
@@ -59,9 +63,9 @@ public class FileMergeProcessor {
             Map<String, AnalysedPlayer> mapOfAnalysedPlayersByPlayer =
                     convertToMapOfAnalysedPlayersByPlayer(fileConsolidatedDto.getAnalysedPlayers());
             for(AnalysedPlayer analysedPlayer : fileProcessed.getAnalysedPlayers()) {
-                if(analysedPlayer.getPlayer().equals("thunder402")) {
-                    System.out.println("debug");
-                }
+//                if(analysedPlayer.getPlayer().equals("thunder402")) {
+//                    System.out.println("debug");
+//                }
                 if (mapOfAnalysedPlayersByPlayer.containsKey(analysedPlayer.getPlayer())) {
                     AnalysedPlayer analysedPlayerFromConsolidated =
                             mapOfAnalysedPlayersByPlayer.get(analysedPlayer.getPlayer());
@@ -90,6 +94,8 @@ public class FileMergeProcessor {
                         normalisedCardsFromConsolidated.put(normalisedCardsDto, counter);
                     }
                 });
+
+        analysedPlayerFromConsolidated.getRawCards().addAll(analysedPlayer.getRawCards());
 
         return analysedPlayerFromConsolidated;
     }

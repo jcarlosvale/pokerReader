@@ -2,6 +2,8 @@ package com.poker.reader.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Objects;
 import lombok.Data;
 
@@ -67,5 +69,20 @@ public class NormalisedCardsDto implements Comparable<NormalisedCardsDto> {
     @Override
     public int hashCode() {
         return Objects.hashCode(card1, card2, suited, pair);
+    }
+
+    @Override
+    public String toString() {
+        return getJson();
+    }
+
+    private String getJson() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
