@@ -72,7 +72,7 @@ public class FileReader {
     public static void main(String[] args) throws IOException {
         String inputDirectory = args[0];
         String outputDirectory = "c:\\temp";
-//        processFilesFromDirectory(inputDirectory, outputDirectory);
+        processFilesFromDirectory(inputDirectory, outputDirectory);
         mergeFilesFromDirectory(outputDirectory + "\\output", outputDirectory);
         log.info("END");
     }
