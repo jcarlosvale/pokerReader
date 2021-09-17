@@ -3,7 +3,10 @@ package com.poker.reader.parser.util;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.poker.reader.parser.util.CardUtil.valueOf;
 
+import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.NormalisedCardsDto;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import lombok.NonNull;
@@ -42,6 +45,13 @@ public class DtoOperationsUtil {
         boolean suited = rawData.charAt(1) == rawData.charAt(4);
 
         return new NormalisedCardsDto(card1, card2, suited, pair);
+    }
+
+    public static Map<String, AnalysedPlayer> convertToMapOfAnalysedPlayersByPlayer(List<AnalysedPlayer> analysedPlayers) {
+        Map<String, AnalysedPlayer> mapOfAnalysedPlayersByPlayer = new HashMap<>();
+        analysedPlayers
+                .forEach(analysedPlayer -> mapOfAnalysedPlayersByPlayer.put(analysedPlayer.getPlayer(), analysedPlayer));
+        return mapOfAnalysedPlayersByPlayer;
     }
 
 }

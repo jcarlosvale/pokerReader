@@ -56,7 +56,7 @@ import com.poker.reader.backup.entity.TypeStreet;
 import com.poker.reader.backup.exception.InvalidSectionFileException;
 import com.poker.reader.backup.parser.util.TypeFileSection;
 import com.poker.reader.backup.validator.HandValidator;
-import com.poker.reader.parser.processor.FileProcessor;
+import com.poker.reader.processor.FileProcessor;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;

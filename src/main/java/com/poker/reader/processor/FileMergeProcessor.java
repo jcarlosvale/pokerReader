@@ -1,4 +1,6 @@
-package com.poker.reader.parser.processor;
+package com.poker.reader.processor;
+
+import static com.poker.reader.parser.util.DtoOperationsUtil.convertToMapOfAnalysedPlayersByPlayer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poker.reader.dto.AnalysedPlayer;
@@ -10,7 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -26,8 +27,8 @@ public class FileMergeProcessor {
     private final String consolidatedFile;
     private final ObjectMapper objectMapper;
 
-    public FileMergeProcessor(String outputDirectory) {
-        this.consolidatedFile = outputDirectory + File.separator + FILE_CONSOLIDATED;
+    public FileMergeProcessor(String consolidatedFileDirectory) {
+        this.consolidatedFile = consolidatedFileDirectory + File.separator + FILE_CONSOLIDATED;
         this.objectMapper = new ObjectMapper();
     }
 
@@ -98,13 +99,6 @@ public class FileMergeProcessor {
         analysedPlayerFromConsolidated.getRawCards().addAll(analysedPlayer.getRawCards());
 
         return analysedPlayerFromConsolidated;
-    }
-
-    private Map<String, AnalysedPlayer> convertToMapOfAnalysedPlayersByPlayer(List<AnalysedPlayer> analysedPlayers) {
-        Map<String, AnalysedPlayer> mapOfAnalysedPlayersByPlayer = new HashMap<>();
-        analysedPlayers
-                .forEach(analysedPlayer -> mapOfAnalysedPlayersByPlayer.put(analysedPlayer.getPlayer(), analysedPlayer));
-        return mapOfAnalysedPlayersByPlayer;
     }
 
     public FileConsolidatedDto loadConsolidatedFile() throws IOException {

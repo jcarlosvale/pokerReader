@@ -3,9 +3,9 @@ package com.poker.reader.parser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.FileProcessedDto;
-import com.poker.reader.parser.processor.FileHtmlProcessor;
-import com.poker.reader.parser.processor.FileMergeProcessor;
-import com.poker.reader.parser.processor.FileProcessor;
+import com.poker.reader.processor.FileHtmlProcessor;
+import com.poker.reader.processor.FileMergeProcessor;
+import com.poker.reader.processor.FileProcessor;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -73,11 +73,11 @@ public class FileReader {
         fileMergeProcessor.mergeFiles(filesToMerge);
     }
 
-    private static void generatePlayersTableFile(String outputDirectory) throws IOException {
-        FileMergeProcessor fileMergeProcessor = new FileMergeProcessor(outputDirectory);
+    private static void generatePlayersTableFile(String consolidatedFileDirectory, String outputHtmlDirectory) throws IOException {
+        FileMergeProcessor fileMergeProcessor = new FileMergeProcessor(consolidatedFileDirectory);
         List<AnalysedPlayer> analysedPlayersList = fileMergeProcessor.loadConsolidatedFile()
                 .getAnalysedPlayers();
-        FileHtmlProcessor.updatePlayersTableFile(analysedPlayersList);
+        FileHtmlProcessor.updatePlayersTableFile(analysedPlayersList, outputHtmlDirectory);
     }
 
     public static void main(String[] args) throws IOException {
@@ -85,7 +85,7 @@ public class FileReader {
         String outputDirectory = "c:\\temp";
         processFilesFromDirectory(inputDirectory, outputDirectory);
         mergeFilesFromDirectory(outputDirectory + "\\output", outputDirectory);
-        generatePlayersTableFile(outputDirectory);
+        generatePlayersTableFile(outputDirectory, "c:\\temp");
         log.info("END");
     }
 

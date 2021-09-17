@@ -1,4 +1,4 @@
-package com.poker.reader.parser.processor;
+package com.poker.reader.processor;
 
 import static com.google.common.base.Preconditions.checkArgument;
 

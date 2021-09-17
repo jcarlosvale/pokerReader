@@ -1,4 +1,4 @@
-package com.poker.reader.parser;
+package com.poker.reader.processor;
 
 import static com.poker.reader.parser.TestUtil.mockAnalysedPlayer;
 import static com.poker.reader.parser.util.DtoOperationsUtil.getCountShowdownCards;
@@ -6,7 +6,6 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.FileProcessedDto;
-import com.poker.reader.parser.processor.FileProcessor;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;

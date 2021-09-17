@@ -1,4 +1,4 @@
-package com.poker.reader.parser.processor;
+package com.poker.reader.processor;
 
 import static j2html.TagCreator.attrs;
 import static j2html.TagCreator.each;
@@ -11,6 +11,7 @@ import static j2html.TagCreator.tr;
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.NormalisedCardsDto;
 import com.poker.reader.parser.util.DtoOperationsUtil;
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,7 +29,7 @@ import org.springframework.core.io.Resource;
 @Log4j2
 public class FileHtmlProcessor {
 
-    public static void updatePlayersTableFile(List<AnalysedPlayer> playerList) throws IOException {
+    public static void updatePlayersTableFile(List<AnalysedPlayer> playerList, String directoryPath) throws IOException {
         log.info("Generating file...");
         Resource resource = new ClassPathResource("/html/headerTable.txt", FileHtmlProcessor.class.getClassLoader());
         List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
@@ -36,9 +37,9 @@ public class FileHtmlProcessor {
         resource = new ClassPathResource("/html/headerTable.txt", FileHtmlProcessor.class.getClassLoader());
         lines.addAll(FileUtils.readLines(resource.getFile(), "utf-8"));
 
-        resource = new ClassPathResource("/html/players.html", FileHtmlProcessor.class.getClassLoader());
-        FileUtils.write(resource.getFile(), String.join("\n", lines), "UTF-8");
-        log.info("file generated: " + resource.getFile().getAbsolutePath());
+        File fileToGenerate = new File(directoryPath + File.separator + "players.html");
+        FileUtils.write(fileToGenerate, String.join("\n", lines), "UTF-8");
+        log.info("file generated: " + fileToGenerate.getAbsolutePath());
     }
 
     public static String generatePlayersTable(List<AnalysedPlayer> playerList) {
