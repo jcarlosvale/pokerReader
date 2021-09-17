@@ -12,9 +12,12 @@ import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.NormalisedCardsDto;
 import com.poker.reader.parser.util.DtoOperationsUtil;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 import lombok.extern.log4j.Log4j2;
@@ -43,10 +46,12 @@ public class FileHtmlProcessor {
     }
 
     private static String generateTableHead() {
+        String dateTimeString = DateTimeFormatter.ofPattern("dd-MM-yy HH:mm:ss").format(LocalDateTime.now());
         return thead(tr(
                 th("player"),
                 th("chen avg"),
-                th("cards"))).render();
+                th("# hands"),
+                th("cards" + " " + dateTimeString))).render();
     }
 
     private static String generatePlayersTableRows(List<AnalysedPlayer> playerList) {
@@ -59,6 +64,7 @@ public class FileHtmlProcessor {
                     return tr(attrs(className),
                         td(analysedPlayer.getPlayer()),
                         td(String.valueOf(avgChenValue)),
+                        td(String.valueOf(DtoOperationsUtil.getCountShowdownCards(analysedPlayer.getNormalisedCardsMap()))),
                         td(formatCards(analysedPlayer.getNormalisedCardsMap())));
                 }
                 )).render();
@@ -73,9 +79,14 @@ public class FileHtmlProcessor {
 
     private static String formatCards(Map<NormalisedCardsDto, Integer> normalisedCardsMap) {
         TreeMap<NormalisedCardsDto, Integer> treeMap = new TreeMap<>(normalisedCardsMap);
-        return treeMap.keySet().stream()
+
+        return treeMap.entrySet().stream()
                 .map(FileHtmlProcessor::toString)
                 .collect(Collectors.joining(", "));
+    }
+
+    private static String toString(Entry<NormalisedCardsDto, Integer> entry) {
+        return entry.getValue() + "x" + toString(entry.getKey());
     }
 
     private static String toString(NormalisedCardsDto normalisedCardsDto) {
