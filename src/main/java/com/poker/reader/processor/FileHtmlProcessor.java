@@ -1,16 +1,13 @@
 package com.poker.reader.processor;
 
-import static j2html.TagCreator.attrs;
-import static j2html.TagCreator.each;
-import static j2html.TagCreator.tbody;
-import static j2html.TagCreator.td;
-import static j2html.TagCreator.th;
-import static j2html.TagCreator.thead;
-import static j2html.TagCreator.tr;
-
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.NormalisedCardsDto;
 import com.poker.reader.parser.util.DtoOperationsUtil;
+import lombok.extern.log4j.Log4j2;
+import org.apache.commons.io.FileUtils;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -21,10 +18,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
-import lombok.extern.log4j.Log4j2;
-import org.apache.commons.io.FileUtils;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+
+import static j2html.TagCreator.*;
 
 @Log4j2
 public class FileHtmlProcessor {
@@ -98,5 +93,19 @@ public class FileHtmlProcessor {
         }
         return
                 String.valueOf(normalisedCardsDto.getCard1()) + normalisedCardsDto.getCard2() + suited;
+    }
+
+    public static void updatePlayersTableFile(List<AnalysedPlayer> playerList, String tournament, String directoryPath)
+            throws IOException {
+        log.info("Generating file...");
+        Resource resource = new ClassPathResource("/html/headerTable.txt", FileHtmlProcessor.class.getClassLoader());
+        List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
+        lines.add(generatePlayersTable(playerList));
+        resource = new ClassPathResource("/html/headerTable.txt", FileHtmlProcessor.class.getClassLoader());
+        lines.addAll(FileUtils.readLines(resource.getFile(), "utf-8"));
+
+        File fileToGenerate = new File(directoryPath + File.separator + "players-" + tournament + ".html");
+        FileUtils.write(fileToGenerate, String.join("\n", lines), "UTF-8");
+        log.info("file generated: " + fileToGenerate.getAbsolutePath());
     }
 }

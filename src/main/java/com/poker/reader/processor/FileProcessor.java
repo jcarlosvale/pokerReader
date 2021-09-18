@@ -1,25 +1,21 @@
 package com.poker.reader.processor;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.FileProcessedDto;
 import com.poker.reader.dto.NormalisedCardsDto;
 import com.poker.reader.parser.FileSection;
 import com.poker.reader.parser.LinesOfHand;
 import com.poker.reader.parser.util.DtoOperationsUtil;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.stream.Collectors;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 @Log
 public class FileProcessor {
@@ -27,6 +23,9 @@ public class FileProcessor {
     private String tournament;
     private final List<LinesOfHand> hands;
     private final Set<String> players;
+    //TODO: Modify this property
+    @Getter
+    private Set<String> playersFromLastHand;
     private final Map<String, AnalysedPlayer> analysedPlayerMap;
 
     public FileProcessor() {
@@ -68,7 +67,8 @@ public class FileProcessor {
      */
     private void processHands() {
         hands.forEach(hand -> {
-            players.addAll(extractPlayers(hand.getLinesFromSection(FileSection.HEADER)));
+            playersFromLastHand = new TreeSet<>(extractPlayers(hand.getLinesFromSection(FileSection.HEADER)));
+            players.addAll(playersFromLastHand);
             extractCardsFromPlayers(hand.getLinesFromSection(FileSection.SHOWDOWN));
         });
     }
