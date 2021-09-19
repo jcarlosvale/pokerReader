@@ -1,20 +1,8 @@
 package com.poker.reader.backup.parser;
 
-import com.poker.reader.backup.entity.Action;
-import com.poker.reader.backup.entity.Board;
-import com.poker.reader.backup.entity.Flop;
-import com.poker.reader.backup.entity.Hand;
-import com.poker.reader.backup.entity.HoldCards;
-import com.poker.reader.backup.entity.InfoPlayerAtHand;
-import com.poker.reader.backup.entity.Player;
-import com.poker.reader.backup.entity.River;
-import com.poker.reader.backup.entity.Seat;
-import com.poker.reader.backup.entity.Tournament;
-import com.poker.reader.backup.entity.Turn;
-import com.poker.reader.backup.entity.TypeAction;
-import com.poker.reader.backup.entity.TypeStreet;
+import com.poker.reader.backup.entity.*;
 import com.poker.reader.backup.parser.util.TypeFileSection;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
@@ -31,10 +19,10 @@ import java.util.List;
 
 import static com.poker.reader.backup.entity.TypeInfo.*;
 import static com.poker.reader.backup.parser.util.FileParserUtil.DATE_TIME_FORMAT;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class FileReaderBackupTest {
+class FileReaderServiceBackupTest {
 
     FileReaderBkp fileReader = new FileReaderBkp();
 
@@ -517,7 +505,7 @@ public class FileReaderBackupTest {
 
     @Test
     public void readDirectoryTest() throws URISyntaxException, IOException {
-        URL url = FileReaderBackupTest.class.getClassLoader().getResource("top");
+        URL url = FileReaderServiceBackupTest.class.getClassLoader().getResource("top");
         assert url != null;
         String directory = Paths.get(url.toURI()).toString();
         List<File> files = fileReader.readDirectory(directory);

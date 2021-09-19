@@ -1,29 +1,14 @@
 package com.poker.reader.processor;
 
-import com.poker.reader.dto.AnalysedPlayer;
-import com.poker.reader.dto.FileConsolidatedDto;
-import com.poker.reader.dto.FileProcessedDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static com.poker.reader.parser.FileReader.readLinesFromFile;
-import static com.poker.reader.parser.util.DtoOperationsUtil.convertToMapOfAnalysedPlayersByPlayer;
 
 @Component
 @Log4j2
 @RequiredArgsConstructor
 public class MonitoringProcessor {
-
+/*
     @Value("${consolidated-file-directory}")
     private String consolidatedFileDirectory;
 
@@ -31,7 +16,7 @@ public class MonitoringProcessor {
     private String htmlDirectory;
 
 
-    FileProcessor fileProcessor = new FileProcessor();
+    FileProcessorService fileProcessorService = new FileProcessorService();
     Set<String> players = new HashSet<>();
     private Map<String, AnalysedPlayer> mapOfAnalysedPlayersByPlayer;
     //TODO: remove these fields
@@ -50,8 +35,8 @@ public class MonitoringProcessor {
     public void process(String filePath) throws IOException {
         log.info("Updating info from " + filePath);
         List<String> linesFromModifiedfile = readLinesFromFile(filePath);
-        FileProcessedDto processedFile = fileProcessor.process(linesFromModifiedfile);
-        playersFromLastHand = fileProcessor.getPlayersFromLastHand();
+        FileProcessedDto processedFile = fileProcessorService.process(fileName, linesFromModifiedfile);
+        playersFromLastHand = fileProcessorService.getPlayersFromLastHand();
         tournament = processedFile.getTournament();
         generateTableInfo(processedFile);
         log.info("updated info");
@@ -80,4 +65,6 @@ public class MonitoringProcessor {
             log.info("NOT NECESSARY UPDATE PLAYERS");
         }
     }
+
+ */
 }

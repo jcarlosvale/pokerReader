@@ -1,19 +1,7 @@
 package com.poker.reader.backup.parser.util;
 
-import com.poker.reader.backup.entity.Action;
-import com.poker.reader.backup.entity.Board;
-import com.poker.reader.backup.entity.Flop;
-import com.poker.reader.backup.entity.Hand;
-import com.poker.reader.backup.entity.HoldCards;
-import com.poker.reader.backup.entity.InfoPlayerAtHand;
-import com.poker.reader.backup.entity.Player;
-import com.poker.reader.backup.entity.River;
-import com.poker.reader.backup.entity.Seat;
-import com.poker.reader.backup.entity.Tournament;
-import com.poker.reader.backup.entity.Turn;
-import com.poker.reader.backup.entity.TypeAction;
-import com.poker.reader.backup.entity.TypeInfo;
-import org.junit.Test;
+import com.poker.reader.backup.entity.*;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -22,21 +10,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.poker.reader.backup.entity.TypeAction.*;
-import static com.poker.reader.backup.parser.util.FileParser.extractAction;
-import static com.poker.reader.backup.parser.util.FileParser.extractBoard;
-import static com.poker.reader.backup.parser.util.FileParser.extractButton;
-import static com.poker.reader.backup.parser.util.FileParser.extractFlop;
-import static com.poker.reader.backup.parser.util.FileParser.extractHand;
-import static com.poker.reader.backup.parser.util.FileParser.extractInfoPlayerAtHand;
-import static com.poker.reader.backup.parser.util.FileParser.extractRiver;
-import static com.poker.reader.backup.parser.util.FileParser.extractSeat;
-import static com.poker.reader.backup.parser.util.FileParser.extractTable;
-import static com.poker.reader.backup.parser.util.FileParser.extractTotalPot;
-import static com.poker.reader.backup.parser.util.FileParser.extractTournament;
-import static com.poker.reader.backup.parser.util.FileParser.extractTurn;
-import static com.poker.reader.backup.parser.util.FileParser.selectTypeAction;
+import static com.poker.reader.backup.parser.util.FileParser.*;
 import static com.poker.reader.backup.parser.util.FileParserUtil.DATE_TIME_FORMAT;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FileParserTest {
 

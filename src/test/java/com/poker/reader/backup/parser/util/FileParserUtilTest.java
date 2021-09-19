@@ -1,9 +1,7 @@
 package com.poker.reader.backup.parser.util;
 
 import com.poker.reader.backup.entity.TypeAction;
-import com.poker.reader.backup.parser.util.FileParserUtil;
-import com.poker.reader.backup.parser.util.Tokens;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,8 +13,8 @@ import java.util.List;
 import static com.poker.reader.backup.parser.util.FileParserUtil.DATE_TIME_FORMAT;
 import static com.poker.reader.backup.parser.util.Tokens.END_CARD;
 import static com.poker.reader.backup.parser.util.Tokens.START_CARD;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class FileParserUtilTest {
 

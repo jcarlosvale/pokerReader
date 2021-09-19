@@ -1,4 +1,4 @@
-package com.poker.reader.parser;
+package com.poker.reader.domain.dto;
 
 public enum FileSection {
 

@@ -1,76 +1,79 @@
-package com.poker.reader.processor;
+package com.poker.reader.domain.service;
 
-import com.poker.reader.dto.AnalysedPlayer;
-import com.poker.reader.dto.FileProcessedDto;
-import com.poker.reader.dto.NormalisedCardsDto;
-import com.poker.reader.parser.FileSection;
-import com.poker.reader.parser.LinesOfHand;
-import com.poker.reader.parser.util.DtoOperationsUtil;
-import lombok.Getter;
+import com.poker.reader.domain.dto.FileSection;
+import com.poker.reader.domain.dto.LinesOfHand;
+import com.poker.reader.domain.model.Player;
+import com.poker.reader.domain.model.Tournament;
+import com.poker.reader.domain.repository.PlayerRepository;
+import com.poker.reader.domain.repository.TournamentRepository;
+import com.poker.reader.domain.util.Util;
 import lombok.NonNull;
-import lombok.extern.java.Log;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static java.util.function.Predicate.not;
 
-@Log
-public class FileProcessor {
+@Service
+@Log4j2
+@RequiredArgsConstructor
+public class FileProcessorService {
 
-    private String tournament;
-    private final List<LinesOfHand> hands;
-    private final Set<String> players;
-    //TODO: Modify this property
-    @Getter
-    private Set<String> playersFromLastHand;
-    private final Map<String, AnalysedPlayer> analysedPlayerMap;
+    private final TournamentRepository tournamentRepository;
+    private final PlayerRepository playerRepository;
 
-    public FileProcessor() {
-        tournament = null;
-        hands = new ArrayList<>();
-        players = new TreeSet<>();
-        analysedPlayerMap = new HashMap<>();
+    public boolean process(String fileName, final List<String> lines) {
+        if (!isProcessedFile(fileName)){
+            List<LinesOfHand> handsFromFile = extractHands(lines);
+            if (!handsFromFile.isEmpty()) {
+                Optional<Tournament> tournamentOptional = saveTournament(handsFromFile.get(0), fileName);
+                if (tournamentOptional.isPresent()) {
+                    return processHands(handsFromFile, tournamentOptional.get());
+                }
+            }
+        }
+        return false;
     }
 
-    /**
-     * Process the files:
-     * - clear collection
-     * - extract hands, the lines by section
-     * - collect players and cards
-     * - generate the File Processed DTO
-     * @param lines
-     * @return
-     */
-    public FileProcessedDto process(final List<String> lines) {
-        clearData();
-        extractHands(lines);
-        processHands();
-        return new FileProcessedDto
-                (tournament, hands.size(), players.size(), players, new ArrayList<>(analysedPlayerMap.values()));
+    private Optional<Tournament> saveTournament(LinesOfHand linesOfHand, String fileName) {
+
+        String tournamentId = linesOfHand.getTournamentId();
+        LocalDate playedAt = linesOfHand.getPlayedAt();
+
+        if (!tournamentRepository.existsById(tournamentId)) {
+            return Optional.of(tournamentRepository.save(new Tournament(tournamentId, fileName,
+                    playedAt, LocalDateTime.now())));
+        }
+        return Optional.empty();
     }
 
-    /**
-     * Clear collections
-     */
-    private void clearData() {
-        hands.clear();
-        players.clear();
-        analysedPlayerMap.clear();
-        tournament = null;
+    private boolean isProcessedFile(String fileName) {
+        return tournamentRepository.existsTournamentByFileNameEquals(fileName);
     }
 
-    /**
-     * Extracts players and cards
-     */
-    private void processHands() {
-        hands.forEach(hand -> {
-            playersFromLastHand = new TreeSet<>(extractPlayers(hand.getLinesFromSection(FileSection.HEADER)));
-            players.addAll(playersFromLastHand);
+    private boolean processHands(List<LinesOfHand> handsFromFile, Tournament tournament) {
+        handsFromFile.forEach(hand -> {
+            Set<String> players = extractPlayers(hand.getLinesFromSection(FileSection.HEADER));
+            savePlayers(players, tournament);
             extractCardsFromPlayers(hand.getLinesFromSection(FileSection.SHOWDOWN));
         });
+        return true;
+    }
+
+    private void savePlayers(Set<String> players, Tournament tournament) {
+        players
+                .stream()
+                .filter(not(playerRepository::existsById))
+                .map(nickname -> new Player(nickname, tournament.getPlayedAt(), LocalDateTime.now()))
+                .forEach(playerRepository::save);
     }
 
     /**
@@ -78,6 +81,7 @@ public class FileProcessor {
      * @param lines
      */
     private void extractCardsFromPlayers(List<String> lines) {
+        /*
         if(CollectionUtils.isEmpty(lines)) return;
         lines
             .stream()
@@ -104,15 +108,20 @@ public class FileProcessor {
                     analysedPlayerMap.put(player, analysedPlayer);
                 }
             });
+
+         */
     }
 
     /**
      * Extract the hands from lines of file.
      * @param lines
+     * @return
      */
-    private void extractHands(@NonNull List<String> lines) {
+    private List<LinesOfHand> extractHands(@NonNull List<String> lines) {
+        List<LinesOfHand> hands = new ArrayList<>();
         LinesOfHand linesOfHand = null;
         FileSection currentSection = null;
+        String tournament = null;
         for(String line: lines) {
             if (line.trim().isEmpty()) continue;
             if (line.contains("PokerStars Hand #") && line.contains(": Tournament #")) {
@@ -120,14 +129,20 @@ public class FileProcessor {
                 if (linesOfHand != null) {
                     hands.add(linesOfHand);
                 }
+
                 String handId = StringUtils.substringBetween(line, "PokerStars Hand #", ": Tournament ");
                 String tournamentId = StringUtils.substringBetween(line, ": Tournament #", ", ");
+                String strDateTime = StringUtils.substringBetween(line, "[", "]");
+                strDateTime = strDateTime.substring(0, Util.DATE_TIME_FORMAT.length()).trim();
+                LocalDate playedAt = Util.toLocalDate(strDateTime);
+
+
                 if(tournament == null) {
                     tournament = tournamentId;
                 } else {
                     checkArgument(tournamentId.equals(tournament), "invalid file tournament!");
                 }
-                linesOfHand = new LinesOfHand(handId, tournamentId);
+                linesOfHand = new LinesOfHand(handId, tournamentId, playedAt);
             }
             FileSection fileSection = extractSection(line);
             if (Objects.nonNull(fileSection)) {
@@ -140,6 +155,7 @@ public class FileProcessor {
         if (linesOfHand != null) {
             hands.add(linesOfHand);
         }
+        return hands;
     }
 
     /**
