@@ -27,7 +27,8 @@ spring:
     driver-class-name: org.postgresql.Driver
 
 
-monitoring-folder: C:\\Users\\jcarlos\\AppData\\Local\\PokerStars.EE\\HandHistory\\jcarlosvale
+#monitoring-folder: C:\\Users\\jcarlos\\AppData\\Local\\PokerStars.EE\\HandHistory\\jcarlosvale
+monitoring-folder: C:\\Pessoal\\Projects\\pokerReader\\src\\test\\resources\\top
 monitoring-interval: 3000
 consolidated-file-directory: c:\\temp
 html-directory: c:\\temp
