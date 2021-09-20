@@ -58,7 +58,7 @@ public class MonitoringProcessor {
                             .map(player -> mapOfAnalysedPlayersByPlayer.get(player))
                             .collect(Collectors.toList());
 
-            FileHtmlProcessor.updatePlayersTableFile(analysedPlayerList, tournament, htmlDirectory);
+            FileHtmlProcessorService.updatePlayersTableFile(analysedPlayerList, tournament, htmlDirectory);
 
             log.info("UPDATED PLAYERS!!");
         } else {

@@ -1,16 +1,7 @@
 package com.poker.reader.processor;
 
-import static com.poker.reader.parser.TestUtil.mockAnalysedPlayer;
-import static com.poker.reader.processor.FileHtmlProcessor.generatePlayersTable;
-import static org.assertj.core.api.Assertions.assertThat;
-
-import com.poker.reader.dto.AnalysedPlayer;
-import java.util.ArrayList;
-import java.util.List;
-import org.junit.jupiter.api.Test;
-
 class FileHtmlProcessorTest {
-
+/*
     @Test
     void generateTable() {
         //given
@@ -27,4 +18,6 @@ class FileHtmlProcessorTest {
         assertThat(actualTable.split("\n")[1]).isEqualTo(expectedTable);
     }
 
+
+ */
 }

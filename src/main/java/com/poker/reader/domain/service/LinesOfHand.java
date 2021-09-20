@@ -1,13 +1,13 @@
-package com.poker.reader.domain.dto;
+package com.poker.reader.domain.service;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
+import com.poker.reader.domain.model.FileSection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 @Data
 @AllArgsConstructor

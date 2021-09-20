@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Players</title>
+
+
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+		<link th:href="@{/css/style.css}" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th>nickname</th>
+						<th>totalHands</th>
+						<th>showdowns</th>
+						<th>showdownStat</th>
+						<th>avgChen</th>
+						<th>sumChen</th>
+						<th>playedAt</th>
+						<th>createdAt</th>
+						<th>cards</th>
+						<th>rawCards</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="player, iStat : ${playerPage.content}"
+							th:style="${iStat.odd}? 'font-weight: bold;'"
+							th:alt-title="${iStat.even}? 'even' : 'odd'">
+						<td th:text="${player.nickname}" />
+						<td th:text="${player.totalHands}" />
+						<td th:text="${player.showdowns}" />
+						<td th:text="${player.showdownStat}" />
+						<td th:text="${player.avgChen}" />
+						<td th:text="${player.sumChen}" />
+						<td th:text="${player.playedAt}" />
+						<td th:text="${player.createdAt}" />
+						<td th:text="${player.cards}" />
+						<td th:text="${player.rawCards}" />
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div th:if="${playerPage.totalPages > 0}" class="pagination"
+				 th:each="pageNumber : ${pageNumbers}">
+			<a th:href="@{/players(size=${playerPage.size}, page=${pageNumber})}"
+				 th:text=${pageNumber}
+				 th:class="${pageNumber==playerPage.number + 1} ? active"></a>
+		</div>
+
+	</div>
+</div>
+
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/scripts.js}"></script>
+
+  </body>
+</html>

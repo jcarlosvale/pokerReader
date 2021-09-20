@@ -1,8 +1,6 @@
 package com.poker.reader.parser.util;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.poker.reader.parser.util.CardUtil.valueOf;
-
+import com.poker.reader.domain.util.Chen;
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.NormalisedCardsDto;
 import java.util.HashMap;
@@ -28,23 +26,6 @@ public class DtoOperationsUtil {
 
     public static int getCountShowdownCards(@NonNull Map<NormalisedCardsDto, Integer> normalisedCardsMap) {
         return normalisedCardsMap.values().stream().mapToInt(value -> value).sum();
-    }
-
-    public static NormalisedCardsDto toNormalisedCardsDto(@NonNull String rawData) {
-        checkArgument(rawData.length() > 4, "invalid format of rawdata " + rawData);
-        char card1;
-        char card2;
-        if(valueOf(rawData.charAt(0)) >= valueOf(rawData.charAt(3))) {
-            card1 = rawData.charAt(0);
-            card2 = rawData.charAt(3);
-        } else {
-            card1 = rawData.charAt(3);
-            card2 = rawData.charAt(0);
-        }
-        boolean pair = card1 == card2;
-        boolean suited = rawData.charAt(1) == rawData.charAt(4);
-
-        return new NormalisedCardsDto(card1, card2, suited, pair);
     }
 
     public static Map<String, AnalysedPlayer> convertToMapOfAnalysedPlayersByPlayer(List<AnalysedPlayer> analysedPlayers) {

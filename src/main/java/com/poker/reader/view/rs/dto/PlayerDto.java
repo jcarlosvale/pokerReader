@@ -1,29 +1,20 @@
-package com.poker.reader.domain.model;
+package com.poker.reader.view.rs.dto;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Builder
-@Entity
-@Table(name = "players")
-public class Player implements Serializable {
+public class PlayerDto {
 
-    @Id
-    @Size(max = 255)
+    @NotNull
     private String nickname;
 
     @NotNull
@@ -31,6 +22,9 @@ public class Player implements Serializable {
 
     @NotNull
     private Integer showdowns;
+
+    @NotNull
+    private Integer showdownStat;
 
     @NotNull
     private Long avgChen;
@@ -43,4 +37,10 @@ public class Player implements Serializable {
 
     @NotNull
     private LocalDateTime createdAt;
+
+    @NotNull
+    private String cards;
+
+    @NotNull
+    private String rawCards;
 }

@@ -1,6 +1,6 @@
-package com.poker.reader.parser.util;
+package com.poker.reader.domain.util;
 
-import static com.poker.reader.parser.util.CardUtil.valueOf;
+import static com.poker.reader.domain.util.CardUtil.valueOf;
 
 import com.poker.reader.dto.NormalisedCardsDto;
 

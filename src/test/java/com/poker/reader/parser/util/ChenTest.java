@@ -1,6 +1,6 @@
 package com.poker.reader.parser.util;
 
-import static com.poker.reader.parser.util.Chen.calculateChenFormulaFrom;
+import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
