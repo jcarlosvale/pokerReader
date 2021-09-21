@@ -1,15 +1,19 @@
 package com.poker.reader.domain.service;
 
+import com.poker.reader.domain.model.Hand;
 import com.poker.reader.domain.model.Player;
 import com.poker.reader.domain.model.Seat;
+import com.poker.reader.domain.repository.HandRepository;
 import com.poker.reader.domain.repository.PlayerRepository;
 import com.poker.reader.domain.repository.SeatRepository;
 import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.util.Converter;
 import com.poker.reader.view.rs.dto.PlayerDto;
+import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.TournamentDto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -27,6 +31,7 @@ public class FileHtmlProcessorService {
     private final TournamentRepository tournamentRepository;
     private final PlayerRepository playerRepository;
     private final SeatRepository seatRepository;
+    private final HandRepository handRepository;
 
     public Page<PlayerDto> findPaginatedPlayers(Pageable pageable) {
 
@@ -64,5 +69,19 @@ public class FileHtmlProcessorService {
 
         return new PageImpl<>(tournamentsDtoList, PageRequest.of(currentPage, pageSize), tournamentRepository.count());
 
+    }
+
+    public List<PlayerMonitoredDto> getLastPlayersFromTournament(String tournamentId) {
+        Hand hand = handRepository.findMostRecent(tournamentId);
+        return
+        seatRepository
+                .findByHand(hand)
+                .stream()
+                .filter(Predicate.not(seat -> seat.getPlayer().getNickname().equals("jcarlos.vale")))
+                .map(seat -> {
+                    List<Seat> seatsFromPlayer = seatRepository.findByPlayer(seat.getPlayer());
+                    return Converter.toPlayerMonitoredDto(seat.getPlayer(), seatsFromPlayer);
+                })
+                .collect(Collectors.toList());
     }
 }

@@ -3,6 +3,7 @@ package com.poker.reader.view.rs;
 import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
 import com.poker.reader.view.rs.dto.PlayerDto;
+import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.TournamentDto;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
@@ -74,6 +76,19 @@ public class PokerReaderController {
         }
 
         return "tournaments";
+    }
+
+    @GetMapping("/monitoring/{tournamentId}")
+    public String listLastPlayersFromTournament(
+            Model model,
+            @PathVariable("tournamentId") String tournamentId) {
+
+        List<PlayerMonitoredDto> PlayerMonitoredDtoList = fileHtmlProcessorService.getLastPlayersFromTournament(tournamentId);
+
+        model.addAttribute("playersMonitoredList", PlayerMonitoredDtoList);
+        model.addAttribute("tournamentId", tournamentId);
+
+        return "monitoring";
     }
 
     @GetMapping("/hello")

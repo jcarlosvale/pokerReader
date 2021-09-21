@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title th:text="${tournamentId}"/>
+
+
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+		<link th:href="@{/css/style.css}" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th>nickname</th>
+						<th>totalHands</th>
+						<th>showdowns</th>
+						<th>showdownStat</th>
+						<th>avgChen</th>
+						<th>cards</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="player : ${playersMonitoredList}"
+							th:class="${player.css}">
+						<td th:text="${player.nickname}" />
+						<td th:text="${player.totalHands}" />
+						<td th:text="${player.showdowns}" />
+						<td th:text="${player.showdownStat}" />
+						<td th:text="${player.avgChen}" />
+						<td th:text="${player.cards}" />
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div>
+			<p th:text=${tournamentId} />
+		</div>
+	</div>
+</div>
+
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/scripts.js}"></script>
+
+  </body>
+</html>
