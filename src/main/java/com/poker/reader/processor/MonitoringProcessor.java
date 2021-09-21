@@ -32,10 +32,10 @@ public class MonitoringProcessor {
                 convertToMapOfAnalysedPlayersByPlayer(consolidatedFile.getAnalysedPlayers());
     }
 
-    public void process(String filePath) throws IOException {
+    public void processFile(String filePath) throws IOException {
         log.info("Updating info from " + filePath);
         List<String> linesFromModifiedfile = readLinesFromFile(filePath);
-        FileProcessedDto processedFile = fileProcessorService.process(fileName, linesFromModifiedfile);
+        FileProcessedDto processedFile = fileProcessorService.processFile(fileName, linesFromModifiedfile);
         playersFromLastHand = fileProcessorService.getPlayersFromLastHand();
         tournament = processedFile.getTournament();
         generateTableInfo(processedFile);

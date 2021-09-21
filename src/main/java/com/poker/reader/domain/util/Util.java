@@ -3,6 +3,7 @@ package com.poker.reader.domain.util;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
@@ -40,5 +41,18 @@ public class Util {
     public static LocalDate toLocalDate(String strDateTime) {
         return LocalDate.parse(strDateTime, DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
 
+    }
+
+    public static LocalDateTime toLocalDateTime(String strDateTime) {
+        String[] fields = strDateTime.split(" ");
+        String[] date = fields[0].split("/");
+        String[] time = fields[1].split(":");
+        int year = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int day = Integer.parseInt(date[2]);
+        int hour = Integer.parseInt(time[0]);
+        int min = Integer.parseInt(time[1]);
+        int sec = Integer.parseInt(time[2]);
+        return LocalDateTime.of(year,month,day, hour, min, sec);
     }
 }

@@ -28,7 +28,7 @@ public class PokerReaderController {
             @RequestParam("size") Optional<Integer> size) {
 
         int currentPage = page.orElse(1);
-        int pageSize = size.orElse(50);
+        int pageSize = size.orElse(10);
 
         Page<PlayerDto> playerPage = fileHtmlProcessorService.findPaginated(PageRequest.of(currentPage - 1, pageSize,
                 Sort.by("nickname").ascending()));

@@ -8,12 +8,11 @@ import static j2html.TagCreator.th;
 import static j2html.TagCreator.thead;
 import static j2html.TagCreator.tr;
 
-import com.poker.reader.domain.model.Cards;
 import com.poker.reader.domain.model.Player;
-import com.poker.reader.domain.repository.CardsRepository;
+import com.poker.reader.domain.model.Seat;
 import com.poker.reader.domain.repository.PlayerRepository;
+import com.poker.reader.domain.repository.SeatRepository;
 import com.poker.reader.domain.util.Converter;
-import com.poker.reader.domain.util.Validations;
 import com.poker.reader.dto.AnalysedPlayer;
 import com.poker.reader.dto.NormalisedCardsDto;
 import com.poker.reader.parser.util.DtoOperationsUtil;
@@ -46,7 +45,7 @@ import org.springframework.stereotype.Component;
 public class FileHtmlProcessorService {
 
     private final PlayerRepository playerRepository;
-    private final CardsRepository cardsRepository;
+    private final SeatRepository seatRepository;
 
     public Page<PlayerDto> findPaginated(Pageable pageable) {
 
@@ -57,9 +56,8 @@ public class FileHtmlProcessorService {
         List<PlayerDto> playerDtoList = new ArrayList<>();
 
         for(Player player: pagePlayers.getContent()) {
-            List<Cards> cardsFromPlayer = cardsRepository.findByPlayer(player.getNickname());
-            Validations.validateCardsFromPlayer(player, cardsFromPlayer);
-            playerDtoList.add(Converter.toPlayerDto(player, cardsFromPlayer));
+            List<Seat> seatsFromPlayer = seatRepository.findByPlayer(player);
+            playerDtoList.add(Converter.toPlayerDto(player, seatsFromPlayer));
         }
 
         return new PageImpl<>(playerDtoList, PageRequest.of(currentPage, pageSize), playerRepository.count());
@@ -87,7 +85,7 @@ public class FileHtmlProcessorService {
         return thead(tr(
                 th("player"),
                 th("chen avg"),
-                th("# hands"),
+                th("# hand"),
                 th("cards" + " " + dateTimeString))).render();
     }
 

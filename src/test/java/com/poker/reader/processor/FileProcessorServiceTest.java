@@ -87,7 +87,7 @@ class FileProcessorServiceTest {
                             "jcarlos.vale");
 
             //WHEN
-            FileProcessedDto fileProcessed = fileProcessorService.process(fileName, lines);
+            FileProcessedDto fileProcessed = fileProcessorService.processFile(fileName, lines);
 
             //THEN
             assertThat(fileProcessed.getTournament()).isEqualTo("2779056951");
@@ -98,7 +98,7 @@ class FileProcessorServiceTest {
         @Test
         void processTwoHandsNoshowdown() throws IOException {
             //GIVEN
-            Resource resource = new ClassPathResource("two-hands.txt", getClass().getClassLoader());
+            Resource resource = new ClassPathResource("two-hand.txt", getClass().getClassLoader());
             List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
             Set<String> expectedPlayers =
                     Set.of("W SERENA",
@@ -120,7 +120,7 @@ class FileProcessorServiceTest {
                             "evstraliss");
 
             //WHEN
-            FileProcessedDto fileProcessed = fileProcessorService.process(fileName, lines);
+            FileProcessedDto fileProcessed = fileProcessorService.processFile(fileName, lines);
 
             //THEN
             assertThat(fileProcessed.getTournament()).isEqualTo("2779056951");
@@ -146,7 +146,7 @@ class FileProcessorServiceTest {
                             "jcarlos.vale");
 
             //WHEN
-            FileProcessedDto fileProcessed = fileProcessorService.process(fileName, lines);
+            FileProcessedDto fileProcessed = fileProcessorService.processFile(fileName, lines);
 
             //THEN
             assertThat(fileProcessed.getTournament()).isEqualTo("3060068759");
@@ -166,7 +166,7 @@ class FileProcessorServiceTest {
             List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
 
             //WHEN
-            FileProcessedDto fileProcessed = fileProcessorService.process(fileName, lines);
+            FileProcessedDto fileProcessed = fileProcessorService.processFile(fileName, lines);
 
             //THEN
             assertThat(fileProcessed.getTournament()).isEqualTo("3082657132");
@@ -183,7 +183,7 @@ class FileProcessorServiceTest {
             List<String> lines = FileUtils.readLines(resource.getFile(), "utf-8");
 
             //WHEN
-            FileProcessedDto fileProcessed = fileProcessorService.process(fileName, lines);
+            FileProcessedDto fileProcessed = fileProcessorService.processFile(fileName, lines);
 
             //THEN
             assertThat(fileProcessed.getPlayers().size()).isEqualTo(4);

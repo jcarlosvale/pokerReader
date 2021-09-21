@@ -1,7 +1,6 @@
 package com.poker.reader.domain.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -27,19 +26,7 @@ public class Player implements Serializable {
     private String nickname;
 
     @NotNull
-    private Integer totalHands;
-
-    @NotNull
-    private Integer showdowns;
-
-    @NotNull
-    private Long avgChen;
-
-    @NotNull
-    private Long sumChen;
-
-    @NotNull
-    private LocalDate playedAt;
+    private LocalDateTime playedAt;
 
     @NotNull
     private LocalDateTime createdAt;

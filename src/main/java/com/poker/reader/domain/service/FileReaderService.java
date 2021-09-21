@@ -1,17 +1,16 @@
 package com.poker.reader.domain.service;
 
-import com.poker.reader.configuration.PokerReaderProperties;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.stereotype.Service;
+import static com.poker.reader.domain.util.Util.readFilesFromDirectory;
+import static com.poker.reader.domain.util.Util.readLinesFromFile;
 
-import javax.annotation.PostConstruct;
+import com.poker.reader.configuration.PokerReaderProperties;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
-import static com.poker.reader.domain.util.Util.readFilesFromDirectory;
-import static com.poker.reader.domain.util.Util.readLinesFromFile;
+import javax.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
@@ -36,9 +35,8 @@ public class FileReaderService {
             String fileName = file.getName();
             log.info("Processing " + fileName);
             long start = System.currentTimeMillis();
-            if (fileProcessorService.process(fileName, readLinesFromFile(file))) {
-                processedFilesCount++;
-            }
+            fileProcessorService.processFile(fileName, readLinesFromFile(file));
+            processedFilesCount++;
             long end = System.currentTimeMillis();
             count++;
             log.info("Processed " + count + "/" + filesToBeProcessed.size() + " " + (end - start) + "ms");

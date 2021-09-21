@@ -1,7 +1,7 @@
 package com.poker.reader.domain.service;
 
 import com.poker.reader.domain.model.FileSection;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +20,9 @@ public class LinesOfHand {
 
     private String tournamentId;
 
-    private LocalDate playedAt;
+    private String filename;
+
+    private LocalDateTime playedAt;
 
 
     public void addLine(FileSection fileSection, String line) {
