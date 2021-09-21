@@ -4,10 +4,13 @@ import com.poker.reader.domain.model.Player;
 import com.poker.reader.domain.model.Seat;
 import com.poker.reader.domain.repository.PlayerRepository;
 import com.poker.reader.domain.repository.SeatRepository;
+import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.util.Converter;
 import com.poker.reader.view.rs.dto.PlayerDto;
+import com.poker.reader.view.rs.dto.TournamentDto;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -21,10 +24,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class FileHtmlProcessorService {
 
+    private final TournamentRepository tournamentRepository;
     private final PlayerRepository playerRepository;
     private final SeatRepository seatRepository;
 
-    public Page<PlayerDto> findPaginated(Pageable pageable) {
+    public Page<PlayerDto> findPaginatedPlayers(Pageable pageable) {
 
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
@@ -38,5 +42,27 @@ public class FileHtmlProcessorService {
         }
 
         return new PageImpl<>(playerDtoList, PageRequest.of(currentPage, pageSize), playerRepository.count());
+    }
+
+    public Page<TournamentDto> findPaginatedTournaments(Pageable pageable) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+
+        var tournamentsDtoList =
+                tournamentRepository
+                        .findAll(pageable)
+                        .getContent()
+                        .stream()
+                        .map(tournament ->
+                                TournamentDto
+                                        .builder()
+                                        .tournamentId(tournament.getTournamentId())
+                                        .fileName(tournament.getFileName())
+                                        .createdAt(tournament.getCreatedAt())
+                                        .build())
+                        .collect(Collectors.toList());
+
+        return new PageImpl<>(tournamentsDtoList, PageRequest.of(currentPage, pageSize), tournamentRepository.count());
+
     }
 }

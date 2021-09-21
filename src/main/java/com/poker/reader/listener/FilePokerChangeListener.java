@@ -1,6 +1,7 @@
 package com.poker.reader.listener;
 
-import com.poker.reader.processor.MonitoringProcessor;
+import com.poker.reader.domain.service.FileProcessorService;
+import com.poker.reader.domain.util.Util;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -14,22 +15,22 @@ import org.springframework.stereotype.Component;
 @Component
 @Log4j2
 @RequiredArgsConstructor
-public class MyFileChangeListener implements FileChangeListener {
+public class FilePokerChangeListener implements FileChangeListener {
 
-    private final MonitoringProcessor monitoringProcessor;
+    private final FileProcessorService fileProcessorService;
 
     @SneakyThrows
     @Override
     public void onChange(Set<ChangedFiles> changeSet) {
-        log.info("TESTE");
         for(ChangedFiles cfiles : changeSet) {
             for(ChangedFile cfile: cfiles.getFiles()) {
                 if(  (cfile.getType().equals(Type.MODIFY)
                      || cfile.getType().equals(Type.ADD)  
                      || cfile.getType().equals(Type.DELETE) )) {
-                    log.info("Operation: " + cfile.getType()
-                      + " On file: "+ cfile.getFile().getName() + " is done");
-         //           monitoringProcessor.processFile(cfile.getFile().getAbsolutePath());
+
+                    log.info("Operation: " + cfile.getType() + " On file: "+ cfile.getFile().getName() + " is done");
+                    fileProcessorService.processFile(cfile.getFile().getName(), Util.readLinesFromFile(cfile.getFile()));
+
                 }
             }
         }

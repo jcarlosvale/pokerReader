@@ -3,6 +3,7 @@ package com.poker.reader.view.rs;
 import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
 import com.poker.reader.view.rs.dto.PlayerDto;
+import com.poker.reader.view.rs.dto.TournamentDto;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ public class PokerReaderController {
     private final PokerReaderProperties pokerReaderProperties;
 
     @GetMapping("/players")
-    public String listBooks(
+    public String listPlayers(
             Model model,
             @RequestParam("page") Optional<Integer> page,
             @RequestParam("size") Optional<Integer> size) {
@@ -32,8 +33,9 @@ public class PokerReaderController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(pokerReaderProperties.getPageSize());
 
-        Page<PlayerDto> playerPage = fileHtmlProcessorService.findPaginated(PageRequest.of(currentPage - 1, pageSize,
-                Sort.by("nickname").ascending()));
+        Page<PlayerDto> playerPage =
+                fileHtmlProcessorService.findPaginatedPlayers
+                        (PageRequest.of(currentPage - 1, pageSize, Sort.by("nickname").ascending()));
 
         model.addAttribute("playerPage", playerPage);
 
@@ -46,6 +48,32 @@ public class PokerReaderController {
         }
 
         return "players";
+    }
+
+    @GetMapping("/tournaments")
+    public String listTournaments(
+            Model model,
+            @RequestParam("page") Optional<Integer> page,
+            @RequestParam("size") Optional<Integer> size) {
+
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(pokerReaderProperties.getPageSize());
+
+        Page<TournamentDto> tournamentPage =
+                fileHtmlProcessorService.findPaginatedTournaments
+                        (PageRequest.of(currentPage - 1, pageSize, Sort.by("createdAt").descending()));
+
+        model.addAttribute("tournamentPage", tournamentPage);
+
+        int totalPages = tournamentPage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
+        return "tournaments";
     }
 
     @GetMapping("/hello")

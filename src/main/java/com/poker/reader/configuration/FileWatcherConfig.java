@@ -1,6 +1,6 @@
 package com.poker.reader.configuration;
 
-import com.poker.reader.listener.MyFileChangeListener;
+import com.poker.reader.listener.FilePokerChangeListener;
 import java.io.File;
 import java.time.Duration;
 import javax.annotation.PostConstruct;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @Log4j2
 public class FileWatcherConfig extends FileSystemWatcher{
 
-    private final MyFileChangeListener myFileChangeListener;
+    private final FilePokerChangeListener filePokerChangeListener;
     private final PokerReaderProperties pokerReaderProperties;
 
     @PostConstruct
@@ -33,7 +33,7 @@ public class FileWatcherConfig extends FileSystemWatcher{
                     new FileSystemWatcher(true, Duration.ofMillis(monitoringInterval), Duration.ofMillis(2000L));
             log.info("Starting fileSystemWatcher: " + folderPath);
             fileSystemWatcher.addSourceDirectory(folder);
-            fileSystemWatcher.addListener(myFileChangeListener);
+            fileSystemWatcher.addListener(filePokerChangeListener);
             fileSystemWatcher.start();
             log.info("started fileSystemWatcher");
         }
