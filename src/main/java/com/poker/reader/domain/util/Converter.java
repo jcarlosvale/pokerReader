@@ -1,6 +1,7 @@
 package com.poker.reader.domain.util;
 
 import static com.poker.reader.domain.util.CardUtil.valueOf;
+import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
 
 import com.poker.reader.domain.model.Cards;
 import com.poker.reader.domain.model.Player;
@@ -8,7 +9,9 @@ import com.poker.reader.domain.model.Seat;
 import com.poker.reader.view.rs.dto.PlayerDto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Converter {
 
@@ -16,18 +19,21 @@ public class Converter {
 
     public static PlayerDto toPlayerDto(Player player, List<Seat> seatsFromPlayer) {
         List<String> rawCardsList = new ArrayList<>();
-        List<String> cardsList = new ArrayList<>();
+        Set<String> cardsSet = new HashSet<>();
         int showDowns = 0;
         int avgChen = 0;
 
         for(Seat seat : seatsFromPlayer) {
             if (seat.getRawCards() != null) {
                 rawCardsList.addAll(CardUtil.convertStringToList(seat.getRawCards()));
-                avgChen += Chen.calculateChenFormulaFrom(seat.getCards().getDescription());
-                cardsList.add(seat.getCards().getDescription());
+                avgChen += calculateChenFormulaFrom(seat.getCards().getDescription());
+                cardsSet.add(seat.getCards().getDescription());
                 showDowns++;
             }
         }
+
+        var cardsList = new ArrayList<>(cardsSet);
+        cardsList.sort((o1, o2) -> calculateChenFormulaFrom(o2) - calculateChenFormulaFrom(o1));
 
         if (showDowns > 0) avgChen = avgChen / showDowns;
         else avgChen = 0;
@@ -41,12 +47,13 @@ public class Converter {
                 .nickname(player.getNickname())
                 .totalHands(seatsFromPlayer.size())
                 .showdowns(showDowns)
-                .showdownStat(showDownsStat)
-                .avgChen(avgChen + "%")
+                .showdownStat(showDownsStat + "%")
+                .avgChen(avgChen)
                 .playedAt(player.getPlayedAt())
                 .createdAt(player.getCreatedAt())
                 .cards(cards)
                 .rawCards(rawCards)
+                .css(classNameFromChenValue(avgChen))
                 .build();
     }
 
@@ -80,5 +87,12 @@ public class Converter {
                 .pair(isPair)
                 .createdAt(LocalDateTime.now())
                 .build();
+    }
+
+    private static String classNameFromChenValue(long avgChenValue) {
+        if (avgChenValue >= 10) return "bg-primary";
+        if (avgChenValue >= 8) return "bg-success";
+        if (avgChenValue >= 5) return "table-warning";
+        return "bg-danger";
     }
 }

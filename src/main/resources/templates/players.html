@@ -32,9 +32,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="player, iStat : ${playerPage.content}"
-							th:style="${iStat.odd}? 'font-weight: bold;'"
-							th:alt-title="${iStat.even}? 'even' : 'odd'">
+					<tr th:each="player : ${playerPage.content}"
+							th:class="${player.css}">
 						<td th:text="${player.nickname}" />
 						<td th:text="${player.totalHands}" />
 						<td th:text="${player.showdowns}" />

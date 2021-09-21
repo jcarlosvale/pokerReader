@@ -23,10 +23,10 @@ public class PlayerDto {
     private Integer showdowns;
 
     @NotNull
-    private Integer showdownStat;
+    private String showdownStat;
 
     @NotNull
-    private String avgChen;
+    private Integer avgChen;
 
     @NotNull
     private Long sumChen;
@@ -42,4 +42,6 @@ public class PlayerDto {
 
     @NotNull
     private String rawCards;
+
+    private String css;
 }

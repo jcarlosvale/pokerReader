@@ -19,6 +19,15 @@ public final class CardUtil {
         return faceCard - '0';
     }
 
+    public static int valueOf(String faceCard) {
+        if (faceCard.equals("T")) return 10;
+        if (faceCard.equals("J")) return 11;
+        if (faceCard.equals("Q")) return 12;
+        if (faceCard.equals("K")) return 13;
+        if (faceCard.equals("A")) return 14;
+        return faceCard.charAt(0) - '0';
+    }
+
     public static List<String> convertStringToList(String rawCards) {
         checkNotNull(rawCards, "rawCards must not be null");
         return Arrays.stream(rawCards.split(", "))

@@ -1,5 +1,6 @@
 package com.poker.reader.view.rs;
 
+import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
 import com.poker.reader.view.rs.dto.PlayerDto;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PokerReaderController {
 
     private final FileHtmlProcessorService fileHtmlProcessorService;
+    private final PokerReaderProperties pokerReaderProperties;
 
     @GetMapping("/players")
     public String listBooks(
@@ -28,7 +30,7 @@ public class PokerReaderController {
             @RequestParam("size") Optional<Integer> size) {
 
         int currentPage = page.orElse(1);
-        int pageSize = size.orElse(10);
+        int pageSize = size.orElse(pokerReaderProperties.getPageSize());
 
         Page<PlayerDto> playerPage = fileHtmlProcessorService.findPaginated(PageRequest.of(currentPage - 1, pageSize,
                 Sort.by("nickname").ascending()));

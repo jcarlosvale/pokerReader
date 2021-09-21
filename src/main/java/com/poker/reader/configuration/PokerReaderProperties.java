@@ -14,4 +14,7 @@ public class PokerReaderProperties {
     @Value("${monitoring-interval}")
     private long monitoringInterval;
 
+    @Value("${page-size}")
+    private int pageSize;
+
 }
