@@ -2,8 +2,10 @@ package com.poker.reader.view.rs;
 
 import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
+import com.poker.reader.domain.service.FileReaderService;
 import com.poker.reader.view.rs.dto.PlayerDto;
 import com.poker.reader.view.rs.dto.TournamentDto;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PokerReaderController {
 
     private final FileHtmlProcessorService fileHtmlProcessorService;
+    private final FileReaderService fileReaderService;
     private final PokerReaderProperties pokerReaderProperties;
 
     @GetMapping("/players")
@@ -91,8 +94,20 @@ public class PokerReaderController {
     }
 
     @GetMapping("/")
-    public String hello() {
+    public String main() {
         return "main";
+    }
+
+    @GetMapping("/processFiles")
+    public String processFiles(Model model) {
+        String message;
+        try {
+            message = fileReaderService.processPokerHistoryFiles();
+        } catch (IOException e) {
+            message = e.getMessage();
+        }
+        model.addAttribute("message", message);
+        return "process";
     }
 
     @GetMapping("/bootstrap")

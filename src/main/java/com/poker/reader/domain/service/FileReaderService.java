@@ -19,27 +19,29 @@ public class FileReaderService {
     private final PokerReaderProperties pokerReaderProperties;
     private final FileProcessorService fileProcessorService;
 
-    public void processPokerHistoryFiles() throws IOException {
+    public String processPokerHistoryFiles() throws IOException {
         log.info("Processing files from folder {} ...", pokerReaderProperties.getFolderPokerFiles());
-        int processedFiles = processFilesFromDirectory();
-        log.info("Processed new {} files from folder.", processedFiles);
+        int analyzedFiles = processFilesFromDirectory();
+        String message = String.format("Analyzed %d files from folder %s.", analyzedFiles, pokerReaderProperties.getFolderPokerFiles());
+        log.info(message);
+        return message;
     }
 
     private int processFilesFromDirectory() throws IOException {
         List<File> filesToBeProcessed = readFilesFromDirectory(pokerReaderProperties.getFolderPokerFiles(), "txt");
-        int processedFilesCount = 0;
+        int analyzedFiles = 0;
         int count = 0;
         for(File file: filesToBeProcessed) {
             String fileName = file.getName();
             log.info("Processing " + fileName);
             long start = System.currentTimeMillis();
             fileProcessorService.processFile(fileName, readLinesFromFile(file));
-            processedFilesCount++;
+            analyzedFiles++;
             long end = System.currentTimeMillis();
             count++;
             log.info("Processed " + count + "/" + filesToBeProcessed.size() + " " + (end - start) + "ms");
         }
-        return processedFilesCount;
+        return analyzedFiles;
     }
 
 }
