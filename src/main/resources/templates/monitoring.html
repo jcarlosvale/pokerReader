@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="refresh" content="20">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title th:text="${tournamentId}"/>
@@ -17,14 +18,15 @@
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<table class="table table-sm">
+			<table class="table caption-top table-sm">
+				<caption style="caption-side:top" th:text="${tournamentId}"/>
 				<thead>
 					<tr>
 						<th>nickname</th>
-						<th>totalHands</th>
-						<th>showdowns</th>
-						<th>showdownStat</th>
-						<th>avgChen</th>
+						<th>#hands</th>
+						<th>#show</th>
+						<th>%show</th>
+						<th>chen</th>
 						<th>cards</th>
 					</tr>
 				</thead>
@@ -40,11 +42,6 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>
-	</div>
-	<div class="row">
-		<div>
-			<p th:text=${tournamentId} />
 		</div>
 	</div>
 </div>

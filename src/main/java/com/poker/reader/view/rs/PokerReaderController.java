@@ -3,7 +3,6 @@ package com.poker.reader.view.rs;
 import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
 import com.poker.reader.view.rs.dto.PlayerDto;
-import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.TournamentDto;
 import java.util.List;
 import java.util.Optional;
@@ -83,18 +82,17 @@ public class PokerReaderController {
             Model model,
             @PathVariable("tournamentId") String tournamentId) {
 
-        List<PlayerMonitoredDto> PlayerMonitoredDtoList = fileHtmlProcessorService.getLastPlayersFromTournament(tournamentId);
+        List<PlayerDto> playerDtoList = fileHtmlProcessorService.getLastPlayersFromTournament(tournamentId);
 
-        model.addAttribute("playersMonitoredList", PlayerMonitoredDtoList);
+        model.addAttribute("playersMonitoredList", playerDtoList);
         model.addAttribute("tournamentId", tournamentId);
 
         return "monitoring";
     }
 
-    @GetMapping("/hello")
-    public String hello(Model model) {
-        model.addAttribute("message", "some message 2");
-        return "hello";
+    @GetMapping("/")
+    public String hello() {
+        return "main";
     }
 
     @GetMapping("/bootstrap")

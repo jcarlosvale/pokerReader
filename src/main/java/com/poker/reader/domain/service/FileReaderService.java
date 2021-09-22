@@ -7,7 +7,6 @@ import com.poker.reader.configuration.PokerReaderProperties;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
@@ -20,8 +19,7 @@ public class FileReaderService {
     private final PokerReaderProperties pokerReaderProperties;
     private final FileProcessorService fileProcessorService;
 
-    @PostConstruct
-    private void processPokerHistoryFiles() throws IOException {
+    public void processPokerHistoryFiles() throws IOException {
         log.info("Processing files from folder {} ...", pokerReaderProperties.getFolderPokerFiles());
         int processedFiles = processFilesFromDirectory();
         log.info("Processed new {} files from folder.", processedFiles);

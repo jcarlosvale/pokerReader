@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title> PokerReader - Admin </title>
+
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>
+            Options:
+          </h3>
+          <ul>
+            <li class="list-item">
+              <a href="/" target="_blank"> Process files </a>
+            </li>
+            <li class="list-item">
+
+              <a href="/tournaments" target="_blank"> List Tournaments </a>
+            </li>
+            <li class="list-item">
+
+              <a href="/players" target="_blank" /> List Players</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/scripts.js}"></script>
+  </body>
+</html>

@@ -9,7 +9,6 @@ import com.poker.reader.domain.repository.SeatRepository;
 import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.util.Converter;
 import com.poker.reader.view.rs.dto.PlayerDto;
-import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.TournamentDto;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +70,7 @@ public class FileHtmlProcessorService {
 
     }
 
-    public List<PlayerMonitoredDto> getLastPlayersFromTournament(String tournamentId) {
+    public List<PlayerDto> getLastPlayersFromTournament(String tournamentId) {
         Hand hand = handRepository.findMostRecent(tournamentId);
         return
         seatRepository
@@ -80,7 +79,7 @@ public class FileHtmlProcessorService {
                 .filter(Predicate.not(seat -> seat.getPlayer().getNickname().equals("jcarlos.vale")))
                 .map(seat -> {
                     List<Seat> seatsFromPlayer = seatRepository.findByPlayer(seat.getPlayer());
-                    return Converter.toPlayerMonitoredDto(seat.getPlayer(), seatsFromPlayer);
+                    return Converter.toPlayerDto(seat.getPlayer(), seatsFromPlayer);
                 })
                 .collect(Collectors.toList());
     }

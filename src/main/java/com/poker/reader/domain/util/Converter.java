@@ -7,7 +7,6 @@ import com.poker.reader.domain.model.Cards;
 import com.poker.reader.domain.model.Player;
 import com.poker.reader.domain.model.Seat;
 import com.poker.reader.view.rs.dto.PlayerDto;
-import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -95,40 +94,5 @@ public class Converter {
         if (avgChenValue >= 8) return "bg-success";
         if (avgChenValue >= 5) return "table-warning";
         return "bg-danger";
-    }
-
-    public static PlayerMonitoredDto toPlayerMonitoredDto(Player player, List<Seat> seatsFromPlayer) {
-        Set<String> cardsSet = new HashSet<>();
-        int showDowns = 0;
-        int avgChen = 0;
-
-        for(Seat seat : seatsFromPlayer) {
-            if (seat.getRawCards() != null) {
-                avgChen += calculateChenFormulaFrom(seat.getCards().getDescription());
-                cardsSet.add(seat.getCards().getDescription());
-                showDowns++;
-            }
-        }
-
-        var cardsList = new ArrayList<>(cardsSet);
-        cardsList.sort((o1, o2) -> calculateChenFormulaFrom(o2) - calculateChenFormulaFrom(o1));
-
-        if (showDowns > 0) avgChen = avgChen / showDowns;
-        else avgChen = 0;
-        int showDownsStat = (int)(100.0 * showDowns / seatsFromPlayer.size());
-
-        String cards = CardUtil.convertListToString(cardsList);
-
-        return PlayerMonitoredDto
-                .builder()
-                .nickname(player.getNickname())
-                .totalHands(seatsFromPlayer.size())
-                .showdowns(showDowns)
-                .showdownStat(showDownsStat + "%")
-                .avgChen(avgChen)
-                .playedAt(player.getPlayedAt())
-                .cards(cards)
-                .css(classNameFromChenValue(avgChen))
-                .build();
     }
 }
