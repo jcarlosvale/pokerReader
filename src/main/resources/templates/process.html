@@ -14,9 +14,8 @@
   </head>
   <body>
 
-    <h2>
-      Message of processing files:
-    </h2>
+    <h2 th:text="${messageHeader}"/>
+
     <p th:text="${message}"/>
 
     <script th:src="@{/js/jquery.min.js}"></script>

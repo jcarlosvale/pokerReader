@@ -98,14 +98,16 @@ public class PokerReaderController {
         return "main";
     }
 
-    @GetMapping("/processFiles")
+    @GetMapping("/importFiles")
     public String processFiles(Model model) {
         String message;
         try {
-            message = fileReaderService.processPokerHistoryFiles();
+            message = fileReaderService.importPokerHistoryFiles();
         } catch (IOException e) {
             message = e.getMessage();
         }
+
+        model.addAttribute("messageHeader", "Importing Files:");
         model.addAttribute("message", message);
         return "process";
     }

@@ -9,6 +9,7 @@ spring:
   jpa:
     properties:
       hibernate:
+#        dialect: org.hibernate.dialect.H2Dialect
         dialect: org.hibernate.dialect.PostgreSQLDialect
 #        generate_statistics: true
 #        order_inserts: true
@@ -20,16 +21,18 @@ spring:
       #      ddl-auto: create
       ddl-auto: update
   datasource:
+#    url: jdbc:h2:mem:testdb
+#    driverClassName: org.h2.Driver
+#    username: sa
+#    password: password
     url: jdbc:postgresql://localhost:5432/postgres?sslmode=disable&search_path=public;
     username: postgres
     password: postgres
-    #    password: admin
     driver-class-name: org.postgresql.Driver
-
 
 #monitoring-folder: C:\\Users\\jcarlos\\AppData\\Local\\PokerStars.EE\\HandHistory\\jcarlosvale
 monitoring-folder: C:\\Pessoal\\Projects\\pokerReader\\src\\test\\resources\\top
+#monitoring-folder: C:\\Pessoal\\Projects\\pokerReader\\src\\test\\resources\\single
 monitoring-interval: 3000
-consolidated-file-directory: c:\\temp
-html-directory: c:\\temp
 page-size: 30
+batch-size: 10000

@@ -49,6 +49,8 @@ public class FileProcessorService {
     }
 
     private void processHand(@NonNull LinesOfHand linesOfHand) {
+        long start = System.currentTimeMillis();
+
         Tournament tournament =
                 findOrCreateTournament(linesOfHand.getTournamentId(), linesOfHand.getFilename());
 
@@ -92,8 +94,16 @@ public class FileProcessorService {
                 .collect(Collectors.toList());
 
         checkArgument(mapOfPlayersAndCards.isEmpty(), "inconsistent file processor");
+
+        long end = System.currentTimeMillis();
+//        log.info("Processed hand" + (end - start) + "ms");
+        start = System.currentTimeMillis();
+
         handRepository.save(hand);
         seatRepository.saveAll(seatList);
+
+        end = System.currentTimeMillis();
+//        log.info("Saved hand" + (end - start) + "ms");
     }
 
     private Cards findOrCreateCards(String rawCards) {
@@ -185,7 +195,8 @@ public class FileProcessorService {
         return hands;
     }
 
-    private FileSection extractSection(final String line) {
+    public static FileSection extractSection(@NonNull final String line) {
+        if (line.contains("PokerStars Hand #")) return FileSection.HEADER;
         if (line.contains("*** HOLE CARDS ***"))  return FileSection.PRE_FLOP;
         if (line.contains("*** FLOP ***"))        return FileSection.FLOP;
         if (line.contains("*** TURN ***"))        return FileSection.TURN;

@@ -18,16 +18,17 @@ public class FileReaderService {
 
     private final PokerReaderProperties pokerReaderProperties;
     private final FileProcessorService fileProcessorService;
+    private final FileImportService fileImportService;
 
-    public String processPokerHistoryFiles() throws IOException {
-        log.info("Processing files from folder {} ...", pokerReaderProperties.getFolderPokerFiles());
-        int analyzedFiles = processFilesFromDirectory();
-        String message = String.format("Analyzed %d files from folder %s.", analyzedFiles, pokerReaderProperties.getFolderPokerFiles());
+    public String importPokerHistoryFiles() throws IOException {
+        log.info("Importing files from folder {} ...", pokerReaderProperties.getFolderPokerFiles());
+        int analyzedFiles = importFilesFromDirectory();
+        String message = String.format("Analyzed %d files from folder %s", analyzedFiles, pokerReaderProperties.getFolderPokerFiles());
         log.info(message);
         return message;
     }
 
-    private int processFilesFromDirectory() throws IOException {
+    private int importFilesFromDirectory() throws IOException {
         List<File> filesToBeProcessed = readFilesFromDirectory(pokerReaderProperties.getFolderPokerFiles(), "txt");
         int analyzedFiles = 0;
         int count = 0;
@@ -35,7 +36,7 @@ public class FileReaderService {
             String fileName = file.getName();
             log.info("Processing " + fileName);
             long start = System.currentTimeMillis();
-            fileProcessorService.processFile(fileName, readLinesFromFile(file));
+            fileImportService.importFile(fileName, readLinesFromFile(file));
             analyzedFiles++;
             long end = System.currentTimeMillis();
             count++;
