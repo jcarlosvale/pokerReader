@@ -2,6 +2,7 @@ package com.poker.reader.view.rs;
 
 import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
+import com.poker.reader.domain.service.FileProcessorService;
 import com.poker.reader.domain.service.FileReaderService;
 import com.poker.reader.view.rs.dto.PlayerDto;
 import com.poker.reader.view.rs.dto.TournamentDto;
@@ -26,6 +27,7 @@ public class PokerReaderController {
 
     private final FileHtmlProcessorService fileHtmlProcessorService;
     private final FileReaderService fileReaderService;
+    private final FileProcessorService fileProcessorService;
     private final PokerReaderProperties pokerReaderProperties;
 
     @GetMapping("/players")
@@ -99,7 +101,7 @@ public class PokerReaderController {
     }
 
     @GetMapping("/importFiles")
-    public String processFiles(Model model) {
+    public String importFiles(Model model) {
         String message;
         try {
             message = fileReaderService.importPokerHistoryFiles();
@@ -108,6 +110,20 @@ public class PokerReaderController {
         }
 
         model.addAttribute("messageHeader", "Importing Files:");
+        model.addAttribute("message", message);
+        return "process";
+    }
+
+    @GetMapping("/processFiles")
+    public String processFiles(Model model) {
+        String message;
+        try {
+            message = fileProcessorService.processFilesFromDatabase();
+        } catch (Exception e) {
+            message = e.getMessage();
+        }
+
+        model.addAttribute("messageHeader", "Processing Files:");
         model.addAttribute("message", message);
         return "process";
     }

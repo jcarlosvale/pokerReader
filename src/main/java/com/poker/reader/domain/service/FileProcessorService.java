@@ -41,6 +41,11 @@ public class FileProcessorService {
     private final SeatRepository seatRepository;
     private final CardsRepository cardsRepository;
 
+
+    public String processFilesFromDatabase() {
+        return null;
+    }
+
     public void processFile(String fileName, final List<String> lines) {
         extractHands(lines, fileName)
                 .stream()

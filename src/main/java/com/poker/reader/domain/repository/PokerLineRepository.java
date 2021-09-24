@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
+    long countByPokerFileId(long fileId);
 }

@@ -17,32 +17,36 @@ import org.springframework.stereotype.Service;
 public class FileReaderService {
 
     private final PokerReaderProperties pokerReaderProperties;
-    private final FileProcessorService fileProcessorService;
     private final FileImportService fileImportService;
 
     public String importPokerHistoryFiles() throws IOException {
+        long start = System.currentTimeMillis();
+
         log.info("Importing files from folder {} ...", pokerReaderProperties.getFolderPokerFiles());
-        int analyzedFiles = importFilesFromDirectory();
-        String message = String.format("Analyzed %d files from folder %s", analyzedFiles, pokerReaderProperties.getFolderPokerFiles());
+
+        List<File> filesToBeProcessed = readFilesFromDirectory(pokerReaderProperties.getFolderPokerFiles(), "txt");
+        int importedFiles = importFilesFromDirectory(filesToBeProcessed);
+        String message = String.format("Imported %d / %d files from folder %s",
+                importedFiles, filesToBeProcessed.size(), pokerReaderProperties.getFolderPokerFiles());
+
         log.info(message);
+        log.info("Total importing process {} ms ", (System.currentTimeMillis() - start));
         return message;
     }
 
-    private int importFilesFromDirectory() throws IOException {
-        List<File> filesToBeProcessed = readFilesFromDirectory(pokerReaderProperties.getFolderPokerFiles(), "txt");
-        int analyzedFiles = 0;
+    private int importFilesFromDirectory(List<File> filesToBeProcessed) throws IOException {
+        int importedFiles = 0;
         int count = 0;
         for(File file: filesToBeProcessed) {
             String fileName = file.getName();
             log.info("Processing " + fileName);
             long start = System.currentTimeMillis();
-            fileImportService.importFile(fileName, readLinesFromFile(file));
-            analyzedFiles++;
+            if (fileImportService.importFile(fileName, readLinesFromFile(file))) importedFiles++;
             long end = System.currentTimeMillis();
             count++;
             log.info("Processed " + count + "/" + filesToBeProcessed.size() + " " + (end - start) + "ms");
         }
-        return analyzedFiles;
+        return importedFiles;
     }
 
 }

@@ -1,17 +1,23 @@
 package com.poker.reader.domain.service;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.model.FileSection;
 import com.poker.reader.domain.model.PokerFile;
 import com.poker.reader.domain.model.PokerLine;
 import com.poker.reader.domain.repository.PokerFileRepository;
+import com.poker.reader.domain.repository.PokerLineRepository;
+import com.zaxxer.hikari.HikariDataSource;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.sql.DataSource;
 import lombok.NonNull;
@@ -29,16 +35,22 @@ public class FileImportService {
 
     private final DataSource dataSource;
     private final PokerFileRepository pokerFileRepository;
+    private final PokerLineRepository pokerLineRepository;
     private final PokerReaderProperties pokerReaderProperties;
 
-    public void importFile(@NonNull final String filename, @NonNull final List<String> lines) {
+    public boolean importFile(@NonNull final String filename, @NonNull final List<String> lines) {
         long start = System.currentTimeMillis();
 
         List<String> normalisedLines = removeInvalidLines(lines);
         List<PokerLine> listOfPokerLines = extractLinesOfFile(normalisedLines);
-        persistData(filename, listOfPokerLines);
+        Optional<PokerFile> pokerFileOptional = persistData(filename, listOfPokerLines);
 
-        log.info("Imported file {} in {} ms", filename, (System.currentTimeMillis() - start));
+        pokerFileOptional.ifPresent(pokerFile -> {
+            checkArgument(listOfPokerLines.size() == pokerLineRepository.countByPokerFileId(pokerFile.getPokerFileId()));
+            log.info("Imported file {} in {} ms", filename, (System.currentTimeMillis() - start));
+        });
+
+        return pokerFileOptional.isPresent();
     }
 
     private List<PokerLine> extractLinesOfFile(@NonNull final List<String> normalisedLines) {
@@ -73,12 +85,12 @@ public class FileImportService {
         .collect(Collectors.toList());
     }
 
-    private void persistData(@NonNull final String filename, @NonNull final List<PokerLine> listOfPokerLines) {
+    private Optional<PokerFile> persistData(@NonNull final String filename, @NonNull final List<PokerLine> listOfPokerLines) {
         long start = System.currentTimeMillis();
 
         if (pokerFileRepository.existsByFileName(filename)) {
             log.info("File already processed {}", filename);
-            return;
+            return Optional.empty();
         }
 
         //save poker file
@@ -95,15 +107,21 @@ public class FileImportService {
 
         long end = System.currentTimeMillis();
         log.info("Persisted {} ms", (end - start));
+
+        return Optional.of(pokerFile);
     }
 
-    private void saveLines(List<PokerLine> listOfPokerLines, PokerFile pokerFile) {
-        try (PgConnection unwrapped = dataSource.getConnection().unwrap(PgConnection.class)){
+    private void saveLines(@NonNull final List<PokerLine> listOfPokerLines, @NonNull final PokerFile pokerFile) {
+        log.info("Active: " + ((HikariDataSource)dataSource).getHikariPoolMXBean().getActiveConnections());
+
+        try {
 
             final String COPY = "COPY pokerline (poker_file_id, line_number, section,  line)"
                     + " FROM STDIN WITH (FORMAT TEXT, ENCODING 'UTF-8', DELIMITER '\t',"
                     + " HEADER false)";
 
+            Connection connection = dataSource.getConnection();
+            PgConnection unwrapped = connection.unwrap(PgConnection.class);
             CopyManager copyManager = unwrapped.getCopyAPI();
 
             int lineNumber = 1;
@@ -127,7 +145,7 @@ public class FileImportService {
                 copyManager.copyIn(COPY, is);
                 sb.setLength(0);
             }
-
+            connection.close();
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
