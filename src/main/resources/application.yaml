@@ -30,8 +30,8 @@ spring:
     password: postgres
     driver-class-name: org.postgresql.Driver
 
-#monitoring-folder: C:\\Users\\jcarlos\\AppData\\Local\\PokerStars.EE\\HandHistory\\jcarlosvale
-monitoring-folder: C:\\Pessoal\\Projects\\pokerReader\\src\\test\\resources\\top
+monitoring-folder: C:\\Users\\jcarlos\\AppData\\Local\\PokerStars.EE\\HandHistory\\jcarlosvale
+#monitoring-folder: C:\\Pessoal\\Projects\\pokerReader\\src\\test\\resources\\top
 #monitoring-folder: C:\\Pessoal\\Projects\\pokerReader\\src\\test\\resources\\single
 monitoring-interval: 3000
 page-size: 30

@@ -1,36 +1,23 @@
 package com.poker.reader.domain.service;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
-import com.poker.reader.domain.model.Cards;
-import com.poker.reader.domain.model.FileSection;
-import com.poker.reader.domain.model.Hand;
-import com.poker.reader.domain.model.Player;
-import com.poker.reader.domain.model.Seat;
-import com.poker.reader.domain.model.Tournament;
-import com.poker.reader.domain.repository.CardsRepository;
-import com.poker.reader.domain.repository.HandRepository;
-import com.poker.reader.domain.repository.PlayerRepository;
-import com.poker.reader.domain.repository.PokerFileRepository;
-import com.poker.reader.domain.repository.SeatRepository;
-import com.poker.reader.domain.repository.TournamentRepository;
+import com.poker.reader.domain.model.*;
+import com.poker.reader.domain.repository.*;
 import com.poker.reader.domain.util.CardsGenerator;
 import com.poker.reader.domain.util.Converter;
 import com.poker.reader.domain.util.Util;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 @Service
 @Log4j2
@@ -49,22 +36,21 @@ public class FileProcessorService {
     public String processFilesFromDatabase() {
         long start = System.currentTimeMillis();
 
+        tournamentRepository.saveNewTournaments();
+        playerRepository.saveNewPlayers();
         List<Cards> cards = findOrCreateCards();
         List<Long> notProcessedFilesId = pokerFileRepository.getPokerFileNotProcessedIds();
 
         notProcessedFilesId.forEach(tournamentId -> {
-            processPlayersFromTournament(tournamentId);
+
         });
 
 
         String message = String.format("Processed %d/%d tournaments in %d ms",
-                notProcessedFilesId.size(), pokerFileRepository.count(), (System.currentTimeMillis() - start))
+                notProcessedFilesId.size(), pokerFileRepository.count(), (System.currentTimeMillis() - start));
         log.info(message);
 
         return message;
-    }
-
-    private void processPlayersFromTournament(Long tournamentId) {
     }
 
     private List<Cards> findOrCreateCards() {
@@ -157,7 +143,6 @@ public class FileProcessorService {
                                         Player
                                                 .builder()
                                                 .nickname(nickname)
-                                                .playedAt(playedAt)
                                                 .createdAt(LocalDateTime.now())
                                                 .build()
                                 )

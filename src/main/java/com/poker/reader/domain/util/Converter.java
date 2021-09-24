@@ -1,17 +1,18 @@
 package com.poker.reader.domain.util;
 
-import static com.poker.reader.domain.util.CardUtil.valueOf;
-import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
-
 import com.poker.reader.domain.model.Cards;
 import com.poker.reader.domain.model.Player;
 import com.poker.reader.domain.model.Seat;
 import com.poker.reader.view.rs.dto.PlayerDto;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static com.poker.reader.domain.util.CardUtil.valueOf;
+import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
 
 public class Converter {
 
@@ -49,7 +50,6 @@ public class Converter {
                 .showdowns(showDowns)
                 .showdownStat(showDownsStat + "%")
                 .avgChen(avgChen)
-                .playedAt(player.getPlayedAt())
                 .createdAt(player.getCreatedAt())
                 .cards(cards)
                 .rawCards(rawCards)
