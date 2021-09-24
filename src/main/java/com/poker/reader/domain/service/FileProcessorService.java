@@ -11,8 +11,10 @@ import com.poker.reader.domain.model.Tournament;
 import com.poker.reader.domain.repository.CardsRepository;
 import com.poker.reader.domain.repository.HandRepository;
 import com.poker.reader.domain.repository.PlayerRepository;
+import com.poker.reader.domain.repository.PokerFileRepository;
 import com.poker.reader.domain.repository.SeatRepository;
 import com.poker.reader.domain.repository.TournamentRepository;
+import com.poker.reader.domain.util.CardsGenerator;
 import com.poker.reader.domain.util.Converter;
 import com.poker.reader.domain.util.Util;
 import java.time.LocalDateTime;
@@ -41,9 +43,36 @@ public class FileProcessorService {
     private final SeatRepository seatRepository;
     private final CardsRepository cardsRepository;
 
+    private final PokerFileRepository pokerFileRepository;
+
 
     public String processFilesFromDatabase() {
-        return null;
+        long start = System.currentTimeMillis();
+
+        List<Cards> cards = findOrCreateCards();
+        List<Long> notProcessedFilesId = pokerFileRepository.getPokerFileNotProcessedIds();
+
+        notProcessedFilesId.forEach(tournamentId -> {
+            processPlayersFromTournament(tournamentId);
+        });
+
+
+        String message = String.format("Processed %d/%d tournaments in %d ms",
+                notProcessedFilesId.size(), pokerFileRepository.count(), (System.currentTimeMillis() - start))
+        log.info(message);
+
+        return message;
+    }
+
+    private void processPlayersFromTournament(Long tournamentId) {
+    }
+
+    private List<Cards> findOrCreateCards() {
+        if (cardsRepository.count() == 0) {
+            return cardsRepository.saveAll(CardsGenerator.generateCards());
+        } else {
+            return cardsRepository.findAll();
+        }
     }
 
     public void processFile(String fileName, final List<String> lines) {

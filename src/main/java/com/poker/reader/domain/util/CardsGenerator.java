@@ -1,13 +1,21 @@
-package com.poker.reader.parser.util;
+package com.poker.reader.domain.util;
 
 import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
 
+import com.poker.reader.domain.model.Cards;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
-public class HandGenerator {
+public class CardsGenerator {
+
+    public static Set<Cards> generateCards() {
+        return generateNormalisedCards().stream().map(CardsGenerator::from).collect(Collectors.toSet());
+    }
 
     public static List<String> generateNormalisedCards() {
         List<String> cards = List.of("2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A");
@@ -34,6 +42,18 @@ public class HandGenerator {
             mapOfChen.computeIfAbsent(chen, s -> new ArrayList<>()).add(hand);
         }
         mapOfChen.forEach((integer, cards) -> System.out.println(integer + " --> " + cards));
+    }
+
+    public static Cards from(String description) {
+        Cards cards = new Cards();
+        cards.setDescription(description);
+        cards.setCard1(String.valueOf(description.charAt(0)));
+        cards.setCard2(String.valueOf(description.charAt(1)));
+        cards.setSuited(description.length() > 2 && description.charAt(2) == 's');
+        cards.setPair(cards.getCard1().equals(cards.getCard2()));
+        cards.setChen(calculateChenFormulaFrom(description));
+        cards.setCreatedAt(LocalDateTime.now());
+        return cards;
     }
 
     public static void main(String[] args) {
