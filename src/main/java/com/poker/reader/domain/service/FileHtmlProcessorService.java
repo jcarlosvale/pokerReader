@@ -1,6 +1,5 @@
 package com.poker.reader.domain.service;
 
-import com.poker.reader.domain.model.Hand;
 import com.poker.reader.domain.model.Player;
 import com.poker.reader.domain.model.Seat;
 import com.poker.reader.domain.repository.HandRepository;
@@ -10,10 +9,6 @@ import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.util.Converter;
 import com.poker.reader.view.rs.dto.PlayerDto;
 import com.poker.reader.view.rs.dto.TournamentDto;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -21,6 +16,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -71,6 +70,7 @@ public class FileHtmlProcessorService {
     }
 
     public List<PlayerDto> getLastPlayersFromTournament(String tournamentId) {
+        /*
         Hand hand = handRepository.findMostRecent(tournamentId);
         return
         seatRepository
@@ -81,6 +81,7 @@ public class FileHtmlProcessorService {
                     List<Seat> seatsFromPlayer = seatRepository.findByPlayer(seat.getPlayer());
                     return Converter.toPlayerDto(seat.getPlayer(), seatsFromPlayer);
                 })
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
+        return List.of();
     }
 }

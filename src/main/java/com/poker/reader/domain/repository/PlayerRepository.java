@@ -18,7 +18,7 @@ public interface PlayerRepository extends JpaRepository<Player, String> {
             "join pokerfile pf on (pl.poker_file_id = pf.poker_file_id) " +
             "where  " +
             "pf.is_processed = false  " +
-            "and line like '%Seat %:%in chips)' " +
+            "and line like '%Seat %:%in chips%' " +
             "and section = 'HEADER') " +
             "ON CONFLICT (nickname) " +
             "do nothing";

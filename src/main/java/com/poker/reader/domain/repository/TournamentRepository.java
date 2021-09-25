@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface TournamentRepository extends JpaRepository<Tournament, String> {
 
     String SAVE_NEW_TOURNAMENTS = "INSERT INTO tournaments " +
-            "select  " +
+            "(select  " +
             "distinct (regexp_matches(line, 'Tournament #([0-9]+)'))[1], " +
             "now(), " +
             "pf.file_name  " +
@@ -20,7 +20,9 @@ public interface TournamentRepository extends JpaRepository<Tournament, String> 
             "where  " +
             "pf.is_processed = false " +
             "and line like '%Tournament #%' " +
-            "and section = 'HEADER'";
+            "and section = 'HEADER') " +
+            "ON CONFLICT (tournament_id) " +
+            "do nothing";
     @Transactional
     @Modifying
     @Query(value = SAVE_NEW_TOURNAMENTS, nativeQuery = true)

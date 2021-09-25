@@ -1,17 +1,28 @@
 package com.poker.reader.domain.service;
 
+import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.model.*;
 import com.poker.reader.domain.repository.*;
+import com.poker.reader.domain.repository.dto.ShowCardDto;
 import com.poker.reader.domain.util.CardsGenerator;
 import com.poker.reader.domain.util.Converter;
 import com.poker.reader.domain.util.Util;
+import com.zaxxer.hikari.HikariDataSource;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
+import org.postgresql.copy.CopyManager;
+import org.postgresql.jdbc.PgConnection;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.sql.DataSource;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.Predicate;
@@ -24,13 +35,18 @@ import static com.google.common.base.Preconditions.checkArgument;
 @RequiredArgsConstructor
 public class FileProcessorService {
 
+    private final DataSource dataSource;
+
     private final TournamentRepository tournamentRepository;
     private final HandRepository handRepository;
     private final PlayerRepository playerRepository;
     private final SeatRepository seatRepository;
     private final CardsRepository cardsRepository;
-
     private final PokerFileRepository pokerFileRepository;
+    private final PokerLineRepository pokerLineRepository;
+
+    private final PokerReaderProperties pokerReaderProperties;
+
 
 
     public String processFilesFromDatabase() {
@@ -38,12 +54,12 @@ public class FileProcessorService {
 
         tournamentRepository.saveNewTournaments();
         playerRepository.saveNewPlayers();
+        handRepository.saveNewHands();
+
         List<Cards> cards = findOrCreateCards();
         List<Long> notProcessedFilesId = pokerFileRepository.getPokerFileNotProcessedIds();
 
-        notProcessedFilesId.forEach(tournamentId -> {
-
-        });
+        processCardsFromPlayer();
 
 
         String message = String.format("Processed %d/%d tournaments in %d ms",
@@ -51,6 +67,54 @@ public class FileProcessorService {
         log.info(message);
 
         return message;
+    }
+
+    private void processCardsFromPlayer() {
+        List<ShowCardDto> showCardDtoList =
+                pokerLineRepository.getShowedCardsFromShowDown();
+        showCardDtoList.addAll(pokerLineRepository.getShowedCardsFromSummary());
+        saveSeatAsBatch(showCardDtoList);
+    }
+
+    private void saveSeatAsBatch(List<ShowCardDto> showCardDtoList) {
+        log.info("Active connections: " + ((HikariDataSource)dataSource).getHikariPoolMXBean().getActiveConnections());
+
+        try {
+
+            final String COPY = "COPY seats (seat_id, raw_cards, cards_id, nickname)"
+                    + " FROM STDIN WITH (FORMAT TEXT, ENCODING 'UTF-8', DELIMITER '\t',"
+                    + " HEADER false)";
+
+            Connection connection = dataSource.getConnection();
+            PgConnection unwrapped = connection.unwrap(PgConnection.class);
+            CopyManager copyManager = unwrapped.getCopyAPI();
+
+            int lineNumber = 1;
+            StringBuilder sb = new StringBuilder();
+            for(ShowCardDto showCardDto : showCardDtoList) {
+
+                sb.append(lineNumber).append("\t");
+                sb.append(showCardDto.getCards()).append("\t");
+                sb.append(Converter.toCard(showCardDto.getCards()).getDescription()).append("\t");
+                sb.append(showCardDto.getPlayer()).append("\n");
+
+                lineNumber++;
+                if (lineNumber % pokerReaderProperties.getBatchSize() == 0) {
+                    InputStream is = new ByteArrayInputStream(sb.toString().getBytes());
+                    copyManager.copyIn(COPY, is);
+                    sb.setLength(0);
+                }
+            }
+
+            if (sb.length() > 0) {
+                InputStream is = new ByteArrayInputStream(sb.toString().getBytes());
+                copyManager.copyIn(COPY, is);
+                sb.setLength(0);
+            }
+            connection.close();
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private List<Cards> findOrCreateCards() {
@@ -98,14 +162,14 @@ public class FileProcessorService {
                         mapOfPlayersAndCards.remove(nickname);
                         return Seat.builder()
                                 .rawCards(rawCards)
-                                .hand(hand)
+                                //.hand(hand)
                                 .player(player)
                                 .cards(cards)
                                 .build();
                     } else {
                         return Seat.builder()
                                 .rawCards(null)
-                                .hand(hand)
+                                //.hand(hand)
                                 .player(player)
                                 .cards(null)
                                 .build();
