@@ -35,4 +35,3 @@ monitoring-folder: C:\\Users\\jcarlos\\AppData\\Local\\PokerStars.EE\\HandHistor
 #monitoring-folder: C:\\Pessoal\\Projects\\pokerReader\\src\\test\\resources\\single
 monitoring-interval: 3000
 page-size: 30
-batch-size: 10000

@@ -1,6 +1,5 @@
 package com.poker.reader.domain.service;
 
-import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.model.*;
 import com.poker.reader.domain.repository.*;
 import com.poker.reader.domain.repository.dto.ShowCardDto;
@@ -45,10 +44,6 @@ public class FileProcessorService {
     private final PokerFileRepository pokerFileRepository;
     private final PokerLineRepository pokerLineRepository;
 
-    private final PokerReaderProperties pokerReaderProperties;
-
-
-
     public String processFilesFromDatabase() {
         long start = System.currentTimeMillis();
 
@@ -56,7 +51,7 @@ public class FileProcessorService {
         playerRepository.saveNewPlayers();
         handRepository.saveNewHands();
 
-        List<Cards> cards = findOrCreateCards();
+        findOrCreateCards();
         List<Long> notProcessedFilesId = pokerFileRepository.getPokerFileNotProcessedIds();
 
         processCardsFromPlayer();
@@ -81,7 +76,7 @@ public class FileProcessorService {
 
         try {
 
-            final String COPY = "COPY seats (seat_id, raw_cards, cards_id, nickname)"
+            final String COPY = "COPY seats (seat_id, raw_cards, cards_id, hand_id, nickname)"
                     + " FROM STDIN WITH (FORMAT TEXT, ENCODING 'UTF-8', DELIMITER '\t',"
                     + " HEADER false)";
 
@@ -96,14 +91,10 @@ public class FileProcessorService {
                 sb.append(lineNumber).append("\t");
                 sb.append(showCardDto.getCards()).append("\t");
                 sb.append(Converter.toCard(showCardDto.getCards()).getDescription()).append("\t");
+                sb.append(showCardDto.getHand()).append("\t");
                 sb.append(showCardDto.getPlayer()).append("\n");
 
                 lineNumber++;
-                if (lineNumber % pokerReaderProperties.getBatchSize() == 0) {
-                    InputStream is = new ByteArrayInputStream(sb.toString().getBytes());
-                    copyManager.copyIn(COPY, is);
-                    sb.setLength(0);
-                }
             }
 
             if (sb.length() > 0) {

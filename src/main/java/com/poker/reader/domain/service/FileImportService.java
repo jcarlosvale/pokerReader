@@ -1,14 +1,20 @@
 package com.poker.reader.domain.service;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
-import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.model.FileSection;
 import com.poker.reader.domain.model.PokerFile;
 import com.poker.reader.domain.model.PokerLine;
 import com.poker.reader.domain.repository.PokerFileRepository;
 import com.poker.reader.domain.repository.PokerLineRepository;
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
+import org.postgresql.copy.CopyManager;
+import org.postgresql.jdbc.PgConnection;
+import org.springframework.stereotype.Service;
+
+import javax.sql.DataSource;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,14 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import javax.sql.DataSource;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.StringUtils;
-import org.postgresql.copy.CopyManager;
-import org.postgresql.jdbc.PgConnection;
-import org.springframework.stereotype.Service;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 @Service
 @Log4j2
@@ -36,7 +36,6 @@ public class FileImportService {
     private final DataSource dataSource;
     private final PokerFileRepository pokerFileRepository;
     private final PokerLineRepository pokerLineRepository;
-    private final PokerReaderProperties pokerReaderProperties;
 
     public boolean importFile(@NonNull final String filename, @NonNull final List<String> lines) {
         long start = System.currentTimeMillis();
@@ -58,9 +57,16 @@ public class FileImportService {
 
         List<PokerLine> listOfPokerLines = new ArrayList<>();
         FileSection currentSection = FileSection.HEADER;
+        String handId = null;
 
         for(String line : normalisedLines) {
-            if (line.contains("PokerStars Hand #"))        currentSection = FileSection.HEADER;
+            if (line.contains("PokerStars Hand #")) {
+                currentSection = FileSection.HEADER;
+                handId = StringUtils.substringBetween(line, "PokerStars Hand #", ": Tournament ");
+            }
+            else if (line.contains("PokerStars Home Game Hand #")) {
+                return List.of();  //dont process home games
+            }
             else if (line.contains("*** HOLE CARDS ***"))  currentSection = FileSection.PRE_FLOP;
             else if (line.contains("*** FLOP ***"))        currentSection = FileSection.FLOP;
             else if (line.contains("*** TURN ***"))        currentSection = FileSection.TURN;
@@ -68,7 +74,7 @@ public class FileImportService {
             else if (line.contains("*** SHOW DOWN ***"))   currentSection = FileSection.SHOWDOWN;
             else if (line.contains("*** SUMMARY ***"))     currentSection = FileSection.SUMMARY;
 
-            listOfPokerLines.add(PokerLine.builder().section(currentSection.name()).line(line).build());
+            listOfPokerLines.add(PokerLine.builder().section(currentSection.name()).handId(handId).line(line).build());
         }
 
         long end = System.currentTimeMillis();
@@ -87,6 +93,8 @@ public class FileImportService {
 
     private Optional<PokerFile> persistData(@NonNull final String filename, @NonNull final List<PokerLine> listOfPokerLines) {
         long start = System.currentTimeMillis();
+
+        if (listOfPokerLines.isEmpty()) return Optional.empty();
 
         if (pokerFileRepository.existsByFileName(filename)) {
             log.info("File already processed {}", filename);
@@ -116,7 +124,7 @@ public class FileImportService {
 
         try {
 
-            final String COPY = "COPY pokerline (poker_file_id, line_number, section,  line)"
+            final String COPY = "COPY pokerline (poker_file_id, line_number, section,  line, hand_id)"
                     + " FROM STDIN WITH (FORMAT TEXT, ENCODING 'UTF-8', DELIMITER '\t',"
                     + " HEADER false)";
 
@@ -130,14 +138,11 @@ public class FileImportService {
                 sb.append(pokerFile.getPokerFileId()).append("\t");
                 sb.append(lineNumber).append("\t");
                 sb.append(pokerLine.getSection()).append("\t");
-                sb.append(pokerLine.getLine()).append("\n");
+                sb.append(pokerLine.getLine()).append("\t");
+                sb.append(pokerLine.getHandId()).append("\n");
+
 
                 lineNumber++;
-                if (lineNumber % pokerReaderProperties.getBatchSize() == 0) {
-                    InputStream is = new ByteArrayInputStream(sb.toString().getBytes());
-                    copyManager.copyIn(COPY, is);
-                    sb.setLength(0);
-                }
             }
 
             if (sb.length() > 0) {

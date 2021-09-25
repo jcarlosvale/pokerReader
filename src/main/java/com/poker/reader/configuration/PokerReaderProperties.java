@@ -16,7 +16,4 @@ public class PokerReaderProperties {
 
     @Value("${page-size}")
     private int pageSize;
-
-    @Value("${batch-size}")
-    private int batchSize;
 }

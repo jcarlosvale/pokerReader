@@ -21,10 +21,10 @@ public class Seat {
 
     private String rawCards;
 
-//    @NotNull
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "handId")
-//    private Hand hand;
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "handId")
+    private Hand hand;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)

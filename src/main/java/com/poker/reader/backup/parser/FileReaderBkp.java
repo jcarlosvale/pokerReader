@@ -30,7 +30,7 @@ import static com.poker.reader.backup.parser.util.TypeFileSection.*;
 public class FileReaderBkp {
 
     private final FileProcessorService fileProcessorService =
-            new FileProcessorService(null, null, null, null, null, null,null, null, null);
+            new FileProcessorService( null, null, null, null, null,null, null, null);
     private final LinkedList<Hand> handList = new LinkedList<>();
     private final Set<Player> players = new HashSet<>();
     private File file;
