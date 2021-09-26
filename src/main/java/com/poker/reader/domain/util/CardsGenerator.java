@@ -1,20 +1,74 @@
 package com.poker.reader.domain.util;
 
-import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
-
 import com.poker.reader.domain.model.Cards;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.poker.reader.domain.util.CardUtil.valueOf;
+import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
 
 public class CardsGenerator {
 
     public static Set<Cards> generateCards() {
-        return generateNormalisedCards().stream().map(CardsGenerator::from).collect(Collectors.toSet());
+        return
+                generateAllHands().stream().map(CardsGenerator::generateCard).collect(Collectors.toSet());
+    }
+
+    private static Cards generateCard(String rawCard) {
+        String card1;
+        String card2;
+        if(valueOf(rawCard.charAt(0)) >= valueOf(rawCard.charAt(3))) {
+            card1 = String.valueOf(rawCard.charAt(0));
+            card2 = String.valueOf(rawCard.charAt(3));
+        } else {
+            card1 = String.valueOf(rawCard.charAt(3));
+            card2 = String.valueOf(rawCard.charAt(0));
+        }
+        boolean isPair = card1.equals(card2);
+        boolean isSuited = rawCard.charAt(1) == rawCard.charAt(4);
+        String suited = "";
+
+        if (!isPair) {
+            if (isSuited) suited = "s";
+            else suited = "o";
+        }
+
+        String normalised = card1 + card2 + suited;
+
+        return Cards
+                .builder()
+                .description(rawCard)
+                .normalised(normalised)
+                .card1(card1)
+                .card2(card2)
+                .suited(isSuited)
+                .pair(isPair)
+                .chen(Chen.calculateChenFormulaFrom(normalised))
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
+
+    private static List<String> generateAllHands() {
+        List<String> naipes = List.of("c", "d", "h", "s");
+        List<String> cards = List.of("2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A");
+        List<String> generatedHand = new ArrayList<>();
+        for(String card1 : cards) {
+            for(String naipe1 : naipes) {
+                String card_1 = card1 + naipe1;
+                for(String card2 : cards) {
+                    for(String naipe2 : naipes) {
+                        String card_2 = card2 + naipe2;
+                        if(card_1.equals(card_2)) continue;
+                        generatedHand.add(card_1 + " " + card_2);
+                    }
+                }
+            }
+        }
+        checkArgument(generatedHand.size() == 2652, "error generating cards");
+        return generatedHand;
     }
 
     public static List<String> generateNormalisedCards() {
@@ -57,21 +111,7 @@ public class CardsGenerator {
     }
 
     public static void main(String[] args) {
-        List<String> cards  = generateNormalisedCards();
-        System.out.println(cards.size());
-        System.out.println(cards);
-        int maxChen = Integer.MIN_VALUE;
-        int minChen = Integer.MAX_VALUE;
-
-        for(String card: cards) {
-            int chen = calculateChenFormulaFrom(card);
-            System.out.println(card + ":" + chen);
-            maxChen = Math.max(maxChen, chen);
-            minChen = Math.min(minChen, chen);
-        }
-        System.out.println("MIN CHEN: " + minChen);
-        System.out.println("MAX CHEN: " + maxChen);
-        printChenTable();
+        System.out.println(generateAllHands().size()); //2652
     }
 
 }

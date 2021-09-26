@@ -19,8 +19,11 @@ import java.time.LocalDateTime;
 public class Cards implements Serializable, Comparable<Cards> {
 
     @Id
-    @Size(max = 3)
+    @Size(max = 5)
     private String description;
+
+    @Size(max = 3)
+    private String normalised;
 
     @Size(max = 1)
     @NotNull
