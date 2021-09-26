@@ -11,8 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface PlayerRepository extends JpaRepository<Player, String> {
     String SAVE_NEW_PLAYERS = "INSERT INTO players " +
             "(select   " +
-            "distinct trim(substring(line, position(':' in line) + 1, length(line) - position(':' in line) " +
-            "- position('(' in reverse(line)))), " +
+            "distinct trim(substring(line, position(':' in line) + 1, length(line) - position(':' in line) - position('(' in reverse(line)))), " +
             "now() " +
             "from pokerline pl " +
             "join pokerfile pf on (pl.poker_file_id = pf.poker_file_id) " +

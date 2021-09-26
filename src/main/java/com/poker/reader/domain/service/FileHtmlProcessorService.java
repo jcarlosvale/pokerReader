@@ -1,5 +1,6 @@
 package com.poker.reader.domain.service;
 
+import com.poker.reader.domain.model.Hand;
 import com.poker.reader.domain.model.Player;
 import com.poker.reader.domain.model.Seat;
 import com.poker.reader.domain.repository.HandRepository;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Log4j2
@@ -70,7 +72,7 @@ public class FileHtmlProcessorService {
     }
 
     public List<PlayerDto> getLastPlayersFromTournament(String tournamentId) {
-        /*
+
         Hand hand = handRepository.findMostRecent(tournamentId);
         return
         seatRepository
@@ -81,7 +83,6 @@ public class FileHtmlProcessorService {
                     List<Seat> seatsFromPlayer = seatRepository.findByPlayer(seat.getPlayer());
                     return Converter.toPlayerDto(seat.getPlayer(), seatsFromPlayer);
                 })
-                .collect(Collectors.toList());*/
-        return List.of();
+                .collect(Collectors.toList());
     }
 }

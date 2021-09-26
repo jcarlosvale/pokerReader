@@ -2,6 +2,7 @@ package com.poker.reader.domain.service;
 
 import com.poker.reader.domain.model.*;
 import com.poker.reader.domain.repository.*;
+import com.poker.reader.domain.repository.dto.PlayerAtPositionDto;
 import com.poker.reader.domain.repository.dto.ShowCardDto;
 import com.poker.reader.domain.util.CardsGenerator;
 import com.poker.reader.domain.util.Converter;
@@ -50,12 +51,14 @@ public class FileProcessorService {
         tournamentRepository.saveNewTournaments();
         playerRepository.saveNewPlayers();
         handRepository.saveNewHands();
-
         findOrCreateCards();
+
+        Map<String, PlayerAtPositionDto> playerPositionByHandMap = getPlayersPositionsByNotProcessedHands();
+        saveSeatAsBatch(pokerLineRepository.getNewSeats(), playerPositionByHandMap);
+
+
         List<Long> notProcessedFilesId = pokerFileRepository.getPokerFileNotProcessedIds();
-
-        processCardsFromPlayer();
-
+        pokerFileRepository.saveAllAsProcessed();
 
         String message = String.format("Processed %d/%d tournaments in %d ms",
                 notProcessedFilesId.size(), pokerFileRepository.count(), (System.currentTimeMillis() - start));
@@ -64,20 +67,29 @@ public class FileProcessorService {
         return message;
     }
 
-    private void processCardsFromPlayer() {
-        List<ShowCardDto> showCardDtoList =
-                pokerLineRepository.getShowedCardsFromShowDown();
-        showCardDtoList.addAll(pokerLineRepository.getShowedCardsFromSummary());
-        saveSeatAsBatch(showCardDtoList);
+    private Map<String, PlayerAtPositionDto> getPlayersPositionsByNotProcessedHands() {
+        final Map<String, PlayerAtPositionDto> playerAtPositionByHandMap = new HashMap<>();
+        seatRepository
+                .getPlayerInPositionByHand()
+                .forEach(playerPositionAtHandDto -> {
+                    String hand = playerPositionAtHandDto.getHand();
+                    int position = playerPositionAtHandDto.getPosition();
+                    String nickname = playerPositionAtHandDto.getPlayer();
+                    PlayerAtPositionDto playerAtPositionMap = playerAtPositionByHandMap.computeIfAbsent(hand,
+                            s -> new PlayerAtPositionDto());
+                    playerAtPositionMap.putPlayerAtPosition(position, nickname);
+                });
+        return playerAtPositionByHandMap;
     }
 
-    private void saveSeatAsBatch(List<ShowCardDto> showCardDtoList) {
+    private void saveSeatAsBatch(List<ShowCardDto> showCardDtoList,
+                                 Map<String, PlayerAtPositionDto> playerPositionByHandMap) {
         log.info("Active connections: " + ((HikariDataSource)dataSource).getHikariPoolMXBean().getActiveConnections());
 
         try {
 
             final String COPY = "COPY seats (seat_id, raw_cards, cards_id, hand_id, nickname)"
-                    + " FROM STDIN WITH (FORMAT TEXT, ENCODING 'UTF-8', DELIMITER '\t',"
+                    + " FROM STDIN WITH (FORMAT TEXT, ENCODING 'UTF-8', DELIMITER '\t', NULL 'null', "
                     + " HEADER false)";
 
             Connection connection = dataSource.getConnection();
@@ -88,11 +100,21 @@ public class FileProcessorService {
             StringBuilder sb = new StringBuilder();
             for(ShowCardDto showCardDto : showCardDtoList) {
 
+                //get nickname
+                String nickname =
+                        playerPositionByHandMap.get(showCardDto.getHand()).getPlayerAtPosition(showCardDto.getPosition());
+                checkArgument(nickname != null, "hand = " + showCardDto.getHand());
+
                 sb.append(lineNumber).append("\t");
-                sb.append(showCardDto.getCards()).append("\t");
-                sb.append(Converter.toCard(showCardDto.getCards()).getDescription()).append("\t");
+                if (showCardDto.getCards() == null) {
+                    sb.append("null").append("\t");
+                    sb.append("null").append("\t");
+                } else {
+                    sb.append(showCardDto.getCards()).append("\t");
+                    sb.append(Converter.toCard(showCardDto.getCards()).getDescription()).append("\t");
+                }
                 sb.append(showCardDto.getHand()).append("\t");
-                sb.append(showCardDto.getPlayer()).append("\n");
+                sb.append(nickname).append("\n");
 
                 lineNumber++;
             }

@@ -1,7 +1,7 @@
 package com.poker.reader.domain.repository.dto;
 
-public interface ShowCardDto {
+public interface PlayerPositionAtHandDto {
+    String getPlayer();
     Integer getPosition();
-    String getCards();
     String getHand();
 }
