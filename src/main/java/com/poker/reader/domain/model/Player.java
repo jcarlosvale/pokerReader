@@ -25,10 +25,7 @@ public class Player implements Serializable {
     @Id
     @Size(max = 255)
     private String nickname;
-/*
-    @NotNull
-    private LocalDateTime playedAt;
-*/
+
     @NotNull
     private LocalDateTime createdAt;
 }

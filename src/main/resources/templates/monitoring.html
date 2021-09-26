@@ -18,15 +18,15 @@
     <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<table class="table caption-top table-sm">
-				<caption style="caption-side:top" th:text="${tournamentId}"/>
+			<table class="table table-sm">
+				<caption th:text="${tournamentId}"/>
 				<thead>
 					<tr>
 						<th>nickname</th>
-						<th>#hands</th>
-						<th>#show</th>
-						<th>%show</th>
 						<th>chen</th>
+						<th>#show</th>
+						<th>#hands</th>
+						<th>%show</th>
 						<th>cards</th>
 					</tr>
 				</thead>
@@ -34,10 +34,10 @@
 					<tr th:each="player : ${playersMonitoredList}"
 							th:class="${player.css}">
 						<td th:text="${player.nickname}" />
-						<td th:text="${player.totalHands}" />
-						<td th:text="${player.showdowns}" />
-						<td th:text="${player.showdownStat}" />
 						<td th:text="${player.avgChen}" />
+						<td th:text="${player.showdowns}" />
+						<td th:text="${player.totalHands}" />
+						<td th:text="${player.showdownStat}" />
 						<td th:text="${player.cards}" />
 					</tr>
 				</tbody>

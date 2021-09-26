@@ -1,13 +1,11 @@
 package com.poker.reader.domain.service;
 
 import com.poker.reader.domain.model.FileSection;
-import com.poker.reader.domain.model.PokerFile;
 import com.poker.reader.domain.model.PokerLine;
-import com.poker.reader.domain.repository.PokerFileRepository;
 import com.poker.reader.domain.repository.PokerLineRepository;
+import com.poker.reader.domain.util.Util;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.postgresql.copy.CopyManager;
@@ -24,45 +22,60 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 @Service
 @Log4j2
-@RequiredArgsConstructor
 public class FileImportService {
 
     private final DataSource dataSource;
-    private final PokerFileRepository pokerFileRepository;
     private final PokerLineRepository pokerLineRepository;
+    private final Set<Long> handIdsCache;
+
+    public FileImportService(DataSource dataSource,
+                             PokerLineRepository pokerLineRepository) {
+        this.dataSource = dataSource;
+        this.pokerLineRepository = pokerLineRepository;
+        this.handIdsCache = pokerLineRepository.getDistinctHandIds();
+    }
 
     public boolean importFile(@NonNull final String filename, @NonNull final List<String> lines) {
         long start = System.currentTimeMillis();
 
         List<String> normalisedLines = removeInvalidLines(lines);
-        List<PokerLine> listOfPokerLines = extractLinesOfFile(normalisedLines);
-        Optional<PokerFile> pokerFileOptional = persistData(filename, listOfPokerLines);
+        List<PokerLine> listOfPokerLines = extractLinesOfFile(normalisedLines, filename);
+        Optional<Long> tournamentOptional = persistData(listOfPokerLines);
 
-        pokerFileOptional.ifPresent(pokerFile -> {
-            checkArgument(listOfPokerLines.size() == pokerLineRepository.countByPokerFileId(pokerFile.getPokerFileId()));
+        tournamentOptional.ifPresent(tournamentId -> {
+            checkArgument(listOfPokerLines.size() == pokerLineRepository.countByTournamentId(tournamentId));
             log.info("Imported file {} in {} ms", filename, (System.currentTimeMillis() - start));
         });
 
-        return pokerFileOptional.isPresent();
+        return tournamentOptional.isPresent();
     }
 
-    private List<PokerLine> extractLinesOfFile(@NonNull final List<String> normalisedLines) {
+    private List<PokerLine> extractLinesOfFile(@NonNull final List<String> normalisedLines,
+                                               @NonNull final String filename) {
         long start = System.currentTimeMillis();
 
         List<PokerLine> listOfPokerLines = new ArrayList<>();
         FileSection currentSection = FileSection.HEADER;
-        String handId = null;
+        Long handId = null;
+        Long tournamentId = null;
+        long lineNumber = 1L;
+        LocalDateTime playedAt = null;
 
         for(String line : normalisedLines) {
             if (line.contains("PokerStars Hand #")) {
                 currentSection = FileSection.HEADER;
-                handId = StringUtils.substringBetween(line, "PokerStars Hand #", ": Tournament ");
+                handId = Long.valueOf(StringUtils.substringBetween(line, "PokerStars Hand #", ": Tournament ").trim());
+                tournamentId = Long.valueOf(StringUtils.substringBetween(line, ": Tournament #", ", ").trim());
+                String strDateTime = StringUtils.substringBetween(line, "[", "]").trim();
+                playedAt = Util.toLocalDateTime(strDateTime);
             }
             else if (line.contains("PokerStars Home Game Hand #")) {
                 return List.of();  //dont process home games
@@ -74,7 +87,18 @@ public class FileImportService {
             else if (line.contains("*** SHOW DOWN ***"))   currentSection = FileSection.SHOWDOWN;
             else if (line.contains("*** SUMMARY ***"))     currentSection = FileSection.SUMMARY;
 
-            listOfPokerLines.add(PokerLine.builder().section(currentSection.name()).handId(handId).line(line).build());
+            listOfPokerLines.add(
+                    PokerLine.builder()
+                            .tournamentId(tournamentId)
+                            .lineNumber(lineNumber)
+                            .handId(handId)
+                            .isProcessed(false)
+                            .playedAt(playedAt)
+                            .section(currentSection.name())
+                            .line(line)
+                            .filename(filename)
+                            .build());
+            lineNumber++;
         }
 
         long end = System.currentTimeMillis();
@@ -91,40 +115,45 @@ public class FileImportService {
         .collect(Collectors.toList());
     }
 
-    private Optional<PokerFile> persistData(@NonNull final String filename, @NonNull final List<PokerLine> listOfPokerLines) {
+    private Optional<Long> persistData(@NonNull final List<PokerLine> listOfPokerLines) {
         long start = System.currentTimeMillis();
 
         if (listOfPokerLines.isEmpty()) return Optional.empty();
 
-        if (pokerFileRepository.existsByFileName(filename)) {
-            log.info("File already processed {}", filename);
+        List<PokerLine> listOfPokerLinesToInsert = filterLinesToInsert(listOfPokerLines);
+
+        if (listOfPokerLinesToInsert.isEmpty()) {
+            log.info("File already processed {}", listOfPokerLines.get(0).getFilename());
             return Optional.empty();
+        } else {
+            //save lines
+            saveLines(listOfPokerLinesToInsert);
+            long end = System.currentTimeMillis();
+            log.info("Persisted {} ms", (end - start));
+
+            return Optional.of(listOfPokerLines.get(0).getTournamentId());
         }
-
-        //save poker file
-        var pokerFile =
-                pokerFileRepository.save(PokerFile
-                        .builder()
-                        .fileName(filename)
-                        .isProcessed(false)
-                        .createdAt(LocalDateTime.now())
-                        .build());
-
-        //save lines
-        saveLines(listOfPokerLines, pokerFile);
-
-        long end = System.currentTimeMillis();
-        log.info("Persisted {} ms", (end - start));
-
-        return Optional.of(pokerFile);
     }
 
-    private void saveLines(@NonNull final List<PokerLine> listOfPokerLines, @NonNull final PokerFile pokerFile) {
+    private List<PokerLine> filterLinesToInsert(List<PokerLine> listOfPokerLines) {
+        Set<Long> distinctHandsFromFile =
+                listOfPokerLines.stream().map(PokerLine::getHandId).collect(Collectors.toSet());
+
+        Set<Long> handIdsToInsert =
+        distinctHandsFromFile.stream().filter(Predicate.not(handIdsCache::contains)).collect(Collectors.toSet());
+
+        handIdsCache.addAll(handIdsToInsert);
+        return
+        listOfPokerLines.stream().filter(pokerLine -> handIdsToInsert.contains(pokerLine.getHandId())).collect(Collectors.toList());
+    }
+
+    private void saveLines(@NonNull final List<PokerLine> listOfPokerLines) {
         log.info("Active: " + ((HikariDataSource)dataSource).getHikariPoolMXBean().getActiveConnections());
 
         try {
 
-            final String COPY = "COPY pokerline (poker_file_id, line_number, section,  line, hand_id)"
+            final String COPY = "COPY pokerline (tournament_id, line_number, played_at, section, line, hand_id, " +
+                    "is_processed, filename)"
                     + " FROM STDIN WITH (FORMAT TEXT, ENCODING 'UTF-8', DELIMITER '\t',"
                     + " HEADER false)";
 
@@ -132,17 +161,16 @@ public class FileImportService {
             PgConnection unwrapped = connection.unwrap(PgConnection.class);
             CopyManager copyManager = unwrapped.getCopyAPI();
 
-            int lineNumber = 1;
             StringBuilder sb = new StringBuilder();
             for(PokerLine pokerLine : listOfPokerLines) {
-                sb.append(pokerFile.getPokerFileId()).append("\t");
-                sb.append(lineNumber).append("\t");
+                sb.append(pokerLine.getTournamentId()).append("\t");
+                sb.append(pokerLine.getLineNumber()).append("\t");
+                sb.append(pokerLine.getPlayedAt()).append("\t");
                 sb.append(pokerLine.getSection()).append("\t");
                 sb.append(pokerLine.getLine()).append("\t");
-                sb.append(pokerLine.getHandId()).append("\n");
-
-
-                lineNumber++;
+                sb.append(pokerLine.getHandId()).append("\t");
+                sb.append(pokerLine.getIsProcessed()).append("\t");
+                sb.append(pokerLine.getFilename()).append("\n");
             }
 
             if (sb.length() > 0) {

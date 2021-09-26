@@ -71,7 +71,7 @@ public class FileHtmlProcessorService {
 
     }
 
-    public List<PlayerDto> getLastPlayersFromTournament(String tournamentId) {
+    public List<PlayerDto> getLastPlayersFromTournament(Long tournamentId) {
 
         Hand hand = handRepository.findMostRecent(tournamentId);
         return

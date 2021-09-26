@@ -11,21 +11,19 @@ import java.util.List;
 
 public interface SeatRepository extends JpaRepository<Seat, Long> {
 
+    List<Seat> findByPlayer(Player player);
+    List<Seat> findByHand(Hand hand);
+
     String GET_PLAYER_IN_POSITION_BY_HAND =
             "select " +
                     "trim(substring(line, position(':' in line) + 1, length(line) - position(':' in line) - position('(' in reverse(line)))) as player, " +
                     "trim(substring(line, 6,1)) as position, " +
                     "hand_id as hand " +
-                    "from pokerline pl " +
-                    "join pokerfile pf on (pl.poker_file_id = pf.poker_file_id) " +
+                    "from pokerline " +
                     "where " +
-                    "   pf.is_processed = false " +
+                    "   is_processed = false " +
                     "   and section = 'HEADER' " +
                     "   and line like '%Seat %:%in chips%'";
-
-    List<Seat> findByPlayer(Player player);
-    List<Seat> findByHand(Hand hand);
-
     @Query(value = GET_PLAYER_IN_POSITION_BY_HAND, nativeQuery = true)
     List<PlayerPositionAtHandDto> getPlayerInPositionByHand();
 }

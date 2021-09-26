@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -23,13 +24,16 @@ import java.io.Serializable;
 public class PokerLine implements Serializable {
 
     @Id
-    private Long pokerFileId;
+    private Long tournamentId;
 
     @Id
     private Long lineNumber;
 
     @NotNull
-    private String handId;
+    private Long handId;
+
+    @NotNull
+    private LocalDateTime playedAt;
 
     @NotNull
     @Size(max = 50)
@@ -38,4 +42,13 @@ public class PokerLine implements Serializable {
     @NotNull
     @Size(max = 255)
     private String line;
+
+    @NotNull
+    @Size(max = 255)
+    private String filename;
+
+    @NotNull
+    private Boolean isProcessed;
+
+    private LocalDateTime processedAt;
 }

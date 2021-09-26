@@ -1,6 +1,6 @@
 package com.poker.reader.listener;
 
-import com.poker.reader.domain.service.FileProcessorService;
+import com.poker.reader.domain.service.FileImportService;
 import com.poker.reader.domain.util.Util;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -18,7 +18,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class FilePokerChangeListener implements FileChangeListener {
 
-    private final FileProcessorService fileProcessorService;
+    private final FileImportService fileImportService;
 
     @SneakyThrows
     @Override
@@ -30,7 +30,7 @@ public class FilePokerChangeListener implements FileChangeListener {
                      //|| cfile.getType().equals(Type.DELETE) )) {
 
                     log.info("Operation: " + cfile.getType() + " On file: "+ cfile.getFile().getName() + " is done");
-                    fileProcessorService.processFile(cfile.getFile().getName(), Util.readLinesFromFile(cfile.getFile()));
+                    fileImportService.importFile(cfile.getFile().getName(), Util.readLinesFromFile(cfile.getFile()));
 
                 }
             }

@@ -1,10 +1,11 @@
 package com.poker.reader.domain.model;
 
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PokerLineId implements Serializable {
 
-    private Long pokerFileId;
+    private Long tournamentId;
     private Long lineNumber;
 
 }
