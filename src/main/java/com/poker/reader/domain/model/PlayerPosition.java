@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Builder
@@ -20,8 +21,13 @@ import javax.persistence.Table;
 public class PlayerPosition {
     @Id
     private Long handId;
-    @Id
-    private String nickname;
+
     @Id
     private Integer position;
+
+    @NotNull
+    private String nickname;
+
+    @NotNull
+    private Integer stack;
 }

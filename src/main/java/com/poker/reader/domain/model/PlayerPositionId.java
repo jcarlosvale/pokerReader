@@ -13,6 +13,5 @@ import java.io.Serializable;
 @Builder
 public class PlayerPositionId implements Serializable {
     private Long handId;
-    private String nickname;
     private Integer position;
 }
