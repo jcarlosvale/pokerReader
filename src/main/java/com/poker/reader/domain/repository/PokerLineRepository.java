@@ -142,10 +142,35 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
             "       and line like '%Seat %:%' " +
             "       and (line like '%mucked [%' or line like '%showed [%')" +
             ")" +
-            "on conflict (hand_id, cards, position) " +
+            "on conflict (hand_id, position) " +
             "do nothing ";
     @Transactional
     @Modifying
     @Query(value = SAVE_CARDS_OF_PLAYER, nativeQuery = true)
     void saveCardsOfPlayer();
+
+    String SAVE_BLIND_POSITIONS =
+            "INSERT INTO blind_position " +
+            "(hand_id, position, place) " +
+            "( " +
+            "   select " +
+            "       hand_id, " +
+            "       cast(substring(line from 'Seat ([0-9]*):') as int8) as position, " +
+            "       case    " +
+            "           when strpos(line, '(button)') > 0 then 'button'  " +
+            "           when strpos(line, '(small blind)') > 0 then 'small blind'   " +
+            "           when strpos(line, '(big blind)') > 0 then 'big blind'   " +
+            "       end as place    " +
+            "   from pokerline  " +
+            "   where " +
+            "       section = 'SUMMARY' " +
+            "       and line like '%Seat %:%' " +
+            "       and (line like '%(button)%' or line like '%(small blind)%' or line like '%(big blind)%') " +
+            ")  " +
+            "on conflict(hand_id, position) " +
+            "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_BLIND_POSITIONS, nativeQuery = true)
+    void saveBlindPositions();
 }

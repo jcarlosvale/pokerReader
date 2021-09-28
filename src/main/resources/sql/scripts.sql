@@ -497,3 +497,8 @@ union
 select count(*) from hands h
 union 
 select count(*) from cards_of_player cop 
+
+
+SELECT * FROM player_position pp where pp.hand_id = 221914407250;
+
+select sum(stack)/9 FROM player_position pp where pp.hand_id = 221914407250;

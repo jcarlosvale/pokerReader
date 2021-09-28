@@ -16,13 +16,15 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "cards_of_player")
+@Table(name = "blind_position")
 @IdClass(HandPositionId.class)
-public class CardsOfPlayer {
+public class BlindPosition {
     @Id
     private Long handId;
+
     @Id
     private Integer position;
+
     @NotNull
-    private String cards;
+    private String place;
 }

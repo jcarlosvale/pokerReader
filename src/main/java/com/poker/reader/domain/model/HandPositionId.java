@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PlayerPositionId implements Serializable {
+public class HandPositionId implements Serializable {
     private Long handId;
     private Integer position;
 }

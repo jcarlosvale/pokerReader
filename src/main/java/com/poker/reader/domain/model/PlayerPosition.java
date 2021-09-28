@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Data
 @Table(name = "player_position")
-@IdClass(PlayerPositionId.class)
+@IdClass(HandPositionId.class)
 public class PlayerPosition {
     @Id
     private Long handId;

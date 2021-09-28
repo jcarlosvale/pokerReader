@@ -18,17 +18,40 @@ public class FileProcessorService {
     public String processFilesFromDatabase() {
         long start = System.currentTimeMillis();
 
+        long startOp = System.currentTimeMillis();
+        log.info("Creating cards...");
         createCards();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
         log.info("Saving player, position, stack...");
         pokerLineRepository.savePlayerPosition();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
         log.info("Saving players...");
         pokerLineRepository.saveNewPlayers();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
         log.info("Saving tournaments...");
         pokerLineRepository.saveNewTournaments();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
         log.info("Saving hands...");
         pokerLineRepository.saveNewHands();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
         log.info("Saving cards of players...");
         pokerLineRepository.saveCardsOfPlayer();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving blind positions of players...");
+        pokerLineRepository.saveBlindPositions();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
 
         String message = String.format("Processed %d lines in %d ms",
                 pokerLineRepository.count(), (System.currentTimeMillis() - start));

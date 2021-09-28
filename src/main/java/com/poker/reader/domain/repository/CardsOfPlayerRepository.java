@@ -1,14 +1,14 @@
 package com.poker.reader.domain.repository;
 
 import com.poker.reader.domain.model.CardsOfPlayer;
-import com.poker.reader.domain.model.CardsOfPlayerId;
+import com.poker.reader.domain.model.HandPositionId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface CardsOfPlayerRepository extends JpaRepository<CardsOfPlayer, CardsOfPlayerId> {
+public interface CardsOfPlayerRepository extends JpaRepository<CardsOfPlayer, HandPositionId> {
 
     String GET_ALL_BY_NICKNAME =
             "select * " +
