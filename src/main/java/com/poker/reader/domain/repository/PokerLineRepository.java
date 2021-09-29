@@ -1,14 +1,11 @@
 package com.poker.reader.domain.repository;
 
 import com.poker.reader.domain.model.PokerLine;
-import com.poker.reader.domain.repository.dto.ShowCardDto;
+import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Set;
 
 public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
@@ -46,10 +43,13 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     void saveNewPlayers();
 
     String SAVE_NEW_HANDS = "INSERT INTO hands " +
-            "(hand_id, created_at, played_at, tournament_id) " +
+            "(hand_id, level, small_blind, big_blind, created_at, played_at, tournament_id) " +
             "(" +
             "   select " +
             "       hand_id, " +
+            "       trim(substring(line from 'Level(.*)\\(')), " +
+            "       cast(trim(substring(line from '\\(([0-9]*)/')) as int8), " +
+            "       cast(trim(substring(line from '/([0-9]*)\\)')) as int8), " +
             "       now(), " +
             "       to_timestamp((regexp_matches(line, '[0-9]{4}/[0-9]{1,2}/[0-9]{1,2} [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}'))[1], 'YYYY/MM/DD HH24:MI:SS'), " +
             "       tournament_id " +
@@ -65,44 +65,12 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     @Query(value = SAVE_NEW_HANDS, nativeQuery = true)
     void saveNewHands();
 
-    String GET_NEW_SEATS =
-            "select " +
-                    "trim(substring(line, 5, position(':' in line) - 5)) as position, " +
-                    "case " +
-                    "   when position('mucked [' in line) > 0 then trim(substring(line, position('mucked [' in line)+8, 5))" +
-                    "   when position('showed [' in line) > 0 then trim(substring(line, position('showed [' in line)+8, 5))" +
-                    "   else null " +
-                    "end as cards, " +
-                    "   hand_id as hand " +
-                    "from pokerline " +
-                    "where " +
-                    "   is_processed = false " +
-                    "   and section = 'SUMMARY' " +
-                    "   and line like '%Seat %:%'";
-    @Query(value = GET_NEW_SEATS, nativeQuery = true)
-    List<ShowCardDto> getNewSeats();
-
     String SELECT_DISTINCT_HAND_ID =
             "select distinct hand_id from pokerline";
     @Query(value = SELECT_DISTINCT_HAND_ID, nativeQuery = true)
     Set<Long> getDistinctHandIds();
 
-    String COUNT_NOT_PROCESSED_LINES =
-            "select count(line) from pokerline where is_processed = false";
-    @Query(value = COUNT_NOT_PROCESSED_LINES, nativeQuery = true)
-    Long countNotProcessedLines();
-
-
     long countByTournamentId(long tournamentId);
-
-    String UPDATE_TO_PROCESSED_LINES =
-            "UPDATE pokerline " +
-                    "SET is_processed = true " +
-                    "WHERE is_processed = false ";
-    @Transactional
-    @Modifying
-    @Query(value = UPDATE_TO_PROCESSED_LINES, nativeQuery = true)
-    void updateToProcessedLines();
 
     String SAVE_PLAYER_POSITION =
             "INSERT INTO player_position " +

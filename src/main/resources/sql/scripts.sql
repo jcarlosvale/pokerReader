@@ -501,4 +501,15 @@ select count(*) from cards_of_player cop
 
 SELECT * FROM player_position pp where pp.hand_id = 221914407250;
 
-select sum(stack)/9 FROM player_position pp where pp.hand_id = 221914407250;
+select * from pokerline p 
+where p.tournament_id = '3082657132' order by line_number ;
+
+
+   select 
+	   line,
+	   trim(substring(line from 'Level(.*)\(')) as level,
+	   cast(trim(substring(line from '\(([0-9]*)/')) as int8) as smallblind,
+	   cast(trim(substring(line from '/([0-9]*)\)')) as int8) as bigblind,
+       hand_id,        now(),        to_timestamp((regexp_matches(line, '[0-9]{4}/[0-9]{1,2}/[0-9]{1,2} [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}'))[1], 'YYYY/MM/DD HH24:MI:SS'),        tournament_id    from pokerline    where     line like '%PokerStars Hand #%'    and section = 'HEADER'
+   and tournament_id = '3082657132';   
+
