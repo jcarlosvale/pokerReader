@@ -1,15 +1,15 @@
 package com.poker.reader.domain.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @Table(name = "player_position")
 @IdClass(HandPositionId.class)
-public class PlayerPosition {
+public class PlayerPosition implements Serializable {
     @Id
     private Long handId;
 
