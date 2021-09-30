@@ -30,10 +30,13 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
             "INSERT INTO players " +
             "(nickname, created_at) " +
             "( " +
-            "   select   " +
-            "       distinct nickname, " +
-            "       now()  " +
-            "   from player_position " +
+            "   select " +
+            "       distinct trim(substring(line from 'Seat [0-9]*:(.*)\\([0-9]* in chips')) as nickname, " +
+            "       now() " +
+            "   from pokerline " +
+            "   where " +
+            "       section = 'HEADER' " +
+            "       and line like '%Seat %:%in chips%'" +
             ") " +
             "ON CONFLICT (nickname) " +
             "do nothing";
@@ -94,7 +97,7 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
     String SAVE_CARDS_OF_PLAYER =
             "INSERT INTO cards_of_player " +
-            "(position, cards, hand_id) " +
+            "(position, description, hand) " +
             "(" +
             "   select " +
             "       cast(substring(line from 'Seat ([0-9]*):') as int8) as position, " +
@@ -110,7 +113,7 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
             "       and line like '%Seat %:%' " +
             "       and (line like '%mucked [%' or line like '%showed [%')" +
             ")" +
-            "on conflict (hand_id, position) " +
+            "on conflict (hand, position) " +
             "do nothing ";
     @Transactional
     @Modifying
@@ -119,7 +122,7 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
     String SAVE_BLIND_POSITIONS =
             "INSERT INTO blind_position " +
-            "(hand_id, position, place) " +
+            "(hand, position, place) " +
             "( " +
             "   select " +
             "       hand_id, " +
@@ -135,7 +138,7 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
             "       and line like '%Seat %:%' " +
             "       and (line like '%(button)%' or line like '%(small blind)%' or line like '%(big blind)%') " +
             ")  " +
-            "on conflict(hand_id, position) " +
+            "on conflict(hand, position) " +
             "do nothing ";
     @Transactional
     @Modifying

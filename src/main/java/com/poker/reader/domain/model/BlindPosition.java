@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 public class BlindPosition implements Serializable {
 
     @Id
-    private Long handId;
+    private Long hand;
 
     @Id
     private Integer position;
@@ -34,7 +34,7 @@ public class BlindPosition implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumns({
-            @JoinColumn(name="handId"),
+            @JoinColumn(name="hand"),
             @JoinColumn(name="position")
     })
     private PlayerPosition playerPosition;
@@ -42,11 +42,3 @@ public class BlindPosition implements Serializable {
     @NotNull
     private String place;
 }
-
-/*
-    @ManyToOne
-    @JoinColumns({
-        @JoinColumn(name="VERSION", referencedColumnName="VERSION", insertable=false, updatable=false),
-        @JoinColumn(name="PARENT_ID", referencedColumnName="CATAGORY_ID")
-    })
- */

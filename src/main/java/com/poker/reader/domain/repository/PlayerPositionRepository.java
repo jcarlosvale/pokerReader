@@ -2,11 +2,10 @@ package com.poker.reader.domain.repository;
 
 import com.poker.reader.domain.model.HandPositionId;
 import com.poker.reader.domain.model.PlayerPosition;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 public interface PlayerPositionRepository extends JpaRepository<PlayerPosition, HandPositionId> {
 
@@ -17,5 +16,8 @@ public interface PlayerPositionRepository extends JpaRepository<PlayerPosition, 
     @Query(value = CONT_HANDS_OF_PLAYER, nativeQuery = true)
     int countHandsOfPlayer(@Param("nickname") String nickname);
 
-    List<PlayerPosition> findByHandId(Long handId);
+    String FIND_BY_HAND_ID =
+            "select * from player_position pp where pp.hand_id = :handId";
+    @Query(value = FIND_BY_HAND_ID, nativeQuery = true)
+    List<PlayerPosition> findByHandId(@Param("handId") Long handId);
 }
