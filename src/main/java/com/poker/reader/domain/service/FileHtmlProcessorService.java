@@ -4,7 +4,9 @@ import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
 
 import com.poker.reader.domain.model.Cards;
 import com.poker.reader.domain.model.CardsOfPlayer;
+import com.poker.reader.domain.model.Hand;
 import com.poker.reader.domain.model.Player;
+import com.poker.reader.domain.model.PlayerPosition;
 import com.poker.reader.domain.repository.CardsOfPlayerRepository;
 import com.poker.reader.domain.repository.HandRepository;
 import com.poker.reader.domain.repository.PlayerPositionRepository;
@@ -12,11 +14,13 @@ import com.poker.reader.domain.repository.PlayerRepository;
 import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.util.CardUtil;
 import com.poker.reader.view.rs.dto.PlayerDto;
+import com.poker.reader.view.rs.dto.StackDto;
 import com.poker.reader.view.rs.dto.TournamentDto;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -39,6 +43,7 @@ public class FileHtmlProcessorService {
     private final PlayerPositionRepository playerPositionRepository;
     private final CardsOfPlayerRepository cardsOfPlayerRepository;
     private final HandRepository handRepository;
+    private final String HERO = "jcarlos.vale";
 
 
     public Page<PlayerDto> findPaginatedPlayers(Pageable pageable) {
@@ -124,7 +129,7 @@ public class FileHtmlProcessorService {
         playerPositionRepository
                 .findByHandId(handId)
                 .stream()
-                .filter(Predicate.not(playerPosition -> playerPosition.getPlayer().getNickname().equals("jcarlos.vale")))
+                .filter(Predicate.not(playerPosition -> playerPosition.getPlayer().getNickname().equals(HERO)))
                 .map(playerPosition -> extractPlayerDtoInfo(playerPosition.getPlayer()))
                 .collect(Collectors.toList());
     }
@@ -136,9 +141,38 @@ public class FileHtmlProcessorService {
         return "bg-danger";
     }
 
-    public Long calculateAvgStack(Long handId) {
-        Long avgStack = 0L;
+    public StackDto calculateAvgStack(Long handId) {
+        List<PlayerPosition> playerPositions = playerPositionRepository.findByHandId(handId);
+        Hand hand = handRepository.getById(handId);
+        long avgStack = playerPositions.stream()
+                .collect(Collectors.averagingLong(PlayerPosition::getStack))
+                .longValue();
+        Optional<PlayerPosition> playerPositionOfHero = playerPositions.stream()
+                .filter(playerPosition -> playerPosition.getPlayer().getNickname().equals(HERO))
+                .findFirst();
+        long stackFromHero = playerPositionOfHero.isPresent() ? playerPositionOfHero.get().getStack() : 0L;
+        int blinds = (int) (stackFromHero / hand.getBigBlind());
+        long minBlinds = 10 * hand.getBigBlind();
+        String recommendation = analyseStack(stackFromHero, avgStack, blinds);
+        return StackDto.builder()
+                .avgStack(avgStack)
+                .stackFromHero(stackFromHero)
+                .blinds(blinds)
+                .minBlinds(minBlinds)
+                .recommendation(recommendation)
+                .build();
+    }
 
-        return avgStack;
+    private String analyseStack(long stackFromHero, long avgStack, int blinds) {
+        if(blinds <= 10) {
+            return "ALL IN, LESS THAN 10 BLINDS";
+        }
+        if ((stackFromHero < avgStack) && (blinds <= 15)){
+            return "ALL IN, LESS THAN AVERAGE BLINDS < 15";
+        }
+        if (stackFromHero > avgStack) {
+            return "ABOVE AVG STACK";
+        }
+        return "PLAY!";
     }
 }
