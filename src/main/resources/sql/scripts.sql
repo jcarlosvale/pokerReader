@@ -513,3 +513,40 @@ where p.tournament_id = '3082657132' order by line_number ;
        hand_id,        now(),        to_timestamp((regexp_matches(line, '[0-9]{4}/[0-9]{1,2}/[0-9]{1,2} [0-9]{1,2}:[0-9]{1,2}:[0-9]{1,2}'))[1], 'YYYY/MM/DD HH24:MI:SS'),        tournament_id    from pokerline    where     line like '%PokerStars Hand #%'    and section = 'HEADER'
    and tournament_id = '3082657132';   
 
+
+  
+select 
+	distinct trim(substring(line from 'Seat [0-9]*:(.*)\([0-9]* in chips')) as nickname,
+	now()
+from pokerline 
+where 
+   section = 'HEADER' 
+   and line like '%Seat %:%in chips%';  
+
+   select        cast(substring(line from 'Seat ([0-9]*):') as int8) as position,        case            when position('mucked [' in line) > 0 then substring(line from 'mucked \[(.{5})\]')            when position('showed [' in line) > 0 then substring(line from 'showed \[(.{5})\]')            else null        end as cards,        hand_id as hand    from pokerline    where        section = 'SUMMARY'        and line like '%Seat %:%'        and (line like '%mucked [%' or line like '%showed [%');
+       
+
+      
+INSERT INTO cards_of_player (position, description, hand_id) (   select        cast(substring(line from 'Seat ([0-9]*):') as int8) as position,        case            when position('mucked [' in line) > 0 then substring(line from 'mucked \[(.{5})\]')            when position('showed [' in line) > 0 then substring(line from 'showed \[(.{5})\]')            else null        end as cards,        hand_id as hand    from pokerline    where        section = 'SUMMARY'        and line like '%Seat %:%'        and (line like '%mucked [%' or line like '%showed [%'))on conflict (hand_id, position) do nothing      
+
+
+select * from player_position pp where hand_id = 220860170185;
+
+select
+   line,
+   cast(substring(line from 'Seat ([0-9]*):') as int8) as position, 
+   case 
+       when position('mucked [' in line) > 0 then substring(line from 'mucked \[(.{5})\]') 
+       when position('showed [' in line) > 0 then substring(line from 'showed \[(.{5})\]') 
+       else null 
+   end as cards, 
+   hand_id as hand 
+from pokerline 
+where 
+   section = 'SUMMARY' 
+   and line like '%Seat %:%' 
+   and (line like '%mucked [%' or line like '%showed [%')
+   and hand_id is null;
+  
+  
+select * from player_position pp where pp.hand_id :handId;	

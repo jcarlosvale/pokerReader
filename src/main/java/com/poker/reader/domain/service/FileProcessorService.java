@@ -61,6 +61,50 @@ public class FileProcessorService {
         return message;
     }
 
+    public void processLastHandFromPokerFile(String filename) {
+        long handId = pokerLineRepository.getLastHandFromFile(filename);
+        processFilesFromDatabase(handId);
+    }
+
+    private void processFilesFromDatabase(long handId) {
+        long start = System.currentTimeMillis();
+        long startOp = System.currentTimeMillis();
+
+        log.info("Saving players...");
+        pokerLineRepository.saveNewPlayersFromHand(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving tournaments...");
+        pokerLineRepository.saveNewTournamentsFromHand(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving hands...");
+        pokerLineRepository.saveNewHandsFromHand(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving player, position, stack...");
+        pokerLineRepository.savePlayerPositionFromHand(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving cards of players...");
+        pokerLineRepository.saveCardsOfPlayerFromHand(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving blind positions of players...");
+        pokerLineRepository.saveBlindPositionsFromHand(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        String message = String.format("Processed hand %d in %d ms",
+                handId, (System.currentTimeMillis() - start));
+
+        log.info(message);
+    }
+
     private void createCards() {
         if (cardsRepository.count() == 0) {
             cardsRepository.saveAll(CardsGenerator.generateCards());
