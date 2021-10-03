@@ -20,4 +20,21 @@ public interface HandRepository extends JpaRepository<Hand, Long> {
     List<Hand> findAllByTournamentOrderByPlayedAt(Tournament tournament);
 
     long countAllByTournament(Tournament tournament);
+
+    String COUNT_PLAYERS =
+            "select count(distinct pp.nickname) " +
+                    "   from hands h " +
+                    "   join player_position pp on pp.hand_id = h.hand_id " +
+                    "where h.hand_id = :handId ";
+    @Query(nativeQuery = true, value = COUNT_PLAYERS)
+    int countPlayers(@Param("handId") Long handId);
+
+    String COUNT_SHOWDOWNS =
+            "select count(cop.description) " +
+                    "   from hands h " +
+                    "   join player_position pp on pp.hand_id = h.hand_id " +
+                    "   join cards_of_player cop on pp.hand_id = cop.hand and pp.position = cop.position " +
+                    "where h.hand_id = :handId ";
+    @Query(nativeQuery = true, value = COUNT_SHOWDOWNS)
+    int countShowdowns(@Param("handId") Long handId);
 }

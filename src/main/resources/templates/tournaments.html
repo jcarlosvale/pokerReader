@@ -22,6 +22,8 @@
                                 <th>tournament</th>
                                 <th>filename</th>
                                 <th>#hands</th>
+                                <th>#players</th>
+                                <th>#showdowns</th>
                                 <th>createdAt</th>
                             </tr>
                         </thead>
@@ -30,6 +32,8 @@
                                 <td> <a th:href="@{'/monitoring/'+${tournament.tournamentId}}" th:text="${tournament.tournamentId}" target="_blank" /></td>
                                 <td> <a th:href="@{'/tournament/'+${tournament.tournamentId}}" th:text="${tournament.fileName}" target="_blank" /></td>
                                 <td th:text="${tournament.hands}" />
+                                <td th:text="${tournament.players}" />
+                                <td th:text="${tournament.showdowns}" />
                                 <td th:text="${tournament.createdAt}" />
                             </tr>
                         </tbody>

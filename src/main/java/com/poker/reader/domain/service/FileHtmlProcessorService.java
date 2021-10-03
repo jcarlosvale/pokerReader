@@ -108,7 +108,9 @@ public class FileHtmlProcessorService {
                                         .tournamentId(tournament.getTournamentId())
                                         .fileName(tournament.getFileName())
                                         .hands(handRepository.countAllByTournament(tournament))
-                                        .createdAt(tournament.getCreatedAt())
+                                        .players(tournamentRepository.countPlayers(tournament.getTournamentId()))
+                                        .showdowns(tournamentRepository.countShowdowns(tournament.getTournamentId()))
+                                        .createdAt(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN).format(tournament.getCreatedAt()))
                                         .build())
                         .collect(Collectors.toList());
 
@@ -189,6 +191,8 @@ public class FileHtmlProcessorService {
                 .handId(hand.getHandId())
                 .level(hand.getLevel())
                 .blinds(hand.getSmallBlind() + "/" + hand.getBigBlind())
+                .players(handRepository.countPlayers(hand.getHandId()))
+                .showdowns(handRepository.countShowdowns(hand.getHandId()))
                 .playedAt(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN).format(hand.getPlayedAt()))
                 .build();
     }

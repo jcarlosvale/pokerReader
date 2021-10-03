@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +15,11 @@ public class TournamentDto {
 
     private String fileName;
 
-    private LocalDateTime createdAt;
+    private String createdAt;
 
     private long hands;
+
+    private int players;
+
+    private int showdowns;
 }

@@ -14,5 +14,7 @@ public class HandDto {
     private long handId;
     private String level;
     private String blinds;
+    private int players;
+    private int showdowns;
     private String playedAt;
 }
