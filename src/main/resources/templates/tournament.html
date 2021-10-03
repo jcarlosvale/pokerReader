@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title th:text="'Tournament -' + ${tournamentId}"/>
+
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-center" th:inline="text"> Tournament:   <strong>[[${tournamentId}]]</strong> - [[${#lists.size(handsDto)}]] hands </h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Hand</th>
+                                <th>Level</th>
+                                <th>Blinds</th>
+                                <th>PlayedAt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="hand : ${handsDto}">
+                                <td> <a th:href="@{'/hand/'+${hand.handId}}" th:text="${hand.handId}" target="_blank" /></td>
+                                <td th:text="${hand.level}" />
+                                <td th:text="${hand.blinds}" />
+                                <td th:text="${hand.playedAt}" />
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/scripts.js}"></script>
+    </body>
+</html>

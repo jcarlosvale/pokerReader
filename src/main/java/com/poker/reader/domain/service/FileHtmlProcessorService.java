@@ -1,29 +1,9 @@
 package com.poker.reader.domain.service;
 
-import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
-
-import com.poker.reader.domain.model.Cards;
-import com.poker.reader.domain.model.CardsOfPlayer;
-import com.poker.reader.domain.model.Hand;
-import com.poker.reader.domain.model.Player;
-import com.poker.reader.domain.model.PlayerPosition;
-import com.poker.reader.domain.repository.CardsOfPlayerRepository;
-import com.poker.reader.domain.repository.HandRepository;
-import com.poker.reader.domain.repository.PlayerPositionRepository;
-import com.poker.reader.domain.repository.PlayerRepository;
-import com.poker.reader.domain.repository.TournamentRepository;
+import com.poker.reader.domain.model.*;
+import com.poker.reader.domain.repository.*;
 import com.poker.reader.domain.util.CardUtil;
-import com.poker.reader.view.rs.dto.PlayerDto;
-import com.poker.reader.view.rs.dto.StackDto;
-import com.poker.reader.view.rs.dto.TournamentDto;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import com.poker.reader.view.rs.dto.*;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -33,20 +13,31 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
+
 @Log4j2
 @RequiredArgsConstructor
 @Component
 public class FileHtmlProcessorService {
 
+    private static final String DATE_TIME_PATTERN = "dd-MM-yyyy HH:mm:ss";
     private final TournamentRepository tournamentRepository;
     private final PlayerRepository playerRepository;
     private final PlayerPositionRepository playerPositionRepository;
     private final CardsOfPlayerRepository cardsOfPlayerRepository;
     private final HandRepository handRepository;
+    private final PokerLineRepository pokerLineRepository;
     private final String HERO = "jcarlos.vale";
 
 
-    public Page<PlayerDto> findPaginatedPlayers(Pageable pageable) {
+    public Page<PlayerDto> findPaginatedPlayers(Pageable pageable, boolean isMonitoring) {
 
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
@@ -55,13 +46,13 @@ public class FileHtmlProcessorService {
         List<PlayerDto> playerDtoList = new ArrayList<>();
 
         for(Player player: pagePlayers.getContent()) {
-            playerDtoList.add(extractPlayerDtoInfo(player));
+            playerDtoList.add(extractPlayerDtoInfo(player, isMonitoring));
         }
 
         return new PageImpl<>(playerDtoList, PageRequest.of(currentPage, pageSize), playerRepository.count());
     }
 
-    private PlayerDto extractPlayerDtoInfo(@NonNull Player player) {
+    private PlayerDto extractPlayerDtoInfo(@NonNull Player player, boolean isMonitoring) {
         String nickname = player.getNickname();
         List<CardsOfPlayer> cardsOfPlayerList =
                 cardsOfPlayerRepository.getAllByNickname(nickname);
@@ -84,7 +75,10 @@ public class FileHtmlProcessorService {
         LocalDateTime createdAt = player.getCreatedAt();
         String rawCards = CardUtil.convertListToString(rawCardsList);
         String normalisedCards = CardUtil.convertListToString(normalisedCardsList);
-
+        String css = "d-none";
+        if ((!isMonitoring) || (showDowns > 5)) {
+            css = classNameFromChenValue(avgChen);
+        }
         return
                 PlayerDto.builder()
                         .nickname(nickname)
@@ -95,7 +89,7 @@ public class FileHtmlProcessorService {
                         .createdAt(createdAt)
                         .cards(normalisedCards)
                         .rawCards(rawCards)
-                        .css(classNameFromChenValue(avgChen))
+                        .css(css)
                         .build();
     }
 
@@ -113,6 +107,7 @@ public class FileHtmlProcessorService {
                                         .builder()
                                         .tournamentId(tournament.getTournamentId())
                                         .fileName(tournament.getFileName())
+                                        .hands(handRepository.countAllByTournament(tournament))
                                         .createdAt(tournament.getCreatedAt())
                                         .build())
                         .collect(Collectors.toList());
@@ -124,13 +119,13 @@ public class FileHtmlProcessorService {
         return handRepository.findMostRecent(tournamentId).getHandId();
     }
 
-    public List<PlayerDto> getPlayersFromHand(Long handId) {
+    public List<PlayerDto> getPlayersToMonitorFromHand(Long handId) {
         return
         playerPositionRepository
                 .findByHandId(handId)
                 .stream()
                 .filter(Predicate.not(playerPosition -> playerPosition.getPlayer().getNickname().equals(HERO)))
-                .map(playerPosition -> extractPlayerDtoInfo(playerPosition.getPlayer()))
+                .map(playerPosition -> extractPlayerDtoInfo(playerPosition.getPlayer(), true))
                 .collect(Collectors.toList());
     }
 
@@ -152,7 +147,7 @@ public class FileHtmlProcessorService {
                 .findFirst();
         long stackFromHero = playerPositionOfHero.isPresent() ? playerPositionOfHero.get().getStack() : 0L;
         int blinds = (int) (stackFromHero / hand.getBigBlind());
-        long minBlinds = 10 * hand.getBigBlind();
+        long minBlinds = 15 * hand.getBigBlind();
         String recommendation = analyseStack(stackFromHero, avgStack, blinds);
         return StackDto.builder()
                 .avgStack(avgStack)
@@ -174,5 +169,75 @@ public class FileHtmlProcessorService {
             return "ABOVE AVG STACK";
         }
         return "PLAY!";
+    }
+
+    public List<HandDto> getHandsFromTournament(Long tournamentId) {
+        checkNotNull(tournamentId, "tournamentId must be not null");
+        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
+        return tournamentOptional
+                .map(tournament -> handRepository
+                        .findAllByTournamentOrderByPlayedAt(tournament)
+                        .stream()
+                        .map(this::toHandDto)
+                        .collect(Collectors.toList()))
+                .orElseGet(List::of);
+    }
+
+    private HandDto toHandDto(@NonNull Hand hand) {
+        return HandDto
+                .builder()
+                .handId(hand.getHandId())
+                .level(hand.getLevel())
+                .blinds(hand.getSmallBlind() + "/" + hand.getBigBlind())
+                .playedAt(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN).format(hand.getPlayedAt()))
+                .build();
+    }
+
+    public HandDto getHandInfo(Long handId) {
+        return
+                handRepository
+                        .findById(handId)
+                        .map(this::toHandDto)
+                        .orElseGet(() -> HandDto.builder().build());
+    }
+
+    public String getRawDataFrom(Long handId) {
+        return
+            pokerLineRepository
+                    .getAllByHandIdOrderByLineNumber(handId)
+                    .stream()
+                    .map(PokerLine::getLine)
+                    .collect(Collectors.joining("<br>"));
+    }
+
+    public List<PlayerPositionDto> getPlayersFromHand(Long handId) {
+        Hand hand = handRepository.getById(handId);
+        List<PlayerPosition> playersPositions = playerPositionRepository.findByHandId(handId);
+        return
+                playersPositions
+                        .stream()
+                        .map(playerPosition -> toPlayerPositionDto(playerPosition, hand))
+                        .collect(Collectors.toList());
+    }
+
+    private PlayerPositionDto toPlayerPositionDto(PlayerPosition playerPosition, Hand hand) {
+        PlayerPositionDto playerPositionDto =
+                PlayerPositionDto
+                        .builder()
+                        .nickname(playerPosition.getPlayer().getNickname())
+                        .position(String.valueOf(playerPosition.getPosition()))
+                        .stack(playerPosition.getStack())
+                        .blinds(playerPosition.getStack() / hand.getBigBlind())
+                        .build();
+
+        CardsOfPlayer cardsOfPlayer = playerPosition.getCardsOfPlayer();
+        if(Objects.nonNull(cardsOfPlayer)) {
+            Cards cards = cardsOfPlayer.getCards();
+            playerPositionDto.setCards(cards.getDescription());
+            playerPositionDto.setChen(cards.getChen());
+            playerPositionDto.setCss(classNameFromChenValue(cards.getChen()));
+        }
+
+        return playerPositionDto;
     }
 }

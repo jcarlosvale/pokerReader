@@ -1,12 +1,14 @@
 package com.poker.reader.domain.repository;
 
 import com.poker.reader.domain.model.PokerLine;
-import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Set;
 
 public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
@@ -285,4 +287,6 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
             "select max(p.hand_id) from pokerline p where p.filename = :filename";
     @Query(value = GET_LAST_HAND_FROM_FILE, nativeQuery = true)
     long getLastHandFromFile(@Param("filename") String filename);
+
+    List<PokerLine> getAllByHandIdOrderByLineNumber(long handId);
 }

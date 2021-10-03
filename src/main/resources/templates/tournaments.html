@@ -1,54 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Tournaments</title>
+        <title>Tournaments</title>
 
 
-		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-		<link th:href="@{/css/style.css}" rel="stylesheet">
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/css/style.css}" rel="stylesheet">
 
-  </head>
-  <body>
-
-    <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>tournament</th>
-						<th>filename</th>
-						<th>createdAt</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="tournament : ${tournamentPage.content}">
-						<td> <a th:href="@{'/monitoring/'+${tournament.tournamentId}}" th:text="${tournament.tournamentId}" target="_blank" /></td>
-						<td th:text="${tournament.fileName}" />
-						<td th:text="${tournament.createdAt}" />
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="row">
-		<div th:if="${tournamentPage.totalPages > 0}" class="pagination"
-				 th:each="pageNumber : ${pageNumbers}">
-			<a th:href="@{/players(size=${tournamentPage.size}, page=${pageNumber})}"
-				 th:text=${pageNumber}
-				 th:class="${pageNumber==tournamentPage.number + 1} ? active"></a>
-		</div>
-
-	</div>
-</div>
-
-		<script th:src="@{/js/jquery.min.js}"></script>
-		<script th:src="@{/js/bootstrap.min.js}"></script>
-		<script th:src="@{/js/scripts.js}"></script>
-
-  </body>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>tournament</th>
+                                <th>filename</th>
+                                <th>#hands</th>
+                                <th>createdAt</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tournament : ${tournamentPage.content}">
+                                <td> <a th:href="@{'/monitoring/'+${tournament.tournamentId}}" th:text="${tournament.tournamentId}" target="_blank" /></td>
+                                <td> <a th:href="@{'/tournament/'+${tournament.tournamentId}}" th:text="${tournament.fileName}" target="_blank" /></td>
+                                <td th:text="${tournament.hands}" />
+                                <td th:text="${tournament.createdAt}" />
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="pagination justify-content-center">
+                        <li th:if="${tournamentPage.totalPages > 0}" class="page-link"
+                             th:each="pageNumber : ${pageNumbers}">
+                            <a  class = "page-item"
+                                th:href="@{/players(size=${tournamentPage.size}, page=${pageNumber})}"
+                                th:text=${pageNumber}
+                                th:classappend="${pageNumber==tournamentPage.number + 1} ? active"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/scripts.js}"></script>
+    </body>
 </html>

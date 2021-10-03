@@ -5,19 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TournamentDto {
+public class HandDto {
 
-    private Long tournamentId;
-
-    private String fileName;
-
-    private LocalDateTime createdAt;
-
-    private long hands;
+    private long handId;
+    private String level;
+    private String blinds;
+    private String playedAt;
 }

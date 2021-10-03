@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title th:text="'Hand -' + ${handDto.handId}"/>
+
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/css/style.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <h5 th:text="'Hand: ' + ${handDto.handId}"/>
+                </div>
+                <div class="col-md-4">
+                    <h5 th:text="'Level: ' + ${handDto.level}"/>
+                    <h5 th:text="'Blinds: ' + ${handDto.blinds}"/>
+                </div>
+                <div class="col-md-4">
+                    <h5 th:text="'PlayedAt: ' + ${handDto.playedAt}"/>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h4>Players:</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nickname</th>
+                                <th>Chen</th>
+                                <th>Cards</th>
+                                <th>Position</th>
+                                <th>Stack</th>
+                                <th>#blinds</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="playerPositionDto : ${playerPositionDtos}"
+                                th:class="${playerPositionDto.css}">
+                                <td th:text="${playerPositionDto.nickname}" />
+                                <td th:text="${playerPositionDto.chen}" />
+                                <td th:text="${playerPositionDto.cards}" />
+                                <td th:text="${playerPositionDto.position}" />
+                                <td th:text="${playerPositionDto.stack}" />
+                                <td th:text="${playerPositionDto.blinds}" />
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h4>Rawdata:</h4>
+                    <p class= "text-break" th:utext="${rawData}" />
+                </div>
+            </div>
+        </div>
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/scripts.js}"></script>
+    </body>
+</html>
