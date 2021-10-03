@@ -34,6 +34,7 @@ public class FileHtmlProcessorService {
     private final CardsOfPlayerRepository cardsOfPlayerRepository;
     private final HandRepository handRepository;
     private final PokerLineRepository pokerLineRepository;
+    private final BlindPositionRepository blindPositionRepository;
     private final String HERO = "jcarlos.vale";
 
 
@@ -217,19 +218,86 @@ public class FileHtmlProcessorService {
     public List<PlayerPositionDto> getPlayersFromHand(Long handId) {
         Hand hand = handRepository.getById(handId);
         List<PlayerPosition> playersPositions = playerPositionRepository.findByHandId(handId);
+
+        BlindPosition button = blindPositionRepository.findBlindPositionByHandAndPlace(hand.getHandId(), "button");
+        BlindPosition smallBlind =
+                blindPositionRepository.findBlindPositionByHandAndPlace(hand.getHandId(), "small blind");
+        BlindPosition bigBlind =
+                blindPositionRepository.findBlindPositionByHandAndPlace(hand.getHandId(), "big blind");
+
+        Map<Integer, String> mapOfPosition = getMapOfPosition(playersPositions.size(), button.getPosition(),
+                smallBlind == null ? null : smallBlind.getPosition(), bigBlind.getPosition());
+
         return
                 playersPositions
                         .stream()
-                        .map(playerPosition -> toPlayerPositionDto(playerPosition, hand))
+                        .map(playerPosition -> toPlayerPositionDto(playerPosition, hand, mapOfPosition))
                         .collect(Collectors.toList());
     }
 
-    private PlayerPositionDto toPlayerPositionDto(PlayerPosition playerPosition, Hand hand) {
+    private Map<Integer, String> getMapOfPosition(int numberOfPlayers, Integer buttonPosition, Integer smallBlindPosition,
+                                                  Integer bigBlindPosition) {
+        Map<Integer, String> mapOfPosition = new HashMap<>();
+        mapOfPosition.put(bigBlindPosition-1, "BB");
+        if (numberOfPlayers == 2) {
+            mapOfPosition.put(buttonPosition-1, "SB, BTN");
+        } else {
+            mapOfPosition.put(buttonPosition-1, "BTN");
+            mapOfPosition.put(smallBlindPosition-1, "SB");
+            if (numberOfPlayers == 4) {
+                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "CO");
+            }
+            if (numberOfPlayers == 5) {
+                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "HJ");
+                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "CO");
+            }
+            if (numberOfPlayers == 6) {
+                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "UTG");
+                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "HJ");
+                mapOfPosition.put((bigBlindPosition + 3) % numberOfPlayers, "CO");
+            }
+            if (numberOfPlayers == 7) {
+                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "UTG");
+                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "MP");
+                mapOfPosition.put((bigBlindPosition + 3) % numberOfPlayers, "HJ");
+                mapOfPosition.put((bigBlindPosition + 4) % numberOfPlayers, "CO");
+            }
+            if (numberOfPlayers == 8) {
+                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "UTG");
+                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "UTG");
+                mapOfPosition.put((bigBlindPosition + 3) % numberOfPlayers, "MP");
+                mapOfPosition.put((bigBlindPosition + 4) % numberOfPlayers, "HJ");
+                mapOfPosition.put((bigBlindPosition + 5) % numberOfPlayers, "CO");
+            }
+            if (numberOfPlayers == 9) {
+                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "UTG");
+                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "UTG");
+                mapOfPosition.put((bigBlindPosition + 3) % numberOfPlayers, "MP");
+                mapOfPosition.put((bigBlindPosition + 4) % numberOfPlayers, "MP");
+                mapOfPosition.put((bigBlindPosition + 5) % numberOfPlayers, "HJ");
+                mapOfPosition.put((bigBlindPosition + 6) % numberOfPlayers, "CO");
+            }
+            if (numberOfPlayers == 10) {
+                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "UTG");
+                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "UTG");
+                mapOfPosition.put((bigBlindPosition + 3) % numberOfPlayers, "UTG");
+                mapOfPosition.put((bigBlindPosition + 4) % numberOfPlayers, "MP");
+                mapOfPosition.put((bigBlindPosition + 5) % numberOfPlayers, "MP");
+                mapOfPosition.put((bigBlindPosition + 6) % numberOfPlayers, "HJ");
+                mapOfPosition.put((bigBlindPosition + 7) % numberOfPlayers, "CO");
+            }
+        }
+
+        return mapOfPosition;
+    }
+
+    private PlayerPositionDto toPlayerPositionDto(PlayerPosition playerPosition, Hand hand,
+                                                  Map<Integer, String> mapOfPosition) {
         PlayerPositionDto playerPositionDto =
                 PlayerPositionDto
                         .builder()
                         .nickname(playerPosition.getPlayer().getNickname())
-                        .position(String.valueOf(playerPosition.getPosition()))
+                        .position(mapOfPosition.get(playerPosition.getPosition()-1))
                         .stack(playerPosition.getStack())
                         .blinds(playerPosition.getStack() / hand.getBigBlind())
                         .build();
