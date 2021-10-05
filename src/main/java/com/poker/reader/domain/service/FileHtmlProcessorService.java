@@ -217,8 +217,19 @@ public class FileHtmlProcessorService {
                 .blinds(hand.getSmallBlind() + "/" + hand.getBigBlind())
                 .players(handRepository.countPlayers(hand.getHandId()))
                 .showdowns(handRepository.countShowdowns(hand.getHandId()))
+                .pot(hand.getPotOfHand().getTotalPot())
+                .board(hand.getBoardOfHand() == null ? "" : hand.getBoardOfHand().getBoard())
+                .boardShowdown(hand.getBoardOfHand() == null ? "" : extractBoardShowdownFrom(hand.getBoardOfHand().getBoard()))
                 .playedAt(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN).format(hand.getPlayedAt()))
                 .build();
+    }
+
+    private String extractBoardShowdownFrom(String board) {
+        int countCards = board.split(" ").length;
+        if (countCards == 5) return "RIVER";
+        if (countCards == 4) return "TURN";
+        if (countCards == 3) return "FLOP";
+        return "";
     }
 
     public HandDto getHandInfo(Long handId) {

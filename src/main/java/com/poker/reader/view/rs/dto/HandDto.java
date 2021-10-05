@@ -17,4 +17,7 @@ public class HandDto {
     private int players;
     private int showdowns;
     private String playedAt;
+    private int pot;
+    private String board;
+    private String boardShowdown;
 }

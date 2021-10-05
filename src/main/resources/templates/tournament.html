@@ -25,6 +25,8 @@
                                 <th>Hand</th>
                                 <th>Level</th>
                                 <th>Blinds</th>
+                                <th>Pot</th>
+                                <th>Board showdown</th>
                                 <th>#players</th>
                                 <th>#showdowns</th>
                                 <th>PlayedAt</th>
@@ -35,6 +37,8 @@
                                 <td> <a th:href="@{'/hand/'+${hand.handId}}" th:text="${hand.handId}" target="_blank" /></td>
                                 <td th:text="${hand.level}" />
                                 <td th:text="${hand.blinds}" />
+                                <td th:text="${hand.pot}" />
+                                <td th:text="${hand.boardShowdown}" />
                                 <td th:text="${hand.players}" />
                                 <td th:text="${hand.showdowns}" />
                                 <td th:text="${hand.playedAt}" />

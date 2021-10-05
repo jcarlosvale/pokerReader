@@ -15,10 +15,13 @@
             <div class="row mt-4">
                 <div class="col-md-4">
                     <h5 th:text="'Hand: ' + ${handDto.handId}"/>
+                    <h5 th:text="'Board Showdown: ' + ${handDto.boardShowdown}"/>
+                    <h5 th:text="'Board: ' + ${handDto.board}"/>
                 </div>
                 <div class="col-md-4">
                     <h5 th:text="'Level: ' + ${handDto.level}"/>
                     <h5 th:text="'Blinds: ' + ${handDto.blinds}"/>
+                    <h5 th:text="'Pot: ' + ${handDto.pot}"/>
                 </div>
                 <div class="col-md-4">
                     <h5 th:text="'PlayedAt: ' + ${handDto.playedAt}"/>
