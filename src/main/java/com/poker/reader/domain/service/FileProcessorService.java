@@ -39,6 +39,16 @@ public class FileProcessorService {
         log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
 
         startOp = System.currentTimeMillis();
+        log.info("Saving boards...");
+        pokerLineRepository.saveBoard();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving pot...");
+        pokerLineRepository.savePot();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
         log.info("Saving player, position, stack...");
         pokerLineRepository.savePlayerPosition();
         log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
@@ -82,6 +92,16 @@ public class FileProcessorService {
         startOp = System.currentTimeMillis();
         log.info("Saving hands...");
         pokerLineRepository.saveNewHandsFromHand(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving board...");
+        pokerLineRepository.saveBoardFromHand(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving pot...");
+        pokerLineRepository.savePotFromHand(handId);
         log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
 
         startOp = System.currentTimeMillis();

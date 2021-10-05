@@ -550,3 +550,29 @@ where
   
   
 select * from player_position pp where pp.hand_id :handId;	
+
+select * from pokerline p 
+where p."section" = 'SUMMARY' 
+and p.line like '%pot%'or p.line like '%Board%';
+
+select 
+    hand_id,
+    line,
+    substring(line from 'Total pot ([0-9]*)')
+from pokerline 
+where 
+	section = 'SUMMARY'
+	and line like '%Total pot%';
+
+select 
+    hand_id,
+    line,
+    substring(line from 'Board \[(.*)\]')
+from pokerline 
+where 
+	section = 'SUMMARY'
+	and line like '%Board [%]%';
+
+select count(*) from board_of_hand boh ;
+select count(*) from pot_of_hand poh;
+select count(*) from hands h ;

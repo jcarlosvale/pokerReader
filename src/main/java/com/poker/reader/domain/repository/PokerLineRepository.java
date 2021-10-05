@@ -1,14 +1,13 @@
 package com.poker.reader.domain.repository;
 
 import com.poker.reader.domain.model.PokerLine;
+import java.util.List;
+import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Set;
 
 public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
@@ -259,29 +258,107 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
     String SAVE_BLIND_POSITIONS_FROM_HAND =
             "INSERT INTO blind_position " +
-                    "(hand, position, place) " +
-                    "( " +
-                    "   select " +
-                    "       hand_id, " +
-                    "       cast(substring(line from 'Seat ([0-9]*):') as int8) as position, " +
-                    "       case    " +
-                    "           when strpos(line, '(button)') > 0 then 'button'  " +
-                    "           when strpos(line, '(small blind)') > 0 then 'small blind'   " +
-                    "           when strpos(line, '(big blind)') > 0 then 'big blind'   " +
-                    "       end as place    " +
-                    "   from pokerline  " +
-                    "   where " +
-                    "       section = 'SUMMARY' " +
-                    "       and line like '%Seat %:%' " +
-                    "       and (line like '%(button)%' or line like '%(small blind)%' or line like '%(big blind)%') " +
-                    "       and hand_id = :handId    " +
-                    ")  " +
-                    "on conflict(hand, position) " +
-                    "do nothing ";
+            "(hand, position, place) " +
+            "( " +
+            "   select " +
+            "       hand_id, " +
+            "       cast(substring(line from 'Seat ([0-9]*):') as int8) as position, " +
+            "       case    " +
+            "           when strpos(line, '(button)') > 0 then 'button'  " +
+            "           when strpos(line, '(small blind)') > 0 then 'small blind'   " +
+            "           when strpos(line, '(big blind)') > 0 then 'big blind'   " +
+            "       end as place    " +
+            "   from pokerline  " +
+            "   where " +
+            "       section = 'SUMMARY' " +
+            "       and line like '%Seat %:%' " +
+            "       and (line like '%(button)%' or line like '%(small blind)%' or line like '%(big blind)%') " +
+            "       and hand_id = :handId    " +
+            ")  " +
+            "on conflict(hand, position) " +
+            "do nothing ";
     @Transactional
     @Modifying
     @Query(value = SAVE_BLIND_POSITIONS_FROM_HAND, nativeQuery = true)
     void saveBlindPositionsFromHand(@Param("handId") long handId);
+
+    String SAVE_BOARD =
+            "INSERT INTO board_of_hand " +
+            "(hand_id, board) " +
+            "( " +
+                "select " +
+                "    hand_id, " +
+                "    substring(line from 'Board \\[(.*)\\]') " +
+                "from pokerline " +
+                "where " +
+                "   section = 'SUMMARY' " +
+                "   and line like '%Board [%]%'" +
+            ")  " +
+            "on conflict(hand_id) " +
+            "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_BOARD, nativeQuery = true)
+    void saveBoard();
+
+    String SAVE_BOARD_FROM_HAND =
+            "INSERT INTO board_of_hand " +
+            "(hand_id, board) " +
+            "( " +
+                "select " +
+                "    hand_id, " +
+                "    substring(line from 'BoardOfHand \\[(.*)\\]') " +
+                "from pokerline " +
+                "where " +
+                "   section = 'SUMMARY' " +
+                "   and line like '%BoardOfHand [%]%' " +
+                "   and hand_id = :handId" +
+            ")  " +
+            "on conflict(hand_id) " +
+            "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_BOARD_FROM_HAND, nativeQuery = true)
+    void saveBoardFromHand(@Param("handId") long handId);
+
+    String SAVE_POT =
+            "INSERT INTO pot_of_hand " +
+            "(hand_id, total_pot) " +
+            "( " +
+            "   select " +
+            "       hand_id, " +
+            "       cast(substring(line from 'Total pot ([0-9]*)')  as int8) " +
+            "   from pokerline " +
+            "   where " +
+            "       section = 'SUMMARY' " +
+            "       and line like '%Total pot%' " +
+            ")  " +
+            "on conflict(hand_id) " +
+            "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_POT, nativeQuery = true)
+    void savePot();
+
+    String SAVE_POT_FROM_HAND =
+            "INSERT INTO pot_of_hand " +
+            "(hand_id, total_pot) " +
+            "( " +
+            "   select " +
+            "       hand_id, " +
+            "       cast(substring(line from 'Total pot ([0-9]*)') as int8) " +
+            "   from pokerline " +
+            "   where " +
+            "       section = 'SUMMARY' " +
+            "       and line like '%Total pot%' " +
+            "       and hand_id = :handId" +
+            ")  " +
+            "on conflict(hand_id) " +
+            "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_POT_FROM_HAND, nativeQuery = true)
+    void savePotFromHand(@Param("handId") long handId);
 
     String GET_LAST_HAND_FROM_FILE =
             "select max(p.hand_id) from pokerline p where p.filename = :filename";

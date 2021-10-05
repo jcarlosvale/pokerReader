@@ -64,7 +64,7 @@ public class Tokens {
     public static final String START_SIDE_POT = "Side pot ";
     public static final String END_SIDE_POT = " .";
 
-    public static final String START_BOARD = "Board [";
+    public static final String START_BOARD = "BoardOfHand [";
     public static final String END_BOARD = "]";
 
     public static final String START_SCORING = "] (";
