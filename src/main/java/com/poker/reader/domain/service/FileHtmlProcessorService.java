@@ -1,9 +1,41 @@
 package com.poker.reader.domain.service;
 
-import com.poker.reader.domain.model.*;
-import com.poker.reader.domain.repository.*;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
+
+import com.poker.reader.domain.model.BlindPosition;
+import com.poker.reader.domain.model.Cards;
+import com.poker.reader.domain.model.CardsOfPlayer;
+import com.poker.reader.domain.model.Hand;
+import com.poker.reader.domain.model.Player;
+import com.poker.reader.domain.model.PlayerPosition;
+import com.poker.reader.domain.model.PokerLine;
+import com.poker.reader.domain.model.Tournament;
+import com.poker.reader.domain.repository.BlindPositionRepository;
+import com.poker.reader.domain.repository.CardsOfPlayerRepository;
+import com.poker.reader.domain.repository.HandRepository;
+import com.poker.reader.domain.repository.PlayerPositionRepository;
+import com.poker.reader.domain.repository.PlayerRepository;
+import com.poker.reader.domain.repository.PokerLineRepository;
+import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.util.CardUtil;
-import com.poker.reader.view.rs.dto.*;
+import com.poker.reader.view.rs.dto.HandDto;
+import com.poker.reader.view.rs.dto.PlayerDto;
+import com.poker.reader.view.rs.dto.PlayerPositionDto;
+import com.poker.reader.view.rs.dto.StackDto;
+import com.poker.reader.view.rs.dto.TournamentDto;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -12,15 +44,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -238,53 +261,53 @@ public class FileHtmlProcessorService {
     private Map<Integer, String> getMapOfPosition(int numberOfPlayers, Integer buttonPosition, Integer smallBlindPosition,
                                                   Integer bigBlindPosition) {
         Map<Integer, String> mapOfPosition = new HashMap<>();
-        mapOfPosition.put(bigBlindPosition-1, "BB");
+        mapOfPosition.put(bigBlindPosition, "BB");
         if (numberOfPlayers == 2) {
-            mapOfPosition.put(buttonPosition-1, "SB, BTN");
+            mapOfPosition.put(buttonPosition, "SB, BTN");
         } else {
-            mapOfPosition.put(buttonPosition-1, "BTN");
-            mapOfPosition.put(smallBlindPosition-1, "SB");
+            mapOfPosition.put(buttonPosition, "BTN");
+            mapOfPosition.put(smallBlindPosition, "SB");
             if (numberOfPlayers == 4) {
-                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "CO");
+                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers, "CO");
             }
             if (numberOfPlayers == 5) {
-                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "HJ");
-                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "CO");
+                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers, "HJ");
+                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "CO");
             }
             if (numberOfPlayers == 6) {
-                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "UTG");
-                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "HJ");
-                mapOfPosition.put((bigBlindPosition + 3) % numberOfPlayers, "CO");
+                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers, "UTG");
+                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "HJ");
+                mapOfPosition.put(bigBlindPosition + 3 <= numberOfPlayers ?  bigBlindPosition + 3 : (bigBlindPosition + 3) % numberOfPlayers, "CO");
             }
             if (numberOfPlayers == 7) {
-                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "UTG");
-                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "MP");
-                mapOfPosition.put((bigBlindPosition + 3) % numberOfPlayers, "HJ");
-                mapOfPosition.put((bigBlindPosition + 4) % numberOfPlayers, "CO");
+                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers, "UTG");
+                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "MP");
+                mapOfPosition.put(bigBlindPosition + 3 <= numberOfPlayers ?  bigBlindPosition + 3 : (bigBlindPosition + 3) % numberOfPlayers, "HJ");
+                mapOfPosition.put(bigBlindPosition + 4 <= numberOfPlayers ?  bigBlindPosition + 4 : (bigBlindPosition + 4) % numberOfPlayers, "CO");
             }
             if (numberOfPlayers == 8) {
-                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "UTG");
-                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "UTG");
-                mapOfPosition.put((bigBlindPosition + 3) % numberOfPlayers, "MP");
-                mapOfPosition.put((bigBlindPosition + 4) % numberOfPlayers, "HJ");
-                mapOfPosition.put((bigBlindPosition + 5) % numberOfPlayers, "CO");
+                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers, "UTG");
+                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "UTG");
+                mapOfPosition.put(bigBlindPosition + 3 <= numberOfPlayers ?  bigBlindPosition + 3 : (bigBlindPosition + 3) % numberOfPlayers, "MP");
+                mapOfPosition.put(bigBlindPosition + 4 <= numberOfPlayers ?  bigBlindPosition + 4 : (bigBlindPosition + 4) % numberOfPlayers, "HJ");
+                mapOfPosition.put(bigBlindPosition + 5 <= numberOfPlayers ?  bigBlindPosition + 5 : (bigBlindPosition + 5) % numberOfPlayers, "CO");
             }
             if (numberOfPlayers == 9) {
-                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "UTG");
-                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "UTG");
-                mapOfPosition.put((bigBlindPosition + 3) % numberOfPlayers, "MP");
-                mapOfPosition.put((bigBlindPosition + 4) % numberOfPlayers, "MP");
-                mapOfPosition.put((bigBlindPosition + 5) % numberOfPlayers, "HJ");
-                mapOfPosition.put((bigBlindPosition + 6) % numberOfPlayers, "CO");
+                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers , "UTG");
+                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "UTG");
+                mapOfPosition.put(bigBlindPosition + 3 <= numberOfPlayers ?  bigBlindPosition + 3 : (bigBlindPosition + 3) % numberOfPlayers, "MP");
+                mapOfPosition.put(bigBlindPosition + 4 <= numberOfPlayers ?  bigBlindPosition + 4 : (bigBlindPosition + 4) % numberOfPlayers, "MP");
+                mapOfPosition.put(bigBlindPosition + 5 <= numberOfPlayers ?  bigBlindPosition + 5 : (bigBlindPosition + 5) % numberOfPlayers, "HJ");
+                mapOfPosition.put(bigBlindPosition + 6 <= numberOfPlayers ?  bigBlindPosition + 6 : (bigBlindPosition + 6) % numberOfPlayers, "CO");
             }
             if (numberOfPlayers == 10) {
-                mapOfPosition.put((bigBlindPosition + 1) % numberOfPlayers, "UTG");
-                mapOfPosition.put((bigBlindPosition + 2) % numberOfPlayers, "UTG");
-                mapOfPosition.put((bigBlindPosition + 3) % numberOfPlayers, "UTG");
-                mapOfPosition.put((bigBlindPosition + 4) % numberOfPlayers, "MP");
-                mapOfPosition.put((bigBlindPosition + 5) % numberOfPlayers, "MP");
-                mapOfPosition.put((bigBlindPosition + 6) % numberOfPlayers, "HJ");
-                mapOfPosition.put((bigBlindPosition + 7) % numberOfPlayers, "CO");
+                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers , "UTG");
+                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "UTG");
+                mapOfPosition.put(bigBlindPosition + 3 <= numberOfPlayers ?  bigBlindPosition + 3 : (bigBlindPosition + 3) % numberOfPlayers, "UTG");
+                mapOfPosition.put(bigBlindPosition + 4 <= numberOfPlayers ?  bigBlindPosition + 4 : (bigBlindPosition + 4) % numberOfPlayers, "MP");
+                mapOfPosition.put(bigBlindPosition + 5 <= numberOfPlayers ?  bigBlindPosition + 5 : (bigBlindPosition + 5) % numberOfPlayers, "MP");
+                mapOfPosition.put(bigBlindPosition + 6 <= numberOfPlayers ?  bigBlindPosition + 6 : (bigBlindPosition + 6) % numberOfPlayers, "HJ");
+                mapOfPosition.put(bigBlindPosition + 7 <= numberOfPlayers ?  bigBlindPosition + 7 : (bigBlindPosition + 7) % numberOfPlayers, "CO");
             }
         }
 
@@ -297,7 +320,7 @@ public class FileHtmlProcessorService {
                 PlayerPositionDto
                         .builder()
                         .nickname(playerPosition.getPlayer().getNickname())
-                        .position(mapOfPosition.get(playerPosition.getPosition()-1))
+                        .position(mapOfPosition.get(playerPosition.getPosition()))
                         .stack(playerPosition.getStack())
                         .blinds(playerPosition.getStack() / hand.getBigBlind())
                         .build();
