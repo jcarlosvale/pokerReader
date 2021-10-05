@@ -576,3 +576,13 @@ where
 select count(*) from board_of_hand boh ;
 select count(*) from pot_of_hand poh;
 select count(*) from hands h ;
+
+
+select line, hand_id 
+from pokerline p 
+where 
+	p.line like 'Seat%:%'
+	and p."section" = 'SUMMARY' ;
+
+
+	p.line like '%folded%(didn''t bet)%'
