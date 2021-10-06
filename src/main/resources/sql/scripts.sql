@@ -582,8 +582,7 @@ select count(*) from hands h ;
 select line, hand_id 
 from pokerline p 
 where 
-	p.line like 'Seat%:%'
-	and p."section" = 'SUMMARY'
+	p."section" = 'SUMMARY'
 	and p.line not like '%folded before Flop%' --nao betou
 	and p.line not like '%folded on the Turn%' --fold turn
 	and p.line not like '%folded on the Flop%' --fold flop
@@ -592,5 +591,21 @@ where
 	and p.line not like '%collected%' --ganhou sem showdown
 	and p.line not like '%and lost with%' --perdeu com showdown
 	and p.line not like '%and won %' --ganhou com showdown
+	and p.line not like '%*** SUMMARY ***%' --summary
+	and p.line not like '%Total pot%' --pot
+	and p.line not like '%Board%' --board
 	;
+
+select line, hand_id 
+from pokerline p 
+where 
+	p."section" = 'SUMMARY'
+	and p.line like '%folded before Flop%' --nao betou
+	and p.line not like '%didn''t bet%'
+;
+
+select line 
+from pokerline p 
+where p.line like '%all-in%';
 --p.line like '%folded%(didn''t bet)%'
+	p.line like 'Seat%:%'
