@@ -363,7 +363,7 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
     String SAVE_FOLD_POSITION =
             "INSERT INTO fold_position                                          " +
-            "(hand, position, round, bet)                                       " +
+            "(hand, position, round, no_bet)                                    " +
             "(                                                                  " +
             "select                                                             " +
             "   hand_id,                                                        " +
@@ -396,7 +396,7 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
     String SAVE_FOLD_POSITION_FROM_HAND =
             "INSERT INTO fold_position                                                  " +
-                    "(hand, position, round, bet)                                       " +
+                    "(hand, position, round, no_bet)                                    " +
                     "(                                                                  " +
                     "select                                                             " +
                     "   hand_id,                                                        " +
@@ -419,6 +419,7 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
                     "   or  p.line like '%folded on the Flop%'                          " +
                     "   or  p.line like '%folded on the Turn%'                          " +
                     "   or  p.line like '%folded on the River%')                        " +
+                    "   and hand_id = :handId                                           " +
                     ")                                                                  " +
                     "on conflict(hand, position)                                        " +
                     "do nothing ";
@@ -426,6 +427,73 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     @Modifying
     @Query(value = SAVE_FOLD_POSITION_FROM_HAND, nativeQuery = true)
     void saveFoldPosition(@Param("handId") long handId);
+
+    String SAVE_WIN_POSITION =
+            "INSERT INTO win_position                                                                                       " +
+            "(hand, position, showdown, pot, hand_description)                                                              " +
+            "(                                                                                                              " +
+            "select                                                                                                         " +
+            "   hand_id,                                                                                                    " +
+            "   cast(substring(line from 'Seat ([0-9]*):') as int8) as position,                                            " +
+            "   case                                                                                                        " +
+            "       when strpos(line, 'collected') > 0 then false                                                           " +
+            "       when strpos(line, 'and won ' ) > 0 then true                                                            " +
+            "   end as showdown,                                                                                            " +
+            "   case                                                                                                        " +
+            "       when strpos(line, 'collected') > 0 then cast(substring(line from 'collected \\(([0-9]*)\\)') as int8)   " +
+            "       when strpos(line, 'and won ' ) > 0 then cast(substring(line from 'and won \\(([0-9]*)\\)')   as int8)   " +
+            "   end as pot,                                                                                                 " +
+            "   case                                                                                                        " +
+            "       when strpos(line, 'collected') > 0 then null                                                            " +
+            "       when strpos(line, 'and won ' ) > 0 then trim(substring(line from '\\) with (.*)'))                      " +
+            "   end as hand_description                                                                                     " +
+            "from pokerline p                                                                                               " +
+            "where                                                                                                          " +
+            "   p.section = 'SUMMARY'                                                                                       " +
+            "   and p.line like 'Seat%:%'                                                                                   " +
+            "   and (p.line like '%collected%'                                                                              " +
+            "   or  p.line like '%and won %')                                                                               " +
+            ")                                                                                                              " +
+            "on conflict(hand, position)                                                                                    " +
+            "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_WIN_POSITION, nativeQuery = true)
+    void saveWinPositions();
+
+    String SAVE_WIN_POSITION_FROM_HAND =
+            "INSERT INTO win_position                                                                                       " +
+                    "(hand, position, showdown, pot, hand_description)                                                              " +
+                    "(                                                                                                              " +
+                    "select                                                                                                         " +
+                    "   hand_id,                                                                                                    " +
+                    "   cast(substring(line from 'Seat ([0-9]*):') as int8) as position,                                            " +
+                    "   case                                                                                                        " +
+                    "       when strpos(line, 'collected') > 0 then false                                                           " +
+                    "       when strpos(line, 'and won ' ) > 0 then true                                                            " +
+                    "   end as showdown,                                                                                            " +
+                    "   case                                                                                                        " +
+                    "       when strpos(line, 'collected') > 0 then cast(substring(line from 'collected \\(([0-9]*)\\)') as int8)   " +
+                    "       when strpos(line, 'and won ' ) > 0 then cast(substring(line from 'and won \\(([0-9]*)\\)')   as int8)   " +
+                    "   end as pot,                                                                                                 " +
+                    "   case                                                                                                        " +
+                    "       when strpos(line, 'collected') > 0 then null                                                            " +
+                    "       when strpos(line, 'and won ' ) > 0 then trim(substring(line from '\\) with (.*)'))                      " +
+                    "   end as hand_description                                                                                     " +
+                    "from pokerline p                                                                                               " +
+                    "where                                                                                                          " +
+                    "   p.section = 'SUMMARY'                                                                                       " +
+                    "   and p.line like 'Seat%:%'                                                                                   " +
+                    "   and (p.line like '%collected%'                                                                              " +
+                    "   or  p.line like '%and won %')                                                                               " +
+                    "   and hand_id = :handId                                                                                       " +
+                    ")                                                                                                              " +
+                    "on conflict(hand, position)                                                                                    " +
+                    "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_WIN_POSITION_FROM_HAND, nativeQuery = true)
+    void saveWinPositions(@Param("handId") long handId);
 
     String GET_LAST_HAND_FROM_FILE =
             "select max(p.hand_id) from pokerline p where p.filename = :filename";

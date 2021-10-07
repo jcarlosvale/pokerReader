@@ -13,9 +13,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "fold_position")
+@Table(name = "win_position")
 @IdClass(HandPositionId.class)
-public class FoldPosition {
+public class WinPosition {
     @Id
     private Long hand;
 
@@ -31,8 +31,10 @@ public class FoldPosition {
     private PlayerPosition playerPosition;
 
     @NotNull
-    private String round;
+    private boolean showdown;
 
     @NotNull
-    private Boolean noBet;
+    private int pot;
+
+    private String handDescription;
 }
