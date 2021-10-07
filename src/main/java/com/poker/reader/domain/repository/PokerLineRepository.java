@@ -1,13 +1,14 @@
 package com.poker.reader.domain.repository;
 
 import com.poker.reader.domain.model.PokerLine;
-import java.util.List;
-import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Set;
 
 public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
@@ -359,6 +360,72 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     @Modifying
     @Query(value = SAVE_POT_FROM_HAND, nativeQuery = true)
     void savePotFromHand(@Param("handId") long handId);
+
+    String SAVE_FOLD_POSITION =
+            "INSERT INTO fold_position                                          " +
+            "(hand, position, round, bet)                                       " +
+            "(                                                                  " +
+            "select                                                             " +
+            "   hand_id,                                                        " +
+            "   cast(substring(line from 'Seat ([0-9]*):') as int8) as position," +
+            "   case                                                            " +
+            "       when strpos(line, 'folded before Flop')  > 0 then 'PREFLOP' " +
+            "       when strpos(line, 'folded on the Flop')  > 0 then 'FLOP'    " +
+            "       when strpos(line, 'folded on the Turn')  > 0 then 'TURN'    " +
+            "       when strpos(line, 'folded on the River') > 0 then 'RIVER'   " +
+            "   end,                                                            " +
+            "   case                                                            " +
+            "       when strpos(line, 'didn''t bet')  > 0 then true             " +
+            "       else false                                                  " +
+            "   end                                                             " +
+            "from pokerline p                                                   " +
+            "where                                                              " +
+            "   p.section = 'SUMMARY'                                           " +
+            "   and p.line like 'Seat%:%'                                       " +
+            "   and (p.line like '%folded before Flop%'                         " +
+            "   or  p.line like '%folded on the Flop%'                          " +
+            "   or  p.line like '%folded on the Turn%'                          " +
+            "   or  p.line like '%folded on the River%')                        " +
+            ")                                                                  " +
+            "on conflict(hand, position)                                        " +
+            "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_FOLD_POSITION, nativeQuery = true)
+    void saveFoldPosition();
+
+    String SAVE_FOLD_POSITION_FROM_HAND =
+            "INSERT INTO fold_position                                                  " +
+                    "(hand, position, round, bet)                                       " +
+                    "(                                                                  " +
+                    "select                                                             " +
+                    "   hand_id,                                                        " +
+                    "   cast(substring(line from 'Seat ([0-9]*):') as int8) as position," +
+                    "   case                                                            " +
+                    "       when strpos(line, 'folded before Flop')  > 0 then 'PREFLOP' " +
+                    "       when strpos(line, 'folded on the Flop')  > 0 then 'FLOP'    " +
+                    "       when strpos(line, 'folded on the Turn')  > 0 then 'TURN'    " +
+                    "       when strpos(line, 'folded on the River') > 0 then 'RIVER'   " +
+                    "   end,                                                            " +
+                    "   case                                                            " +
+                    "       when strpos(line, 'didn''t bet')  > 0 then true             " +
+                    "       else false                                                  " +
+                    "   end                                                             " +
+                    "from pokerline p                                                   " +
+                    "where                                                              " +
+                    "   p.section = 'SUMMARY'                                           " +
+                    "   and p.line like 'Seat%:%'                                       " +
+                    "   and (p.line like '%folded before Flop%'                         " +
+                    "   or  p.line like '%folded on the Flop%'                          " +
+                    "   or  p.line like '%folded on the Turn%'                          " +
+                    "   or  p.line like '%folded on the River%')                        " +
+                    ")                                                                  " +
+                    "on conflict(hand, position)                                        " +
+                    "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_FOLD_POSITION_FROM_HAND, nativeQuery = true)
+    void saveFoldPosition(@Param("handId") long handId);
 
     String GET_LAST_HAND_FROM_FILE =
             "select max(p.hand_id) from pokerline p where p.filename = :filename";

@@ -63,6 +63,11 @@ public class FileProcessorService {
         pokerLineRepository.saveBlindPositions();
         log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
 
+        startOp = System.currentTimeMillis();
+        log.info("Saving fold positions...");
+        pokerLineRepository.saveFoldPosition();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
         String message = String.format("Processed %d lines in %d ms",
                 pokerLineRepository.count(), (System.currentTimeMillis() - start));
 
@@ -117,6 +122,11 @@ public class FileProcessorService {
         startOp = System.currentTimeMillis();
         log.info("Saving blind positions of players...");
         pokerLineRepository.saveBlindPositionsFromHand(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving fold positions...");
+        pokerLineRepository.saveFoldPosition(handId);
         log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
 
         String message = String.format("Processed hand %d in %d ms",

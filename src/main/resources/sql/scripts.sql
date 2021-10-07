@@ -608,4 +608,58 @@ select line
 from pokerline p 
 where p.line like '%all-in%';
 --p.line like '%folded%(didn''t bet)%'
-	p.line like 'Seat%:%'
+	p.line like 'Seat%:%';
+
+
+select line, hand_id 
+from pokerline p 
+where p.line like '%side pot%';
+	p.line like 'Seat%:%';
+
+
+select 
+	line, 
+	hand_id,
+	cast(substring(line from 'Seat ([0-9]*):') as int8) as position,
+	case    
+    	when strpos(line, 'folded before Flop')  > 0 then 'PREFLOP'
+    	when strpos(line, 'folded on the Flop')  > 0 then 'FLOP'
+    	when strpos(line, 'folded on the Turn')  > 0 then 'TURN'
+    	when strpos(line, 'folded on the River') > 0 then 'RIVER'    	
+	end,
+	case    
+    	when strpos(line, 'didn''t bet')  > 0 then true
+		else false
+	end
+from pokerline p 
+where 
+		p."section" = 'SUMMARY'
+	and p.line like 'Seat%:%'
+	and (p.line like '%folded before Flop%' 
+	or  p.line like '%folded on the Flop%' 
+	or  p.line like '%folded on the Turn%' 
+	or  p.line like '%folded on the River%');
+
+
+select 
+	line, 
+	hand_id,
+	cast(substring(line from 'Seat ([0-9]*):') as int8) as position,
+	case    
+    	when strpos(line, 'collected') > 0 then false
+    	when strpos(line, 'and won ' ) > 0 then true
+	end	as showdown,
+	case    
+    	when strpos(line, 'collected') > 0 then cast(substring(line from 'collected \(([0-9]*)\)') as int8)
+    	when strpos(line, 'and won ' ) > 0 then cast(substring(line from 'and won \(([0-9]*)\)')   as int8)
+	end	as pot,
+	case    
+    	when strpos(line, 'collected') > 0 then null
+    	when strpos(line, 'and won ' ) > 0 then trim(substring(line from '\) with (.*)'))
+	end	as hand_description
+from pokerline p 
+where 
+		p."section" = 'SUMMARY'
+	and p.line like 'Seat%:%'
+	and (p.line like '%collected%' 
+	or  p.line like '%and won %');
