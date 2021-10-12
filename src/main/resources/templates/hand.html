@@ -77,7 +77,7 @@
                         <tbody>
                             <tr th:each="playerPositionDto : ${playerPositionDtos}"
                                 th:class="${playerPositionDto.css}">
-                                <td th:text="${playerPositionDto.nickname}" />
+                                <td th:text="${playerPositionDto.nickname}" th:classappend="${playerPositionDto.isWinner} ? 'table-success'"/>
                                 <td th:text="${playerPositionDto.chen}" />
                                 <td th:text="${playerPositionDto.cards}" />
                                 <td th:text="${playerPositionDto.position}" />

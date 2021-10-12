@@ -254,7 +254,7 @@ public class FileHtmlProcessorService {
 
     public List<PlayerPositionDto> getPlayersFromHand(Long handId) {
         Hand hand = handRepository.getById(handId);
-        List<PlayerPosition> playersPositions = playerPositionRepository.findByHandId(handId);
+        List<PlayerPosition> playersPositions = hand.getPlayerPositions();
 
         BlindPosition button = blindPositionRepository.findBlindPositionByHandAndPlace(hand.getHandId(), "button");
         BlindPosition smallBlind =
@@ -337,6 +337,7 @@ public class FileHtmlProcessorService {
                         .position(mapOfPosition.get(playerPosition.getPosition()))
                         .stack(playerPosition.getStack())
                         .blinds(playerPosition.getStack() / hand.getBigBlind())
+                        .isWinner(playerPosition.getWinPosition() != null)
                         .build();
 
         CardsOfPlayer cardsOfPlayer = playerPosition.getCardsOfPlayer();

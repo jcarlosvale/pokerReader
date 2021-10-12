@@ -1,11 +1,10 @@
 package com.poker.reader.view.rs.dto;
 
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -29,6 +28,8 @@ public class PlayerPositionDto {
 
     @NotNull
     private int blinds;
+
+    private boolean isWinner;
 
     private String css;
 }
