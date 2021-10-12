@@ -44,4 +44,7 @@ public class PlayerPosition implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "playerPosition")
     private WinPosition winPosition;
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "playerPosition")
+    private LosePosition losePosition;
 }

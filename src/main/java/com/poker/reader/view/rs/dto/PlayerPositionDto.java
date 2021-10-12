@@ -31,5 +31,9 @@ public class PlayerPositionDto {
 
     private boolean isWinner;
 
+    private boolean isLose;
+
+    private String handDescription;
+
     private String css;
 }

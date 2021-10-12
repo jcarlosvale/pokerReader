@@ -61,7 +61,7 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <h4>Players:</h4>
                     <table class="table table-bordered">
                         <thead>
@@ -72,22 +72,29 @@
                                 <th>Position</th>
                                 <th>Stack</th>
                                 <th>#blinds</th>
+                                <th>#hand</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="playerPositionDto : ${playerPositionDtos}"
-                                th:class="${playerPositionDto.css}">
-                                <td th:text="${playerPositionDto.nickname}" th:classappend="${playerPositionDto.isWinner} ? 'table-success'"/>
-                                <td th:text="${playerPositionDto.chen}" />
-                                <td th:text="${playerPositionDto.cards}" />
+                            <tr th:each="playerPositionDto : ${playerPositionDtos}">
+                                <td th:text="${playerPositionDto.nickname}"
+                                    th:classappend="${playerPositionDto.isWinner} ?
+                                    'table-success' : (${playerPositionDto.isLose} ? 'table-danger')"
+                                />
+                                <td th:text="${playerPositionDto.chen}" th:classappend="${playerPositionDto.css}"/>
+                                <td th:text="${playerPositionDto.cards}" th:classappend="${playerPositionDto.css}"/>
                                 <td th:text="${playerPositionDto.position}" />
                                 <td th:text="${playerPositionDto.stack}" />
                                 <td th:text="${playerPositionDto.blinds}" />
+                                <td th:text="${playerPositionDto.handDescription}"
+                                    th:classappend="(${playerPositionDto.isWinner} and not ${#strings.isEmpty(playerPositionDto.handDescription)}) ?
+                                    'table-success' : (${playerPositionDto.isLose} ? 'table-danger')"
+                                />
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <h4>Rawdata:</h4>
                     <p class= "text-break" th:utext="${rawData}" />
                 </div>

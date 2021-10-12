@@ -330,6 +330,14 @@ public class FileHtmlProcessorService {
 
     private PlayerPositionDto toPlayerPositionDto(PlayerPosition playerPosition, Hand hand,
                                                   Map<Integer, String> mapOfPosition) {
+        String handDescription = null;
+        if (playerPosition.getWinPosition() != null) {
+            handDescription = playerPosition.getWinPosition().getHandDescription();
+        } else {
+            if (playerPosition.getLosePosition() != null) {
+                handDescription = playerPosition.getLosePosition().getHandDescription();
+            }
+        }
         PlayerPositionDto playerPositionDto =
                 PlayerPositionDto
                         .builder()
@@ -338,6 +346,8 @@ public class FileHtmlProcessorService {
                         .stack(playerPosition.getStack())
                         .blinds(playerPosition.getStack() / hand.getBigBlind())
                         .isWinner(playerPosition.getWinPosition() != null)
+                        .isLose(playerPosition.getLosePosition() != null)
+                        .handDescription(handDescription)
                         .build();
 
         CardsOfPlayer cardsOfPlayer = playerPosition.getCardsOfPlayer();

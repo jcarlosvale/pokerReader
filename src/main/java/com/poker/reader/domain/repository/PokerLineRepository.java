@@ -1,14 +1,13 @@
 package com.poker.reader.domain.repository;
 
 import com.poker.reader.domain.model.PokerLine;
+import java.util.List;
+import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Set;
 
 public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
@@ -494,6 +493,49 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     @Modifying
     @Query(value = SAVE_WIN_POSITION_FROM_HAND, nativeQuery = true)
     void saveWinPositions(@Param("handId") long handId);
+
+    String SAVE_LOSE_POSITION =
+            "INSERT INTO lose_position                                                                                              " +
+                    "(hand, position, hand_description)                                                                             " +
+                    "(                                                                                                              " +
+                    "select                                                                                                         " +
+                    "   hand_id,                                                                                                    " +
+                    "   cast(substring(line from 'Seat ([0-9]*):') as int8) as position,                                            " +
+                    "   trim(substring(line from 'and lost with (.*)')) as hand_description                                         " +
+                    "from pokerline p                                                                                               " +
+                    "where                                                                                                          " +
+                    "   p.section = 'SUMMARY'                                                                                       " +
+                    "   and p.line like 'Seat%:%'                                                                                   " +
+                    "   and p.line like '%and lost %'                                                                               " +
+                    ")                                                                                                              " +
+                    "on conflict(hand, position)                                                                                    " +
+                    "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_LOSE_POSITION, nativeQuery = true)
+    void saveLosePositions();
+
+    String SAVE_LOSE_POSITION_FROM_HAND =
+            "INSERT INTO win_position                                                                                               " +
+                    "(hand, position, showdown, pot, hand_description)                                                              " +
+                    "(                                                                                                              " +
+                    "select                                                                                                         " +
+                    "   hand_id,                                                                                                    " +
+                    "   cast(substring(line from 'Seat ([0-9]*):') as int8) as position,                                            " +
+                    "   trim(substring(line from 'and lost with (.*)')) as hand_description                                         " +
+                    "from pokerline p                                                                                               " +
+                    "where                                                                                                          " +
+                    "   p.section = 'SUMMARY'                                                                                       " +
+                    "   and p.line like 'Seat%:%'                                                                                   " +
+                    "   and p.line like '%and lost %'                                                                               " +
+                    "   and hand_id = :handId                                                                                       " +
+                    ")                                                                                                              " +
+                    "on conflict(hand, position)                                                                                    " +
+                    "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_LOSE_POSITION_FROM_HAND, nativeQuery = true)
+    void saveLosePositions(@Param("handId") long handId);
 
     String GET_LAST_HAND_FROM_FILE =
             "select max(p.hand_id) from pokerline p where p.filename = :filename";
