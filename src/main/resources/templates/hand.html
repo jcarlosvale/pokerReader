@@ -12,18 +12,38 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div class="row">
-                <ul class="pagination justify-content-center">
-                    <li th:if="${#maps.size(handsMap) > 0}" class="page-item"
-                        th:each="key : ${handsMap.keySet()}"
-                        th:classappend="${handsMap.get(key)==handDto.handId} ? active">
-                        <a  class = "page-link"
-                            th:href="@{'/hand/' + ${handsMap.get(key)}}"
-                            th:text=${key}>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+
+                <!-- pagination -->
+                <nav aria-label="Pagination">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" th:classappend="${pageDto.previousPageNumber < 0} ? 'disabled'">
+                            <a
+                                class="page-link"
+                                th:href="@{'/hand/' + ${pageDto.previousPageId}}"
+                                aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item active">
+                            <a  class="page-link"
+                                th:href="@{'/hand/' + ${pageDto.currentPageId}}"
+                                th:text="${(pageDto.currentPageNumber + 1) + '/' + pageDto.totalPages}"
+                                rel="tooltip">
+                            </a>
+                        </li>
+                        <li class="page-item" th:classappend="${pageDto.nextPageNumber < 0} ? 'disabled'">
+                            <a
+                                class="page-link"
+                                th:href="@{'/hand/' + ${pageDto.nextPageId}}"
+                                aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
             <div class="row mt-4">
                 <div class="col-md-4">
                     <h5 th:text="'Hand: ' + ${handDto.handId}"/>

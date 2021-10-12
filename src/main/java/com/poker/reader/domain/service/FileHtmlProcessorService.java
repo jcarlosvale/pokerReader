@@ -20,6 +20,7 @@ import com.poker.reader.domain.repository.PokerLineRepository;
 import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.util.CardUtil;
 import com.poker.reader.view.rs.dto.HandDto;
+import com.poker.reader.view.rs.dto.PageDto;
 import com.poker.reader.view.rs.dto.PlayerDto;
 import com.poker.reader.view.rs.dto.PlayerPositionDto;
 import com.poker.reader.view.rs.dto.StackDto;
@@ -27,6 +28,7 @@ import com.poker.reader.view.rs.dto.TournamentDto;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -356,13 +358,29 @@ public class FileHtmlProcessorService {
         return PlayerDto.builder().build();
     }
 
-    public Map<Integer, Long> createHandPaginationFromTournament(long tournamentId) {
-        Map<Integer, Long> map = new HashMap<>();
-        int index = 1;
-        for(Long handId : handRepository.findAllHandIdByTournamentId(tournamentId)) {
-            map.put(index, handId);
-            index++;
+    public PageDto createHandPaginationFromTournament(long handId, long tournamentId) {
+        List<Long> handsIds = handRepository.findAllHandIdByTournamentId(tournamentId);
+        PageDto pageDto = PageDto.builder().totalPages(handsIds.size()).build();
+        int index = Collections.binarySearch(handsIds, handId);
+        //current
+        pageDto.setCurrentPageId(handId);
+        pageDto.setCurrentPageNumber(index);
+        //previous
+        if (index - 1 < 0) {
+            pageDto.setPreviousPageId(handId);
+            pageDto.setPreviousPageNumber(-1);
+        } else {
+            pageDto.setPreviousPageId(handsIds.get(index-1));
+            pageDto.setPreviousPageNumber(index-1);
         }
-        return map;
+        //next
+        if (index+1 == handsIds.size()) {
+            pageDto.setNextPageId(handId);
+            pageDto.setNextPageNumber(-1);
+        } else {
+            pageDto.setNextPageId(handsIds.get(index+1));
+            pageDto.setNextPageNumber(index+1);
+        }
+        return pageDto;
     }
 }
