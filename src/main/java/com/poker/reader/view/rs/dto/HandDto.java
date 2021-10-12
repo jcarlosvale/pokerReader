@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class HandDto {
 
+    private long tournamentId;
     private long handId;
     private String level;
     private String blinds;

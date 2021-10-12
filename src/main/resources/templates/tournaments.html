@@ -43,12 +43,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="pagination justify-content-center">
-                        <li th:if="${tournamentPage.totalPages > 0}" class="page-link"
-                             th:each="pageNumber : ${pageNumbers}">
-                            <a  class = "page-item"
-                                th:href="@{/players(size=${tournamentPage.size}, page=${pageNumber})}"
-                                th:text=${pageNumber}
-                                th:classappend="${pageNumber==tournamentPage.number + 1} ? active"></a>
+                        <li th:if="${tournamentPage.totalPages > 0}" class="page-item"
+                            th:each="pageNumber : ${pageNumbers}"
+                            th:classappend="${pageNumber==tournamentPage.number + 1} ? active">
+                            <a  class = "page-link"
+                                th:href="@{/tournaments(size=${tournamentPage.size}, page=${pageNumber})}"
+                                th:text=${pageNumber}></a>
                         </li>
                     </ul>
                 </div>

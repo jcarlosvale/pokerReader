@@ -212,6 +212,7 @@ public class FileHtmlProcessorService {
     private HandDto toHandDto(@NonNull Hand hand) {
         return HandDto
                 .builder()
+                .tournamentId(hand.getTournament().getTournamentId())
                 .handId(hand.getHandId())
                 .level(hand.getLevel())
                 .blinds(hand.getSmallBlind() + "/" + hand.getBigBlind())
@@ -353,5 +354,15 @@ public class FileHtmlProcessorService {
             return extractPlayerDtoInfo(player.get(), false);
         }
         return PlayerDto.builder().build();
+    }
+
+    public Map<Integer, Long> createHandPaginationFromTournament(long tournamentId) {
+        Map<Integer, Long> map = new HashMap<>();
+        int index = 1;
+        for(Long handId : handRepository.findAllHandIdByTournamentId(tournamentId)) {
+            map.put(index, handId);
+            index++;
+        }
+        return map;
     }
 }
