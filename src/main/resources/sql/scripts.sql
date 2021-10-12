@@ -663,3 +663,7 @@ where
 	and p.line like 'Seat%:%'
 	and (p.line like '%collected%' 
 	or  p.line like '%and won %');
+	
+
+
+select * from win_position wp ;

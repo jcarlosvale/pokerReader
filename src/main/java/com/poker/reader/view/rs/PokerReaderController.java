@@ -4,7 +4,16 @@ import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
 import com.poker.reader.domain.service.FileProcessorService;
 import com.poker.reader.domain.service.FileReaderService;
-import com.poker.reader.view.rs.dto.*;
+import com.poker.reader.view.rs.dto.HandDto;
+import com.poker.reader.view.rs.dto.PlayerDto;
+import com.poker.reader.view.rs.dto.PlayerPositionDto;
+import com.poker.reader.view.rs.dto.StackDto;
+import com.poker.reader.view.rs.dto.TournamentDto;
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,12 +23,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @RequiredArgsConstructor
 @Controller
@@ -126,6 +129,16 @@ public class PokerReaderController {
 
 
         return "hand";
+    }
+
+    @GetMapping("/player/{nickname}")
+    public String detailsFromHand(
+            Model model,
+            @PathVariable("nickname") String nickname) {
+
+        PlayerDto playerDto = fileHtmlProcessorService.findPlayer(nickname);
+        model.addAttribute("player", playerDto);
+        return "player";
     }
 
     @GetMapping("/")

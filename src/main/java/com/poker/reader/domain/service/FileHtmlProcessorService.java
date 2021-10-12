@@ -346,4 +346,12 @@ public class FileHtmlProcessorService {
 
         return playerPositionDto;
     }
+
+    public PlayerDto findPlayer(String nickname) {
+        Optional<Player> player = playerRepository.findById(nickname);
+        if (player.isPresent()) {
+            return extractPlayerDtoInfo(player.get(), false);
+        }
+        return PlayerDto.builder().build();
+    }
 }
