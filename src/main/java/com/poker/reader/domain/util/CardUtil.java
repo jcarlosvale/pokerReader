@@ -1,6 +1,7 @@
 package com.poker.reader.domain.util;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,14 +29,21 @@ public final class CardUtil {
         return faceCard.charAt(0) - '0';
     }
 
-    public static List<String> convertStringToList(String rawCards) {
-        checkNotNull(rawCards, "rawCards must not be null");
-        return Arrays.stream(rawCards.split(", "))
+    public static List<String> convertStringToList(String cards) {
+        checkNotNull(cards, "cards must not be null");
+        return Arrays.stream(cards.split(", "))
                 .collect(Collectors.toList());
     }
 
-    public static String convertListToString(List<String> rawCards) {
-        checkNotNull(rawCards, "rawCards must not be null");
-        return String.join(", ", rawCards);
+    public static String convertListToString(List<String> cards) {
+        checkNotNull(cards, "cards must not be null");
+        return String.join(", ", cards);
+    }
+
+    public static String sort(String stringListNormalisedCards) {
+        if (stringListNormalisedCards == null) return null;
+        List<String> listOfNormalisedCards = convertStringToList(stringListNormalisedCards);
+        listOfNormalisedCards.sort((o1, o2) -> calculateChenFormulaFrom(o2) - calculateChenFormulaFrom(o1));
+        return convertListToString(listOfNormalisedCards);
     }
 }

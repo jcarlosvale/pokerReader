@@ -751,3 +751,25 @@ left join lose_position lp on lp.hand = pp.hand_id and lp.position = pp.position
 left join win_position wp on wp.hand = pp.hand_id and wp.position = pp.position
 left join pot_of_hand poh on poh.hand_id = pp.hand_id
 order by h.tournament_id , h.hand_id;
+
+
+
+ select h.tournament_id, h.table_id,  boh.board,   h.hand_id,   h.level, h.small_blind,  h.big_blind, poh.total_pot,   pp.nickname, pp.position, bp.place,    cop.description, c.card1, c.card2, c.chen,  c.normalised,    c.pair,  c.suited,    pp.stack,    fp.round as fold,    fp.no_bet,   lp.hand_description as loseHand, wp.hand_description as winHand,  wp.pot as winPot,    wp.showdown, h.played_at     from hands h join player_position pp on pp.hand_id = h.hand_id    left join blind_position bp on bp.hand = pp.hand_id and bp.position = pp.position    left join board_of_hand boh on boh.hand_id = h.hand_id   left join cards_of_player cop on cop.hand = pp.hand_id and cop.position = pp.position    left join cards c on c.description = cop.description     left join fold_position fp on fp.hand = pp.hand_id and fp.position = pp.position left join lose_position lp on lp.hand = pp.hand_id and lp.position = pp.position left join win_position wp on wp.hand = pp.hand_id and wp.position = pp.position  left join pot_of_hand poh on poh.hand_id = pp.hand_id
+where h.hand_id = 220856815323;
+
+select * from hand_consolidation hc2 ;
+select 
+	hc.nickname as nickname,
+	count(hc.hand) as totalHands,
+	sum(case when cards_description is null then 0 else 1 end) as showdowns,
+	round(sum(case when cards_description is null then 0 else 1 end) * 100.0/ count(hc.hand)) as showdownStat,
+	round(avg(hc.chen)) as avgChen,
+	min(hc.played_at) as createdAt,
+	string_agg(distinct hc.normalised , ',') as cards,
+	string_agg(hc.cards_description, ',') as rawcards,
+	'd-none' as css
+from hand_consolidation hc
+where 
+	hc.nickname = '$ekelfreddy$'
+group by 
+	hc.nickname;

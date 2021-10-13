@@ -13,12 +13,14 @@ import com.poker.reader.domain.model.PokerLine;
 import com.poker.reader.domain.model.Tournament;
 import com.poker.reader.domain.repository.BlindPositionRepository;
 import com.poker.reader.domain.repository.CardsOfPlayerRepository;
+import com.poker.reader.domain.repository.HandConsolidationRepository;
 import com.poker.reader.domain.repository.HandRepository;
 import com.poker.reader.domain.repository.PlayerPositionRepository;
 import com.poker.reader.domain.repository.PlayerRepository;
 import com.poker.reader.domain.repository.PokerLineRepository;
 import com.poker.reader.domain.repository.StatsRepository;
 import com.poker.reader.domain.repository.TournamentRepository;
+import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
 import com.poker.reader.domain.util.CardUtil;
 import com.poker.reader.view.rs.dto.HandDto;
 import com.poker.reader.view.rs.dto.PageDto;
@@ -54,6 +56,7 @@ import org.springframework.stereotype.Component;
 public class FileHtmlProcessorService {
 
     private static final String DATE_TIME_PATTERN = "dd-MM-yyyy HH:mm:ss";
+    private static final String DATE_PATTERN = "dd-MM-yy";
     private final TournamentRepository tournamentRepository;
     private final PlayerRepository playerRepository;
     private final PlayerPositionRepository playerPositionRepository;
@@ -63,6 +66,7 @@ public class FileHtmlProcessorService {
     private final BlindPositionRepository blindPositionRepository;
     private final StatsRepository statsRepository;
     private final String HERO = "jcarlos.vale";
+    private final HandConsolidationRepository handConsolidationRepository;
 
 
     public Page<PlayerDto> findPaginatedPlayers(Pageable pageable, boolean isMonitoring) {
@@ -71,13 +75,35 @@ public class FileHtmlProcessorService {
         int currentPage = pageable.getPageNumber();
 
         Page<Player> pagePlayers = playerRepository.findAll(pageable);
-        List<PlayerDto> playerDtoList = new ArrayList<>();
-
-        for(Player player: pagePlayers.getContent()) {
-            playerDtoList.add(extractPlayerDtoInfo(player, isMonitoring));
-        }
+        List<String> playerList = pagePlayers.stream().map(Player::getNickname).collect(Collectors.toList());
+        List<PlayerDto> playerDtoList =
+                handConsolidationRepository
+                        .findAllPlayerDto(playerList)
+                        .stream()
+                        .map(playerDtoProjection -> toPlayerDto(playerDtoProjection, isMonitoring))
+                        .collect(Collectors.toList());
 
         return new PageImpl<>(playerDtoList, PageRequest.of(currentPage, pageSize), playerRepository.count());
+    }
+
+    private PlayerDto toPlayerDto(PlayerDtoProjection playerDtoProjection, boolean isMonitoring) {
+        String css = "d-none";
+        if ((!isMonitoring) || (playerDtoProjection.getShowdowns() > 5)) {
+            css = classNameFromChenValue(playerDtoProjection.getAvgChen());
+        }
+
+        return
+                PlayerDto.builder()
+                        .nickname(playerDtoProjection.getNickname())
+                        .totalHands(playerDtoProjection.getTotalHands())
+                        .showdowns(playerDtoProjection.getShowdowns())
+                        .showdownStat(playerDtoProjection.getShowdownStat())
+                        .avgChen(playerDtoProjection.getAvgChen())
+                        .createdAt(DateTimeFormatter.ofPattern(DATE_PATTERN).format(playerDtoProjection.getCreatedAt()))
+                        .cards(CardUtil.sort(playerDtoProjection.getCards()))
+                        .rawCards(playerDtoProjection.getRawCards())
+                        .css(css)
+                        .build();
     }
 
     private PlayerDto extractPlayerDtoInfo(@NonNull Player player, boolean isMonitoring) {
@@ -114,7 +140,7 @@ public class FileHtmlProcessorService {
                         .showdowns(showDowns)
                         .showdownStat(showDowStat)
                         .avgChen(avgChen)
-                        .createdAt(createdAt)
+                        .createdAt(DateTimeFormatter.ofPattern(DATE_PATTERN).format(createdAt))
                         .cards(normalisedCards)
                         .rawCards(rawCards)
                         .css(css)
@@ -159,7 +185,8 @@ public class FileHtmlProcessorService {
                 .collect(Collectors.toList());
     }
 
-    private static String classNameFromChenValue(long avgChenValue) {
+    private static String classNameFromChenValue(Integer avgChenValue) {
+        if (avgChenValue == null) return "bg-danger";
         if (avgChenValue >= 10) return "bg-primary";
         if (avgChenValue >= 8) return "bg-success";
         if (avgChenValue >= 5) return "table-warning";

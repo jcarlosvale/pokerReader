@@ -1,6 +1,5 @@
 package com.poker.reader.view.rs.dto;
 
-import java.time.LocalDateTime;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +28,7 @@ public class PlayerDto {
     private Integer avgChen;
 
     @NotNull
-    private LocalDateTime createdAt;
+    private String createdAt;
 
     @NotNull
     private String cards;
