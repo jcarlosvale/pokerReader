@@ -666,4 +666,88 @@ where
 	
 
 
-select * from win_position wp ;
+select * from win_position wp where hand = 220856815323;
+
+select h.hand_id 
+from hands h
+where h.tournament_id = 3082657132
+order by h.hand_id asc;
+
+select * from fold_position fp ;
+
+
+
+select
+   line,   hand_id,                                                                                                       cast(substring(line from 'Seat ([0-9]*):') as int8) as position,                                               trim(substring(line from 'and lost with (.*)')) as hand_description                                                                                     from pokerline p                                                                                               where                                                                                                             p.section = 'SUMMARY'                                                                                          and p.line like 'Seat%:%'                                                                                   and p.line like '%and lost %';   
+  
+  select * from pokerline p 
+  where p."section" = 'SUMMARY'
+  and p.line like 'Seat%:%'                                                                                   
+  and p.line like '%and lost %';
+   
+ 
+ select * from lose_position order by hand;
+ 
+select 
+	line,
+	p.hand_id as handId,
+	p.tournament_id as tounamentId,
+	trim(substring(line from 'Table ''[0-9]* (.*)''')) as table 
+from pokerline p 
+where p."section" = 'HEADER'
+and p.line like '%Table%';
+
+select * from pot_of_hand poh ;
+
+   select        hand_id,        cast(substring(line from 'Total pot ([0-9]*)')  as int8)    from pokerline    where        section = 'SUMMARY'        and line like '%Total pot%';
+
+      
+      
+select * from hands h 
+join player_position pp on pp.hand_id = h.hand_id
+left join fold_position fp on fp.hand = h.hand_id and fp."position" = pp."position" 
+left join lose_position lp on lp.hand = h.hand_id and lp."position" = pp."position"
+left join win_position  wp on wp.hand = h.hand_id and wp."position" = pp."position"
+left join blind_position bp on bp.hand = h.hand_id and bp."position" = pp."position"
+where h.tournament_id = 3082657132 
+and pp.nickname = 'jcarlos.vale'
+order by h.hand_id;
+
+select 
+	h.tournament_id,
+	h.table_id,
+	boh.board,
+	h.hand_id,
+	h.level,
+ 	h.small_blind,
+	h.big_blind,
+	poh.total_pot,
+	pp.nickname,
+	pp.position,
+	bp.place,
+	cop.description,	
+	c.card1,
+	c.card2,
+	c.chen,
+	c.normalised,
+	c.pair,
+	c.suited,
+	pp.stack,
+	fp.round as fold,
+	fp.no_bet,
+	lp.hand_description as loseHand,
+	wp.hand_description as winHand,
+	wp.pot as winPot,
+	wp.showdown,
+ 	h.played_at 
+from hands h
+join player_position pp on pp.hand_id = h.hand_id
+left join blind_position bp on bp.hand = pp.hand_id and bp.position = pp.position
+left join board_of_hand boh on boh.hand_id = h.hand_id
+left join cards_of_player cop on cop.hand = pp.hand_id and cop.position = pp.position
+left join cards c on c.description = cop.description 
+left join fold_position fp on fp.hand = pp.hand_id and fp.position = pp.position
+left join lose_position lp on lp.hand = pp.hand_id and lp.position = pp.position
+left join win_position wp on wp.hand = pp.hand_id and wp.position = pp.position
+left join pot_of_hand poh on poh.hand_id = pp.hand_id
+order by h.tournament_id , h.hand_id;

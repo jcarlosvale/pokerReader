@@ -44,4 +44,6 @@ public interface HandRepository extends JpaRepository<Hand, Long> {
                     + "order by h.hand_id asc";
     @Query(nativeQuery = true, value = FIND_HAND_ID_BY_TOURNAMENT_ID)
     List<Long> findAllHandIdByTournamentId(@Param("tournamentId") Long tournamentId);
+
+    List<Hand> findAllByTournamentAndHandIdIsLessThanEqualOrderByHandId(Tournament tournament, Long handId);
 }

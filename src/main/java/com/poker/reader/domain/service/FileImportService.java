@@ -1,18 +1,12 @@
 package com.poker.reader.domain.service;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import com.poker.reader.domain.model.FileSection;
 import com.poker.reader.domain.model.PokerLine;
 import com.poker.reader.domain.repository.PokerLineRepository;
 import com.poker.reader.domain.util.Util;
 import com.zaxxer.hikari.HikariDataSource;
-import lombok.NonNull;
-import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.StringUtils;
-import org.postgresql.copy.CopyManager;
-import org.postgresql.jdbc.PgConnection;
-import org.springframework.stereotype.Service;
-
-import javax.sql.DataSource;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,8 +19,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-import static com.google.common.base.Preconditions.checkArgument;
+import javax.sql.DataSource;
+import lombok.NonNull;
+import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
+import org.postgresql.copy.CopyManager;
+import org.postgresql.jdbc.PgConnection;
+import org.springframework.stereotype.Service;
 
 @Service
 @Log4j2
@@ -66,16 +65,22 @@ public class FileImportService {
         FileSection currentSection = FileSection.HEADER;
         Long handId = null;
         Long tournamentId = null;
+        Integer tableId = null;
         long lineNumber = 1L;
         LocalDateTime playedAt = null;
 
-        for(String line : normalisedLines) {
+        for(int i = 0; i < normalisedLines.size(); i++) {
+            String line = normalisedLines.get(i);
             if (line.contains("PokerStars Hand #")) {
                 currentSection = FileSection.HEADER;
                 handId = Long.valueOf(StringUtils.substringBetween(line, "PokerStars Hand #", ": Tournament ").trim());
                 tournamentId = Long.valueOf(StringUtils.substringBetween(line, ": Tournament #", ", ").trim());
                 String strDateTime = StringUtils.substringBetween(line, "[", "]").trim();
                 playedAt = Util.toLocalDateTime(strDateTime);
+
+                //GET TABLE ID NEXT LINE
+                String tableLine = normalisedLines.get(i+1);
+                tableId = Integer.valueOf(StringUtils.substringBetween(tableLine, "Table '" + tournamentId + " ", "'").trim());  //table id
             }
             else if (line.contains("PokerStars Home Game Hand #")) {
                 return List.of();  //dont process home games
@@ -92,7 +97,7 @@ public class FileImportService {
                             .tournamentId(tournamentId)
                             .lineNumber(lineNumber)
                             .handId(handId)
-                            .isProcessed(false)
+                            .tableId(tableId)
                             .playedAt(playedAt)
                             .section(currentSection.name())
                             .line(line)
@@ -152,8 +157,7 @@ public class FileImportService {
 
         try {
 
-            final String COPY = "COPY pokerline (tournament_id, line_number, played_at, section, line, hand_id, " +
-                    "is_processed, filename)"
+            final String COPY = "COPY pokerline (tournament_id, line_number, played_at, section, line, table_id, hand_id, filename)"
                     + " FROM STDIN WITH (FORMAT TEXT, ENCODING 'UTF-8', DELIMITER '\t',"
                     + " HEADER false)";
 
@@ -168,8 +172,8 @@ public class FileImportService {
                 sb.append(pokerLine.getPlayedAt()).append("\t");
                 sb.append(pokerLine.getSection()).append("\t");
                 sb.append(pokerLine.getLine()).append("\t");
+                sb.append(pokerLine.getTableId()).append("\t");
                 sb.append(pokerLine.getHandId()).append("\t");
-                sb.append(pokerLine.getIsProcessed()).append("\t");
                 sb.append(pokerLine.getFilename()).append("\n");
             }
 

@@ -17,6 +17,7 @@ import com.poker.reader.domain.repository.HandRepository;
 import com.poker.reader.domain.repository.PlayerPositionRepository;
 import com.poker.reader.domain.repository.PlayerRepository;
 import com.poker.reader.domain.repository.PokerLineRepository;
+import com.poker.reader.domain.repository.StatsRepository;
 import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.util.CardUtil;
 import com.poker.reader.view.rs.dto.HandDto;
@@ -60,6 +61,7 @@ public class FileHtmlProcessorService {
     private final HandRepository handRepository;
     private final PokerLineRepository pokerLineRepository;
     private final BlindPositionRepository blindPositionRepository;
+    private final StatsRepository statsRepository;
     private final String HERO = "jcarlos.vale";
 
 

@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Table(name = "pot_of_hand")
-public class PotOfHand  implements Serializable {
+public class PotOfHand implements Serializable {
     @Id
     private Long handId;
 

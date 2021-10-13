@@ -27,6 +27,9 @@ public class Hand {
     private Long handId;
 
     @NotNull
+    private Integer tableId;
+
+    @NotNull
     @Size(max = 20)
     private String level;
 

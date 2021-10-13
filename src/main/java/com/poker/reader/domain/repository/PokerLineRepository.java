@@ -86,10 +86,11 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     void saveNewPlayersFromHand(@Param("handId") long handId);
 
     String SAVE_NEW_HANDS = "INSERT INTO hands " +
-            "(hand_id, level, small_blind, big_blind, created_at, played_at, tournament_id) " +
+            "(hand_id, table_id, level, small_blind, big_blind, created_at, played_at, tournament_id) " +
             "(" +
             "   select " +
-            "       hand_id, " +
+            "       hand_id,    " +
+            "       table_id,   " +
             "       trim(substring(line from 'Level(.*)\\(')), " +
             "       cast(trim(substring(line from '\\(([0-9]*)/')) as int8), " +
             "       cast(trim(substring(line from '/([0-9]*)\\)')) as int8), " +
@@ -109,10 +110,11 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     void saveNewHands();
 
     String SAVE_NEW_HANDS_FROM_HAND = "INSERT INTO hands " +
-            "(hand_id, level, small_blind, big_blind, created_at, played_at, tournament_id) " +
+            "(hand_id, table_id, level, small_blind, big_blind, created_at, played_at, tournament_id) " +
             "(" +
             "   select " +
             "       hand_id, " +
+            "       table_id, " +
             "       trim(substring(line from 'Level(.*)\\(')), " +
             "       cast(trim(substring(line from '\\(([0-9]*)/')) as int8), " +
             "       cast(trim(substring(line from '/([0-9]*)\\)')) as int8), " +
@@ -536,6 +538,109 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     @Modifying
     @Query(value = SAVE_LOSE_POSITION_FROM_HAND, nativeQuery = true)
     void saveLosePositions(@Param("handId") long handId);
+
+    String SAVE_HAND_CONSOLIDATION =
+            "INSERT INTO hand_consolidation                                                                                               " +
+                    "(tournament_id, table_id, board, hand, level, small_blind, big_blind, total_pot, nickname, position, place, "
+                    + "cards_description, card1, card2, chen, normalised, pair, suited, stack_of_player, fold_round, no_bet, lose_hand_description, "
+                    + "win_hand_description, win_pot, win_showdown, played_at)                                                              " +
+                    "(                                                                                                              " +
+                    " select "
+                            + "h.tournament_id, "
+                            + "h.table_id,  "
+                            + "boh.board,   "
+                            + "h.hand_id,   "
+                            + "h.level, "
+                            + "h.small_blind,  "
+                            + "h.big_blind, "
+                            + "poh.total_pot,   "
+                            + "pp.nickname, "
+                            + "pp.position, "
+                            + "bp.place,    "
+                            + "cop.description, "
+                            + "c.card1, "
+                            + "c.card2, "
+                            + "c.chen,  "
+                            + "c.normalised,    "
+                            + "c.pair,  "
+                            + "c.suited,    "
+                            + "pp.stack,    "
+                            + "fp.round as fold,    "
+                            + "fp.no_bet,   "
+                            + "lp.hand_description as loseHand, "
+                            + "wp.hand_description as winHand,  "
+                            + "wp.pot as winPot,    "
+                            + "wp.showdown, "
+                            + "h.played_at     "
+                            + "from hands h "
+                            + "join player_position pp on pp.hand_id = h.hand_id    "
+                            + "left join blind_position bp on bp.hand = pp.hand_id and bp.position = pp.position    "
+                            + "left join board_of_hand boh on boh.hand_id = h.hand_id   "
+                            + "left join cards_of_player cop on cop.hand = pp.hand_id and cop.position = pp.position    "
+                            + "left join cards c on c.description = cop.description     "
+                            + "left join fold_position fp on fp.hand = pp.hand_id and fp.position = pp.position "
+                            + "left join lose_position lp on lp.hand = pp.hand_id and lp.position = pp.position "
+                            + "left join win_position wp on wp.hand = pp.hand_id and wp.position = pp.position  "
+                            + "left join pot_of_hand poh on poh.hand_id = pp.hand_id    "
+                            + ")                                                                                                     " +
+                            "on conflict(hand, position)                                                                                    " +
+                            "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_HAND_CONSOLIDATION, nativeQuery = true)
+    void saveHandConsolidation();
+
+    String SAVE_HAND_CONSOLIDATION_FROM_HAND =
+            "INSERT INTO hand_consolidation                                                                                               " +
+                    "(tournament_id, table_id, board, hand, level, small_blind, big_blind, total_pot, nickname, position, place, "
+                    + "cards_description, card1, card2, chen, normalised, pair, suited, stack_of_player, fold_round, no_bet, lose_hand_description, "
+                    + "win_hand_description, win_pot, win_showdown, played_at)                                                              " +
+                    "(                                                                                                              " +
+                    " select "
+                    + "h.tournament_id, "
+                    + "h.table_id,  "
+                    + "boh.board,   "
+                    + "h.hand_id,   "
+                    + "h.level, "
+                    + "h.small_blind,  "
+                    + "h.big_blind, "
+                    + "poh.total_pot,   "
+                    + "pp.nickname, "
+                    + "pp.position, "
+                    + "bp.place,    "
+                    + "cop.description, "
+                    + "c.card1, "
+                    + "c.card2, "
+                    + "c.chen,  "
+                    + "c.normalised,    "
+                    + "c.pair,  "
+                    + "c.suited,    "
+                    + "pp.stack,    "
+                    + "fp.round as fold,    "
+                    + "fp.no_bet,   "
+                    + "lp.hand_description as loseHand, "
+                    + "wp.hand_description as winHand,  "
+                    + "wp.pot as winPot,    "
+                    + "wp.showdown, "
+                    + "h.played_at     "
+                    + "from hands h "
+                    + "join player_position pp on pp.hand_id = h.hand_id    "
+                    + "left join blind_position bp on bp.hand = pp.hand_id and bp.position = pp.position    "
+                    + "left join board_of_hand boh on boh.hand_id = h.hand_id   "
+                    + "left join cards_of_player cop on cop.hand = pp.hand_id and cop.position = pp.position    "
+                    + "left join cards c on c.description = cop.description     "
+                    + "left join fold_position fp on fp.hand = pp.hand_id and fp.position = pp.position "
+                    + "left join lose_position lp on lp.hand = pp.hand_id and lp.position = pp.position "
+                    + "left join win_position wp on wp.hand = pp.hand_id and wp.position = pp.position  "
+                    + "left join pot_of_hand poh on poh.hand_id = pp.hand_id    "
+                    + "where h.hand_id = :handId                                                                               "
+                    + ")                                                                                                     " +
+                    "on conflict(hand, position)                                                                                    " +
+                    "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_HAND_CONSOLIDATION_FROM_HAND, nativeQuery = true)
+    void saveHandConsolidation(@Param("handId") long handId);
 
     String GET_LAST_HAND_FROM_FILE =
             "select max(p.hand_id) from pokerline p where p.filename = :filename";

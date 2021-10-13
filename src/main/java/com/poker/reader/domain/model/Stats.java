@@ -11,20 +11,19 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Table(name = "blind_position")
+@Data
+@Table(name = "stats")
 @IdClass(HandPositionId.class)
-public class BlindPosition implements Serializable {
+public class Stats implements Serializable {
 
     @Id
     private Long hand;
@@ -40,7 +39,25 @@ public class BlindPosition implements Serializable {
     })
     private PlayerPosition playerPosition;
 
+    //how many hands without playing, excluding BB, SB
     @NotNull
-    @Size(max = 20)
-    private String place;
+    private int noActionCount;
+
+    @NotNull
+    private int sbCount;
+
+    @NotNull
+    private int bbCount;
+
+    @NotNull
+    private int buttonCount;
+
+    @NotNull
+    private int latePositionCount;
+
+    @NotNull
+    private int middlePositionCount;
+
+    @NotNull
+    private int earlyPositionCount;
 }
