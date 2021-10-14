@@ -1,6 +1,7 @@
 package com.poker.reader.view.rs;
 
 import com.poker.reader.configuration.PokerReaderProperties;
+import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
 import com.poker.reader.domain.service.FileProcessorService;
 import com.poker.reader.domain.service.FileReaderService;
@@ -9,7 +10,6 @@ import com.poker.reader.view.rs.dto.PageDto;
 import com.poker.reader.view.rs.dto.PlayerDto;
 import com.poker.reader.view.rs.dto.PlayerPositionDto;
 import com.poker.reader.view.rs.dto.StackDto;
-import com.poker.reader.view.rs.dto.TournamentDto;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -63,9 +63,9 @@ public class PokerReaderController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(pokerReaderProperties.getPageSize());
 
-        Page<TournamentDto> tournamentPage =
+        Page<TournamentDtoProjection> tournamentPage =
                 fileHtmlProcessorService.findPaginatedTournaments
-                        (PageRequest.of(currentPage - 1, pageSize, Sort.by("createdAt").descending()));
+                        (PageRequest.of(currentPage - 1, pageSize, Sort.by("playedAt").descending()));
 
         model.addAttribute("tournamentPage", tournamentPage);
 

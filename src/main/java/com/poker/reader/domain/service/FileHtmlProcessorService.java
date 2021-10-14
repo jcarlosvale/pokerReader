@@ -21,13 +21,13 @@ import com.poker.reader.domain.repository.PokerLineRepository;
 import com.poker.reader.domain.repository.StatsRepository;
 import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
+import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import com.poker.reader.domain.util.CardUtil;
 import com.poker.reader.view.rs.dto.HandDto;
 import com.poker.reader.view.rs.dto.PageDto;
 import com.poker.reader.view.rs.dto.PlayerDto;
 import com.poker.reader.view.rs.dto.PlayerPositionDto;
 import com.poker.reader.view.rs.dto.StackDto;
-import com.poker.reader.view.rs.dto.TournamentDto;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -147,28 +147,15 @@ public class FileHtmlProcessorService {
                         .build();
     }
 
-    public Page<TournamentDto> findPaginatedTournaments(Pageable pageable) {
+    public Page<TournamentDtoProjection> findPaginatedTournaments(Pageable pageable) {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
 
         var tournamentsDtoList =
-                tournamentRepository
-                        .findAll(pageable)
-                        .getContent()
-                        .stream()
-                        .map(tournament ->
-                                TournamentDto
-                                        .builder()
-                                        .tournamentId(tournament.getTournamentId())
-                                        .fileName(tournament.getFileName())
-                                        .hands(handRepository.countAllByTournament(tournament))
-                                        .players(tournamentRepository.countPlayers(tournament.getTournamentId()))
-                                        .showdowns(tournamentRepository.countShowdowns(tournament.getTournamentId()))
-                                        .createdAt(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN).format(tournament.getCreatedAt()))
-                                        .build())
-                        .collect(Collectors.toList());
+                handConsolidationRepository
+                        .getAllTournamentsDto(pageable);
 
-        return new PageImpl<>(tournamentsDtoList, PageRequest.of(currentPage, pageSize), tournamentRepository.count());
+        return new PageImpl<>(tournamentsDtoList.getContent(), PageRequest.of(currentPage, pageSize), tournamentRepository.count());
     }
 
     public Long getLasHand(Long tournamentId) {
