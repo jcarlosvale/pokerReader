@@ -10,7 +10,6 @@ import com.poker.reader.domain.model.Hand;
 import com.poker.reader.domain.model.Player;
 import com.poker.reader.domain.model.PlayerPosition;
 import com.poker.reader.domain.model.PokerLine;
-import com.poker.reader.domain.model.Tournament;
 import com.poker.reader.domain.repository.BlindPositionRepository;
 import com.poker.reader.domain.repository.CardsOfPlayerRepository;
 import com.poker.reader.domain.repository.HandConsolidationRepository;
@@ -20,6 +19,7 @@ import com.poker.reader.domain.repository.PlayerRepository;
 import com.poker.reader.domain.repository.PokerLineRepository;
 import com.poker.reader.domain.repository.StatsRepository;
 import com.poker.reader.domain.repository.TournamentRepository;
+import com.poker.reader.domain.repository.projection.HandDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import com.poker.reader.domain.util.CardUtil;
@@ -55,7 +55,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FileHtmlProcessorService {
 
-    private static final String DATE_TIME_PATTERN = "dd-MM-yyyy HH:mm:ss";
+    private static final String DATE_TIME_PATTERN = "dd-MM-yy HH:mm:ss";
     private static final String DATE_PATTERN = "dd-MM-yy";
     private final TournamentRepository tournamentRepository;
     private final PlayerRepository playerRepository;
@@ -97,7 +97,7 @@ public class FileHtmlProcessorService {
                         .showdowns(playerDtoProjection.getShowdowns())
                         .showdownStat(playerDtoProjection.getShowdownStat())
                         .avgChen(playerDtoProjection.getAvgChen())
-                        .createdAt(DateTimeFormatter.ofPattern(DATE_PATTERN).format(playerDtoProjection.getCreatedAt()))
+                        .createdAt(playerDtoProjection.getCreatedAt())
                         .cards(CardUtil.sort(playerDtoProjection.getCards()))
                         .rawCards(playerDtoProjection.getRawCards())
                         .css(css)
@@ -213,16 +213,9 @@ public class FileHtmlProcessorService {
         return "PLAY!";
     }
 
-    public List<HandDto> getHandsFromTournament(Long tournamentId) {
+    public List<HandDtoProjection> getHandsFromTournament(Long tournamentId) {
         checkNotNull(tournamentId, "tournamentId must be not null");
-        Optional<Tournament> tournamentOptional = tournamentRepository.findById(tournamentId);
-        return tournamentOptional
-                .map(tournament -> handRepository
-                        .findAllByTournamentOrderByPlayedAt(tournament)
-                        .stream()
-                        .map(this::toHandDto)
-                        .collect(Collectors.toList()))
-                .orElseGet(List::of);
+        return handConsolidationRepository.getHandsFromTournament(tournamentId);
     }
 
     private HandDto toHandDto(@NonNull Hand hand) {

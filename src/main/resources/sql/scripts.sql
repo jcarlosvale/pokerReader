@@ -791,9 +791,6 @@ group by
 	t.file_name,
 	t.created_at ;
 
-
-
-
 select 
 	distinct hc.nickname as nickname,
 	count(hc.hand) as totalHands,
@@ -807,3 +804,35 @@ select
 from hand_consolidation hc
 group by 
 	hc.nickname;
+	
+select 
+	hc.tournament_id as tournamentId,
+	hc.hand as handId,
+	hc.level as level,
+	concat(hc.small_blind::text || '/', hc.big_blind::text) as blinds,
+	count(distinct hc.nickname) as players,
+	sum(case when hc.cards_description is null then 0 else 1 end) as showdowns,
+	hc.played_at  as playedAt,
+	hc.total_pot as pot,
+	hc.board as board,
+	case 
+		when length(hc.board) = 8 then 'FLOP'
+		when length(hc.board) = 11 then 'TURN'
+		when length(hc.board) = 14 then 'RIVER'
+		else null
+	end as boardShowdown
+from 
+	hand_consolidation hc
+where 
+	hc.tournament_id = 3099770291
+group by
+	hc.tournament_id,
+	hc.hand,
+	hc.level,
+	hc.small_blind,
+	hc.big_blind,
+	hc.played_at,
+	hc.total_pot,
+	hc.board
+order by 
+	hc.played_at;

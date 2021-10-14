@@ -1,6 +1,7 @@
 package com.poker.reader.view.rs;
 
 import com.poker.reader.configuration.PokerReaderProperties;
+import com.poker.reader.domain.repository.projection.HandDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
 import com.poker.reader.domain.service.FileProcessorService;
@@ -65,7 +66,7 @@ public class PokerReaderController {
 
         Page<TournamentDtoProjection> tournamentPage =
                 fileHtmlProcessorService.findPaginatedTournaments
-                        (PageRequest.of(currentPage - 1, pageSize, Sort.by("playedAt").descending()));
+                        (PageRequest.of(currentPage - 1, pageSize, Sort.by("tournamentId").descending()));
 
         model.addAttribute("tournamentPage", tournamentPage);
 
@@ -96,7 +97,7 @@ public class PokerReaderController {
             Model model,
             @PathVariable("tournamentId") Long tournamentId) {
 
-        List<HandDto> handsDto = fileHtmlProcessorService.getHandsFromTournament(tournamentId);
+        List<HandDtoProjection> handsDto = fileHtmlProcessorService.getHandsFromTournament(tournamentId);
         model.addAttribute("handsDto", handsDto);
         model.addAttribute("tournamentId", tournamentId);
 

@@ -1,7 +1,5 @@
 package com.poker.reader.domain.repository.projection;
 
-import java.time.LocalDateTime;
-
 public interface PlayerDtoProjection {
     String getNickname();
 
@@ -13,7 +11,7 @@ public interface PlayerDtoProjection {
 
     Integer getAvgChen();
 
-    LocalDateTime getCreatedAt();
+    String getCreatedAt();
 
     String getCards();
 
