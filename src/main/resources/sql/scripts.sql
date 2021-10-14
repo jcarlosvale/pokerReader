@@ -773,3 +773,37 @@ where
 	hc.nickname = '$ekelfreddy$'
 group by 
 	hc.nickname;
+
+
+select 
+	t.tournament_id as tournamentId,
+	t.file_name as fileName,
+	min(hc.played_at) as createdAt,
+	count(distinct hc.hand) as hands,
+	count(distinct hc.nickname) as players,
+	sum(case when hc.cards_description is null then 0 else 1 end) as showdowns
+from tournaments t
+join hand_consolidation hc on t.tournament_id = hc.tournament_id
+where 
+	t.tournament_id = 3060068759
+group by 
+	t.tournament_id,
+	t.file_name,
+	t.created_at ;
+
+
+
+
+select 
+	distinct hc.nickname as nickname,
+	count(hc.hand) as totalHands,
+	sum(case when cards_description is null then 0 else 1 end) as showdowns,
+	round(sum(case when cards_description is null then 0 else 1 end) * 100.0/ count(hc.hand)) as showdownStat,
+	round(avg(hc.chen)) as avgChen,
+	min(hc.played_at) as createdAt,
+	string_agg(distinct hc.normalised , ', ') as cards,
+	string_agg(hc.cards_description, ', ') as rawcards,
+	'd-none' as css
+from hand_consolidation hc
+group by 
+	hc.nickname;

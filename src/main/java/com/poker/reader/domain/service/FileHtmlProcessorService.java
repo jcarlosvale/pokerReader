@@ -74,11 +74,9 @@ public class FileHtmlProcessorService {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
 
-        Page<Player> pagePlayers = playerRepository.findAll(pageable);
-        List<String> playerList = pagePlayers.stream().map(Player::getNickname).collect(Collectors.toList());
         List<PlayerDto> playerDtoList =
                 handConsolidationRepository
-                        .findAllPlayerDto(playerList)
+                        .getAllPlayerDto(pageable)
                         .stream()
                         .map(playerDtoProjection -> toPlayerDto(playerDtoProjection, isMonitoring))
                         .collect(Collectors.toList());
