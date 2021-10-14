@@ -6,6 +6,7 @@ import com.poker.reader.domain.repository.projection.HandDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,6 +30,24 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "\thc.nickname";
     @Query(value = GET_PLAYER_DTO, nativeQuery = true )
     Page<PlayerDtoProjection> getAllPlayerDto(Pageable pageable);
+
+    String GET_PLAYER_DTO_BY_NICKNAME =
+            "select \n"
+                    + "\tdistinct hc.nickname as nickname,\n"
+                    + "\tcount(hc.hand) as totalHands,\n"
+                    + "\tsum(case when cards_description is null then 0 else 1 end) as showdowns,\n"
+                    + "\tround(sum(case when cards_description is null then 0 else 1 end) * 100.0/ count(hc.hand)) as showdownStat,\n"
+                    + "\tround(avg(hc.chen)) as avgChen,\n"
+                    + "\tto_char(min(hc.played_at), 'dd-mm-yy HH24:MI:SS') as createdAt,\n"
+                    + "\tstring_agg(distinct hc.normalised , ', ') as cards,\n"
+                    + "\tstring_agg(hc.cards_description, ', ') as rawcards,\n"
+                    + "\t'd-none' as css\n"
+                    + "\tfrom hand_consolidation hc\n"
+                    + "\t where hc.nickname = :nickname\n"
+                    + "\tgroup by \n"
+                    + "\thc.nickname";
+    @Query(value = GET_PLAYER_DTO_BY_NICKNAME, nativeQuery = true )
+    Optional<PlayerDtoProjection> getPlayerDtoByNickname(@Param("nickname") String nickname);
 
     String GET_TOURNAMENTS_DTO =
             "select \n"

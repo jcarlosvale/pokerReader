@@ -369,9 +369,9 @@ public class FileHtmlProcessorService {
     }
 
     public PlayerDto findPlayer(String nickname) {
-        Optional<Player> player = playerRepository.findById(nickname);
+        Optional<PlayerDtoProjection> player = handConsolidationRepository.getPlayerDtoByNickname(nickname);
         if (player.isPresent()) {
-            return extractPlayerDtoInfo(player.get(), false);
+            return toPlayerDto(player.get(), false);
         }
         return PlayerDto.builder().build();
     }
