@@ -44,18 +44,12 @@ public class PokerReaderController {
         int pageSize = size.orElse(pokerReaderProperties.getPageSize());
 
         Page<PlayerDto> playerPage =
-                fileHtmlProcessorService.findPaginatedPlayers
-                        (PageRequest.of(currentPage - 1, pageSize, Sort.by("nickname").ascending()), false);
+                fileHtmlProcessorService
+                        .findPaginatedPlayers(PageRequest.of(currentPage - 1, pageSize, Sort.by("nickname").ascending()), false);
 
         model.addAttribute("playerPage", playerPage);
 
-        int totalPages = playerPage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
+        addPaginationToModel(model, playerPage.getTotalPages());
 
         return "players";
     }
@@ -75,13 +69,7 @@ public class PokerReaderController {
 
         model.addAttribute("tournamentPage", tournamentPage);
 
-        int totalPages = tournamentPage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
+        addPaginationToModel(model, tournamentPage.getTotalPages());
 
         return "tournaments";
     }
@@ -179,5 +167,14 @@ public class PokerReaderController {
     @GetMapping("/bootstrap")
     public String bootstrap() {
         return "bootstrap-add";
+    }
+
+    private void addPaginationToModel(Model model, int totalPages) {
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
     }
 }
