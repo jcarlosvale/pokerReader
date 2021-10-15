@@ -852,11 +852,31 @@ group by
 
 
 select 
- *
+	hc.tournament_id,
+	hc.hand,
+	round(avg(hc.stack_of_player)) as avgStack
 from 
 	hand_consolidation hc 
 where 
 	hc.tournament_id = 3099770291
-	and hc.nickname != 'jcarlos.vale'
+	and hc.hand = (select max(hand) from hand_consolidation)
+group by
+	hc.tournament_id,
+	hc.hand;
+	
+select 
+	hc.tournament_id,
+	hc.hand,
+	hc.nickname,
+	hc.stack_of_player,
+	hc.big_blind,
+	round(hc.stack_of_player / hc.big_blind) as blinds,
+	hc.total_pot as pot
+from 
+	hand_consolidation hc 
+where 
+	hc.tournament_id = 3099770291
 	and hc.hand = (select max(hand) from hand_consolidation);
+	
+
 
