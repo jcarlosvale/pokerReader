@@ -72,13 +72,11 @@ public class FileHtmlProcessorService {
     }
 
     private PlayerDto toPlayerDto(PlayerDtoProjection playerDtoProjection, boolean isMonitoring) {
-        String css = "d-none";
+        String css = classNameFromChenValue(playerDtoProjection.getAvgChen());
 
         if (isMonitoring) {
-            if (!playerDtoProjection.getNickname().equals(HERO)) {
-                if ((playerDtoProjection.getShowdowns() > 0)) {
-                    css = classNameFromChenValue(playerDtoProjection.getAvgChen());
-                }
+            if (playerDtoProjection.getNickname().equals(HERO) || (playerDtoProjection.getShowdowns() < 2)) {
+                css = "d-none";
             }
         }
 
