@@ -19,12 +19,12 @@
 	<div class="row">
 		<div class="col-md-12">
 			<table class="table table-sm">
-				<caption th:text="${tournamentId} +
-				' - stack ' + ${stackDto.stackFromHero} +
-				' - min blinds ' + ${stackDto.minBlinds} +
-				' - avg ' + ${stackDto.avgStack} +
-				' - #blinds ' + ${stackDto.blinds} +
-				' : ' + ${stackDto.recommendation}"/>
+				<caption th:text="${recommendationDto.tournamentId} +
+				' - stack ' + ${recommendationDto.stack} +
+				' - min blinds ' + ${recommendationDto.minBlinds} +
+				' - avg ' + ${recommendationDto.avgStack} +
+				' - #blinds ' + ${recommendationDto.blinds} +
+				' : ' + ${recommendationDto.recommendation}"/>
 				<thead>
 					<tr>
 						<th>nickname</th>
@@ -37,13 +37,13 @@
 				</thead>
 				<tbody>
 					<tr th:each="player : ${playersMonitoredList}"
-							th:class="${player.css}">
-						<td th:text="${player.nickname}" />
-						<td th:text="${player.avgChen}" />
-						<td th:text="${player.showdowns}" />
-						<td th:text="${player.totalHands}" />
-						<td th:text="${player.showdownStat}" />
-						<td th:text="${player.cards}" />
+							th:class="${player.playerDto.css}">
+						<td th:text="${player.playerDto.nickname}" />
+						<td th:text="${player.playerDto.avgChen}" />
+						<td th:text="${player.playerDto.showdowns}" />
+						<td th:text="${player.playerDto.totalHands}" />
+						<td th:text="${player.playerDto.showdownStat}" />
+						<td th:text="${player.playerDto.cards}" />
 					</tr>
 				</tbody>
 			</table>

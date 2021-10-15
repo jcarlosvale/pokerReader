@@ -812,7 +812,7 @@ select
 	concat(hc.small_blind::text || '/', hc.big_blind::text) as blinds,
 	count(distinct hc.nickname) as players,
 	sum(case when hc.cards_description is null then 0 else 1 end) as showdowns,
-	hc.played_at  as playedAt,
+	to_char(hc.played_at, 'dd-mm-yy HH24:MI:SS')  as playedAt,
 	hc.total_pot as pot,
 	hc.board as board,
 	case 
@@ -836,3 +836,27 @@ group by
 	hc.board
 order by 
 	hc.played_at;
+	
+select 
+	t.tournament_id as tournamentId,
+	t.file_name as fileName,
+	to_char(min(hc.played_at), 'dd-mm-yy HH24:MI:SS') as playedAt,
+	count(distinct hc.hand) as hands,
+	count(distinct hc.nickname) as players,
+	sum(case when hc.cards_description is null then 0 else 1 end) as showdowns
+from tournaments t
+join hand_consolidation hc on t.tournament_id = hc.tournament_id
+group by 
+	t.tournament_id,
+	t.file_name;
+
+
+select 
+ *
+from 
+	hand_consolidation hc 
+where 
+	hc.tournament_id = 3099770291
+	and hc.nickname != 'jcarlos.vale'
+	and hc.hand = (select max(hand) from hand_consolidation);
+

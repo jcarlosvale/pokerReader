@@ -4,6 +4,7 @@ import com.poker.reader.domain.model.HandConsolidation;
 import com.poker.reader.domain.model.HandPositionId;
 import com.poker.reader.domain.repository.projection.HandDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
+import com.poker.reader.domain.repository.projection.StackDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import java.util.List;
 import java.util.Optional;
@@ -99,4 +100,35 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "\thc.played_at";
     @Query(value = GET_HANDS_FROM_TOURNAMENT, nativeQuery = true )
     List<HandDtoProjection> getHandsFromTournament(@Param("tournamentId") Long tournamentId);
+
+    String CALCULATE_AVG_STACK_FROM_LAST_HAND_OF_TOURNAMENT =
+            "select \n"
+                    + "\tround(avg(hc.stack_of_player)) as avgStack\n"
+                    + "from \n"
+                    + "\thand_consolidation hc \n"
+                    + "where \n"
+                    + "\thc.tournament_id = :tournamentId\n"
+                    + "\tand hc.hand = (select max(hand) from hand_consolidation)\n"
+                    + "group by\n"
+                    + "\thc.tournament_id,\n"
+                    + "\thc.hand";
+    @Query(value = CALCULATE_AVG_STACK_FROM_LAST_HAND_OF_TOURNAMENT, nativeQuery = true )
+    int calculateAvgStackFromLastHandOfTournament(@Param("tournamentId") Long tournamentId);
+
+    String GET_PLAYERS_STACKS_FROM_LAST_HAND_OF_TOURNAMENT =
+            "select \n"
+                    + "\thc.tournament_id as tournamentId,\n"
+                    + "\thc.hand as handId,\n"
+                    + "\thc.nickname as nickname,\n"
+                    + "\thc.stack_of_player as stackOfPlayer,\n"
+                    + "\thc.big_blind as bigBlind,\n"
+                    + "\tround(hc.stack_of_player / hc.big_blind) as blinds,\n"
+                    + "\thc.total_pot as pot\n"
+                    + "from \n"
+                    + "\thand_consolidation hc \n"
+                    + "where \n"
+                    + "\thc.tournament_id = :tournamentId\n"
+                    + "\tand hc.hand = (select max(hand) from hand_consolidation)\n";
+    @Query(value = GET_PLAYERS_STACKS_FROM_LAST_HAND_OF_TOURNAMENT, nativeQuery = true )
+    List<StackDtoProjection> getPlayersStacksFromLastHandOfTournament(@Param("tournamentId") Long tournamentId);
 }

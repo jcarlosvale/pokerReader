@@ -10,7 +10,6 @@ import com.poker.reader.view.rs.dto.HandDto;
 import com.poker.reader.view.rs.dto.PageDto;
 import com.poker.reader.view.rs.dto.PlayerDto;
 import com.poker.reader.view.rs.dto.PlayerPositionDto;
-import com.poker.reader.view.rs.dto.StackDto;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -76,18 +75,16 @@ public class PokerReaderController {
     }
 
     @GetMapping("/monitoring/{tournamentId}")
-    public String listLastPlayersFromTournament(
+    public String monitorTournament(
             Model model,
             @PathVariable("tournamentId") Long tournamentId) {
 
-        Long handId = fileHtmlProcessorService.getLasHand(tournamentId);
-        StackDto stackDto = fileHtmlProcessorService.calculateAvgStack(handId);
-        List<PlayerDto> playerDtoList = fileHtmlProcessorService.getPlayersToMonitorFromHand(handId);
+        var playerMonitoredDtoList = fileHtmlProcessorService.getPlayersToMonitorFromLastHandOfTournament(tournamentId);
+        var recommendationDto = fileHtmlProcessorService.getRecommendation(playerMonitoredDtoList);
 
-        model.addAttribute("playersMonitoredList", playerDtoList);
-        model.addAttribute("stackDto", stackDto);
-        model.addAttribute("handId", handId);
+        model.addAttribute("playersMonitoredList", playerMonitoredDtoList);
         model.addAttribute("tournamentId", tournamentId);
+        model.addAttribute("recommendationDto", recommendationDto);
 
         return "monitoring";
     }
@@ -127,7 +124,7 @@ public class PokerReaderController {
             Model model,
             @PathVariable("nickname") String nickname) {
 
-        PlayerDto playerDto = fileHtmlProcessorService.findPlayer(nickname);
+        PlayerDto playerDto = fileHtmlProcessorService.findPlayer(nickname, false);
         model.addAttribute("player", playerDto);
         return "player";
     }
