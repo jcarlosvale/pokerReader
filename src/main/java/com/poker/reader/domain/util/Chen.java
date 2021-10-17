@@ -2,8 +2,6 @@ package com.poker.reader.domain.util;
 
 import static com.poker.reader.domain.util.CardUtil.valueOf;
 
-import com.poker.reader.dto.NormalisedCardsDto;
-
 /**
  * https://www.thepokerbank.com/strategy/basic/starting-hand-selection/chen-formula/
  */
@@ -55,15 +53,6 @@ public class Chen {
                 card.charAt(0) == card.charAt(1),
                 card.length() > 2 && card.charAt(2) == 's');
     }
-
-    public static int calculateChenFormulaFrom(NormalisedCardsDto normalisedCardsDto) {
-        return calculateChenFormulaFrom(
-                normalisedCardsDto.getCard1(),
-                normalisedCardsDto.getCard2(),
-                normalisedCardsDto.isPair(),
-                normalisedCardsDto.isSuited());
-    }
-
 
     private static double chenValueOf(char card) {
         if (card == 'T') return 5;
