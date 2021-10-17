@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -151,13 +152,12 @@ public class FileHtmlProcessorService {
 
         List<PlayerDetailsDtoProjection> playerDetailsDtoProjectionList = handConsolidationRepository.getPlayersDetailsFromHand(handId);
 
-        Map<Integer, String> mapOfPosition =
-                getMapOfPosition(playerDetailsDtoProjectionList);
+        Map<Integer, String> mapOfPosition = getMapOfPosition(playerDetailsDtoProjectionList);
 
         return
                 playerDetailsDtoProjectionList
                         .stream()
-                        .map(playerDetailsDtoProjection -> toPlayerPositionDto(playerDetailsDtoProjection, mapOfPosition))
+                        .map(playerDetailsDtoProjection -> toPlayerDetailsDto(playerDetailsDtoProjection, mapOfPosition))
                         .collect(Collectors.toList());
     }
 
@@ -170,7 +170,7 @@ public class FileHtmlProcessorService {
                         .findFirst();
     }
 
-    private PlayerDetailsDto toPlayerPositionDto(PlayerDetailsDtoProjection playerDetailsDtoProjection, Map<Integer, String> mapOfPosition) {
+    private PlayerDetailsDto toPlayerDetailsDto(PlayerDetailsDtoProjection playerDetailsDtoProjection, Map<Integer, String> mapOfPosition) {
         return
                 PlayerDetailsDto
                         .builder()
@@ -303,6 +303,8 @@ public class FileHtmlProcessorService {
 
                 int minPosition = playerDetailsDtoProjectionList.stream().mapToInt(PlayerDetailsDtoProjection::getPosition).min().orElseThrow();
                 int maxPosition = playerDetailsDtoProjectionList.stream().mapToInt(PlayerDetailsDtoProjection::getPosition).max().orElseThrow();
+                Set<Integer> positions = playerDetailsDtoProjectionList.stream().map(PlayerDetailsDtoProjection::getPosition)
+                        .collect(Collectors.toSet());
 
                 LinkedList<Integer> linkedList = new LinkedList();
 
@@ -310,11 +312,11 @@ public class FileHtmlProcessorService {
                 linkedList.add(buttonPosition);
                 //left from BTN position
                 for(int i = buttonPosition-1; i>=minPosition; i--) {
-                    linkedList.addFirst(i);
+                    if(positions.contains(i)) linkedList.addFirst(i);
                 }
                 //right from BTN position
                 for(int i = maxPosition; i > buttonPosition; i--) {
-                    linkedList.addFirst(i);
+                    if(positions.contains(i)) linkedList.addFirst(i);
                 }
 
                 if (numberOfPlayers == 4) {

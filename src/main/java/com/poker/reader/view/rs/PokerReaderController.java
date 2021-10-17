@@ -6,6 +6,7 @@ import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
 import com.poker.reader.domain.service.FileProcessorService;
 import com.poker.reader.domain.service.FileReaderService;
+import com.poker.reader.domain.service.StatsService;
 import com.poker.reader.view.rs.dto.HandDto;
 import com.poker.reader.view.rs.dto.PageDto;
 import com.poker.reader.view.rs.dto.PlayerDetailsDto;
@@ -32,6 +33,7 @@ public class PokerReaderController {
     private final FileHtmlProcessorService fileHtmlProcessorService;
     private final FileReaderService fileReaderService;
     private final FileProcessorService fileProcessorService;
+    private final StatsService statsService;
     private final PokerReaderProperties pokerReaderProperties;
 
     @GetMapping("/players")
@@ -108,6 +110,7 @@ public class PokerReaderController {
 
         List<PlayerDetailsDto> playerDetailsDtoList = fileHtmlProcessorService.getPlayersDetailsFromHand(handId);
         HandDto handDto = fileHtmlProcessorService.extractHandDto(playerDetailsDtoList);
+        statsService.loadStats(handDto.getTournamentId(), handDto.getHandId(), playerDetailsDtoList);
         String rawData = fileHtmlProcessorService.getRawDataFrom(handId);
         PageDto pageDto = fileHtmlProcessorService.createHandPaginationFromTournament(handId, handDto.getTournamentId());
 

@@ -184,4 +184,20 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "hc.hand = :handId";
     @Query(value = GET_PLAYERS_DETAILS_FROM_HAND, nativeQuery = true )
     List<PlayerDetailsDtoProjection> getPlayersDetailsFromHand(@Param("handId") Long handId);
+
+    String GET_HANDS_FROM_PLAYERS_UNTIL_HAND_ID_BY_TOURNAMENT_ORDER_BY_NICKNAME =
+            "select \n"
+                    + "row_number() over(), \n"
+                    + "*\n"
+                    + "from \n"
+                    + "\thand_consolidation hc \n"
+                    + "where \n"
+                    + "\thc.hand <= :handId\n"
+                    + "and hc.tournament_id = :tournamentId\n"
+                    + "and hc.nickname in (select nickname from hand_consolidation where hand = :handId)\n"
+                    + "order by \n"
+                    + "\thc.nickname,\n"
+                    + "\thc.hand\n";
+    @Query(value = GET_HANDS_FROM_PLAYERS_UNTIL_HAND_ID_BY_TOURNAMENT_ORDER_BY_NICKNAME, nativeQuery = true )
+    List<HandConsolidation> getHandsFromPlayersUntilHandIdByTournamentOrderByNickname(@Param("handId") Long handId, @Param("tournamentId") Long tournamentId);
 }

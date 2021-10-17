@@ -73,6 +73,11 @@
                                 <th>Stack</th>
                                 <th>#blinds</th>
                                 <th>#hand</th>
+                                <th>#noAction</th>
+                                <th>%noAction</th>
+                                <th>#SB</th>
+                                <th>#BB</th>
+                                <th>#BTN</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,8 +88,13 @@
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.cards}" th:classappend="${playerDetailsDto.cssChen}"/>
                                 <td th:text="${playerDetailsDto.pokerTablePosition}" />
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.stackOfPlayer}" />
-                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.blinds}" />
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.blindsCount}" />
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.handDescription}" th:classappend="${playerDetailsDto.cssNickname}"/>
+                                <td th:text="${playerDetailsDto.statsDto.noActionCount}"/>
+                                <td th:text="${playerDetailsDto.statsDto.noActionPerc}"/>
+                                <td th:text="${playerDetailsDto.statsDto.sbCount}"/>
+                                <td th:text="${playerDetailsDto.statsDto.bbCount}"/>
+                                <td th:text="${playerDetailsDto.statsDto.buttonCount}"/>
                             </tr>
                         </tbody>
                     </table>

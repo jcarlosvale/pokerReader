@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 public class PlayerDetailsDto {
 
     private PlayerDetailsDtoProjection playerDetailsDtoProjection;
+    private StatsDto statsDto;
+
     private String pokerTablePosition;
     private String cssChen;
     private String cssNickname;
