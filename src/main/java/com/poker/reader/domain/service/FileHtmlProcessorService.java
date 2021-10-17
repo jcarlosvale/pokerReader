@@ -97,7 +97,7 @@ public class FileHtmlProcessorService {
     }
 
     private static String classNameFromChenValue(Integer avgChenValue) {
-        if (avgChenValue == null) return "bg-danger";
+        if (avgChenValue == null) return "";
         if (avgChenValue >= 10) return "bg-primary";
         if (avgChenValue >= 8) return "bg-success";
         if (avgChenValue >= 5) return "table-warning";
