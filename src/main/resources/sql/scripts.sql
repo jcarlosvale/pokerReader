@@ -914,7 +914,7 @@ select
 		else true
 	end as isWinner,
 	case 
-		when hc.win_pot is null then true
+		when hc.lose_hand_description is not null then true
 		else false
 	end as isLose,
 	case
@@ -926,3 +926,11 @@ select
 from hand_consolidation hc 
 where 
 hc.hand = 222697180735;
+
+select * 
+from hand_consolidation hc 
+where 
+hc.hand = 222697180735;
+
+
+select count(*) from players p ;

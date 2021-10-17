@@ -65,6 +65,7 @@
                     <table class="table table-sm table-bordered">
                         <thead>
                             <tr>
+                                <th>#</th>
                                 <th>Nickname</th>
                                 <th>Chen</th>
                                 <th>Cards</th>
@@ -76,6 +77,7 @@
                         </thead>
                         <tbody>
                             <tr th:each="playerDetailsDto : ${playerDetailsDtoList}">
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.position}"/>
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.nickname}" th:classappend="${playerDetailsDto.cssNickname}"/>
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.chen}" th:classappend="${playerDetailsDto.cssChen}"/>
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.cards}" th:classappend="${playerDetailsDto.cssChen}"/>

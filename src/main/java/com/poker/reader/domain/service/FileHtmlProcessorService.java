@@ -20,6 +20,8 @@ import com.poker.reader.view.rs.dto.PlayerDto;
 import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -149,14 +151,8 @@ public class FileHtmlProcessorService {
 
         List<PlayerDetailsDtoProjection> playerDetailsDtoProjectionList = handConsolidationRepository.getPlayersDetailsFromHand(handId);
 
-        Optional<Integer> button = getPositionByPlace(playerDetailsDtoProjectionList, "button");
-
-        Optional<Integer> smallBlind = getPositionByPlace(playerDetailsDtoProjectionList, "small blind");
-
-        Optional<Integer> bigBlind = getPositionByPlace(playerDetailsDtoProjectionList, "big blind");
-
         Map<Integer, String> mapOfPosition =
-                CardUtil.getMapOfPosition(playerDetailsDtoProjectionList.size(), button.orElse(null), smallBlind.orElse(null), bigBlind.orElse(null));
+                getMapOfPosition(playerDetailsDtoProjectionList);
 
         return
                 playerDetailsDtoProjectionList
@@ -283,4 +279,90 @@ public class FileHtmlProcessorService {
         }
         return "PLAY!";
     }
+
+    public Map<Integer, String> getMapOfPosition(List<PlayerDetailsDtoProjection> playerDetailsDtoProjectionList) {
+
+        int buttonPosition = getPositionByPlace(playerDetailsDtoProjectionList, "button").orElseThrow();
+
+        int bigBlindPosition = getPositionByPlace(playerDetailsDtoProjectionList, "big blind").orElseThrow();
+
+        int numberOfPlayers = playerDetailsDtoProjectionList.size();
+
+        Map<Integer, String> mapOfPosition = new HashMap<>();
+        mapOfPosition.put(bigBlindPosition, "BB");
+
+        if (numberOfPlayers == 2) {
+            mapOfPosition.put(buttonPosition, "SB, BTN");
+        }
+        else {
+            int smallBlindPosition = getPositionByPlace(playerDetailsDtoProjectionList, "small blind").orElseThrow();
+            mapOfPosition.put(buttonPosition, "BTN");
+            mapOfPosition.put(smallBlindPosition, "SB");
+
+            if (numberOfPlayers > 3) {
+
+                int minPosition = playerDetailsDtoProjectionList.stream().mapToInt(PlayerDetailsDtoProjection::getPosition).min().orElseThrow();
+                int maxPosition = playerDetailsDtoProjectionList.stream().mapToInt(PlayerDetailsDtoProjection::getPosition).max().orElseThrow();
+
+                LinkedList<Integer> linkedList = new LinkedList();
+
+                //BTN last position
+                linkedList.add(buttonPosition);
+                //left from BTN position
+                for(int i = buttonPosition-1; i>=minPosition; i--) {
+                    linkedList.addFirst(i);
+                }
+                //right from BTN position
+                for(int i = maxPosition; i > buttonPosition; i--) {
+                    linkedList.addFirst(i);
+                }
+
+                if (numberOfPlayers == 4) {
+                    mapOfPosition.put(linkedList.get(2), "CO");
+                }
+                if (numberOfPlayers == 5) {
+                    mapOfPosition.put(linkedList.get(2), "HJ");
+                    mapOfPosition.put(linkedList.get(3), "CO");
+                }
+                if (numberOfPlayers == 6) {
+                    mapOfPosition.put(linkedList.get(2), "MP");
+                    mapOfPosition.put(linkedList.get(3), "HJ");
+                    mapOfPosition.put(linkedList.get(4), "CO");
+                }
+                if (numberOfPlayers == 7) {
+                    mapOfPosition.put(linkedList.get(2), "UTG");
+                    mapOfPosition.put(linkedList.get(3), "MP");
+                    mapOfPosition.put(linkedList.get(4), "HJ");
+                    mapOfPosition.put(linkedList.get(5), "CO");
+                }
+                if (numberOfPlayers == 8) {
+                    mapOfPosition.put(linkedList.get(2), "UTG");
+                    mapOfPosition.put(linkedList.get(3), "MP");
+                    mapOfPosition.put(linkedList.get(4), "MP");
+                    mapOfPosition.put(linkedList.get(5), "HJ");
+                    mapOfPosition.put(linkedList.get(6), "CO");
+                }
+                if (numberOfPlayers == 9) {
+                    mapOfPosition.put(linkedList.get(2), "UTG");
+                    mapOfPosition.put(linkedList.get(3), "UTG");
+                    mapOfPosition.put(linkedList.get(4), "MP");
+                    mapOfPosition.put(linkedList.get(5), "MP");
+                    mapOfPosition.put(linkedList.get(6), "HJ");
+                    mapOfPosition.put(linkedList.get(7), "CO");
+                }
+                if (numberOfPlayers == 10) {
+                    mapOfPosition.put(linkedList.get(2), "UTG");
+                    mapOfPosition.put(linkedList.get(3), "UTG");
+                    mapOfPosition.put(linkedList.get(4), "UTG");
+                    mapOfPosition.put(linkedList.get(5), "MP");
+                    mapOfPosition.put(linkedList.get(6), "MP");
+                    mapOfPosition.put(linkedList.get(7), "HJ");
+                    mapOfPosition.put(linkedList.get(8), "CO");
+                }
+            }
+        }
+
+        return mapOfPosition;
+    }
+
 }
