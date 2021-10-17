@@ -2,37 +2,28 @@ package com.poker.reader.domain.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.poker.reader.domain.model.BlindPosition;
-import com.poker.reader.domain.model.Cards;
-import com.poker.reader.domain.model.CardsOfPlayer;
-import com.poker.reader.domain.model.Hand;
-import com.poker.reader.domain.model.PlayerPosition;
 import com.poker.reader.domain.model.PokerLine;
-import com.poker.reader.domain.repository.BlindPositionRepository;
 import com.poker.reader.domain.repository.HandConsolidationRepository;
 import com.poker.reader.domain.repository.HandRepository;
 import com.poker.reader.domain.repository.PlayerRepository;
 import com.poker.reader.domain.repository.PokerLineRepository;
 import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.repository.projection.HandDtoProjection;
+import com.poker.reader.domain.repository.projection.PlayerDetailsDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import com.poker.reader.domain.util.CardUtil;
 import com.poker.reader.view.rs.dto.HandDto;
 import com.poker.reader.view.rs.dto.PageDto;
+import com.poker.reader.view.rs.dto.PlayerDetailsDto;
 import com.poker.reader.view.rs.dto.PlayerDto;
 import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
-import com.poker.reader.view.rs.dto.PlayerPositionDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -46,12 +37,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class FileHtmlProcessorService {
 
-    private static final String DATE_TIME_PATTERN = "dd-MM-yy HH:mm:ss";
     private final TournamentRepository tournamentRepository;
     private final PlayerRepository playerRepository;
     private final HandRepository handRepository;
     private final PokerLineRepository pokerLineRepository;
-    private final BlindPositionRepository blindPositionRepository;
     private final String HERO = "jcarlos.vale";
     private final HandConsolidationRepository handConsolidationRepository;
 
@@ -122,22 +111,6 @@ public class FileHtmlProcessorService {
         return handConsolidationRepository.getHandsFromTournament(tournamentId);
     }
 
-    private HandDto toHandDto(@NonNull Hand hand) {
-        return HandDto
-                .builder()
-                .tournamentId(hand.getTournament().getTournamentId())
-                .handId(hand.getHandId())
-                .level(hand.getLevel())
-                .blinds(hand.getSmallBlind() + "/" + hand.getBigBlind())
-                .players(handRepository.countPlayers(hand.getHandId()))
-                .showdowns(handRepository.countShowdowns(hand.getHandId()))
-                .pot(hand.getPotOfHand().getTotalPot())
-                .board(hand.getBoardOfHand() == null ? "" : hand.getBoardOfHand().getBoard())
-                .boardShowdown(hand.getBoardOfHand() == null ? "" : extractBoardShowdownFrom(hand.getBoardOfHand().getBoard()))
-                .playedAt(DateTimeFormatter.ofPattern(DATE_TIME_PATTERN).format(hand.getPlayedAt()))
-                .build();
-    }
-
     private String extractBoardShowdownFrom(String board) {
         int countCards = board.split(" ").length;
         if (countCards == 5) return "RIVER";
@@ -146,12 +119,21 @@ public class FileHtmlProcessorService {
         return "";
     }
 
-    public HandDto getHandInfo(Long handId) {
-        return
-                handRepository
-                        .findById(handId)
-                        .map(this::toHandDto)
-                        .orElseGet(() -> HandDto.builder().build());
+    public HandDto extractHandDto(List<PlayerDetailsDto> playerDetailsDtoList) {
+        if (playerDetailsDtoList.isEmpty()) return HandDto.builder().build();
+        PlayerDetailsDtoProjection playerDetailsDtoProjection = playerDetailsDtoList.get(0).getPlayerDetailsDtoProjection();
+        return HandDto
+                .builder()
+                .tournamentId(playerDetailsDtoProjection.getTournamentId())
+                .handId(playerDetailsDtoProjection.getHandId())
+                .level(playerDetailsDtoProjection.getLevel())
+                .blinds(playerDetailsDtoProjection.getBlinds())
+                .players(playerDetailsDtoList.size())
+                .pot(playerDetailsDtoProjection.getPot())
+                .board(playerDetailsDtoProjection.getBoard())
+                .boardShowdown(playerDetailsDtoProjection.getBoardShowdown())
+                .playedAt(playerDetailsDtoProjection.getPlayedAt())
+                .build();
     }
 
     public String getRawDataFrom(Long handId) {
@@ -163,113 +145,54 @@ public class FileHtmlProcessorService {
                     .collect(Collectors.joining("<br>"));
     }
 
-    public List<PlayerPositionDto> getPlayersFromHand(Long handId) {
-        Hand hand = handRepository.getById(handId);
-        List<PlayerPosition> playersPositions = hand.getPlayerPositions();
+    public List<PlayerDetailsDto> getPlayersDetailsFromHand(Long handId) {
 
-        BlindPosition button = blindPositionRepository.findBlindPositionByHandAndPlace(hand.getHandId(), "button");
-        BlindPosition smallBlind =
-                blindPositionRepository.findBlindPositionByHandAndPlace(hand.getHandId(), "small blind");
-        BlindPosition bigBlind =
-                blindPositionRepository.findBlindPositionByHandAndPlace(hand.getHandId(), "big blind");
+        List<PlayerDetailsDtoProjection> playerDetailsDtoProjectionList = handConsolidationRepository.getPlayersDetailsFromHand(handId);
 
-        Map<Integer, String> mapOfPosition = getMapOfPosition(playersPositions.size(), button.getPosition(),
-                smallBlind == null ? null : smallBlind.getPosition(), bigBlind.getPosition());
+        Optional<Integer> button = getPositionByPlace(playerDetailsDtoProjectionList, "button");
+
+        Optional<Integer> smallBlind = getPositionByPlace(playerDetailsDtoProjectionList, "small blind");
+
+        Optional<Integer> bigBlind = getPositionByPlace(playerDetailsDtoProjectionList, "big blind");
+
+        Map<Integer, String> mapOfPosition =
+                CardUtil.getMapOfPosition(playerDetailsDtoProjectionList.size(), button.orElse(null), smallBlind.orElse(null), bigBlind.orElse(null));
 
         return
-                playersPositions
+                playerDetailsDtoProjectionList
                         .stream()
-                        .map(playerPosition -> toPlayerPositionDto(playerPosition, hand, mapOfPosition))
+                        .map(playerDetailsDtoProjection -> toPlayerPositionDto(playerDetailsDtoProjection, mapOfPosition))
                         .collect(Collectors.toList());
     }
 
-    private Map<Integer, String> getMapOfPosition(int numberOfPlayers, Integer buttonPosition, Integer smallBlindPosition,
-                                                  Integer bigBlindPosition) {
-        Map<Integer, String> mapOfPosition = new HashMap<>();
-        mapOfPosition.put(bigBlindPosition, "BB");
-        if (numberOfPlayers == 2) {
-            mapOfPosition.put(buttonPosition, "SB, BTN");
-        } else {
-            mapOfPosition.put(buttonPosition, "BTN");
-            mapOfPosition.put(smallBlindPosition, "SB");
-            if (numberOfPlayers == 4) {
-                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers, "CO");
-            }
-            if (numberOfPlayers == 5) {
-                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers, "HJ");
-                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "CO");
-            }
-            if (numberOfPlayers == 6) {
-                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers, "UTG");
-                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "HJ");
-                mapOfPosition.put(bigBlindPosition + 3 <= numberOfPlayers ?  bigBlindPosition + 3 : (bigBlindPosition + 3) % numberOfPlayers, "CO");
-            }
-            if (numberOfPlayers == 7) {
-                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers, "UTG");
-                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "MP");
-                mapOfPosition.put(bigBlindPosition + 3 <= numberOfPlayers ?  bigBlindPosition + 3 : (bigBlindPosition + 3) % numberOfPlayers, "HJ");
-                mapOfPosition.put(bigBlindPosition + 4 <= numberOfPlayers ?  bigBlindPosition + 4 : (bigBlindPosition + 4) % numberOfPlayers, "CO");
-            }
-            if (numberOfPlayers == 8) {
-                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers, "UTG");
-                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "UTG");
-                mapOfPosition.put(bigBlindPosition + 3 <= numberOfPlayers ?  bigBlindPosition + 3 : (bigBlindPosition + 3) % numberOfPlayers, "MP");
-                mapOfPosition.put(bigBlindPosition + 4 <= numberOfPlayers ?  bigBlindPosition + 4 : (bigBlindPosition + 4) % numberOfPlayers, "HJ");
-                mapOfPosition.put(bigBlindPosition + 5 <= numberOfPlayers ?  bigBlindPosition + 5 : (bigBlindPosition + 5) % numberOfPlayers, "CO");
-            }
-            if (numberOfPlayers == 9) {
-                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers , "UTG");
-                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "UTG");
-                mapOfPosition.put(bigBlindPosition + 3 <= numberOfPlayers ?  bigBlindPosition + 3 : (bigBlindPosition + 3) % numberOfPlayers, "MP");
-                mapOfPosition.put(bigBlindPosition + 4 <= numberOfPlayers ?  bigBlindPosition + 4 : (bigBlindPosition + 4) % numberOfPlayers, "MP");
-                mapOfPosition.put(bigBlindPosition + 5 <= numberOfPlayers ?  bigBlindPosition + 5 : (bigBlindPosition + 5) % numberOfPlayers, "HJ");
-                mapOfPosition.put(bigBlindPosition + 6 <= numberOfPlayers ?  bigBlindPosition + 6 : (bigBlindPosition + 6) % numberOfPlayers, "CO");
-            }
-            if (numberOfPlayers == 10) {
-                mapOfPosition.put(bigBlindPosition + 1 <= numberOfPlayers ?  bigBlindPosition + 1 : (bigBlindPosition + 1) % numberOfPlayers , "UTG");
-                mapOfPosition.put(bigBlindPosition + 2 <= numberOfPlayers ?  bigBlindPosition + 2 : (bigBlindPosition + 2) % numberOfPlayers, "UTG");
-                mapOfPosition.put(bigBlindPosition + 3 <= numberOfPlayers ?  bigBlindPosition + 3 : (bigBlindPosition + 3) % numberOfPlayers, "UTG");
-                mapOfPosition.put(bigBlindPosition + 4 <= numberOfPlayers ?  bigBlindPosition + 4 : (bigBlindPosition + 4) % numberOfPlayers, "MP");
-                mapOfPosition.put(bigBlindPosition + 5 <= numberOfPlayers ?  bigBlindPosition + 5 : (bigBlindPosition + 5) % numberOfPlayers, "MP");
-                mapOfPosition.put(bigBlindPosition + 6 <= numberOfPlayers ?  bigBlindPosition + 6 : (bigBlindPosition + 6) % numberOfPlayers, "HJ");
-                mapOfPosition.put(bigBlindPosition + 7 <= numberOfPlayers ?  bigBlindPosition + 7 : (bigBlindPosition + 7) % numberOfPlayers, "CO");
-            }
-        }
-
-        return mapOfPosition;
+    private Optional<Integer> getPositionByPlace(List<PlayerDetailsDtoProjection> playerDetailsDtoProjectionList, String place) {
+        return
+                playerDetailsDtoProjectionList
+                        .stream()
+                        .filter(handConsolidation -> handConsolidation.getPlace() != null && handConsolidation.getPlace().equals(place))
+                        .map(PlayerDetailsDtoProjection::getPosition)
+                        .findFirst();
     }
 
-    private PlayerPositionDto toPlayerPositionDto(PlayerPosition playerPosition, Hand hand,
-                                                  Map<Integer, String> mapOfPosition) {
-        String handDescription = null;
-        if (playerPosition.getWinPosition() != null) {
-            handDescription = playerPosition.getWinPosition().getHandDescription();
-        } else {
-            if (playerPosition.getLosePosition() != null) {
-                handDescription = playerPosition.getLosePosition().getHandDescription();
-            }
-        }
-        PlayerPositionDto playerPositionDto =
-                PlayerPositionDto
+    private PlayerDetailsDto toPlayerPositionDto(PlayerDetailsDtoProjection playerDetailsDtoProjection, Map<Integer, String> mapOfPosition) {
+        return
+                PlayerDetailsDto
                         .builder()
-                        .nickname(playerPosition.getPlayer().getNickname())
-                        .position(mapOfPosition.get(playerPosition.getPosition()))
-                        .stack(playerPosition.getStack())
-                        .blinds(playerPosition.getStack() / hand.getBigBlind())
-                        .isWinner(playerPosition.getWinPosition() != null)
-                        .isLose(playerPosition.getLosePosition() != null)
-                        .handDescription(handDescription)
+                        .playerDetailsDtoProjection(playerDetailsDtoProjection)
+                        .pokerTablePosition(mapOfPosition.get(playerDetailsDtoProjection.getPosition()))
+                        .cssChen(classNameFromChenValue(playerDetailsDtoProjection.getChen()))
+                        .cssNickname(classNameFromWinnerOrLoser(playerDetailsDtoProjection))
                         .build();
+    }
 
-        CardsOfPlayer cardsOfPlayer = playerPosition.getCardsOfPlayer();
-        if(Objects.nonNull(cardsOfPlayer)) {
-            Cards cards = cardsOfPlayer.getCards();
-            playerPositionDto.setCards(cards.getDescription());
-            playerPositionDto.setChen(cards.getChen());
-            playerPositionDto.setCss(classNameFromChenValue(cards.getChen()));
+    private String classNameFromWinnerOrLoser(PlayerDetailsDtoProjection playerDetailsDtoProjection) {
+        if (playerDetailsDtoProjection.getIsWinner()) {
+            return "table-success";
         }
-
-        return playerPositionDto;
+        if (playerDetailsDtoProjection.getIsLose()) {
+            return "table-danger";
+        }
+        return "table-warning";
     }
 
     public PlayerDto findPlayer(String nickname, boolean isMonitoring) {

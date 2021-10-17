@@ -878,5 +878,51 @@ where
 	hc.tournament_id = 3099770291
 	and hc.hand = (select max(hand) from hand_consolidation);
 	
-
-
+select
+	hc.tournament_id as tournamentId,
+	hc.hand as handId,
+	hc.level as level,
+	to_char(hc.played_at, 'dd-mm-yy HH24:MI:SS') as playedAt,
+	case 
+		when length(hc.board) = 8 then 'FLOP'
+		when length(hc.board) = 11 then 'TURN'
+		when length(hc.board) = 14 then 'RIVER'
+		else null
+	end as boardShowdown,
+	concat(cast(hc.small_blind as text) || '/', cast(hc.big_blind as text)) as blinds,
+	hc.board as board,
+	hc.total_pot as pot,
+	hc.nickname as nickname,
+	hc.chen as chen,
+	concat(cast(hc.normalised as text) || ' / ', cast(hc.cards_description as text)) as cards,
+	case 
+		when hc.place = 'button' then true
+		else false
+	end as isButton,
+	case 
+		when hc.place = 'small blind' then true
+		else false
+	end as isSmallBlind,
+	case 
+		when hc.place = 'big blind' then true
+		else false
+	end as isBigBlind,
+	hc.stack_of_player as stackOfPlayer,
+	round(hc.stack_of_player / hc.big_blind) as blindsCount,
+	case 
+		when hc.win_pot is null then false
+		else true
+	end as isWinner,
+	case 
+		when hc.win_pot is null then true
+		else false
+	end as isLose,
+	case
+		when hc.win_hand_description is not null then hc.win_hand_description
+		else hc.lose_hand_description 
+	end as handDescription,
+	hc.place as place ,
+	hc."position" as position
+from hand_consolidation hc 
+where 
+hc.hand = 222697180735;

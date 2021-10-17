@@ -3,6 +3,7 @@ package com.poker.reader.domain.repository;
 import com.poker.reader.domain.model.HandConsolidation;
 import com.poker.reader.domain.model.HandPositionId;
 import com.poker.reader.domain.repository.projection.HandDtoProjection;
+import com.poker.reader.domain.repository.projection.PlayerDetailsDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
 import com.poker.reader.domain.repository.projection.StackDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
@@ -131,4 +132,56 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "\tand hc.hand = (select max(hand) from hand_consolidation)\n";
     @Query(value = GET_PLAYERS_STACKS_FROM_LAST_HAND_OF_TOURNAMENT, nativeQuery = true )
     List<StackDtoProjection> getPlayersStacksFromLastHandOfTournament(@Param("tournamentId") Long tournamentId);
+
+    String GET_PLAYERS_DETAILS_FROM_HAND =
+            "select\n"
+                    + "\thc.tournament_id as tournamentId,\n"
+                    + "\thc.hand as handId,\n"
+                    + "\thc.level as level,\n"
+                    + "\tto_char(hc.played_at, 'dd-mm-yy HH24:MI:SS') as playedAt,\n"
+                    + "\tcase \n"
+                    + "\t\twhen length(hc.board) = 8 then 'FLOP'\n"
+                    + "\t\twhen length(hc.board) = 11 then 'TURN'\n"
+                    + "\t\twhen length(hc.board) = 14 then 'RIVER'\n"
+                    + "\t\telse null\n"
+                    + "\tend as boardShowdown,\n"
+                    + "\tconcat(cast(hc.small_blind as text) || '/', cast(hc.big_blind as text)) as blinds,\n"
+                    + "\thc.board as board,\n"
+                    + "\thc.total_pot as pot,\n"
+                    + "\thc.nickname as nickname,\n"
+                    + "\thc.chen as chen,\n"
+                    + "\tconcat(cast(hc.normalised as text) || ' / ', cast(hc.cards_description as text)) as cards,\n"
+                    + "\tcase \n"
+                    + "\t\twhen hc.place = 'button' then true\n"
+                    + "\t\telse false\n"
+                    + "\tend as isButton,\n"
+                    + "\tcase \n"
+                    + "\t\twhen hc.place = 'small blind' then true\n"
+                    + "\t\telse false\n"
+                    + "\tend as isSmallBlind,\n"
+                    + "\tcase \n"
+                    + "\t\twhen hc.place = 'big blind' then true\n"
+                    + "\t\telse false\n"
+                    + "\tend as isBigBlind,\n"
+                    + "\thc.stack_of_player as stackOfPlayer,\n"
+                    + "\tround(hc.stack_of_player / hc.big_blind) as blindsCount,\n"
+                    + "\tcase \n"
+                    + "\t\twhen hc.win_pot is null then false\n"
+                    + "\t\telse true\n"
+                    + "\tend as isWinner,\n"
+                    + "\tcase \n"
+                    + "\t\twhen hc.lose_hand_description is not null then true\n"
+                    + "\t\telse false\n"
+                    + "\tend as isLose,\n"
+                    + "\tcase\n"
+                    + "\t\twhen hc.win_hand_description is not null then hc.win_hand_description\n"
+                    + "\t\telse hc.lose_hand_description \n"
+                    + "\tend as handDescription,\n"
+                    + "\thc.place as place,\n"
+                    + "\thc.position as position\n"
+                    + "from hand_consolidation hc \n"
+                    + "where \n"
+                    + "hc.hand = :handId";
+    @Query(value = GET_PLAYERS_DETAILS_FROM_HAND, nativeQuery = true )
+    List<PlayerDetailsDtoProjection> getPlayersDetailsFromHand(@Param("handId") Long handId);
 }

@@ -75,20 +75,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="playerPositionDto : ${playerPositionDtos}">
-                                <td th:text="${playerPositionDto.nickname}"
-                                    th:classappend="${playerPositionDto.isWinner} ?
-                                    'table-success' : (${playerPositionDto.isLose} ? 'table-danger')"
-                                />
-                                <td th:text="${playerPositionDto.chen}" th:classappend="${playerPositionDto.css}"/>
-                                <td th:text="${playerPositionDto.cards}" th:classappend="${playerPositionDto.css}"/>
-                                <td th:text="${playerPositionDto.position}" />
-                                <td th:text="${playerPositionDto.stack}" />
-                                <td th:text="${playerPositionDto.blinds}" />
-                                <td th:text="${playerPositionDto.handDescription}"
-                                    th:classappend="(${playerPositionDto.isWinner} and not ${#strings.isEmpty(playerPositionDto.handDescription)}) ?
-                                    'table-success' : (${playerPositionDto.isLose} ? 'table-danger')"
-                                />
+                            <tr th:each="playerDetailsDto : ${playerDetailsDtoList}">
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.nickname}" th:classappend="${playerDetailsDto.cssNickname}"/>
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.chen}" th:classappend="${playerDetailsDto.cssChen}"/>
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.cards}" th:classappend="${playerDetailsDto.cssChen}"/>
+                                <td th:text="${playerDetailsDto.pokerTablePosition}" />
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.stackOfPlayer}" />
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.blinds}" />
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.handDescription}" th:classappend="${playerDetailsDto.cssNickname}"/>
                             </tr>
                         </tbody>
                     </table>

@@ -8,8 +8,8 @@ import com.poker.reader.domain.service.FileProcessorService;
 import com.poker.reader.domain.service.FileReaderService;
 import com.poker.reader.view.rs.dto.HandDto;
 import com.poker.reader.view.rs.dto.PageDto;
+import com.poker.reader.view.rs.dto.PlayerDetailsDto;
 import com.poker.reader.view.rs.dto.PlayerDto;
-import com.poker.reader.view.rs.dto.PlayerPositionDto;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -106,14 +106,14 @@ public class PokerReaderController {
             Model model,
             @PathVariable("handId") Long handId) {
 
-        HandDto handDto = fileHtmlProcessorService.getHandInfo(handId);
+        List<PlayerDetailsDto> playerDetailsDtoList = fileHtmlProcessorService.getPlayersDetailsFromHand(handId);
+        HandDto handDto = fileHtmlProcessorService.extractHandDto(playerDetailsDtoList);
         String rawData = fileHtmlProcessorService.getRawDataFrom(handId);
-        List<PlayerPositionDto> playerPositionDtos = fileHtmlProcessorService.getPlayersFromHand(handId);
         PageDto pageDto = fileHtmlProcessorService.createHandPaginationFromTournament(handId, handDto.getTournamentId());
 
         model.addAttribute("pageDto", pageDto);
         model.addAttribute("handDto", handDto);
-        model.addAttribute("playerPositionDtos", playerPositionDtos);
+        model.addAttribute("playerDetailsDtoList", playerDetailsDtoList);
         model.addAttribute("rawData", rawData);
 
         return "hand";
