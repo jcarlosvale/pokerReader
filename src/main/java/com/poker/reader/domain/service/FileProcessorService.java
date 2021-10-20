@@ -1,5 +1,7 @@
 package com.poker.reader.domain.service;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import com.poker.reader.domain.model.HandPosition;
 import com.poker.reader.domain.model.TablePosition;
 import com.poker.reader.domain.repository.CardsRepository;
@@ -114,6 +116,11 @@ public class FileProcessorService {
         processTablePosition();
         log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
 
+        startOp = System.currentTimeMillis();
+        log.info("Update hand consolidation...");
+        pokerLineRepository.updateHandConsolidation();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
         String message = String.format("Processed %d lines in %d ms",
                 pokerLineRepository.count(), (System.currentTimeMillis() - start));
 
@@ -200,6 +207,11 @@ public class FileProcessorService {
         processTablePosition(handId);
         log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
 
+        startOp = System.currentTimeMillis();
+        log.info("Update hand consolidation...");
+        pokerLineRepository.updateHandConsolidation(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
         String message = String.format("Processed hand %d in %d ms",
                 handId, (System.currentTimeMillis() - start));
 
@@ -267,17 +279,21 @@ public class FileProcessorService {
         long hand = handPosition.getHand();
         int buttonPosition = handPosition.getButton();
 
+        Set<Integer> positions =
+                Arrays.stream(handPosition.getPositions().split(","))
+                        .map(Integer::valueOf)
+                        .collect(Collectors.toSet());
+
         if (numberOfPlayers == 2) {
-            tablePositionList.add(TablePosition.builder().hand(hand).position(buttonPosition).pokerPosition("SB, BTN").build());
+            tablePositionList.add(TablePosition.builder().hand(hand).position(buttonPosition).pokerPosition("BTN").build());
+            positions.remove(buttonPosition);
+            checkArgument(positions.size() == 1, "inconsistent positions size");
+            positions.forEach(integer -> tablePositionList.add(TablePosition.builder().hand(hand).position(integer).pokerPosition("BB").build()));
         }
         else {
             tablePositionList.add(TablePosition.builder().hand(hand).position(buttonPosition).pokerPosition("BTN").build());
             int minPosition = handPosition.getMinPos();
             int maxPosition = handPosition.getMaxPos();
-            Set<Integer> positions =
-                    Arrays.stream(handPosition.getPositions().split(","))
-                            .map(Integer::valueOf)
-                            .collect(Collectors.toSet());
 
             LinkedList<Integer> linkedList = new LinkedList<>();
 
@@ -303,7 +319,7 @@ public class FileProcessorService {
                 case 7:
                     tablePositionList.add(TablePosition.builder().hand(hand).position(linkedList.get(indexBtn-4)).pokerPosition("MP").build());
                 case 6:
-                    tablePositionList.add(TablePosition.builder().hand(hand).position(linkedList.get(indexBtn-3)).pokerPosition("MP").build());
+                    tablePositionList.add(TablePosition.builder().hand(hand).position(linkedList.get(indexBtn-3)).pokerPosition("LJ").build());
                 case 5:
                     tablePositionList.add(TablePosition.builder().hand(hand).position(linkedList.get(indexBtn-2)).pokerPosition("HJ").build());
                 case 4:

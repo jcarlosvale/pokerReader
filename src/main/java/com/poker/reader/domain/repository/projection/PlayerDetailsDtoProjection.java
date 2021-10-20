@@ -21,5 +21,6 @@ public interface PlayerDetailsDtoProjection {
     boolean getIsLose();
     String getHandDescription();
     String getPlace();
+    String getPokerPosition();
     Integer getPosition();
 }

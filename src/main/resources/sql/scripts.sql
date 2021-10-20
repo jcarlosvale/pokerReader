@@ -998,4 +998,6 @@ group by
 	bp.position;
 	
 
-select * from hand_position hp;
+select * from hand_consolidation hc where place is not null ;
+
+select * from table_position tp where hand = 220862291694;

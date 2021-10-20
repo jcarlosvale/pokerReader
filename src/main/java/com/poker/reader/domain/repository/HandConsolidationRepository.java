@@ -178,6 +178,7 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "\t\telse hc.lose_hand_description \n"
                     + "\tend as handDescription,\n"
                     + "\thc.place as place,\n"
+                    + "\thc.poker_position as pokerPosition,\n"
                     + "\thc.position as position\n"
                     + "from hand_consolidation hc \n"
                     + "where \n"

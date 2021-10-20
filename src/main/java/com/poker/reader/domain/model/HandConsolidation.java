@@ -56,6 +56,9 @@ public class HandConsolidation implements Serializable {
     @Size(max = 20)
     private String place;
 
+    @Size(max = 20)
+    String pokerPosition;
+
     @Size(max = 5)
     private String cardsDescription;
 
