@@ -644,11 +644,11 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
     String SAVE_HAND_POSITION =
             "INSERT INTO hand_position                                                                                              " +
-                    "(hand, button, max_pos, min_pos, number_of_players, positions)                                                 " +
+                    "(hand, number_of_players, min_pos, max_pos, button, positions)                                                 " +
                     "(                                                                                                              " +
                         "select \n"
                                 + "\thc.hand,\n"
-                                + "\tcount(hc.position) as numberOfPlayers,\n"
+                                + "\tcount(hc.*) as numberOfPlayers,\n"
                                 + "\tmin(hc.position) as minPos,\n"
                                 + "\tmax(hc.position) as maxPos,\n"
                                 + "\tbp.position as button,\n"
@@ -672,11 +672,11 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
     String SAVE_HAND_POSITION_FROM_HAND =
             "INSERT INTO hand_position                                                                                              " +
-                    "(hand, button, max_pos, min_pos, number_of_players, positions)                                                 " +
+                    "(hand, number_of_players, min_pos, max_pos, button, positions)                                                 " +
                     "(                                                                                                              " +
                         "select \n"
                                 + "\thc.hand,\n"
-                                + "\tcount(hc.position) as numberOfPlayers,\n"
+                                + "\tcount(hc.*) as numberOfPlayers,\n"
                                 + "\tmin(hc.position) as minPos,\n"
                                 + "\tmax(hc.position) as maxPos,\n"
                                 + "\tbp.position as button,\n"

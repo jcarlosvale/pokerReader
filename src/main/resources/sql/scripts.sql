@@ -934,7 +934,7 @@ hc.hand = 221588655360;
 
 select 
 	hc.hand,
-	count(hc.position) as numberOfPlayers,
+	count(hc.*) as numberOfPlayers,
 	min(hc.position) as minPos,
 	max(hc.position) as maxPos,
 	bp.position as button,
@@ -975,3 +975,27 @@ where
 --221588655360
 
 select * from pokerline p where p.hand_id = 221588655360;
+
+select * from hand_position hp ;
+
+
+
+select 
+	hc.hand,
+	count(hc.*) as numberOfPlayers,
+	min(hc.position) as minPos,
+	max(hc.position) as maxPos,
+	bp.position as button,
+	string_agg(distinct cast(hc."position" as text) , ',') as positions
+from 
+	hand_consolidation hc 
+left join 
+	blind_position bp on hc.hand = bp.hand 
+where 
+ 	bp.place = 'button'
+group by
+	hc.hand,
+	bp.position;
+	
+
+select * from hand_position hp;
