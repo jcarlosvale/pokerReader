@@ -642,6 +642,63 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     @Query(value = SAVE_HAND_CONSOLIDATION_FROM_HAND, nativeQuery = true)
     void saveHandConsolidation(@Param("handId") long handId);
 
+    String SAVE_HAND_POSITION =
+            "INSERT INTO hand_position                                                                                              " +
+                    "(hand, button, max_pos, min_pos, number_of_players, positions)                                                 " +
+                    "(                                                                                                              " +
+                        "select \n"
+                                + "\thc.hand,\n"
+                                + "\tcount(hc.position) as numberOfPlayers,\n"
+                                + "\tmin(hc.position) as minPos,\n"
+                                + "\tmax(hc.position) as maxPos,\n"
+                                + "\tbp.position as button,\n"
+                                + "\tstring_agg(distinct cast(hc.\"position\" as text) , ',') as positions\n"
+                                + "from \n"
+                                + "\thand_consolidation hc \n"
+                                + "left join \n"
+                                + "\tblind_position bp on hc.hand = bp.hand \n"
+                                + "where \n"
+                                + " \tbp.place = 'button'\n"
+                                + "group by\n"
+                                + "\thc.hand,\n"
+                                + "\tbp.position "
+                    + ")                                                                                                     " +
+                    "on conflict(hand)                                                                                    " +
+                    "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_HAND_POSITION, nativeQuery = true)
+    void saveHandPosition();
+
+    String SAVE_HAND_POSITION_FROM_HAND =
+            "INSERT INTO hand_position                                                                                              " +
+                    "(hand, button, max_pos, min_pos, number_of_players, positions)                                                 " +
+                    "(                                                                                                              " +
+                        "select \n"
+                                + "\thc.hand,\n"
+                                + "\tcount(hc.position) as numberOfPlayers,\n"
+                                + "\tmin(hc.position) as minPos,\n"
+                                + "\tmax(hc.position) as maxPos,\n"
+                                + "\tbp.position as button,\n"
+                                + "\tstring_agg(distinct cast(hc.\"position\" as text) , ',') as positions\n"
+                                + "from \n"
+                                + "\thand_consolidation hc \n"
+                                + "left join \n"
+                                + "\tblind_position bp on hc.hand = bp.hand \n"
+                                + "where \n"
+                                + " \tbp.place = 'button'\n"
+                                + " \thc.hand = :handId"
+                                + "group by\n"
+                                + "\thc.hand,\n"
+                                + "\tbp.position "
+                    + ")                                                                                                     " +
+                    "on conflict(hand)                                                                                    " +
+                    "do nothing ";
+    @Transactional
+    @Modifying
+    @Query(value = SAVE_HAND_POSITION_FROM_HAND, nativeQuery = true)
+    void saveHandPosition(@Param("handId") long handId);
+
     String GET_LAST_HAND_FROM_FILE =
             "select max(p.hand_id) from pokerline p where p.filename = :filename";
     @Query(value = GET_LAST_HAND_FROM_FILE, nativeQuery = true)

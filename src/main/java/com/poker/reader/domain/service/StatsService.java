@@ -30,7 +30,8 @@ public class StatsService {
                                Collectors.groupingBy(HandConsolidation::getNickname, HashMap::new, Collectors.toCollection(ArrayList::new))
                         );
 
-        playerDetailsDtoList.forEach(playerDetailsDto -> playerDetailsDto.setStatsDto(loadStats(playerDetailsDto, handsFromPlayerMap.get(playerDetailsDto.getPlayerDetailsDtoProjection().getNickname()))));
+        playerDetailsDtoList.forEach(playerDetailsDto -> playerDetailsDto.setStatsDto(loadStats(playerDetailsDto,
+                handsFromPlayerMap.get(playerDetailsDto.getPlayerDetailsDtoProjection().getNickname()))));
     }
 
     private StatsDto loadStats(PlayerDetailsDto playerDetailsDto, List<HandConsolidation> handConsolidations) {

@@ -83,6 +83,11 @@ public class FileProcessorService {
         pokerLineRepository.saveHandConsolidation();
         log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
 
+        startOp = System.currentTimeMillis();
+        log.info("Saving hand positions...");
+        pokerLineRepository.saveHandPosition();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
         String message = String.format("Processed %d lines in %d ms",
                 pokerLineRepository.count(), (System.currentTimeMillis() - start));
 
@@ -157,6 +162,11 @@ public class FileProcessorService {
         startOp = System.currentTimeMillis();
         log.info("Saving hand consolidation...");
         pokerLineRepository.saveHandConsolidation(handId);
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Saving hand positions...");
+        pokerLineRepository.saveHandPosition(handId);
         log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
 
         String message = String.format("Processed hand %d in %d ms",
