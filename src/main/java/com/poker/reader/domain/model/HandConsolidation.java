@@ -33,6 +33,8 @@ public class HandConsolidation implements Serializable {
     @Id
     private Long hand;
 
+    private Integer numberOfPlayers;
+
     @NotNull
     @Size(max = 20)
     private String level;

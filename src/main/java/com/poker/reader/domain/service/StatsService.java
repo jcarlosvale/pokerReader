@@ -30,25 +30,52 @@ public class StatsService {
                                Collectors.groupingBy(HandConsolidation::getNickname, HashMap::new, Collectors.toCollection(ArrayList::new))
                         );
 
-        playerDetailsDtoList.forEach(playerDetailsDto -> playerDetailsDto.setStatsDto(loadStats(playerDetailsDto,
-                handsFromPlayerMap.get(playerDetailsDto.getPlayerDetailsDtoProjection().getNickname()))));
+        playerDetailsDtoList.forEach(playerDetailsDto -> playerDetailsDto.setStatsDto(
+                loadStats(handsFromPlayerMap.get(playerDetailsDto.getPlayerDetailsDtoProjection().getNickname()))));
     }
 
-    private StatsDto loadStats(PlayerDetailsDto playerDetailsDto, List<HandConsolidation> handConsolidations) {
+    private StatsDto loadStats(List<HandConsolidation> handConsolidationsFromOnePlayerList) {
 
-        int size = handConsolidations.size();
+        int size = handConsolidationsFromOnePlayerList.size();
         int noActionCount = 0;
         int sbCount = 0;
         int bbCount = 0;
-        int buttonCount = 0;
+        int utgCount = 0;
+        int mpCount = 0;
+        int ljCount = 0;
+        int hjCount = 0;
+        int coCount = 0;
+        int btnCount = 0;
 
-        for(HandConsolidation hand : handConsolidations) {
-            if (isNoAction(hand, playerDetailsDto.getPokerTablePosition())) noActionCount++;
-            if (isPlace(hand, "small blind")) sbCount++;
-            if (isPlace(hand, "big blind")) bbCount++;
-            if (isPlace(hand, "button")) buttonCount++;
+        for(HandConsolidation hand : handConsolidationsFromOnePlayerList) {
+            if (isNoAction(hand)) noActionCount++;
+            switch (hand.getPokerPosition()) {
+                case "SB":
+                    sbCount++;
+                    break;
+                case "BB":
+                    bbCount++;
+                    break;
+                case "UTG":
+                    utgCount++;
+                    break;
+                case "MP":
+                    mpCount++;
+                    break;
+                case "LJ":
+                    ljCount++;
+                    break;
+                case "HJ":
+                    hjCount++;
+                    break;
+                case "CO":
+                    coCount++;
+                    break;
+                case "BTN":
+                    btnCount++;
+                    break;
+            }
         }
-
         return
                 StatsDto
                         .builder()
@@ -56,27 +83,25 @@ public class StatsService {
                         .noActionPerc(perc(noActionCount, size))
                         .sbCount(sbCount)
                         .bbCount(bbCount)
-                        .buttonCount(buttonCount)
+                        .utgCount(utgCount)
+                        .mpCount(mpCount)
+                        .ljCount(ljCount)
+                        .hjCount(hjCount)
+                        .coCount(coCount)
+                        .btnCount(btnCount)
                         .build();
-    }
-
-    private boolean isPlace(HandConsolidation hand, String place) {
-        if (Objects.nonNull(hand.getPlace())) {
-            return hand.getPlace().equals(place);
-        }
-        return false;
     }
 
     private String perc(int count, int size) {
         return ((100 * count / size) + "%");
     }
 
-    private boolean isNoAction(HandConsolidation hand, String pokerTablePosition) {
+    private boolean isNoAction(HandConsolidation hand) {
         String foldRound = Objects.nonNull(hand.getFoldRound()) ? hand.getFoldRound() : "";
         boolean noBet = Objects.nonNull(hand.getNoBet()) ? hand.getNoBet() : false;
 
         return (foldRound.equals("PREFLOP") && noBet)
                 ||
-                (foldRound.equals("PREFLOP") && (pokerTablePosition.equals("SB") || pokerTablePosition.equals("BB")));
+                (foldRound.equals("PREFLOP") && (hand.getPokerPosition().equals("SB") || hand.getPokerPosition().equals("BB")));
     }
 }

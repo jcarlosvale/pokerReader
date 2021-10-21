@@ -67,34 +67,44 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nickname</th>
-                                <th>Chen</th>
-                                <th>Cards</th>
                                 <th>Position</th>
                                 <th>Stack</th>
                                 <th>#blinds</th>
-                                <th>#hand</th>
                                 <th>#noAction</th>
                                 <th>%noAction</th>
                                 <th>#SB</th>
                                 <th>#BB</th>
+                                <th>#UTG</th>
+                                <th>#MP</th>
+                                <th>#LJ</th>
+                                <th>#HJ</th>
+                                <th>#CO</th>
                                 <th>#BTN</th>
+                                <th>Chen</th>
+                                <th>Cards</th>
+                                <th>#hand</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="playerDetailsDto : ${playerDetailsDtoList}">
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.position}"/>
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.nickname}" th:classappend="${playerDetailsDto.cssNickname}"/>
-                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.chen}" th:classappend="${playerDetailsDto.cssChen}"/>
-                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.cards}" th:classappend="${playerDetailsDto.cssChen}"/>
                                 <td th:text="${playerDetailsDto.pokerTablePosition}" />
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.stackOfPlayer}" />
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.blindsCount}" />
-                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.handDescription}" th:classappend="${playerDetailsDto.cssNickname}"/>
                                 <td th:text="${playerDetailsDto.statsDto.noActionCount}"/>
                                 <td th:text="${playerDetailsDto.statsDto.noActionPerc}"/>
                                 <td th:text="${playerDetailsDto.statsDto.sbCount}"/>
                                 <td th:text="${playerDetailsDto.statsDto.bbCount}"/>
-                                <td th:text="${playerDetailsDto.statsDto.buttonCount}"/>
+                                <td th:text="${playerDetailsDto.statsDto.utgCount}"/>
+                                <td th:text="${playerDetailsDto.statsDto.mpCount}"/>
+                                <td th:text="${playerDetailsDto.statsDto.ljCount}"/>
+                                <td th:text="${playerDetailsDto.statsDto.hjCount}"/>
+                                <td th:text="${playerDetailsDto.statsDto.coCount}"/>
+                                <td th:text="${playerDetailsDto.statsDto.btnCount}"/>
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.chen}" th:classappend="${playerDetailsDto.cssChen}"/>
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.cards}" th:classappend="${playerDetailsDto.cssChen}"/>
+                                <td th:text="${playerDetailsDto.playerDetailsDtoProjection.handDescription}" th:classappend="${playerDetailsDto.cssNickname}"/>
                             </tr>
                         </tbody>
                     </table>

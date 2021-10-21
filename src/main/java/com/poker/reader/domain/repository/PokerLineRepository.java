@@ -703,11 +703,14 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
             "UPDATE \n"
                     + "\thand_consolidation\n"
                     + "SET \n"
-                    + "\tpoker_position = table_position.poker_position\n"
+                    + "\tpoker_position = table_position.poker_position,\n"
+                    + "\tnumber_of_players = hand_position.number_of_players\n"
                     + "from\n"
-                    + "\ttable_position \n"
+                    + "\ttable_position, \n"
+                    + "\thand_position \n"
                     + "WHERE \n"
-                    + "\thand_consolidation.hand = table_position.hand and hand_consolidation.position = table_position.position";
+                    + "\thand_consolidation.hand = table_position.hand and hand_consolidation.position = table_position.position \n"
+                    + "\tand hand_consolidation.hand = hand_position.hand";
     @Transactional
     @Modifying
     @Query(value = UPDATE_HAND_CONSOLIDATION, nativeQuery = true)
@@ -717,11 +720,14 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
             "UPDATE \n"
                     + "\thand_consolidation\n"
                     + "SET \n"
-                    + "\tpoker_position = table_position.poker_position\n"
+                    + "\tpoker_position = table_position.poker_position,\n"
+                    + "\tnumber_of_players = hand_position.number_of_players\n"
                     + "from\n"
-                    + "\ttable_position \n"
+                    + "\ttable_position, \n"
+                    + "\thand_position \n"
                     + "WHERE \n"
-                    + "\thand_consolidation.hand = table_position.hand and hand_consolidation.position = table_position.position "
+                    + "\thand_consolidation.hand = table_position.hand and hand_consolidation.position = table_position.position \n"
+                    + "\tand hand_consolidation.hand = hand_position.hand \n"
                     + "\tand hand_consolidation.hand = :handId";
     @Transactional
     @Modifying

@@ -20,6 +20,16 @@ public class StatsDto {
 
     private int bbCount;
 
-    private int buttonCount;
+    private int btnCount;
+
+    private int utgCount;
+
+    private int mpCount;
+
+    private int ljCount;
+
+    private int hjCount;
+
+    private int coCount;
 
 }
