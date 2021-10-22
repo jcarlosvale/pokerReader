@@ -1003,3 +1003,16 @@ select * from hand_position hp ;
 
 select * from table_position tp where hand = 220862291694;
 
+
+select 
+	hc.tournament_id as tournamentId,
+	hc.hand as handId,
+	hc.nickname as nickname,
+	hc.stack_of_player as stackOfPlayer,
+	hc.big_blind as bigBlind,
+	round(hc.stack_of_player / hc.big_blind) as blinds,
+	hc.total_pot as pot
+from 
+	hand_consolidation hc 
+where 
+	hc.hand = (select max(hand) from hand_consolidation where tournament_id = 3086083919)
