@@ -29,6 +29,10 @@
 					<tr>
 						<th>nickname</th>
 						<th>chen</th>
+                        <th>Action</th>
+                        <th>SB</th>
+                        <th>BB</th>
+                        <th>BTN</th>
 						<th>#show</th>
 						<th>#hands</th>
 						<th>%show</th>
@@ -40,6 +44,13 @@
 							th:class="${player.playerDto.css}">
 						<td th:text="${player.playerDto.nickname}" />
 						<td th:text="${player.playerDto.avgChen}" />
+
+                        <td th:text="${player.playerDetailsDto.statsDto.labelNoActionMonitoring}" />
+                        <td th:text="${player.playerDetailsDto.statsDto.labelNoActionSBMonitoring}" />
+                        <td th:text="${player.playerDetailsDto.statsDto.labelNoActionBBMonitoring}" />
+                        <td th:text="${player.playerDetailsDto.statsDto.labelActionBTNMonitoring}" />
+
+
 						<td th:text="${player.playerDto.showdowns}" />
 						<td th:text="${player.playerDto.totalHands}" />
 						<td th:text="${player.playerDto.showdownStat}" />

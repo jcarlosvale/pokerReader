@@ -21,6 +21,7 @@ import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -63,7 +64,7 @@ public class FileHtmlProcessorService {
         String css = classNameFromChenValue(playerDtoProjection.getAvgChen());
 
         if (isMonitoring) {
-            if (playerDtoProjection.getNickname().equals(HERO) || (playerDtoProjection.getShowdowns() < 2)) {
+            if (playerDtoProjection.getNickname().equals(HERO)) {
                 css = "d-none";
             }
         }
@@ -219,14 +220,15 @@ public class FileHtmlProcessorService {
         return pageDto;
     }
 
-    public List<PlayerMonitoredDto> getPlayersToMonitorFromLastHandOfTournament(Long tournamentId) {
+    public List<PlayerMonitoredDto> getPlayersToMonitorFromLastHandOfTournament(Long tournamentId,
+            Map<String, PlayerDetailsDto> playerDetailsDtoMap) {
         return
                 handConsolidationRepository
                         .getPlayersStacksFromLastHandOfTournament(tournamentId)
                         .stream()
                         .map(stackDtoProjection -> {
                             PlayerDto playerDto = findPlayer(stackDtoProjection.getNickname(), true);
-                            return new PlayerMonitoredDto(playerDto, stackDtoProjection);
+                            return new PlayerMonitoredDto(playerDto, stackDtoProjection, playerDetailsDtoMap.get(stackDtoProjection.getNickname()));
                         })
                         .collect(Collectors.toList());
     }
@@ -272,5 +274,9 @@ public class FileHtmlProcessorService {
             return "ABOVE AVG STACK";
         }
         return "PLAY!";
+    }
+
+    public long getLastHandFromTournament(Long tournamentId) {
+        return pokerLineRepository.getLastHandFromTournament(tournamentId);
     }
 }

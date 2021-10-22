@@ -70,8 +70,6 @@
                                 <th>Position</th>
                                 <th>Stack</th>
                                 <th>#blinds</th>
-                                <th>#noAction</th>
-                                <th>%noAction</th>
                                 <th>#SB</th>
                                 <th>#BB</th>
                                 <th>#UTG</th>
@@ -92,8 +90,6 @@
                                 <td th:text="${playerDetailsDto.pokerTablePosition}" />
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.stackOfPlayer}" />
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.blindsCount}" />
-                                <td th:text="${playerDetailsDto.statsDto.noActionCount}"/>
-                                <td th:text="${playerDetailsDto.statsDto.noActionPerc}"/>
                                 <td th:text="${playerDetailsDto.statsDto.sbCount}"/>
                                 <td th:text="${playerDetailsDto.statsDto.bbCount}"/>
                                 <td th:text="${playerDetailsDto.statsDto.utgCount}"/>
@@ -106,6 +102,49 @@
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.cards}" th:classappend="${playerDetailsDto.cssChen}"/>
                                 <td th:text="${playerDetailsDto.playerDetailsDtoProjection.handDescription}" th:classappend="${playerDetailsDto.cssNickname}"/>
                             </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div>
+                    <h4>Stats:</h4>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nickname</th>
+
+                            <th>#seqNoAction</th>
+                            <th>%noAction</th>
+
+                            <th>#seqNoActionSB</th>
+                            <th>%noActionSB</th>
+
+                            <th>#seqNoActionBB</th>
+                            <th>%noActionBB</th>
+
+                            <th>#seqActionBTN</th>
+                            <th>%actionBTN</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="playerDetailsDto : ${playerDetailsDtoList}">
+                            <td th:text="${playerDetailsDto.playerDetailsDtoProjection.position}"/>
+                            <td th:text="${playerDetailsDto.playerDetailsDtoProjection.nickname}" th:classappend="${playerDetailsDto.cssNickname}"/>
+
+                            <td th:text="${playerDetailsDto.statsDto.seqNoAction}"/>
+                            <td th:text="${playerDetailsDto.statsDto.noActionPerc}"/>
+
+                            <td th:text="${playerDetailsDto.statsDto.seqNoActionSB}"/>
+                            <td th:text="${playerDetailsDto.statsDto.percNoActionSB}"/>
+
+                            <td th:text="${playerDetailsDto.statsDto.seqNoActionBB}"/>
+                            <td th:text="${playerDetailsDto.statsDto.percNoActionBB}"/>
+
+                            <td th:text="${playerDetailsDto.statsDto.seqActionBTN}"/>
+                            <td th:text="${playerDetailsDto.statsDto.percActionBTN}"/>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

@@ -128,8 +128,7 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "from \n"
                     + "\thand_consolidation hc \n"
                     + "where \n"
-                    + "\thc.tournament_id = :tournamentId\n"
-                    + "\tand hc.hand = (select max(hand) from hand_consolidation)\n";
+                    + "\thc.hand = (select max(hand) from hand_consolidation where tournament_id = :tournamentId)\n";
     @Query(value = GET_PLAYERS_STACKS_FROM_LAST_HAND_OF_TOURNAMENT, nativeQuery = true )
     List<StackDtoProjection> getPlayersStacksFromLastHandOfTournament(@Param("tournamentId") Long tournamentId);
 

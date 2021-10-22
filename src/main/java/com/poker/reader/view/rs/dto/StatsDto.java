@@ -11,10 +11,32 @@ import lombok.NoArgsConstructor;
 @Builder
 public class StatsDto {
 
+    private int total;
+
     //how many hands without playing, excluding BB, SB
     private int noActionCount;
 
     private String noActionPerc;
+
+    private int seqNoAction;
+
+    private int seqNoActionSB;
+
+    private int noActionSB;
+
+    private String percNoActionSB;
+
+    private int seqNoActionBB;
+
+    private int noActionBB;
+
+    private String percNoActionBB;
+
+    private int seqActionBTN;
+
+    private int actionBTN;
+
+    private String percActionBTN;
 
     private int sbCount;
 
@@ -32,4 +54,11 @@ public class StatsDto {
 
     private int coCount;
 
+    private String labelNoActionMonitoring;
+
+    private String labelNoActionSBMonitoring;
+
+    private String labelNoActionBBMonitoring;
+
+    private String labelActionBTNMonitoring;
 }

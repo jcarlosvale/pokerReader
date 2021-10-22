@@ -14,10 +14,13 @@ public class PlayerMonitoredDto {
 
     private PlayerDto playerDto;
     private StackDtoProjection stackDtoProjection;
+    private PlayerDetailsDto playerDetailsDto;
 
-    public PlayerMonitoredDto(PlayerDto playerDto, StackDtoProjection stackDtoProjection) {
+    public PlayerMonitoredDto(PlayerDto playerDto, StackDtoProjection stackDtoProjection, PlayerDetailsDto playerDetailsDto) {
         checkArgument(playerDto.getNickname().equals(stackDtoProjection.getNickname()), "inconsistent monitored player");
+        checkArgument(playerDto.getNickname().equals(playerDetailsDto.getPlayerDetailsDtoProjection().getNickname()), "inconsistent monitored player");
         this.playerDto = playerDto;
         this.stackDtoProjection = stackDtoProjection;
+        this.playerDetailsDto = playerDetailsDto;
     }
 }

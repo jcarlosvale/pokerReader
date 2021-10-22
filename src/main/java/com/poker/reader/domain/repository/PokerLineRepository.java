@@ -739,5 +739,10 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     @Query(value = GET_LAST_HAND_FROM_FILE, nativeQuery = true)
     long getLastHandFromFile(@Param("filename") String filename);
 
+    String GET_LAST_HAND_FROM_TOURNAMENT =
+            "select max(hand) from hand_consolidation where tournament_id = :tournamentId";
+    @Query(value = GET_LAST_HAND_FROM_TOURNAMENT, nativeQuery = true)
+    long getLastHandFromTournament(@Param("tournamentId") long tournamentId);
+
     List<PokerLine> getAllByHandIdOrderByLineNumber(long handId);
 }

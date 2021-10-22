@@ -38,6 +38,13 @@ public class StatsService {
 
         int size = handConsolidationsFromOnePlayerList.size();
         int noActionCount = 0;
+        int seqNoAction = 0;
+        int noActionSB = 0;
+        int seqNoActionSB = 0;
+        int noActionBB = 0;
+        int seqNoActionBB = 0;
+        int actionBTN = 0;
+        int seqActionBTN = 0;
         int sbCount = 0;
         int bbCount = 0;
         int utgCount = 0;
@@ -48,7 +55,40 @@ public class StatsService {
         int btnCount = 0;
 
         for(HandConsolidation hand : handConsolidationsFromOnePlayerList) {
-            if (isNoAction(hand)) noActionCount++;
+//            if (hand.getHand() == 222698160975L && hand.getNickname().equals("GutPewPew")) {
+//                log.info("debug");
+//            }
+            if (isNoAction(hand)){
+                noActionCount++;
+                seqNoAction++;
+                switch (hand.getPokerPosition()) {
+                    case "SB":
+                        noActionSB++;
+                        seqNoActionSB++;
+                        break;
+                    case "BB":
+                        noActionBB++;
+                        seqNoActionBB++;
+                        break;
+                    case "BTN":
+                        seqActionBTN = 0;
+                        break;
+                }
+            } else {
+                seqNoAction = 0;
+                switch (hand.getPokerPosition()) {
+                    case "SB":
+                        seqNoActionSB = 0;
+                        break;
+                    case "BB":
+                        seqNoActionBB = 0;
+                        break;
+                    case "BTN":
+                        actionBTN++;
+                        seqActionBTN++;
+                        break;
+                }
+            }
             switch (hand.getPokerPosition()) {
                 case "SB":
                     sbCount++;
@@ -79,8 +119,19 @@ public class StatsService {
         return
                 StatsDto
                         .builder()
+                        .total(size)
                         .noActionCount(noActionCount)
+                        .seqNoAction(seqNoAction)
                         .noActionPerc(perc(noActionCount, size))
+                        .noActionSB(noActionSB)
+                        .seqNoActionSB(seqNoActionSB)
+                        .percNoActionSB(perc(noActionSB, sbCount))
+                        .noActionBB(noActionBB)
+                        .seqNoActionBB(seqNoActionBB)
+                        .percNoActionBB(perc(noActionBB, bbCount))
+                        .actionBTN(actionBTN)
+                        .seqActionBTN(seqActionBTN)
+                        .percActionBTN(perc(actionBTN, btnCount))
                         .sbCount(sbCount)
                         .bbCount(bbCount)
                         .utgCount(utgCount)
@@ -89,13 +140,19 @@ public class StatsService {
                         .hjCount(hjCount)
                         .coCount(coCount)
                         .btnCount(btnCount)
+                        .labelNoActionMonitoring(seqNoAction + " " + perc(noActionBB, bbCount))
+                        .labelNoActionSBMonitoring(seqNoActionSB + " " + perc(noActionSB, sbCount))
+                        .labelNoActionBBMonitoring(seqNoActionBB + " " + perc(noActionBB, sbCount))
+                        .labelActionBTNMonitoring(seqActionBTN + " " + perc(actionBTN, btnCount))
                         .build();
     }
 
     private String perc(int count, int size) {
-        return ((100 * count / size) + "%");
+        if (size == 0) return null;
+        return ((count + "/" + size) + " " + (100 * count / size) + "%");
     }
 
+    //TODO: need to fix, example http://localhost:8080/hand/222698059143
     private boolean isNoAction(HandConsolidation hand) {
         String foldRound = Objects.nonNull(hand.getFoldRound()) ? hand.getFoldRound() : "";
         boolean noBet = Objects.nonNull(hand.getNoBet()) ? hand.getNoBet() : false;
