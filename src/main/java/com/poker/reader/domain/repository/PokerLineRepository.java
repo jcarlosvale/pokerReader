@@ -1,13 +1,14 @@
 package com.poker.reader.domain.repository;
 
 import com.poker.reader.domain.model.PokerLine;
-import java.util.List;
-import java.util.Set;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Set;
 
 public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
 
@@ -518,8 +519,8 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     void saveLosePositions();
 
     String SAVE_LOSE_POSITION_FROM_HAND =
-            "INSERT INTO win_position                                                                                               " +
-                    "(hand, position, showdown, pot, hand_description)                                                              " +
+            "INSERT INTO lose_position                                                                                               " +
+                    "(hand, position, hand_description)                                                              " +
                     "(                                                                                                              " +
                     "select                                                                                                         " +
                     "   hand_id,                                                                                                    " +
@@ -687,7 +688,7 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
                                 + "\tblind_position bp on hc.hand = bp.hand \n"
                                 + "where \n"
                                 + " \tbp.place = 'button'\n"
-                                + " \thc.hand = :handId"
+                                + " \tand hc.hand = :handId\n"
                                 + "group by\n"
                                 + "\thc.hand,\n"
                                 + "\tbp.position "
@@ -745,4 +746,11 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     long getLastHandFromTournament(@Param("tournamentId") long tournamentId);
 
     List<PokerLine> getAllByHandIdOrderByLineNumber(long handId);
+
+    String DELETE_TABLE_POSITION =
+            "truncate table table_position";
+    @Transactional
+    @Modifying
+    @Query(value = DELETE_TABLE_POSITION, nativeQuery = true)
+    void deleteTablePosition();
 }

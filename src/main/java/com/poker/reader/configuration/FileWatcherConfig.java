@@ -1,14 +1,15 @@
 package com.poker.reader.configuration;
 
 import com.poker.reader.listener.FilePokerChangeListener;
-import java.io.File;
-import java.time.Duration;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.devtools.filewatch.FileSystemWatcher;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.io.File;
+import java.time.Duration;
 
 @Component
 @RequiredArgsConstructor
@@ -30,7 +31,7 @@ public class FileWatcherConfig extends FileSystemWatcher{
             throw new RuntimeException("DIRECTORY TO MONITOR NOT FOUND: " + folderPath);
         } else {
             FileSystemWatcher fileSystemWatcher =
-                    new FileSystemWatcher(true, Duration.ofMillis(monitoringInterval), Duration.ofMillis(2000L));
+                    new FileSystemWatcher(true, Duration.ofMillis(monitoringInterval), Duration.ofMillis(500L));
             log.info("Starting fileSystemWatcher: " + folderPath);
             fileSystemWatcher.addSourceDirectory(folder);
             fileSystemWatcher.addListener(filePokerChangeListener);

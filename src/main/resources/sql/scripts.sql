@@ -999,7 +999,8 @@ group by
 	
 
 select * from hand_consolidation hc;
-select * from hand_position hp ;
+select count(*) from hand_position hp ;
+select count(*) from table_position tp;
 
 select * from table_position tp where hand = 220862291694;
 
@@ -1015,4 +1016,50 @@ select
 from 
 	hand_consolidation hc 
 where 
-	hc.hand = (select max(hand) from hand_consolidation where tournament_id = 3086083919)
+	hc.hand = (select max(hand) from hand_consolidation where tournament_id = 3285533240)
+
+select * from hand_consolidation hc where hc.nickname = 'joseAdilsom';
+	
+select 
+	hc.nickname as nickname,
+	count(hc.hand) as totalHands,
+	sum(case when cards_description is null then 0 else 1 end) as showdowns,
+	round(sum(case when cards_description is null then 0 else 1 end) * 100.0/ count(hc.hand)) as showdownStat,
+	round(avg(hc.chen)) as avgChen,
+	to_char(min(hc.played_at), 'dd-mm-yy HH24:MI:SS') as createdAt,
+    string_agg(distinct hc.normalised , ', ') as cards,
+	string_agg(hc.cards_description, ', ') as rawcards,
+	'd-none' as css
+	from hand_consolidation hc
+	 where hc.nickname = 'x Bing x 8 11'
+	group by 
+	hc.nickname	;
+
+
+
+select      string_agg(distinct hc.normalised , ', ') as cards,
+	string_agg(hc.cards_description, ', ') as rawcards,
+	'd-none' as css
+ from hand_consolidation hc  where hc.nickname = 'x Bing x 8 11';
+	
+
+
+
+
+
+230809889975
+
+
+select                                                                                                            hand_id,                                                                                                       cast(substring(line from 'Seat ([0-9]*):') as int8) as position,                                               trim(substring(line from 'and lost with (.*)')) as hand_description                                         from pokerline p                                                                                               where                                                                                                             p.section = 'SUMMARY'                                                                                          and p.line like 'Seat%:%'                                                                                      and p.line like '%and lost %'                                                                                  and hand_id = 230809889975;                                                                                       
+   
+  
+  
+  
+  select * from hand_consolidation hc where hc.nickname = 'Voa Nando'and card1 is not null;
+  
+ 
+ 
+ select max(hand) from hand_consolidation where tournament_id = 3285553006;
+ 
+
+select * from hand_consolidation hc where hc.hand = 230810709126;

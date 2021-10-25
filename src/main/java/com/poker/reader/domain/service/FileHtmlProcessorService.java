@@ -1,29 +1,13 @@
 package com.poker.reader.domain.service;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import com.poker.reader.domain.model.PokerLine;
-import com.poker.reader.domain.repository.HandConsolidationRepository;
-import com.poker.reader.domain.repository.HandRepository;
-import com.poker.reader.domain.repository.PlayerRepository;
-import com.poker.reader.domain.repository.PokerLineRepository;
-import com.poker.reader.domain.repository.TournamentRepository;
+import com.poker.reader.domain.repository.*;
 import com.poker.reader.domain.repository.projection.HandDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDetailsDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import com.poker.reader.domain.util.CardUtil;
-import com.poker.reader.view.rs.dto.HandDto;
-import com.poker.reader.view.rs.dto.PageDto;
-import com.poker.reader.view.rs.dto.PlayerDetailsDto;
-import com.poker.reader.view.rs.dto.PlayerDto;
-import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
-import com.poker.reader.view.rs.dto.RecommendationDto;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import com.poker.reader.view.rs.dto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -31,6 +15,14 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -102,7 +94,7 @@ public class FileHtmlProcessorService {
         return "bg-danger";
     }
 
-    public int calculateAvgStackFromLastHandOfTournament(Long tournamentId) {
+    public Integer calculateAvgStackFromLastHandOfTournament(Long tournamentId) {
         return handConsolidationRepository.calculateAvgStackFromLastHandOfTournament(tournamentId);
     }
 
@@ -244,7 +236,7 @@ public class FileHtmlProcessorService {
 
             PlayerMonitoredDto playerMonitoredDto = playerMonitoredDtoOptional.get();
             var tournamentId = playerMonitoredDto.getStackDtoProjection().getTournamentId();
-            var avgStack = calculateAvgStackFromLastHandOfTournament(tournamentId);
+            Integer avgStack = calculateAvgStack(playerMonitoredDtoList);//calculateAvgStackFromLastHandOfTournament(tournamentId);
             var stackFromHero = playerMonitoredDto.getStackDtoProjection().getStackOfPlayer();
             var blinds = playerMonitoredDto.getStackDtoProjection().getBlinds();
             return
@@ -263,7 +255,11 @@ public class FileHtmlProcessorService {
         return RecommendationDto.builder().build();
     }
 
-    private String analyseStack(long stackFromHero, long avgStack, int blinds) {
+    private Integer calculateAvgStack(List<PlayerMonitoredDto> playerMonitoredDtoList) {
+        return (int) playerMonitoredDtoList.stream().mapToInt(value -> value.getStackDtoProjection().getStackOfPlayer()).average().getAsDouble();
+    }
+
+    private String analyseStack(long stackFromHero, Integer avgStack, int blinds) {
         if(blinds <= 10) {
             return "ALL IN, LESS THAN 10 BLINDS";
         }

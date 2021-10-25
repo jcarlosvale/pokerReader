@@ -1,7 +1,5 @@
 package com.poker.reader.domain.service;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.poker.reader.domain.model.HandPosition;
 import com.poker.reader.domain.model.TablePosition;
 import com.poker.reader.domain.repository.CardsRepository;
@@ -9,24 +7,22 @@ import com.poker.reader.domain.repository.HandPositionRepository;
 import com.poker.reader.domain.repository.PokerLineRepository;
 import com.poker.reader.domain.util.CardsGenerator;
 import com.zaxxer.hikari.HikariDataSource;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.postgresql.copy.CopyManager;
 import org.postgresql.jdbc.PgConnection;
 import org.springframework.stereotype.Service;
+
+import javax.sql.DataSource;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 @Service
 @Log4j2
@@ -109,6 +105,11 @@ public class FileProcessorService {
         startOp = System.currentTimeMillis();
         log.info("Saving hand positions...");
         pokerLineRepository.saveHandPosition();
+        log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
+
+        startOp = System.currentTimeMillis();
+        log.info("Deleting table positions...");
+        pokerLineRepository.deleteTablePosition();
         log.info("Processed in {} ms", (System.currentTimeMillis() - startOp));
 
         startOp = System.currentTimeMillis();
@@ -232,7 +233,7 @@ public class FileProcessorService {
     }
 
     private void processTablePosition() {
-        List<HandPosition> handPositionList = handPositionRepository.findAllNotProcessed();
+        List<HandPosition> handPositionList = handPositionRepository.findAll();
         List<TablePosition> tablePositionList = new ArrayList<>();
         for(HandPosition handPosition : handPositionList) {
             tablePositionList.addAll(generateTablePositionsFromHandPosition(handPosition));

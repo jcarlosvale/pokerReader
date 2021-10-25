@@ -2,18 +2,15 @@ package com.poker.reader.domain.repository;
 
 import com.poker.reader.domain.model.HandConsolidation;
 import com.poker.reader.domain.model.HandPositionId;
-import com.poker.reader.domain.repository.projection.HandDtoProjection;
-import com.poker.reader.domain.repository.projection.PlayerDetailsDtoProjection;
-import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
-import com.poker.reader.domain.repository.projection.StackDtoProjection;
-import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
-import java.util.List;
-import java.util.Optional;
+import com.poker.reader.domain.repository.projection.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+import java.util.Optional;
 
 public interface HandConsolidationRepository extends JpaRepository<HandConsolidation, HandPositionId> {
     String GET_PLAYER_DTO =
@@ -35,7 +32,7 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
 
     String GET_PLAYER_DTO_BY_NICKNAME =
             "select \n"
-                    + "\tdistinct hc.nickname as nickname,\n"
+                    + "\thc.nickname as nickname,\n"
                     + "\tcount(hc.hand) as totalHands,\n"
                     + "\tsum(case when cards_description is null then 0 else 1 end) as showdowns,\n"
                     + "\tround(sum(case when cards_description is null then 0 else 1 end) * 100.0/ count(hc.hand)) as showdownStat,\n"
@@ -114,7 +111,7 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "\thc.tournament_id,\n"
                     + "\thc.hand";
     @Query(value = CALCULATE_AVG_STACK_FROM_LAST_HAND_OF_TOURNAMENT, nativeQuery = true )
-    int calculateAvgStackFromLastHandOfTournament(@Param("tournamentId") Long tournamentId);
+    Integer calculateAvgStackFromLastHandOfTournament(@Param("tournamentId") Long tournamentId);
 
     String GET_PLAYERS_STACKS_FROM_LAST_HAND_OF_TOURNAMENT =
             "select \n"
