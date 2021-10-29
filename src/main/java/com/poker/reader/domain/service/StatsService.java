@@ -2,14 +2,16 @@ package com.poker.reader.domain.service;
 
 import com.poker.reader.domain.model.HandConsolidation;
 import com.poker.reader.domain.repository.HandConsolidationRepository;
-import com.poker.reader.view.rs.dto.PlayerDetailsDto;
 import com.poker.reader.view.rs.dto.StatsDto;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Log4j2
 @RequiredArgsConstructor

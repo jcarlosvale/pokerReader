@@ -13,8 +13,15 @@ import lombok.NoArgsConstructor;
 public class PlayerMonitoredDto {
 
     private PlayerDto playerDto;
+
+    private StatsDto statsDto;
+
     private StackDtoProjection stackDtoProjection;
-    private PlayerDetailsDto playerDetailsDto;
+
+    private String cssChen;
+
+    private String cssNickname;
+
 
     public PlayerMonitoredDto(PlayerDto playerDto, StackDtoProjection stackDtoProjection, PlayerDetailsDto playerDetailsDto) {
         checkArgument(playerDto.getNickname().equals(stackDtoProjection.getNickname()), "inconsistent monitored player");

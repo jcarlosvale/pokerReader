@@ -1062,4 +1062,4 @@ select                                                                          
  select max(hand) from hand_consolidation where tournament_id = 3285553006;
  
 
-select * from hand_consolidation hc where hc.hand = 230810709126;
+select * from hand_consolidation hc;

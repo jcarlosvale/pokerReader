@@ -1,13 +1,29 @@
 package com.poker.reader.domain.service;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.poker.reader.domain.model.PokerLine;
-import com.poker.reader.domain.repository.*;
+import com.poker.reader.domain.repository.HandConsolidationRepository;
+import com.poker.reader.domain.repository.HandRepository;
+import com.poker.reader.domain.repository.PlayerRepository;
+import com.poker.reader.domain.repository.PokerLineRepository;
+import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.repository.projection.HandDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDetailsDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import com.poker.reader.domain.util.CardUtil;
-import com.poker.reader.view.rs.dto.*;
+import com.poker.reader.view.rs.dto.HandDto;
+import com.poker.reader.view.rs.dto.PageDto;
+import com.poker.reader.view.rs.dto.PlayerDto;
+import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
+import com.poker.reader.view.rs.dto.RecommendationDto;
+import com.poker.reader.view.rs.model.ModelTournamentMonitored;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -15,14 +31,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -274,5 +282,28 @@ public class FileHtmlProcessorService {
 
     public long getLastHandFromTournament(Long tournamentId) {
         return pokerLineRepository.getLastHandFromTournament(tournamentId);
+    }
+
+    public ModelTournamentMonitored getTournamentMonitoredModel(Long tournamentId) {
+
+        long handId = getLastHandFromTournament(tournamentId);
+        List<PlayerDetailsDto> playerDetailsDtoList = fileHtmlProcessorService.getPlayersDetailsFromHand(handId);
+        statsService.loadStats(tournamentId, handId, playerDetailsDtoList);
+
+        //TODO: refactor
+        Map<String, PlayerDetailsDto> playerDetailsDtoMap =
+                playerDetailsDtoList
+                        .stream()
+                        .collect(Collectors.toMap(
+                                playerDetailsDto -> playerDetailsDto.getPlayerDetailsDtoProjection().getNickname(),
+                                playerDetailsDto -> playerDetailsDto));
+
+        List<PlayerMonitoredDto> playerMonitoredDtoList = fileHtmlProcessorService.getPlayersToMonitorFromLastHandOfTournament(
+                tournamentId, playerDetailsDtoMap);
+
+        var recommendationDto = fileHtmlProcessorService.getRecommendation(playerMonitoredDtoList);
+
+
+
     }
 }

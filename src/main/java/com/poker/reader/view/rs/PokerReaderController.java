@@ -9,12 +9,10 @@ import com.poker.reader.domain.service.FileReaderService;
 import com.poker.reader.domain.service.StatsService;
 import com.poker.reader.view.rs.dto.HandDto;
 import com.poker.reader.view.rs.dto.PageDto;
-import com.poker.reader.view.rs.dto.PlayerDetailsDto;
 import com.poker.reader.view.rs.dto.PlayerDto;
-import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
+import com.poker.reader.view.rs.model.ModelTournamentMonitored;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -83,26 +81,9 @@ public class PokerReaderController {
             Model model,
             @PathVariable("tournamentId") Long tournamentId) {
 
-        long handId = fileHtmlProcessorService.getLastHandFromTournament(tournamentId);
-        List<PlayerDetailsDto> playerDetailsDtoList = fileHtmlProcessorService.getPlayersDetailsFromHand(handId);
-        statsService.loadStats(tournamentId, handId, playerDetailsDtoList);
+        ModelTournamentMonitored modelTournamentMonitored = fileHtmlProcessorService.getTournamentMonitoredModel(tournamentId);
 
-        //TODO: refactor
-        Map<String, PlayerDetailsDto> playerDetailsDtoMap =
-                playerDetailsDtoList
-                .stream()
-                .collect(Collectors.toMap(
-                        playerDetailsDto -> playerDetailsDto.getPlayerDetailsDtoProjection().getNickname(),
-                        playerDetailsDto -> playerDetailsDto));
-
-        List<PlayerMonitoredDto> playerMonitoredDtoList = fileHtmlProcessorService.getPlayersToMonitorFromLastHandOfTournament(
-                tournamentId, playerDetailsDtoMap);
-
-        var recommendationDto = fileHtmlProcessorService.getRecommendation(playerMonitoredDtoList);
-
-        model.addAttribute("playersMonitoredList", playerMonitoredDtoList);
-        model.addAttribute("tournamentId", tournamentId);
-        model.addAttribute("recommendationDto", recommendationDto);
+        model.addAttribute("modelTournamentMonitored", modelTournamentMonitored);
 
         return "monitoring";
     }
