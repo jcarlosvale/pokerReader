@@ -137,16 +137,17 @@ public class StatsService {
                         .hjCount(hjCount)
                         .coCount(coCount)
                         .btnCount(btnCount)
-                        .labelNoActionMonitoring(seqNoAction + " " + perc(noActionCount, size))
-                        .labelNoActionSBMonitoring(seqNoActionSB + " " + perc(noActionSB, sbCount))
-                        .labelNoActionBBMonitoring(seqNoActionBB + " " + perc(noActionBB, sbCount))
-                        .labelActionBTNMonitoring(seqActionBTN + " " + perc(actionBTN, btnCount))
+                        .labelNoActionMonitoring(perc(noActionCount, size))
+                        .labelNoActionSBMonitoring(perc(noActionSB, sbCount))
+                        .labelNoActionBBMonitoring(perc(noActionBB, bbCount))
+                        .labelActionBTNMonitoring(perc(actionBTN, btnCount))
                         .build();
     }
 
     private String perc(int count, int size) {
         if (size == 0) return null;
-        return ((count + "/" + size) + " " + (100 * count / size) + "%");
+        //return ((count + "/" + size) + " " + (100 * count / size) + "%");
+        return (100 * count / size) + "%";
     }
 
     //TODO: need to fix, example http://localhost:8080/hand/222698059143

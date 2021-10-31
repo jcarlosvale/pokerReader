@@ -245,7 +245,7 @@ public class FileHtmlProcessorService {
                             .nickname(playerMonitoredDto.getPlayerDto().getNickname())
                             .tournamentId(playerMonitoredDto.getStackDtoProjection().getTournamentId())
                             .handId(playerMonitoredDto.getStackDtoProjection().getHandId())
-                            .minBlinds(15 * playerMonitoredDto.getStackDtoProjection().getBigBlind())
+                            .minBlinds(18 * playerMonitoredDto.getStackDtoProjection().getBigBlind())
                             .avgStack(avgStack)
                             .stack(stackFromHero)
                             .blinds(blinds)
@@ -263,8 +263,8 @@ public class FileHtmlProcessorService {
         if(blinds <= 10) {
             return "ALL IN, LESS THAN 10 BLINDS";
         }
-        if ((stackFromHero < avgStack) && (blinds <= 15)){
-            return "ALL IN, LESS THAN AVERAGE BLINDS < 15";
+        if ((stackFromHero < avgStack) && (blinds <= 18)){
+            return "ALL IN, LESS THAN AVERAGE BLINDS < 18";
         }
         if (stackFromHero > avgStack) {
             return "ABOVE AVG STACK";
