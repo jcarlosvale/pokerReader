@@ -23,8 +23,6 @@ public class StatsDto {
 
     private String blinds;
 
-    private String board;
-
     private int pot;
 
     private Integer chen;
@@ -55,34 +53,32 @@ public class StatsDto {
 
     private String nickname;
 
-    private int stack;
-
     private int total;
 
     //how many hands without playing, excluding BB, SB
-    private int noActionCount;
+    private Integer noActionCount;
 
-    private String noActionPerc;
+    private Integer noActionPerc;
 
-    private int seqNoAction;
+    private Integer noActionSeq;
 
-    private int seqNoActionSB;
+    private Integer foldSBSeq;
 
-    private int noActionSB;
+    private Integer foldSBCount;
 
-    private String percNoActionSB;
+    private Integer foldSBPerc;
 
-    private int seqNoActionBB;
+    private Integer foldBBSeq;
 
-    private int noActionBB;
+    private Integer foldBBCount;
 
-    private String percNoActionBB;
+    private Integer foldBBPerc;
 
-    private int seqActionBTN;
+    private Integer actionBTNSeq;
 
-    private int actionBTN;
+    private Integer actionBTNCount;
 
-    private String percActionBTN;
+    private Integer actionBTNPerc;
 
     private int sbCount;
 

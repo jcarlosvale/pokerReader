@@ -16,6 +16,4 @@ public interface PlayerDtoProjection {
     String getCards();
 
     String getRawCards();
-
-    String getCss();
 }
