@@ -1,5 +1,7 @@
 package com.poker.reader.domain.repository.projection;
 
+import com.poker.reader.domain.service.Analyse;
+
 public interface PlayerDtoProjection {
     String getNickname();
 
@@ -17,5 +19,7 @@ public interface PlayerDtoProjection {
 
     String getRawCards();
 
-    String getCss();
+    default String getCss() {
+        return Analyse.analyseAvgChen(getAvgChen()).getCss();
+    }
 }

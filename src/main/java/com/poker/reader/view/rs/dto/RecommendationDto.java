@@ -10,16 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class RecommendationDto {
-
-    String nickname;
-    Long tournamentId;
-    Long handId;
-    Integer minBlinds;
-    Integer avgStack;
-    Integer stack;
-    Integer blinds;
     String recommendation;
     String css;
-
-
 }

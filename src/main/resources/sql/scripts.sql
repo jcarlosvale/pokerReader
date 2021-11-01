@@ -1042,24 +1042,73 @@ select      string_agg(distinct hc.normalised , ', ') as cards,
 	'd-none' as css
  from hand_consolidation hc  where hc.nickname = 'x Bing x 8 11';
 	
-
-
-
-
-
-230809889975
-
-
 select                                                                                                            hand_id,                                                                                                       cast(substring(line from 'Seat ([0-9]*):') as int8) as position,                                               trim(substring(line from 'and lost with (.*)')) as hand_description                                         from pokerline p                                                                                               where                                                                                                             p.section = 'SUMMARY'                                                                                          and p.line like 'Seat%:%'                                                                                      and p.line like '%and lost %'                                                                                  and hand_id = 230809889975;                                                                                       
-   
-  
-  
   
   select * from hand_consolidation hc where hc.nickname = 'Voa Nando'and card1 is not null;
-  
- 
- 
+
  select max(hand) from hand_consolidation where tournament_id = 3285553006;
  
+select * from hand_consolidation hc;
 
-select * from hand_consolidation hc where hc.hand = 230810709126;
+select 
+	distinct hc.nickname as nickname,
+	count(hc.hand) as totalHands,
+	sum(case when cards_description is null then 0 else 1 end) as showdowns,
+	round(sum(case when cards_description is null then 0 else 1 end) * 100.0/ count(hc.hand)) as showdownStat,
+	round(avg(hc.chen)) as avgChen,
+	to_char(min(hc.played_at), 'dd-mm-yy HH24:MI:SS') as createdAt,
+	string_agg(distinct hc.normalised , ', ') as cards,
+	string_agg(hc.cards_description, ', ') as rawcards
+from hand_consolidation hc
+where 
+	hc.nickname in (select nickname from hand_consolidation where hand = 230809889975) 
+group by 
+	hc.nickname;
+	
+
+select * from hand_consolidation where hand = 207557411309;
+select distinct place from hand_consolidation hc;
+select * from hand_consolidation hc where place is not null;
+
+select hand, count(*) from blind_position bp group by hand
+having count(*) = 2;
+
+
+
+select * from hands h where h.tournament_id = 3285553006 order by played_at desc limit 1;  230814337755
+
+select max(hand) from hand_consolidation where tournament_id = 3285553006;
+
+
+
+select 
+	hc.tournament_id as tournamentId,
+	hc.hand as handId,
+	hc.level as level,
+	concat(cast(hc.small_blind as text) || '/', cast(hc.big_blind as text)) as blinds,
+	count(distinct hc.nickname) as players,
+	sum(case when hc.cards_description is null then 0 else 1 end) as showdowns,
+		to_char(hc.played_at, 'dd-mm-yy HH24:MI:SS') as playedAt,
+	hc.total_pot as pot,
+	hc.board as board,
+	case 
+		when length(hc.board) = 8 then 'FLOP'
+		when length(hc.board) = 11 then 'TURN'
+		when length(hc.board) = 14 then 'RIVER'
+		else null
+	end as boardShowdown
+from 
+	hand_consolidation hc
+where 
+	hc.tournament_id = :tournamentId
+group by
+	hc.tournament_id,
+	hc.hand,
+	hc.level,
+	hc.small_blind,
+	hc.big_blind,
+	hc.played_at,
+	hc.total_pot,
+	hc.board
+order by 
+	hc.played_at

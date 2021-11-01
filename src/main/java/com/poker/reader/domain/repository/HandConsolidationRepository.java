@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface HandConsolidationRepository extends JpaRepository<HandConsolidation, HandPositionId> {
     String GET_PLAYER_DTO =
@@ -46,7 +45,7 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "\tgroup by \n"
                     + "\thc.nickname";
     @Query(value = GET_PLAYER_DTO_BY_NICKNAME, nativeQuery = true )
-    Optional<PlayerDtoProjection> getPlayerDtoByNickname(@Param("nickname") String nickname);
+    PlayerDtoProjection getPlayerDtoByNickname(@Param("nickname") String nickname);
 
     String GET_TOURNAMENTS_DTO =
             "select \n"
@@ -197,4 +196,57 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "\thc.hand\n";
     @Query(value = GET_HANDS_FROM_PLAYERS_UNTIL_HAND_ID_BY_TOURNAMENT_ORDER_BY_NICKNAME, nativeQuery = true )
     List<HandConsolidation> getHandsFromPlayersUntilHandIdByTournamentOrderByNickname(@Param("handId") Long handId, @Param("tournamentId") Long tournamentId);
+
+    String GET_PLAYERS_DTO_FROM_HAND =
+            "select \n"
+                    + "\tdistinct hc.nickname as nickname,\n"
+                    + "\tcount(hc.hand) as totalHands,\n"
+                    + "\tsum(case when cards_description is null then 0 else 1 end) as showdowns,\n"
+                    + "\tround(sum(case when cards_description is null then 0 else 1 end) * 100.0/ count(hc.hand)) as showdownStat,\n"
+                    + "\tround(avg(hc.chen)) as avgChen,\n"
+                    + "\tto_char(min(hc.played_at), 'dd-mm-yy HH24:MI:SS') as createdAt,\n"
+                    + "\tstring_agg(distinct hc.normalised , ', ') as cards,\n"
+                    + "\tstring_agg(hc.cards_description, ', ') as rawcards \n"
+                    + "from hand_consolidation hc\n"
+                    + "where \n"
+                    + "\thc.nickname in (select nickname from hand_consolidation where hand = :handId) \n"
+                    + "group by \n"
+                    + "\thc.nickname";
+    @Query(value = GET_PLAYERS_DTO_FROM_HAND, nativeQuery = true )
+    List<PlayerDtoProjection> getPlayersDtoFromHand(@Param("handId") Long handId);
+
+    String GET_HAND =
+            "select \n"
+                    + "\thc.tournament_id as tournamentId,\n"
+                    + "\thc.hand as handId,\n"
+                    + "\thc.level as level,\n"
+                    + "\tconcat(cast(hc.small_blind as text) || '/', cast(hc.big_blind as text)) as blinds,\n"
+                    + "\tcount(distinct hc.nickname) as players,\n"
+                    + "\tsum(case when hc.cards_description is null then 0 else 1 end) as showdowns,\n"
+                    + "\t\tto_char(hc.played_at, 'dd-mm-yy HH24:MI:SS') as playedAt,\n"
+                    + "\thc.total_pot as pot,\n"
+                    + "\thc.board as board,\n"
+                    + "\tcase \n"
+                    + "\t\twhen length(hc.board) = 8 then 'FLOP'\n"
+                    + "\t\twhen length(hc.board) = 11 then 'TURN'\n"
+                    + "\t\twhen length(hc.board) = 14 then 'RIVER'\n"
+                    + "\t\telse null\n"
+                    + "\tend as boardShowdown\n"
+                    + "from \n"
+                    + "\thand_consolidation hc\n"
+                    + "where \n"
+                    + "\thc.hand = :handId\n"
+                    + "group by\n"
+                    + "\thc.tournament_id,\n"
+                    + "\thc.hand,\n"
+                    + "\thc.level,\n"
+                    + "\thc.small_blind,\n"
+                    + "\thc.big_blind,\n"
+                    + "\thc.played_at,\n"
+                    + "\thc.total_pot,\n"
+                    + "\thc.board\n"
+                    + "order by \n"
+                    + "\thc.played_at";
+    @Query(value = GET_HAND, nativeQuery = true )
+    HandDtoProjection getHand(@Param("handId") Long handId);
 }

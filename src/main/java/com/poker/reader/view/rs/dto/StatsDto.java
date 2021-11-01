@@ -11,32 +11,74 @@ import lombok.NoArgsConstructor;
 @Builder
 public class StatsDto {
 
+    private long tournamentId;
+
+    private long handId;
+
+    private String level;
+
+    private String playedAt;
+
+    private String boardShowdown;
+
+    private String blinds;
+
+    private int pot;
+
+    private Integer chen;
+
+    private String cards;
+
+    private boolean isButton;
+
+    private boolean isSmallBlind;
+
+    private boolean isBigBlind;
+
+    private int stackOfPlayer;
+
+    private Integer blindsCount;
+
+    private boolean isWinner;
+
+    private boolean isLose;
+
+    private String handDescription;
+
+    private String place;
+
+    private String pokerPosition;
+
+    private Integer position;
+
+    private String nickname;
+
     private int total;
 
     //how many hands without playing, excluding BB, SB
-    private int noActionCount;
+    private Integer noActionCount;
 
-    private String noActionPerc;
+    private Integer noActionPerc;
 
-    private int seqNoAction;
+    private Integer noActionSeq;
 
-    private int seqNoActionSB;
+    private Integer foldSBSeq;
 
-    private int noActionSB;
+    private Integer foldSBCount;
 
-    private String percNoActionSB;
+    private Integer foldSBPerc;
 
-    private int seqNoActionBB;
+    private Integer foldBBSeq;
 
-    private int noActionBB;
+    private Integer foldBBCount;
 
-    private String percNoActionBB;
+    private Integer foldBBPerc;
 
-    private int seqActionBTN;
+    private Integer actionBTNSeq;
 
-    private int actionBTN;
+    private Integer actionBTNCount;
 
-    private String percActionBTN;
+    private Integer actionBTNPerc;
 
     private int sbCount;
 

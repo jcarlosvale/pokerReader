@@ -2,22 +2,15 @@ package com.poker.reader.view.rs;
 
 import com.poker.reader.configuration.PokerReaderProperties;
 import com.poker.reader.domain.repository.projection.HandDtoProjection;
+import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import com.poker.reader.domain.service.FileHtmlProcessorService;
 import com.poker.reader.domain.service.FileProcessorService;
 import com.poker.reader.domain.service.FileReaderService;
 import com.poker.reader.domain.service.StatsService;
-import com.poker.reader.view.rs.dto.HandDto;
 import com.poker.reader.view.rs.dto.PageDto;
-import com.poker.reader.view.rs.dto.PlayerDetailsDto;
-import com.poker.reader.view.rs.dto.PlayerDto;
-import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import com.poker.reader.view.rs.dto.StatsDto;
+import com.poker.reader.view.rs.model.ModelTournamentMonitored;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +20,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RequiredArgsConstructor
 @Controller
@@ -47,9 +46,9 @@ public class PokerReaderController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(pokerReaderProperties.getPageSize());
 
-        Page<PlayerDto> playerPage =
+        Page<PlayerDtoProjection> playerPage =
                 fileHtmlProcessorService
-                        .findPaginatedPlayers(PageRequest.of(currentPage - 1, pageSize, Sort.by("nickname").ascending()), false);
+                        .findPaginatedPlayers(PageRequest.of(currentPage - 1, pageSize, Sort.by("nickname").ascending()));
 
         model.addAttribute("playerPage", playerPage);
 
@@ -83,26 +82,9 @@ public class PokerReaderController {
             Model model,
             @PathVariable("tournamentId") Long tournamentId) {
 
-        long handId = fileHtmlProcessorService.getLastHandFromTournament(tournamentId);
-        List<PlayerDetailsDto> playerDetailsDtoList = fileHtmlProcessorService.getPlayersDetailsFromHand(handId);
-        statsService.loadStats(tournamentId, handId, playerDetailsDtoList);
+        ModelTournamentMonitored modelTournamentMonitored = fileHtmlProcessorService.getTournamentMonitoredModel(tournamentId);
 
-        //TODO: refactor
-        Map<String, PlayerDetailsDto> playerDetailsDtoMap =
-                playerDetailsDtoList
-                .stream()
-                .collect(Collectors.toMap(
-                        playerDetailsDto -> playerDetailsDto.getPlayerDetailsDtoProjection().getNickname(),
-                        playerDetailsDto -> playerDetailsDto));
-
-        List<PlayerMonitoredDto> playerMonitoredDtoList = fileHtmlProcessorService.getPlayersToMonitorFromLastHandOfTournament(
-                tournamentId, playerDetailsDtoMap);
-
-        var recommendationDto = fileHtmlProcessorService.getRecommendation(playerMonitoredDtoList);
-
-        model.addAttribute("playersMonitoredList", playerMonitoredDtoList);
-        model.addAttribute("tournamentId", tournamentId);
-        model.addAttribute("recommendationDto", recommendationDto);
+        model.addAttribute("modelTournamentMonitored", modelTournamentMonitored);
 
         return "monitoring";
     }
@@ -124,15 +106,14 @@ public class PokerReaderController {
             Model model,
             @PathVariable("handId") Long handId) {
 
-        List<PlayerDetailsDto> playerDetailsDtoList = fileHtmlProcessorService.getPlayersDetailsFromHand(handId);
-        HandDto handDto = fileHtmlProcessorService.extractHandDto(playerDetailsDtoList);
-        statsService.loadStats(handDto.getTournamentId(), handDto.getHandId(), playerDetailsDtoList);
+        HandDtoProjection handDto = fileHtmlProcessorService.getHand(handId);
+        List<StatsDto> playerStatsDtoList = statsService.loadStats(handDto.getTournamentId(), handId);
         String rawData = fileHtmlProcessorService.getRawDataFrom(handId);
         PageDto pageDto = fileHtmlProcessorService.createHandPaginationFromTournament(handId, handDto.getTournamentId());
 
         model.addAttribute("pageDto", pageDto);
         model.addAttribute("handDto", handDto);
-        model.addAttribute("playerDetailsDtoList", playerDetailsDtoList);
+        model.addAttribute("playerDetailsDtoList", playerStatsDtoList);
         model.addAttribute("rawData", rawData);
 
         return "hand";
@@ -143,8 +124,8 @@ public class PokerReaderController {
             Model model,
             @PathVariable("nickname") String nickname) {
 
-        PlayerDto playerDto = fileHtmlProcessorService.findPlayer(nickname, false);
-        model.addAttribute("player", playerDto);
+        PlayerDtoProjection playerDtoProjection = fileHtmlProcessorService.findPlayer(nickname);
+        model.addAttribute("player", playerDtoProjection);
         return "player";
     }
 

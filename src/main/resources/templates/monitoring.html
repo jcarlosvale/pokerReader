@@ -1,70 +1,67 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
 		<meta http-equiv="refresh" content="20">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title th:text="${tournamentId}"/>
+		<title th:text="${modelTournamentMonitored.tournamentId}"/>
 
 
 		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 		<link th:href="@{/css/style.css}" rel="stylesheet">
 
-  </head>
-  <body>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table table-sm table-bordered">
+						<caption th:text="${modelTournamentMonitored.tournamentId} +
+						' - stack ' + ${modelTournamentMonitored.stackOfHero} +
+						' - min ' + ${modelTournamentMonitored.minBlindsRecommendation} +
+						' - avg ' + ${modelTournamentMonitored.avgStack} +
+						' - #blinds ' + ${modelTournamentMonitored.blindsCount} +
+						' : ' + ${modelTournamentMonitored.recommendation}"
+								 th:classappend="${modelTournamentMonitored.cssRecommendation}"/>
+						<thead>
+							<tr>
+								<th>nickname</th>
+								<th>chen</th>
+								<th>Action</th>
+								<th>SB</th>
+								<th>BB</th>
+								<th>BTN</th>
+								<th>#show</th>
+								<th>#hands</th>
+								<th>%show</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="player : ${modelTournamentMonitored.playerMonitoredDtoList}">
+								<td th:text="${player.nickname}" th:classappend="${player.cssNickname}"/>
+								<td th:text="${player.avgChen}" th:classappend="${player.cssAvgChen}"/>
 
-    <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<table class="table table-sm">
-				<caption th:text="${recommendationDto.tournamentId} +
-				' - stack ' + ${recommendationDto.stack} +
-				' - min blinds ' + ${recommendationDto.minBlinds} +
-				' - avg ' + ${recommendationDto.avgStack} +
-				' - #blinds ' + ${recommendationDto.blinds} +
-				' : ' + ${recommendationDto.recommendation}"/>
-				<thead>
-					<tr>
-						<th>nickname</th>
-						<th>chen</th>
-                        <th>Action</th>
-                        <th>SB</th>
-                        <th>BB</th>
-                        <th>BTN</th>
-						<th>#show</th>
-						<th>#hands</th>
-						<th>%show</th>
-<!--						<th>cards</th>-->
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="player : ${playersMonitoredList}"
-							th:class="${player.playerDto.css}">
-						<td th:text="${player.playerDto.nickname}" />
-						<td th:text="${player.playerDto.avgChen}" />
-
-                        <td th:text="${player.playerDetailsDto.statsDto.labelNoActionMonitoring}" />
-                        <td th:text="${player.playerDetailsDto.statsDto.labelNoActionSBMonitoring}" />
-                        <td th:text="${player.playerDetailsDto.statsDto.labelNoActionBBMonitoring}" />
-                        <td th:text="${player.playerDetailsDto.statsDto.labelActionBTNMonitoring}" />
+								<td th:text="${player.noActionPerc}" th:classappend="${player.cssNoActionPerc}"/>
+								<td th:text="${player.foldSBPerc}" th:classappend="${player.cssFoldSBPerc}"/>
+								<td th:text="${player.foldBBPerc}" th:classappend="${player.cssFoldBBPerc}"/>
+								<td th:text="${player.actionBTNPerc}" th:classappend="${player.cssActionBTNPerc}"/>
 
 
-						<td th:text="${player.playerDto.showdowns}" />
-						<td th:text="${player.playerDto.totalHands}" />
-						<td th:text="${player.playerDto.showdownStat}" />
-<!--						<td th:text="${player.playerDto.cards}" />-->
-					</tr>
-				</tbody>
-			</table>
+								<td th:text="${player.showdowns}" th:classappend="${player.cssShowdowns}"/>
+								<td th:text="${player.totalHands}" th:classappend="${player.cssTotalHands}"/>
+								<td th:text="${player.showdownPerc}" th:classappend="${player.cssShowdownPerc}"/>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
 
 		<script th:src="@{/js/jquery.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
 		<script th:src="@{/js/scripts.js}"></script>
 
-  </body>
+	</body>
 </html>
