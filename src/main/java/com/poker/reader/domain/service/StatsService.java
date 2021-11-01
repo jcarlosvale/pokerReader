@@ -206,10 +206,10 @@ public class StatsService {
                         .hjCount(hjCount)
                         .coCount(coCount)
                         .btnCount(btnCount)
-                        .labelNoActionMonitoring(perc(noActionCount, size))
-                        .labelNoActionSBMonitoring(perc(noActionSB, sbCount))
-                        .labelNoActionBBMonitoring(perc(noActionBB, bbCount))
-                        .labelActionBTNMonitoring(perc(actionBTN, btnCount))
+                        .labelNoActionMonitoring(seqNoAction + " " + perc(noActionCount, size))
+                        .labelNoActionSBMonitoring(seqNoActionSB + " " + perc(noActionSB, sbCount))
+                        .labelNoActionBBMonitoring(seqNoActionBB + " " + perc(noActionBB, bbCount))
+                        .labelActionBTNMonitoring(seqActionBTN + " " + perc(actionBTN, btnCount))
                         .build();
     }
 
