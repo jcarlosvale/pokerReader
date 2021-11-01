@@ -310,11 +310,11 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
             "( " +
                 "select " +
                 "    hand_id, " +
-                "    substring(line from 'BoardOfHand \\[(.*)\\]') " +
+                "    substring(line from 'Board \\[(.*)\\]') " +
                 "from pokerline " +
                 "where " +
                 "   section = 'SUMMARY' " +
-                "   and line like '%BoardOfHand [%]%' " +
+                "   and line like '%Board [%]%' " +
                 "   and hand_id = :handId" +
             ")  " +
             "on conflict(hand_id) " +

@@ -181,8 +181,8 @@ public class FileHtmlProcessorService {
 
     public ModelTournamentMonitored getTournamentMonitoredModel(Long tournamentId) {
 
-        Hand hand = handRepository.findMostRecent(tournamentId);
-        long handId = hand.getHandId();
+        long handId = handConsolidationRepository.getLasHandFromTournament(tournamentId);
+        Hand hand = handRepository.findById(handId).get();
 
         log.info("Retrieving tournament {} hand {}", tournamentId, handId);
 
@@ -269,7 +269,7 @@ public class FileHtmlProcessorService {
     }
 
     private String perc(String title, Integer count, Integer size) {
-        if (Objects.isNull(size)) return "no data";
+        if (Objects.isNull(size) || size == 0) return "no data";
         return title +": " + count + "/" + size + " " + (100 * count / size) + "%";
     }
 

@@ -3,9 +3,6 @@ package com.poker.reader.domain.service;
 import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Analyse {
 
     public static final int MIN_BLINDS = 18;
@@ -15,15 +12,15 @@ public class Analyse {
         String css;
         if(blinds <= 10) {
             recommendation = "ALL IN";
-            css = PlayerStyle.SUPER_LOOSE.getCss();
+            css = PlayerStyle.LIMPER.getCss();
         }
         else if ((stackFromHero < avgStack) && (blinds <= MIN_BLINDS)){
             recommendation = "ALL IN < " + MIN_BLINDS;
-            css = PlayerStyle.SUPER_LOOSE.getCss();
+            css = PlayerStyle.LIMPER.getCss();
         }
         else if (stackFromHero > avgStack) {
             recommendation = "ABOVE AVG STACK";
-            css = PlayerStyle.SUPER_TIGHT.getCss();
+            css = PlayerStyle.TIGHT.getCss();
         }
         else {
             recommendation = "PLAY!";
@@ -51,20 +48,10 @@ public class Analyse {
 
         PlayerStyle playerStyleNickname = analyse(
                 playerStyleAvgChen,
-                playerStyleStackOfPlayer,
                 playerStyleBlindsCount,
-                playerStyleNoActionSeq,
-                playerStyleNoActionPerc,
-                playerStyleFoldSBSeq,
-                playerStyleFoldSBPerc,
-                playerStyleFoldBBSeq,
-                playerStyleFoldBBPerc,
-                playerStyleActionBTNSeq,
-                playerStyleActionBTNPerc,
-                playerStyleShowdowns,
-                playerStyleShowdownPerc,
-                playerStyleTotalHands
+                playerStyleNoActionPerc
         );
+        playerStyleNickname = playerStyleNickname.equals(PlayerStyle.NONE) ? playerStyleAvgChen : playerStyleNickname;
 
         playerMonitoredDto.setCssAvgChen(playerStyleAvgChen.getCss());
         playerMonitoredDto.setCssStackOfPlayer(playerStyleStackOfPlayer.getCss());
@@ -88,20 +75,14 @@ public class Analyse {
         if (playerStyles.length == 0) {
             return PlayerStyle.NONE;
         } else {
-            Map<PlayerStyle, Integer> countPlayerStyles = new HashMap<>();
+            boolean containsSuperLoose = false;
+            boolean containsLoose = false;
+
             for(PlayerStyle playerStyle: playerStyles) {
-                countPlayerStyles.put(playerStyle, countPlayerStyles.getOrDefault(playerStyle, 0) + 1);
+                if (playerStyle.equals(PlayerStyle.SUPER_LOOSE)) containsSuperLoose = true;
+                if (playerStyle.equals(PlayerStyle.LOOSE)) containsLoose = true;
             }
-            PlayerStyle maxPlayerStyle = PlayerStyle.NONE;
-            int maxStyle = -1;
-            for(PlayerStyle playerStyle : countPlayerStyles.keySet()) {
-                int temp = countPlayerStyles.get(playerStyle);
-                if (temp > maxStyle) {
-                    maxStyle = temp;
-                    maxPlayerStyle = playerStyle;
-                }
-            }
-            return maxPlayerStyle;
+            return containsSuperLoose ? PlayerStyle.SUPER_LOOSE : containsLoose ? PlayerStyle.LOOSE : PlayerStyle.NONE;
         }
     }
 

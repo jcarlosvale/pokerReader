@@ -249,4 +249,10 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "\thc.played_at";
     @Query(value = GET_HAND, nativeQuery = true )
     HandDtoProjection getHand(@Param("handId") Long handId);
+
+    String LAST_HAND_FROM_TOURNAMENT =
+            "select max(hand) from hand_consolidation where tournament_id = :tournamentId";
+    @Query(value = LAST_HAND_FROM_TOURNAMENT, nativeQuery = true )
+    Long getLasHandFromTournament(@Param("tournamentId") Long tournamentId);
+
 }

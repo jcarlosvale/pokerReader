@@ -1123,3 +1123,16 @@ select     hand_id,     substring(line from 'Board \[(.*)\]') from pokerline 
 select * from hand_consolidation hc where hc.hand =230991202312;
 
 select distinct place from hand_consolidation hc ;
+
+select max(hand) from hand_consolidation where tournament_id = 3285553006;
+
+
+select * from board_of_hand boh where boh.hand_id =  231068311859;
+select * from hand_consolidation hc where tournament_id = 3291849599 order by hand desc;
+
+
+
+select     hand_id,     substring(line from 'BoardOfHand \[(.*)\]') from pokerline where    section = 'SUMMARY'    and line like '%BoardOfHand [%]%'    and hand_id = 231068311859
+   
+   
+   select * from pokerline p where p.hand_id = 231068311859;
