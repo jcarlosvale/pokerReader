@@ -1111,4 +1111,15 @@ group by
 	hc.total_pot,
 	hc.board
 order by 
-	hc.played_at
+	hc.played_at;
+	
+
+select     hand_id,     substring(line from 'Board \[(.*)\]') from pokerline where    section = 'SUMMARY'    and line like '%Board [%]%'
+   and hand_id = 230991202312;
+  
+  select * from board_of_hand boh where boh.hand_id = 230991202312;
+   
+	
+select * from hand_consolidation hc where hc.hand =230991202312;
+
+select distinct place from hand_consolidation hc ;

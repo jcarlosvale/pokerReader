@@ -50,11 +50,6 @@ public class StatsService {
         int seqActionBTN = 0;
         int sbCount = 0;
         int bbCount = 0;
-        int utgCount = 0;
-        int mpCount = 0;
-        int ljCount = 0;
-        int hjCount = 0;
-        int coCount = 0;
         int btnCount = 0;
         long tournamentId = 0;
         long handId = 0;
@@ -74,71 +69,52 @@ public class StatsService {
         boolean isLose = false;
         String handDescription = null;
         String place = null;
-        String pokerPosition = null;
         Integer position = null;
         String nickname = null;
 
         for(HandConsolidation hand : handConsolidationsFromOnePlayerList) {
-//            if (hand.getHand() == 222698160975L && hand.getNickname().equals("GutPewPew")) {
-//                log.info("debug");
-//            }
-            if (isNoAction(hand)){
+
+            boolean isNoAction = isNoAction(hand);
+            place = hand.getPlace();
+
+            if (isNoAction){
                 noActionCount++;
                 seqNoAction++;
-                switch (hand.getPokerPosition()) {
-                    case "SB":
-                        noActionSB++;
-                        seqNoActionSB++;
-                        break;
-                    case "BB":
-                        noActionBB++;
-                        seqNoActionBB++;
-                        break;
-                    case "BTN":
-                        seqActionBTN = 0;
-                        break;
+                if (isPlace(place,"small blind")) {
+                    noActionSB++;
+                    seqNoActionSB++;
+                }
+                else if (isPlace(place,"big blind")) {
+                    noActionBB++;
+                    seqNoActionBB++;
+                }
+                else if (isPlace(place,"button")) {
+                    seqActionBTN = 0;
                 }
             } else {
                 seqNoAction = 0;
-                switch (hand.getPokerPosition()) {
-                    case "SB":
-                        seqNoActionSB = 0;
-                        break;
-                    case "BB":
-                        seqNoActionBB = 0;
-                        break;
-                    case "BTN":
-                        actionBTN++;
-                        seqActionBTN++;
-                        break;
+                if (isPlace(place,"small blind")) {
+                    seqNoActionSB = 0;
+                }
+                else if (isPlace(place,"big blind")) {
+                    seqNoActionBB = 0;
+                }
+                else if (isPlace(place,"button")) {
+                    actionBTN++;
+                    seqActionBTN++;
                 }
             }
-            switch (hand.getPokerPosition()) {
-                case "SB":
-                    sbCount++;
-                    break;
-                case "BB":
-                    bbCount++;
-                    break;
-                case "UTG":
-                    utgCount++;
-                    break;
-                case "MP":
-                    mpCount++;
-                    break;
-                case "LJ":
-                    ljCount++;
-                    break;
-                case "HJ":
-                    hjCount++;
-                    break;
-                case "CO":
-                    coCount++;
-                    break;
-                case "BTN":
-                    btnCount++;
-                    break;
+
+            if (isPlace(place,"small blind")) {
+                sbCount++;
             }
+            else if (isPlace(place,"big blind")) {
+                bbCount++;
+            }
+            else if (isPlace(place,"button")) {
+                btnCount++;
+            }
+
             tournamentId = hand.getTournamentId();
             handId = hand.getHand();
             level = hand.getLevel();
@@ -148,16 +124,14 @@ public class StatsService {
             pot = hand.getTotalPot();
             chen = hand.getChen();
             cards = hand.getCardsDescription();
-            isButton = Objects.nonNull(hand.getPlace()) && hand.getPlace().equals("button");
-            isSmallBlind = Objects.nonNull(hand.getPlace()) && hand.getPlace().equals("small blind");
-            isBigBlind = Objects.nonNull(hand.getPlace()) && hand.getPlace().equals("big blind");
+            isButton = "button".equals(hand.getPlace());
+            isSmallBlind ="small blind".equals(hand.getPlace());
+            isBigBlind = "big blind".equals(hand.getPlace());
             stackOfPlayer = hand.getStackOfPlayer();
             blindsCount = hand.getStackOfPlayer() / hand.getBigBlind();
             isWinner = hand.getWinPot() != null;
             isLose = hand.getWinPot() == null;
             handDescription = hand.getWinHandDescription() != null ? hand.getWinHandDescription() : hand.getLoseHandDescription();
-            place = hand.getPlace();
-            pokerPosition = hand.getPokerPosition();
             position = hand.getPosition();
             nickname = hand.getNickname();
         }
@@ -182,7 +156,6 @@ public class StatsService {
                         .isLose(isLose)
                         .handDescription(handDescription)
                         .place(place)
-                        .pokerPosition(pokerPosition)
                         .position(position)
                         .nickname(nickname)
                         .total(size)
@@ -200,17 +173,16 @@ public class StatsService {
                         .actionBTNPerc(perc(actionBTN, btnCount))
                         .sbCount(sbCount)
                         .bbCount(bbCount)
-                        .utgCount(utgCount)
-                        .mpCount(mpCount)
-                        .ljCount(ljCount)
-                        .hjCount(hjCount)
-                        .coCount(coCount)
                         .btnCount(btnCount)
                         .labelNoActionMonitoring(seqNoAction + " " + perc(noActionCount, size))
                         .labelNoActionSBMonitoring(seqNoActionSB + " " + perc(noActionSB, sbCount))
                         .labelNoActionBBMonitoring(seqNoActionBB + " " + perc(noActionBB, bbCount))
                         .labelActionBTNMonitoring(seqActionBTN + " " + perc(actionBTN, btnCount))
                         .build();
+    }
+
+    private boolean isPlace(String place, String position) {
+        return Objects.nonNull(place) && place.equals(position);
     }
 
     private Integer perc(int count, int size) {
@@ -226,6 +198,6 @@ public class StatsService {
 
         return (foldRound.equals("PREFLOP") && noBet)
                 ||
-                (foldRound.equals("PREFLOP") && (hand.getPokerPosition().equals("SB") || hand.getPokerPosition().equals("BB")));
+                (foldRound.equals("PREFLOP") && ("small blind".equals(hand.getPlace()) || "big blind".equals(hand.getPlace())));
     }
 }

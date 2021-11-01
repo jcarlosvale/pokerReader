@@ -700,41 +700,6 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     @Query(value = SAVE_HAND_POSITION_FROM_HAND, nativeQuery = true)
     void saveHandPosition(@Param("handId") long handId);
 
-    String UPDATE_HAND_CONSOLIDATION =
-            "UPDATE \n"
-                    + "\thand_consolidation\n"
-                    + "SET \n"
-                    + "\tpoker_position = table_position.poker_position,\n"
-                    + "\tnumber_of_players = hand_position.number_of_players\n"
-                    + "from\n"
-                    + "\ttable_position, \n"
-                    + "\thand_position \n"
-                    + "WHERE \n"
-                    + "\thand_consolidation.hand = table_position.hand and hand_consolidation.position = table_position.position \n"
-                    + "\tand hand_consolidation.hand = hand_position.hand";
-    @Transactional
-    @Modifying
-    @Query(value = UPDATE_HAND_CONSOLIDATION, nativeQuery = true)
-    void updateHandConsolidation();
-
-    String UPDATE_HAND_CONSOLIDATION_FROM_HAND =
-            "UPDATE \n"
-                    + "\thand_consolidation\n"
-                    + "SET \n"
-                    + "\tpoker_position = table_position.poker_position,\n"
-                    + "\tnumber_of_players = hand_position.number_of_players\n"
-                    + "from\n"
-                    + "\ttable_position, \n"
-                    + "\thand_position \n"
-                    + "WHERE \n"
-                    + "\thand_consolidation.hand = table_position.hand and hand_consolidation.position = table_position.position \n"
-                    + "\tand hand_consolidation.hand = hand_position.hand \n"
-                    + "\tand hand_consolidation.hand = :handId";
-    @Transactional
-    @Modifying
-    @Query(value = UPDATE_HAND_CONSOLIDATION_FROM_HAND, nativeQuery = true)
-    void updateHandConsolidation(@Param("handId") long handId);
-
     String GET_LAST_HAND_FROM_FILE =
             "select max(p.hand_id) from pokerline p where p.filename = :filename";
     @Query(value = GET_LAST_HAND_FROM_FILE, nativeQuery = true)
@@ -746,11 +711,4 @@ public interface PokerLineRepository extends JpaRepository<PokerLine, Long> {
     long getLastHandFromTournament(@Param("tournamentId") long tournamentId);
 
     List<PokerLine> getAllByHandIdOrderByLineNumber(long handId);
-
-    String DELETE_TABLE_POSITION =
-            "truncate table table_position";
-    @Transactional
-    @Modifying
-    @Query(value = DELETE_TABLE_POSITION, nativeQuery = true)
-    void deleteTablePosition();
 }

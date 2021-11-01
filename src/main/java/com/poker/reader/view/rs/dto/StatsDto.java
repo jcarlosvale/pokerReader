@@ -47,8 +47,6 @@ public class StatsDto {
 
     private String place;
 
-    private String pokerPosition;
-
     private Integer position;
 
     private String nickname;
@@ -85,16 +83,6 @@ public class StatsDto {
     private int bbCount;
 
     private int btnCount;
-
-    private int utgCount;
-
-    private int mpCount;
-
-    private int ljCount;
-
-    private int hjCount;
-
-    private int coCount;
 
     private String labelNoActionMonitoring;
 
