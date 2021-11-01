@@ -13,36 +13,45 @@ public class PlayerMonitoredDto {
 
     private String nickname;
     private String cssNickname;
+    private String titleNickname;
 
     private Integer avgChen;
     private String cssAvgChen;
+    private String titleChen;
+
 
     private int stackOfPlayer;
     private String cssStackOfPlayer;
+    private String titleStackOfPlayer;
 
     private int blindsCount;
     private String cssBlindsCount;
+    private String titleBlindsCount;
 
     private Integer noActionSeq;
     private String cssNoActionSeq;
+    private String titleNoAction;
 
     private Integer noActionPerc;
     private String cssNoActionPerc;
 
     private Integer foldSBSeq;
     private String cssFoldSBSeq;
+    private String titleFoldSB;
 
     private Integer foldSBPerc;
     private String cssFoldSBPerc;
 
     private Integer foldBBSeq;
     private String cssFoldBBSeq;
+    private String titleFoldBB;
 
     private Integer foldBBPerc;
     private String cssFoldBBPerc;
 
     private Integer actionBTNSeq;
     private String cssActionBTNSeq;
+    private String titleActionBTN;
 
     private Integer actionBTNPerc;
     private String cssActionBTNPerc;

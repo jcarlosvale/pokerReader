@@ -7,6 +7,7 @@ import com.poker.reader.domain.repository.projection.HandDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDetailsDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
+import com.poker.reader.domain.util.CardUtil;
 import com.poker.reader.view.rs.dto.PageDto;
 import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
@@ -233,17 +234,31 @@ public class FileHtmlProcessorService {
                             return
                                     PlayerMonitoredDto.builder()
                                             .nickname(statsDto.getNickname())
+                                            .titleNickname(perc("showdowns", playerDtoProjection.getShowdowns(), playerDtoProjection.getTotalHands()))
                                             .avgChen(playerDtoProjection.getAvgChen())
+                                            .titleChen(CardUtil.sort(playerDtoProjection.getCards()))
                                             .stackOfPlayer(statsDto.getStackOfPlayer())
                                             .blindsCount(statsDto.getBlindsCount())
                                             .noActionSeq(statsDto.getNoActionSeq())
                                             .noActionPerc(statsDto.getNoActionPerc())
+                                            .titleNoAction(
+                                                    "seq: " + statsDto.getNoActionSeq() +"\n" +
+                                                    perc("noAction", statsDto.getNoActionCount(), statsDto.getTotal()))
                                             .foldSBSeq(statsDto.getFoldSBSeq())
                                             .foldSBPerc(statsDto.getFoldSBPerc())
+                                            .titleFoldSB(
+                                                    "seq: " + statsDto.getFoldSBSeq() +"\n" +
+                                                    perc("foldSB", statsDto.getFoldSBCount(), statsDto.getSbCount()))
                                             .foldBBSeq(statsDto.getFoldBBSeq())
                                             .foldBBPerc(statsDto.getFoldBBPerc())
+                                            .titleFoldBB(
+                                                    "seq: " + statsDto.getFoldBBSeq() +"\n" +
+                                                    perc("foldBB", statsDto.getFoldBBCount(), statsDto.getBbCount()))
                                             .actionBTNSeq(statsDto.getActionBTNSeq())
                                             .actionBTNPerc(statsDto.getActionBTNPerc())
+                                            .titleActionBTN(
+                                                    "seq: " + statsDto.getActionBTNSeq() +"\n" +
+                                                    perc("actionBTN", statsDto.getActionBTNCount(), statsDto.getBtnCount()))
                                             .showdowns(playerDtoProjection.getShowdowns())
                                             .totalHands(playerDtoProjection.getTotalHands())
                                             .showdownPerc(playerDtoProjection.getShowdownStat())
@@ -251,6 +266,11 @@ public class FileHtmlProcessorService {
                                             .build();
                         })
                         .collect(Collectors.toList());
+    }
+
+    private String perc(String title, Integer count, Integer size) {
+        if (Objects.isNull(size)) return "no data";
+        return title +": " + count + "/" + size + " " + (100 * count / size) + "%";
     }
 
     private Map<String, PlayerDtoProjection> toMap(List<PlayerDtoProjection> playerDtoProjectionList) {

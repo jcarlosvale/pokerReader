@@ -29,21 +29,24 @@
 							<tr>
 								<th>nickname</th>
 								<th>chen</th>
+								<th>blinds</th>
 								<th>noAct</th>
 								<th>SB</th>
 								<th>BB</th>
 								<th>BTN</th>
+								<th>info</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="player : ${modelTournamentMonitored.playerMonitoredDtoList}">
-								<td th:text="${player.nickname}" th:classappend="${player.cssNickname}"/>
-								<td th:text="${player.avgChen}" th:classappend="${player.cssAvgChen}"/>
-
-								<td th:text="${player.noActionPerc}" th:classappend="${player.cssNoActionPerc}"/>
-								<td th:text="${player.foldSBPerc}" th:classappend="${player.cssFoldSBPerc}"/>
-								<td th:text="${player.foldBBPerc}" th:classappend="${player.cssFoldBBPerc}"/>
-								<td th:text="${player.actionBTNPerc}" th:classappend="${player.cssActionBTNPerc}"/>
+								<td th:text="${player.nickname}" th:classappend="${player.cssNickname}" th:title="${player.titleNickname}"/>
+								<td th:text="${player.avgChen}" th:classappend="${player.cssAvgChen}" th:title="${player.titleChen}"/>
+								<td th:text="${player.blindsCount}" th:classappend="${player.cssBlindsCount}" th:title="${player.titleBlindsCount}"/>
+								<td th:text="${player.noActionPerc}" th:classappend="${player.cssNoActionPerc}" th:title="${player.titleNoAction}"/>
+								<td th:text="${player.foldSBPerc}" th:classappend="${player.cssFoldSBPerc}" th:title="${player.titleFoldSB}"/>
+								<td th:text="${player.foldBBPerc}" th:classappend="${player.cssFoldBBPerc}" th:title="${player.titleFoldBB}"/>
+								<td th:text="${player.actionBTNPerc}" th:classappend="${player.cssActionBTNPerc}" th:title="${player.titleActionBTN}"/>
+								<td> <a th:href="@{'/player/'+${player.nickname}}" th:text="info" target="_blank" /></td>
 							</tr>
 						</tbody>
 					</table>
