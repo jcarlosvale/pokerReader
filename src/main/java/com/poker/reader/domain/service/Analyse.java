@@ -11,14 +11,14 @@ public class Analyse {
     public static final int MIN_BLINDS = 18;
 
     public static RecommendationDto analyseStack(long stackFromHero, Integer avgStack, int blinds) {
-        String recommendation = null;
-        String css = null;
+        String recommendation;
+        String css;
         if(blinds <= 10) {
-            recommendation = "ALL IN, LESS THAN 10 BLINDS";
+            recommendation = "ALL IN";
             css = PlayerStyle.SUPER_LOOSE.getCss();
         }
         else if ((stackFromHero < avgStack) && (blinds <= MIN_BLINDS)){
-            recommendation = "ALL IN, LESS THAN AVERAGE BLINDS < " + MIN_BLINDS;
+            recommendation = "ALL IN < " + MIN_BLINDS;
             css = PlayerStyle.SUPER_LOOSE.getCss();
         }
         else if (stackFromHero > avgStack) {

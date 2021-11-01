@@ -20,22 +20,19 @@
 					<table class="table table-sm table-bordered">
 						<caption th:text="${modelTournamentMonitored.tournamentId} +
 						' - stack ' + ${modelTournamentMonitored.stackOfHero} +
-						' - min ' + ${modelTournamentMonitored.minBlindsRecommendation} +
-						' - avg ' + ${modelTournamentMonitored.avgStack} +
-						' - #blinds ' + ${modelTournamentMonitored.blindsCount} +
-						' : ' + ${modelTournamentMonitored.recommendation}"
+						' [' + ${modelTournamentMonitored.minBlindsRecommendation} +
+						' - ' + ${modelTournamentMonitored.avgStack} +
+						'] # ' + ${modelTournamentMonitored.blindsCount} +
+						': ' + ${modelTournamentMonitored.recommendation}"
 								 th:classappend="${modelTournamentMonitored.cssRecommendation}"/>
 						<thead>
 							<tr>
 								<th>nickname</th>
 								<th>chen</th>
-								<th>Action</th>
+								<th>noAct</th>
 								<th>SB</th>
 								<th>BB</th>
 								<th>BTN</th>
-								<th>#show</th>
-								<th>#hands</th>
-								<th>%show</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -47,11 +44,6 @@
 								<td th:text="${player.foldSBPerc}" th:classappend="${player.cssFoldSBPerc}"/>
 								<td th:text="${player.foldBBPerc}" th:classappend="${player.cssFoldBBPerc}"/>
 								<td th:text="${player.actionBTNPerc}" th:classappend="${player.cssActionBTNPerc}"/>
-
-
-								<td th:text="${player.showdowns}" th:classappend="${player.cssShowdowns}"/>
-								<td th:text="${player.totalHands}" th:classappend="${player.cssTotalHands}"/>
-								<td th:text="${player.showdownPerc}" th:classappend="${player.cssShowdownPerc}"/>
 							</tr>
 						</tbody>
 					</table>
