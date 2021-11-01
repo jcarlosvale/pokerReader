@@ -6,26 +6,6 @@ import com.poker.reader.view.rs.dto.RecommendationDto;
 import java.util.HashMap;
 import java.util.Map;
 
-enum PlayerStyle{
-    NONE("bg-transparent"),
-    LIMPER("bg-warning"),
-    TIGHT("bg-success"),
-    FREE_BLIND("bg-info"),
-    CBET_FOLD("bg-info"),
-    SUPER_TIGHT("bg-primary"),
-    AGGRESSIVE("bg-danger"),
-    LOOSE("bg-danger"),
-    SUPER_LOOSE("bg-danger");
-
-    private String css;
-    PlayerStyle(String css) {
-        this.css = css;
-    }
-
-    public String getCss() {
-        return css;
-    }
-}
 public class Analyse {
 
     public static final int MIN_BLINDS = 18;
@@ -327,7 +307,7 @@ public class Analyse {
         }
     }
 
-    private static PlayerStyle analyseAvgChen(Integer avgChenValue) {
+    public static PlayerStyle analyseAvgChen(Integer avgChenValue) {
         if (avgChenValue == null) {
             return PlayerStyle.NONE;
         } else {

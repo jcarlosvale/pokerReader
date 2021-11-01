@@ -8,6 +8,8 @@ import com.poker.reader.domain.service.FileHtmlProcessorService;
 import com.poker.reader.domain.service.FileProcessorService;
 import com.poker.reader.domain.service.FileReaderService;
 import com.poker.reader.domain.service.StatsService;
+import com.poker.reader.view.rs.dto.PageDto;
+import com.poker.reader.view.rs.dto.StatsDto;
 import com.poker.reader.view.rs.model.ModelTournamentMonitored;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -103,18 +105,17 @@ public class PokerReaderController {
     public String detailsFromHand(
             Model model,
             @PathVariable("handId") Long handId) {
-/*
-        List<PlayerDetailsDto> playerDetailsDtoList = fileHtmlProcessorService.getPlayersDetailsFromHand(handId);
-        HandDto handDto = fileHtmlProcessorService.extractHandDto(playerDetailsDtoList);
-        statsService.processStats(handDto.getTournamentId(), handDto.getHandId(), playerDetailsDtoList);
+
+        HandDtoProjection handDto = fileHtmlProcessorService.getHand(handId);
+        List<StatsDto> playerStatsDtoList = statsService.loadStats(handDto.getTournamentId(), handId);
         String rawData = fileHtmlProcessorService.getRawDataFrom(handId);
         PageDto pageDto = fileHtmlProcessorService.createHandPaginationFromTournament(handId, handDto.getTournamentId());
 
         model.addAttribute("pageDto", pageDto);
         model.addAttribute("handDto", handDto);
-        model.addAttribute("playerDetailsDtoList", playerDetailsDtoList);
+        model.addAttribute("playerDetailsDtoList", playerStatsDtoList);
         model.addAttribute("rawData", rawData);
-*/
+
         return "hand";
     }
 

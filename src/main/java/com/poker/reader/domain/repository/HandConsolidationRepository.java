@@ -215,4 +215,38 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
     @Query(value = GET_PLAYERS_DTO_FROM_HAND, nativeQuery = true )
     List<PlayerDtoProjection> getPlayersDtoFromHand(@Param("handId") Long handId);
 
+    String GET_HAND =
+            "select \n"
+                    + "\thc.tournament_id as tournamentId,\n"
+                    + "\thc.hand as handId,\n"
+                    + "\thc.level as level,\n"
+                    + "\tconcat(cast(hc.small_blind as text) || '/', cast(hc.big_blind as text)) as blinds,\n"
+                    + "\tcount(distinct hc.nickname) as players,\n"
+                    + "\tsum(case when hc.cards_description is null then 0 else 1 end) as showdowns,\n"
+                    + "\t\tto_char(hc.played_at, 'dd-mm-yy HH24:MI:SS') as playedAt,\n"
+                    + "\thc.total_pot as pot,\n"
+                    + "\thc.board as board,\n"
+                    + "\tcase \n"
+                    + "\t\twhen length(hc.board) = 8 then 'FLOP'\n"
+                    + "\t\twhen length(hc.board) = 11 then 'TURN'\n"
+                    + "\t\twhen length(hc.board) = 14 then 'RIVER'\n"
+                    + "\t\telse null\n"
+                    + "\tend as boardShowdown\n"
+                    + "from \n"
+                    + "\thand_consolidation hc\n"
+                    + "where \n"
+                    + "\thc.hand = :handId\n"
+                    + "group by\n"
+                    + "\thc.tournament_id,\n"
+                    + "\thc.hand,\n"
+                    + "\thc.level,\n"
+                    + "\thc.small_blind,\n"
+                    + "\thc.big_blind,\n"
+                    + "\thc.played_at,\n"
+                    + "\thc.total_pot,\n"
+                    + "\thc.board\n"
+                    + "order by \n"
+                    + "\thc.played_at";
+    @Query(value = GET_HAND, nativeQuery = true )
+    HandDtoProjection getHand(@Param("handId") Long handId);
 }

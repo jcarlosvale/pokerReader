@@ -12,6 +12,7 @@ import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
 import com.poker.reader.view.rs.dto.StatsDto;
 import com.poker.reader.view.rs.model.ModelTournamentMonitored;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -78,24 +79,7 @@ public class FileHtmlProcessorService {
         if (countCards == 3) return "FLOP";
         return "";
     }
-/*
-    public HandDto extractHandDto(List<PlayerDtoProjection> PlayerDtoProjectionList) {
-        if (PlayerDtoProjectionList.isEmpty()) return HandDto.builder().build();
-        PlayerDetailsDtoProjection playerDetailsDtoProjection = PlayerDtoProjectionList.get(0).getPlayerDetailsDtoProjection();
-        return HandDto
-                .builder()
-                .tournamentId(playerDetailsDtoProjection.getTournamentId())
-                .handId(playerDetailsDtoProjection.getHandId())
-                .level(playerDetailsDtoProjection.getLevel())
-                .blinds(playerDetailsDtoProjection.getBlinds())
-                .players(PlayerDtoProjectionList.size())
-                .pot(playerDetailsDtoProjection.getPot())
-                .board(playerDetailsDtoProjection.getBoard())
-                .boardShowdown(playerDetailsDtoProjection.getBoardShowdown())
-                .playedAt(playerDetailsDtoProjection.getPlayedAt())
-                .build();
-    }
-*/
+
     public String getRawDataFrom(Long handId) {
         return
             pokerLineRepository
@@ -274,5 +258,9 @@ public class FileHtmlProcessorService {
                 playerDtoProjectionList
                         .stream()
                         .collect(Collectors.toMap(PlayerDtoProjection::getNickname, Function.identity()));
+    }
+
+    public HandDtoProjection getHand(@NonNull Long handId) {
+        return handConsolidationRepository.getHand(handId);
     }
 }
