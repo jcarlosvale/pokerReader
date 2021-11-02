@@ -11,6 +11,11 @@ import com.poker.reader.domain.service.StatsService;
 import com.poker.reader.view.rs.dto.PageDto;
 import com.poker.reader.view.rs.dto.StatsDto;
 import com.poker.reader.view.rs.model.ModelTournamentMonitored;
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,12 +25,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @RequiredArgsConstructor
 @Controller
@@ -68,7 +67,7 @@ public class PokerReaderController {
 
         Page<TournamentDtoProjection> tournamentPage =
                 fileHtmlProcessorService.findPaginatedTournaments
-                        (PageRequest.of(currentPage - 1, pageSize, Sort.by("tournamentId").descending()));
+                        (PageRequest.of(currentPage - 1, pageSize));
 
         model.addAttribute("tournamentPage", tournamentPage);
 

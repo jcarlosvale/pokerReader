@@ -1136,3 +1136,18 @@ select     hand_id,     substring(line from 'BoardOfHand \[(.*)\]') from poke
    
    
    select * from pokerline p where p.hand_id = 231068311859;
+  
+  select 
+	t.tournament_id as tournamentId,
+	t.file_name as fileName,
+	to_char(min(hc.played_at), 'dd-mm-yy HH24:MI:SS') as playedAt,
+	min(hc.played_at) as playedAtDate,
+	count(distinct hc.hand) as hands,
+	count(distinct hc.nickname) as players,
+	sum(case when hc.cards_description is null then 0 else 1 end) as showdowns
+from tournaments t
+join hand_consolidation hc on t.tournament_id = hc.tournament_id
+group by 
+	t.tournament_id,
+	t.file_name
+order by playedAtDate desc;

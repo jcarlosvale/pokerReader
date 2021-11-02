@@ -2,14 +2,17 @@ package com.poker.reader.domain.repository;
 
 import com.poker.reader.domain.model.HandConsolidation;
 import com.poker.reader.domain.model.HandPositionId;
-import com.poker.reader.domain.repository.projection.*;
+import com.poker.reader.domain.repository.projection.HandDtoProjection;
+import com.poker.reader.domain.repository.projection.PlayerDetailsDtoProjection;
+import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
+import com.poker.reader.domain.repository.projection.StackDtoProjection;
+import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
+import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 public interface HandConsolidationRepository extends JpaRepository<HandConsolidation, HandPositionId> {
     String GET_PLAYER_DTO =
@@ -52,6 +55,7 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "\tt.tournament_id as tournamentId,\n"
                     + "\tt.file_name as fileName,\n"
                     + "\tto_char(min(hc.played_at), 'dd-mm-yy HH24:MI:SS') as playedAt,\n"
+                    + "\tmin(hc.played_at) as playedAtDate,\n"
                     + "\tcount(distinct hc.hand) as hands,\n"
                     + "\tcount(distinct hc.nickname) as players,\n"
                     + "\tsum(case when hc.cards_description is null then 0 else 1 end) as showdowns\n"
@@ -59,7 +63,8 @@ public interface HandConsolidationRepository extends JpaRepository<HandConsolida
                     + "join hand_consolidation hc on t.tournament_id = hc.tournament_id\n"
                     + "group by \n"
                     + "\tt.tournament_id,\n"
-                    + "\tt.file_name\n";
+                    + "\tt.file_name\n"
+                    + "\torder by playedAtDate desc\n";
     @Query(value = GET_TOURNAMENTS_DTO, nativeQuery = true )
     Page<TournamentDtoProjection> getAllTournamentsDto(Pageable pageable);
 
