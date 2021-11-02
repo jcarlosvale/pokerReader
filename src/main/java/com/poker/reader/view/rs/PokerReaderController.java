@@ -9,7 +9,7 @@ import com.poker.reader.domain.service.FileProcessorService;
 import com.poker.reader.domain.service.FileReaderService;
 import com.poker.reader.domain.service.StatsService;
 import com.poker.reader.view.rs.dto.PageDto;
-import com.poker.reader.view.rs.dto.StatsDto;
+import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.model.ModelTournamentMonitored;
 import java.io.IOException;
 import java.util.List;
@@ -106,13 +106,13 @@ public class PokerReaderController {
             @PathVariable("handId") Long handId) {
 
         HandDtoProjection handDto = fileHtmlProcessorService.getHand(handId);
-        List<StatsDto> playerStatsDtoList = statsService.loadStats(handDto.getTournamentId(), handId);
+        List<PlayerMonitoredDto> playerMonitoredDtoList = fileHtmlProcessorService.getPlayerMonitoredListFromTournamentAndHand(handId);
         String rawData = fileHtmlProcessorService.getRawDataFrom(handId);
         PageDto pageDto = fileHtmlProcessorService.createHandPaginationFromTournament(handId, handDto.getTournamentId());
 
         model.addAttribute("pageDto", pageDto);
         model.addAttribute("handDto", handDto);
-        model.addAttribute("playerDetailsDtoList", playerStatsDtoList);
+        model.addAttribute("playerMonitoredDtoList", playerMonitoredDtoList);
         model.addAttribute("rawData", rawData);
 
         return "hand";

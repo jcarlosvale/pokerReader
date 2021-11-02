@@ -67,7 +67,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nickname</th>
-                                <th>Position</th>
+                                <th>Place</th>
                                 <th>Stack</th>
                                 <th>#blinds</th>
                                 <th>#SB</th>
@@ -79,18 +79,46 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="playerDetailsDto : ${playerDetailsDtoList}">
-                                <td th:text="${playerDetailsDto.position}"/>
-                                <td th:text="${playerDetailsDto.nickname}"/>
-                                <td th:text="${playerDetailsDto.pokerPosition}" />
-                                <td th:text="${playerDetailsDto.stackOfPlayer}" />
-                                <td th:text="${playerDetailsDto.blindsCount}" />
-                                <td th:text="${playerDetailsDto.sbCount}"/>
-                                <td th:text="${playerDetailsDto.bbCount}"/>
-                                <td th:text="${playerDetailsDto.btnCount}"/>
-                                <td th:text="${playerDetailsDto.chen}"/>
-                                <td th:text="${playerDetailsDto.cards}"/>
-                                <td th:text="${playerDetailsDto.handDescription}"/>
+                            <tr th:each="playerMonitoredDto : ${playerMonitoredDtoList}">
+                                <td
+                                    th:text="${playerMonitoredDto.position}"
+                                />
+                                <td
+                                    th:text="${playerMonitoredDto.nickname}"
+                                    th:classappend="${playerMonitoredDto.cssNickname}"
+                                    th:title="${playerMonitoredDto.titleNickname}"
+                                />
+                                <td
+                                    th:text="${playerMonitoredDto.place}"
+                                />
+                                <td
+                                    th:text="${playerMonitoredDto.stackOfPlayer}"
+                                    th:classappend="${playerMonitoredDto.cssStackOfPlayer}"
+                                    th:title="${playerMonitoredDto.titleStackOfPlayer}"
+                                />
+                                <td
+                                    th:text="${playerMonitoredDto.blindsCount}"
+                                    th:classappend="${playerMonitoredDto.cssBlindsCount}"
+                                    th:title="${playerMonitoredDto.titleBlindsCount}"
+                                />
+                                <td
+                                    th:text="${playerMonitoredDto.sbCount}"
+                                />
+                                <td
+                                    th:text="${playerMonitoredDto.bbCount}"
+                                />
+                                <td
+                                    th:text="${playerMonitoredDto.btnCount}"
+                                />
+                                <td
+                                    th:text="${playerMonitoredDto.chen}"
+                                />
+                                <td
+                                    th:text="${playerMonitoredDto.cardsOnHand}"
+                                />
+                                <td
+                                    th:text="${playerMonitoredDto.handDescription}"
+                                />
                             </tr>
                         </tbody>
                     </table>
@@ -119,21 +147,58 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="playerDetailsDto : ${playerDetailsDtoList}">
-                            <td th:text="${playerDetailsDto.position}"/>
-                            <td th:text="${playerDetailsDto.nickname}"/>
+                        <tr th:each="playerMonitoredDto : ${playerMonitoredDtoList}">
+                            <td
+                                th:text="${playerMonitoredDto.position}"
+                            />
+                            <td
+                                th:text="${playerMonitoredDto.nickname}"
+                                th:classappend="${playerMonitoredDto.cssNickname}"
+                                th:title="${playerMonitoredDto.titleNickname}"
+                            />
 
-                            <td th:text="${playerDetailsDto.noActionSeq}"/>
-                            <td th:text="${playerDetailsDto.noActionPerc}"/>
+                            <td
+                                th:text="${playerMonitoredDto.noActionSeq}"
+                                th:classappend="${playerMonitoredDto.cssNoActionSeq}"
+                                th:title="${playerMonitoredDto.titleNoAction}"
+                            />
 
-                            <td th:text="${playerDetailsDto.foldSBSeq}"/>
-                            <td th:text="${playerDetailsDto.foldSBPerc}"/>
+                            <td
+                                th:text="${playerMonitoredDto.noActionPerc}"
+                                th:classappend="${playerMonitoredDto.cssNoActionPerc}"
+                            />
 
-                            <td th:text="${playerDetailsDto.foldBBSeq}"/>
-                            <td th:text="${playerDetailsDto.foldBBPerc}"/>
+                            <td
+                                th:text="${playerMonitoredDto.foldSBSeq}"
+                                th:classappend="${playerMonitoredDto.cssFoldSBSeq}"
+                                th:title="${playerMonitoredDto.titleFoldSB}"
+                            />
 
-                            <td th:text="${playerDetailsDto.actionBTNSeq}"/>
-                            <td th:text="${playerDetailsDto.actionBTNPerc}"/>
+                            <td
+                                th:text="${playerMonitoredDto.foldSBPerc}"
+                                th:classappend="${playerMonitoredDto.cssFoldSBPerc}"
+                            />
+
+                            <td
+                                th:text="${playerMonitoredDto.foldBBSeq}"
+                                th:classappend="${playerMonitoredDto.cssFoldBBSeq}"
+                                th:title="${playerMonitoredDto.titleFoldBB}"
+                            />
+                            <td
+                                th:text="${playerMonitoredDto.foldBBPerc}"
+                                th:classappend="${playerMonitoredDto.cssFoldBBPerc}"
+                            />
+
+                            <td
+                                th:text="${playerMonitoredDto.actionBTNSeq}"
+                                th:classappend="${playerMonitoredDto.cssActionBTNSeq}"
+                                th:title="${playerMonitoredDto.titleActionBTN}"
+                            />
+
+                            <td
+                                th:text="${playerMonitoredDto.actionBTNPerc}"
+                                th:classappend="${playerMonitoredDto.cssActionBTNPerc}"
+                            />
                         </tr>
                         </tbody>
                     </table>

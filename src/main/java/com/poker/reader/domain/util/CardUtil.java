@@ -46,4 +46,12 @@ public final class CardUtil {
         listOfNormalisedCards.sort((o1, o2) -> calculateChenFormulaFrom(o2) - calculateChenFormulaFrom(o1));
         return convertListToString(listOfNormalisedCards);
     }
+
+    public static String extractBoardShowdownFrom(String board) {
+        int countCards = board.split(" ").length;
+        if (countCards == 5) return "RIVER";
+        if (countCards == 4) return "TURN";
+        if (countCards == 3) return "FLOP";
+        return "";
+    }
 }

@@ -1,10 +1,15 @@
 package com.poker.reader.domain.service;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import com.poker.reader.domain.model.Hand;
 import com.poker.reader.domain.model.PokerLine;
-import com.poker.reader.domain.repository.*;
+import com.poker.reader.domain.repository.HandConsolidationRepository;
+import com.poker.reader.domain.repository.HandRepository;
+import com.poker.reader.domain.repository.PlayerRepository;
+import com.poker.reader.domain.repository.PokerLineRepository;
+import com.poker.reader.domain.repository.TournamentRepository;
 import com.poker.reader.domain.repository.projection.HandDtoProjection;
-import com.poker.reader.domain.repository.projection.PlayerDetailsDtoProjection;
 import com.poker.reader.domain.repository.projection.PlayerDtoProjection;
 import com.poker.reader.domain.repository.projection.TournamentDtoProjection;
 import com.poker.reader.domain.util.CardUtil;
@@ -13,6 +18,13 @@ import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
 import com.poker.reader.view.rs.dto.StatsDto;
 import com.poker.reader.view.rs.model.ModelTournamentMonitored;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,12 +33,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -57,28 +63,14 @@ public class FileHtmlProcessorService {
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
 
-        var tournamentsDtoList =
-                handConsolidationRepository
-                        .getAllTournamentsDto(pageable);
+        Page<TournamentDtoProjection> tournamentsDtoList = handConsolidationRepository.getAllTournamentsDto(pageable);
 
         return new PageImpl<>(tournamentsDtoList.getContent(), PageRequest.of(currentPage, pageSize), tournamentRepository.count());
-    }
-
-    public Integer calculateAvgStackFromLastHandOfTournament(Long tournamentId) {
-        return handConsolidationRepository.calculateAvgStackFromLastHandOfTournament(tournamentId);
     }
 
     public List<HandDtoProjection> getHandsFromTournament(Long tournamentId) {
         checkNotNull(tournamentId, "tournamentId must be not null");
         return handConsolidationRepository.getHandsFromTournament(tournamentId);
-    }
-
-    private String extractBoardShowdownFrom(String board) {
-        int countCards = board.split(" ").length;
-        if (countCards == 5) return "RIVER";
-        if (countCards == 4) return "TURN";
-        if (countCards == 3) return "FLOP";
-        return "";
     }
 
     public String getRawDataFrom(Long handId) {
@@ -89,49 +81,7 @@ public class FileHtmlProcessorService {
                     .map(PokerLine::getLine)
                     .collect(Collectors.joining("<br>"));
     }
-/*
-    public List<PlayerDetailsDto> getPlayersDetailsFromHand(Long handId) {
 
-        List<PlayerDetailsDtoProjection> playerDetailsDtoProjectionList = handConsolidationRepository.getPlayersDetailsFromHand(handId);
-
-        return
-                playerDetailsDtoProjectionList
-                        .stream()
-                        .map(playerDetailsDtoProjection -> toPlayerDetailsDto(playerDetailsDtoProjection))
-                        .collect(Collectors.toList());
-    }
-*/
-    private Optional<Integer> getPositionByPlace(List<PlayerDetailsDtoProjection> playerDetailsDtoProjectionList, String place) {
-        return
-                playerDetailsDtoProjectionList
-                        .stream()
-                        .filter(handConsolidation -> handConsolidation.getPlace() != null && handConsolidation.getPlace().equals(place))
-                        .map(PlayerDetailsDtoProjection::getPosition)
-                        .findFirst();
-    }
-/*
-    private PlayerDetailsDto toPlayerDetailsDto(PlayerDetailsDtoProjection playerDetailsDtoProjection) {
-        return
-                PlayerDetailsDto
-                        .builder()
-                        .playerDetailsDtoProjection(playerDetailsDtoProjection)
-                        .pokerTablePosition(playerDetailsDtoProjection.getPokerPosition())
-                        .cssChen(classNameFromChenValue(playerDetailsDtoProjection.getChen()))
-                        .cssNickname(classNameFromWinnerOrLoser(playerDetailsDtoProjection))
-                        .build();
-    }
-*/
-    /*
-    private String classNameFromWinnerOrLoser(PlayerDetailsDtoProjection playerDetailsDtoProjection) {
-        if (playerDetailsDtoProjection.getIsWinner()) {
-            return "table-success";
-        }
-        if (playerDetailsDtoProjection.getIsLose()) {
-            return "table-danger";
-        }
-        return "table-warning";
-    }
-*/
     public PlayerDtoProjection findPlayer(String nickname) {
         return handConsolidationRepository.getPlayerDtoByNickname(nickname);
     }
@@ -161,37 +111,14 @@ public class FileHtmlProcessorService {
         }
         return pageDto;
     }
-/*
-    public List<PlayerMonitoredDto> getPlayersToMonitorFromLastHandOfTournament(Long tournamentId,
-            Map<String, PlayerDetailsDto> playerDetailsDtoMap) {
-        return
-                handConsolidationRepository
-                        .getPlayersStacksFromLastHandOfTournament(tournamentId)
-                        .stream()
-                        .map(stackDtoProjection -> {
-                            PlayerDto playerDto = findPlayer(stackDtoProjection.getNickname(), true);
-                            return new PlayerMonitoredDto(playerDto, stackDtoProjection, playerDetailsDtoMap.get(stackDtoProjection.getNickname()));
-                        })
-                        .collect(Collectors.toList());
-    }
-*/
-    private Integer calculateAvgStack(List<StatsDto> statsDtoList) {
-        return (int) statsDtoList.stream().mapToInt(StatsDto::getStackOfPlayer).average().orElseThrow();
-    }
 
     public ModelTournamentMonitored getTournamentMonitoredModel(Long tournamentId) {
 
         long handId = handConsolidationRepository.getLasHandFromTournament(tournamentId);
-        Hand hand = handRepository.findById(handId).get();
+        Hand hand = handRepository.getById(handId);
 
-        log.info("Retrieving tournament {} hand {}", tournamentId, handId);
-
-        List<PlayerDtoProjection> playerDtoProjectionList = handConsolidationRepository.getPlayersDtoFromHand(handId);
-        List<StatsDto> statsList = statsService.loadStats(tournamentId, handId);
-
-        int avgStack = calculateAvgStack(statsList);
-        List<PlayerMonitoredDto> playerMonitoredDtoList = mergeIntoPlayerMonitored(playerDtoProjectionList, statsList);
-        playerMonitoredDtoList.forEach(playerMonitoredDto -> Analyse.analysePlayer(playerMonitoredDto, avgStack));
+        List<PlayerMonitoredDto> playerMonitoredDtoList = getPlayerMonitoredListFromTournamentAndHand(tournamentId, handId);
+        int avgStack = (int) playerMonitoredDtoList.stream().mapToInt(PlayerMonitoredDto::getStackOfPlayer).average().orElseThrow();
 
         PlayerMonitoredDto hero = remove(playerMonitoredDtoList, HERO);
         RecommendationDto recommendationDto = Analyse.analyseStack(hero.getStackOfPlayer(), avgStack,hero.getBlindsCount());
@@ -207,6 +134,19 @@ public class FileHtmlProcessorService {
                 .blindsCount(hero.getBlindsCount())
                 .playerMonitoredDtoList(playerMonitoredDtoList)
                 .build();
+    }
+
+    private List<PlayerMonitoredDto> getPlayerMonitoredListFromTournamentAndHand(long tournamentId, long handId) {
+        log.info("Retrieving tournament {} hand {}", tournamentId, handId);
+
+        List<PlayerDtoProjection> playerDtoProjectionList = handConsolidationRepository.getPlayersDtoFromHand(handId);
+        List<StatsDto> statsList = statsService.loadStats(tournamentId, handId);
+
+        int avgStack = (int) statsList.stream().mapToInt(StatsDto::getStackOfPlayer).average().orElseThrow();
+        List<PlayerMonitoredDto> playerMonitoredDtoList = mergeIntoPlayerMonitored(playerDtoProjectionList, statsList);
+        playerMonitoredDtoList.forEach(playerMonitoredDto -> Analyse.analysePlayer(playerMonitoredDto, avgStack));
+
+        return playerMonitoredDtoList;
     }
 
     private PlayerMonitoredDto remove(List<PlayerMonitoredDto> playerMonitoredDtoList, String hero) {
@@ -233,10 +173,24 @@ public class FileHtmlProcessorService {
                             PlayerDtoProjection playerDtoProjection = playerDtoProjectionMap.get(statsDto.getNickname());
                             return
                                     PlayerMonitoredDto.builder()
-                                            .nickname(statsDto.getNickname())
+
                                             .titleNickname(perc("showdowns", playerDtoProjection.getShowdowns(), playerDtoProjection.getTotalHands()))
                                             .avgChen(playerDtoProjection.getAvgChen())
                                             .titleChen(CardUtil.sort(playerDtoProjection.getCards()))
+                                            .showdowns(playerDtoProjection.getShowdowns())
+                                            .totalHands(playerDtoProjection.getTotalHands())
+                                            .showdownPerc(playerDtoProjection.getShowdownStat())
+                                            .cards(playerDtoProjection.getCards())
+
+                                            .nickname(statsDto.getNickname())
+                                            .position(statsDto.getPosition())
+                                            .sbCount(statsDto.getSbCount())
+                                            .bbCount(statsDto.getBbCount())
+                                            .btnCount(statsDto.getBtnCount())
+                                            .chen(statsDto.getChen())
+                                            .handDescription(statsDto.getHandDescription())
+                                            .cardsOnHand(statsDto.getCards())
+                                            .place(statsDto.getPlace())
                                             .stackOfPlayer(statsDto.getStackOfPlayer())
                                             .blindsCount(statsDto.getBlindsCount())
                                             .noActionSeq(statsDto.getNoActionSeq())
@@ -259,10 +213,6 @@ public class FileHtmlProcessorService {
                                             .titleActionBTN(
                                                     "seq: " + statsDto.getActionBTNSeq() +"\n" +
                                                     perc("actionBTN", statsDto.getActionBTNCount(), statsDto.getBtnCount()))
-                                            .showdowns(playerDtoProjection.getShowdowns())
-                                            .totalHands(playerDtoProjection.getTotalHands())
-                                            .showdownPerc(playerDtoProjection.getShowdownStat())
-                                            .cards(playerDtoProjection.getCards())
                                             .build();
                         })
                         .collect(Collectors.toList());
@@ -282,5 +232,10 @@ public class FileHtmlProcessorService {
 
     public HandDtoProjection getHand(@NonNull Long handId) {
         return handConsolidationRepository.getHand(handId);
+    }
+
+    public List<PlayerMonitoredDto> getPlayerMonitoredListFromTournamentAndHand(long handId) {
+        Hand hand = handRepository.getById(handId);
+        return getPlayerMonitoredListFromTournamentAndHand(hand.getTournament().getTournamentId(), hand.getHandId());
     }
 }

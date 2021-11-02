@@ -19,6 +19,25 @@ public class PlayerMonitoredDto {
     private String cssAvgChen;
     private String titleChen;
 
+    private Integer showdowns;
+    private String cssShowdowns;
+
+    private Integer showdownPerc;
+    private String cssShowdownPerc;
+
+    private Integer totalHands;
+    private String cssTotalHands;
+
+    private String cards;
+
+    private Integer position;
+    private Integer sbCount;
+    private Integer bbCount;
+    private Integer btnCount;
+    private Integer chen;
+    private String handDescription;
+    private String cardsOnHand;
+    private String place;
 
     private int stackOfPlayer;
     private String cssStackOfPlayer;
@@ -55,15 +74,4 @@ public class PlayerMonitoredDto {
 
     private Integer actionBTNPerc;
     private String cssActionBTNPerc;
-
-    private Integer showdowns;
-    private String cssShowdowns;
-
-    private Integer showdownPerc;
-    private String cssShowdownPerc;
-
-    private Integer totalHands;
-    private String cssTotalHands;
-
-    private String cards;
 }
