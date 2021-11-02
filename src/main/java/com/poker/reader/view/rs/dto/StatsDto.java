@@ -84,11 +84,11 @@ public class StatsDto {
 
     private int btnCount;
 
-    private String labelNoActionMonitoring;
+    private String labelNoAction;
 
-    private String labelNoActionSBMonitoring;
+    private String labelFoldSB;
 
-    private String labelNoActionBBMonitoring;
+    private String labelFoldBB;
 
-    private String labelActionBTNMonitoring;
+    private String labelActionBTN;
 }

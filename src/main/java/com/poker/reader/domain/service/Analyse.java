@@ -1,7 +1,9 @@
 package com.poker.reader.domain.service;
 
+import com.poker.reader.domain.util.CardUtil;
 import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
+import java.util.Objects;
 
 public class Analyse {
 
@@ -29,7 +31,7 @@ public class Analyse {
         return RecommendationDto.builder().recommendation(recommendation).css(css).build();
     }
 
-    public static void analysePlayer(PlayerMonitoredDto playerMonitoredDto, int avgStack) {
+    public static void analyseCssPlayer(PlayerMonitoredDto playerMonitoredDto, int avgStack) {
 
         PlayerStyle playerStyleAvgChen = analyseAvgChen(playerMonitoredDto.getAvgChen());
         PlayerStyle playerStyleStackOfPlayer = analyseStackOfPlayer(playerMonitoredDto.getStackOfPlayer(), avgStack);
@@ -53,7 +55,20 @@ public class Analyse {
         );
         playerStyleNickname = playerStyleNickname.equals(PlayerStyle.NONE) ? playerStyleAvgChen : playerStyleNickname;
 
+        playerMonitoredDto.setCssNickname(playerStyleNickname.getCss());
         playerMonitoredDto.setCssAvgChen(playerStyleAvgChen.getCss());
+        playerMonitoredDto.setCssShowdowns(playerStyleShowdowns.getCss());
+        playerMonitoredDto.setCssShowdownPerc(playerStyleShowdownPerc.getCss());
+        playerMonitoredDto.setCssTotalHands(playerStyleTotalHands.getCss());
+        playerMonitoredDto.setCssCards(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssPosition(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssSbCount(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssBbCount(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssBtnCount(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssChen(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssHandDescription(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssCardsOnHand(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssPlace(PlayerStyle.NONE.getCss());
         playerMonitoredDto.setCssStackOfPlayer(playerStyleStackOfPlayer.getCss());
         playerMonitoredDto.setCssBlindsCount(playerStyleBlindsCount.getCss());
         playerMonitoredDto.setCssNoActionSeq(playerStyleNoActionSeq.getCss());
@@ -64,11 +79,10 @@ public class Analyse {
         playerMonitoredDto.setCssFoldBBPerc(playerStyleFoldBBPerc.getCss());
         playerMonitoredDto.setCssActionBTNSeq(playerStyleActionBTNSeq.getCss());
         playerMonitoredDto.setCssActionBTNPerc(playerStyleActionBTNPerc.getCss());
-        playerMonitoredDto.setCssShowdowns(playerStyleShowdowns.getCss());
-        playerMonitoredDto.setCssShowdownPerc(playerStyleShowdownPerc.getCss());
-        playerMonitoredDto.setCssTotalHands(playerStyleTotalHands.getCss());
-
-        playerMonitoredDto.setCssNickname(playerStyleNickname.getCss());
+        playerMonitoredDto.setCssActionBTNCount(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssFoldBBCount(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssFoldSBCount(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssNoActionCount(PlayerStyle.NONE.getCss());
     }
 
     private static PlayerStyle analyse(PlayerStyle ... playerStyles) {
@@ -297,5 +311,98 @@ public class Analyse {
             if (avgChenValue >= 5) return PlayerStyle.LIMPER;
             return PlayerStyle.LOOSE;
         }
+    }
+
+    public static void analyseTitlePlayer(PlayerMonitoredDto playerMonitoredDto, int avgStack) {
+
+        String titleNickname = perc("showdowns", playerMonitoredDto.getShowdowns(), playerMonitoredDto.getTotalHands());
+        String titleAvgChen = "title Avg Chen";
+        String titleShowdowns = "title Showdowns";
+        String titleShowdownPerc = "title Showdown Perc";
+        String titleTotalHands = "title Total Hands";
+        String titleCards = "title Cards";
+        String titlePosition = "title Position";
+        String titleSbCount = "title SbCount";
+        String titleBbCount = "title BbCount";
+        String titleBtnCount = "title Btn Count";
+        String titleChen = CardUtil.sort(playerMonitoredDto.getCards());
+        String titleHandDescription = "title Hand Description";
+        String titleCardsOnHand = "title Cards On Hand";
+        String titlePlace = "title Place";
+        String titleStackOfPlayer = "title Stack Of Player";
+        String titleBlindsCount = "title Blinds Count";
+        String titleNoActionSeq = getTitleNoActionSeq(playerMonitoredDto);
+        String titleNoActionPerc = "title No Action Perc";
+        String titleFoldSBSeq = "title Fold SB Seq";
+        String titleFoldSBPerc = getTitleFoldSBPerc(playerMonitoredDto);
+        String titleFoldBBSeq = "title Fold BB Seq";
+        String titleFoldBBPerc = getTitleFoldBBPerc(playerMonitoredDto);
+        String titleActionBTNSeq = "title Action BTN Seq";
+        String titleActionBTNPerc = getTitleActionBTNPerc(playerMonitoredDto);
+        String titleActionBTNCount = "title Action BTN Count";
+        String titleFoldBBCount = "title Fold BB Count";
+        String titleFoldSBCount = "title Fold SB Count";
+        String titleNoActionCount = "title No Action Count";
+
+        playerMonitoredDto.setTitleNickname(titleNickname);
+        playerMonitoredDto.setTitleAvgChen(titleAvgChen);
+        playerMonitoredDto.setTitleShowdowns(titleShowdowns);
+        playerMonitoredDto.setTitleShowdownPerc(titleShowdownPerc);
+        playerMonitoredDto.setTitleTotalHands(titleTotalHands);
+        playerMonitoredDto.setTitleCards(titleCards);
+        playerMonitoredDto.setTitlePosition(titlePosition);
+        playerMonitoredDto.setTitleSbCount(titleSbCount);
+        playerMonitoredDto.setTitleBbCount(titleBbCount);
+        playerMonitoredDto.setTitleBtnCount(titleBtnCount);
+        playerMonitoredDto.setTitleChen(titleChen);
+        playerMonitoredDto.setTitleHandDescription(titleHandDescription);
+        playerMonitoredDto.setTitleCardsOnHand(titleCardsOnHand);
+        playerMonitoredDto.setTitlePlace(titlePlace);
+        playerMonitoredDto.setTitleStackOfPlayer(titleStackOfPlayer);
+        playerMonitoredDto.setTitleBlindsCount(titleBlindsCount);
+        playerMonitoredDto.setTitleNoActionSeq(titleNoActionSeq);
+        playerMonitoredDto.setTitleNoActionPerc(titleNoActionPerc);
+        playerMonitoredDto.setTitleFoldSBSeq(titleFoldSBSeq);
+        playerMonitoredDto.setTitleFoldSBPerc(titleFoldSBPerc);
+        playerMonitoredDto.setTitleFoldBBSeq(titleFoldBBSeq);
+        playerMonitoredDto.setTitleFoldBBPerc(titleFoldBBPerc);
+        playerMonitoredDto.setTitleActionBTNSeq(titleActionBTNSeq);
+        playerMonitoredDto.setTitleActionBTNPerc(titleActionBTNPerc);
+        playerMonitoredDto.setTitleActionBTNCount(titleActionBTNCount);
+        playerMonitoredDto.setTitleFoldBBCount(titleFoldBBCount);
+        playerMonitoredDto.setTitleFoldSBCount(titleFoldSBCount);
+        playerMonitoredDto.setTitleNoActionCount(titleNoActionCount);
+
+    }
+
+    private static String getTitleActionBTNPerc(PlayerMonitoredDto playerMonitoredDto) {
+        return
+                "seq: " + playerMonitoredDto.getActionBTNSeq() +"\n" +
+                        perc("actionBTN", playerMonitoredDto.getActionBTNCount(), playerMonitoredDto.getBtnCount());
+
+    }
+
+    private static String getTitleFoldBBPerc(PlayerMonitoredDto playerMonitoredDto) {
+        return
+                "seq: " + playerMonitoredDto.getFoldBBSeq() +"\n" +
+                        perc("foldBB", playerMonitoredDto.getFoldBBCount(), playerMonitoredDto.getBbCount());
+
+    }
+
+    private static String getTitleFoldSBPerc(PlayerMonitoredDto playerMonitoredDto) {
+        return
+                "seq: " + playerMonitoredDto.getFoldSBSeq() +"\n" +
+                        perc("foldSB", playerMonitoredDto.getFoldSBCount(), playerMonitoredDto.getSbCount());
+    }
+
+    private static String getTitleNoActionSeq(PlayerMonitoredDto playerMonitoredDto) {
+        return
+                "seq: " + playerMonitoredDto.getNoActionSeq() +"\n"
+                        + perc("noAction", playerMonitoredDto.getNoActionCount(), playerMonitoredDto.getTotalHands());
+    }
+
+    private static String perc(String title, Integer count, Integer size) {
+        if (Objects.isNull(size) || size == 0) return "no data";
+        return title +": " + count + "/" + size + " " + (100 * count / size) + "%";
     }
 }

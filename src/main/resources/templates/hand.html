@@ -82,6 +82,8 @@
                             <tr th:each="playerMonitoredDto : ${playerMonitoredDtoList}">
                                 <td
                                     th:text="${playerMonitoredDto.position}"
+                                    th:classappend="${playerMonitoredDto.cssPosition}"
+                                    th:title="${playerMonitoredDto.titlePosition}"
                                 />
                                 <td
                                     th:text="${playerMonitoredDto.nickname}"
@@ -90,6 +92,8 @@
                                 />
                                 <td
                                     th:text="${playerMonitoredDto.place}"
+                                    th:classappend="${playerMonitoredDto.cssPlace}"
+                                    th:title="${playerMonitoredDto.titlePlace}"
                                 />
                                 <td
                                     th:text="${playerMonitoredDto.stackOfPlayer}"
@@ -103,21 +107,33 @@
                                 />
                                 <td
                                     th:text="${playerMonitoredDto.sbCount}"
+                                    th:classappend="${playerMonitoredDto.cssSbCount}"
+                                    th:title="${playerMonitoredDto.titleSbCount}"
                                 />
                                 <td
                                     th:text="${playerMonitoredDto.bbCount}"
+                                    th:classappend="${playerMonitoredDto.cssBbCount}"
+                                    th:title="${playerMonitoredDto.titleBbCount}"
                                 />
                                 <td
                                     th:text="${playerMonitoredDto.btnCount}"
+                                    th:classappend="${playerMonitoredDto.cssBtnCount}"
+                                    th:title="${playerMonitoredDto.titleBtnCount}"
                                 />
                                 <td
                                     th:text="${playerMonitoredDto.chen}"
+                                    th:classappend="${playerMonitoredDto.cssChen}"
+                                    th:title="${playerMonitoredDto.titleChen}"
                                 />
                                 <td
                                     th:text="${playerMonitoredDto.cardsOnHand}"
+                                    th:classappend="${playerMonitoredDto.cssCardsOnHand}"
+                                    th:title="${playerMonitoredDto.titleCardsOnHand}"
                                 />
                                 <td
                                     th:text="${playerMonitoredDto.handDescription}"
+                                    th:classappend="${playerMonitoredDto.cssHandDescription}"
+                                    th:title="${playerMonitoredDto.titleHandDescription}"
                                 />
                             </tr>
                         </tbody>
@@ -150,6 +166,8 @@
                         <tr th:each="playerMonitoredDto : ${playerMonitoredDtoList}">
                             <td
                                 th:text="${playerMonitoredDto.position}"
+                                th:classappend="${playerMonitoredDto.cssPosition}"
+                                th:title="${playerMonitoredDto.titlePosition}"
                             />
                             <td
                                 th:text="${playerMonitoredDto.nickname}"
@@ -160,44 +178,48 @@
                             <td
                                 th:text="${playerMonitoredDto.noActionSeq}"
                                 th:classappend="${playerMonitoredDto.cssNoActionSeq}"
-                                th:title="${playerMonitoredDto.titleNoAction}"
+                                th:title="${playerMonitoredDto.titleNoActionSeq}"
                             />
 
                             <td
                                 th:text="${playerMonitoredDto.noActionPerc}"
                                 th:classappend="${playerMonitoredDto.cssNoActionPerc}"
+                                th:title="${playerMonitoredDto.titleNoActionPerc}"
                             />
 
                             <td
                                 th:text="${playerMonitoredDto.foldSBSeq}"
                                 th:classappend="${playerMonitoredDto.cssFoldSBSeq}"
-                                th:title="${playerMonitoredDto.titleFoldSB}"
+                                th:title="${playerMonitoredDto.titleFoldSBSeq}"
                             />
 
                             <td
                                 th:text="${playerMonitoredDto.foldSBPerc}"
                                 th:classappend="${playerMonitoredDto.cssFoldSBPerc}"
+                                th:title="${playerMonitoredDto.titleFoldSBPerc}"
                             />
 
                             <td
                                 th:text="${playerMonitoredDto.foldBBSeq}"
                                 th:classappend="${playerMonitoredDto.cssFoldBBSeq}"
-                                th:title="${playerMonitoredDto.titleFoldBB}"
+                                th:title="${playerMonitoredDto.titleFoldBBSeq}"
                             />
                             <td
                                 th:text="${playerMonitoredDto.foldBBPerc}"
                                 th:classappend="${playerMonitoredDto.cssFoldBBPerc}"
+                                th:title="${playerMonitoredDto.titleFoldBBPerc}"
                             />
 
                             <td
                                 th:text="${playerMonitoredDto.actionBTNSeq}"
                                 th:classappend="${playerMonitoredDto.cssActionBTNSeq}"
-                                th:title="${playerMonitoredDto.titleActionBTN}"
+                                th:title="${playerMonitoredDto.titleActionBTNSeq}"
                             />
 
                             <td
                                 th:text="${playerMonitoredDto.actionBTNPerc}"
                                 th:classappend="${playerMonitoredDto.cssActionBTNPerc}"
+                                th:title="${playerMonitoredDto.titleActionBTNPerc}"
                             />
                         </tr>
                         </tbody>

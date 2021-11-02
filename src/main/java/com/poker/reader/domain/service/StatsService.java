@@ -4,12 +4,15 @@ import com.poker.reader.domain.model.HandConsolidation;
 import com.poker.reader.domain.repository.HandConsolidationRepository;
 import com.poker.reader.domain.util.Util;
 import com.poker.reader.view.rs.dto.StatsDto;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -174,10 +177,10 @@ public class StatsService {
                         .sbCount(sbCount)
                         .bbCount(bbCount)
                         .btnCount(btnCount)
-                        .labelNoActionMonitoring(seqNoAction + " " + perc(noActionCount, size))
-                        .labelNoActionSBMonitoring(seqNoActionSB + " " + perc(noActionSB, sbCount))
-                        .labelNoActionBBMonitoring(seqNoActionBB + " " + perc(noActionBB, bbCount))
-                        .labelActionBTNMonitoring(seqActionBTN + " " + perc(actionBTN, btnCount))
+                        .labelNoAction(seqNoAction + " " + perc(noActionCount, size))
+                        .labelFoldSB(seqNoActionSB + " " + perc(noActionSB, sbCount))
+                        .labelFoldBB(seqNoActionBB + " " + perc(noActionBB, bbCount))
+                        .labelActionBTN(seqActionBTN + " " + perc(actionBTN, btnCount))
                         .build();
     }
 
