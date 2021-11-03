@@ -326,7 +326,7 @@ public class Analyse {
             return PlayerStyle.NONE;
         } else {
             if (chenValue >= 10) return PlayerStyle.SUPER_TIGHT;
-            if (chenValue >= 8) return PlayerStyle.TIGHT;
+            if (chenValue >= 7) return PlayerStyle.TIGHT;
             if (chenValue >= 5) return PlayerStyle.LIMPER;
             return PlayerStyle.LOOSE;
         }

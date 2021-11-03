@@ -1,14 +1,17 @@
 package com.poker.reader.domain.util;
 
-import com.poker.reader.domain.model.Cards;
-
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.poker.reader.domain.util.CardUtil.valueOf;
 import static com.poker.reader.domain.util.Chen.calculateChenFormulaFrom;
+
+import com.poker.reader.domain.model.Cards;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class CardsGenerator {
 
@@ -112,6 +115,7 @@ public class CardsGenerator {
 
     public static void main(String[] args) {
         System.out.println(generateAllHands().size()); //2652
+        printChenTable();
     }
 
 }
