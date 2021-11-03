@@ -1,6 +1,7 @@
 package com.poker.reader.domain.service;
 
 import com.poker.reader.domain.util.CardUtil;
+import com.poker.reader.domain.util.Util;
 import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
 import java.util.Objects;
@@ -83,6 +84,7 @@ public class Analyse {
         playerMonitoredDto.setCssFoldBBCount(PlayerStyle.NONE.getCss());
         playerMonitoredDto.setCssFoldSBCount(PlayerStyle.NONE.getCss());
         playerMonitoredDto.setCssNoActionCount(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssTotalHandsTournament(PlayerStyle.NONE.getCss());
     }
 
     private static PlayerStyle analyse(PlayerStyle ... playerStyles) {
@@ -315,7 +317,7 @@ public class Analyse {
 
     public static void analyseTitlePlayer(PlayerMonitoredDto playerMonitoredDto, int avgStack) {
 
-        String titleNickname = perc("showdowns", playerMonitoredDto.getShowdowns(), playerMonitoredDto.getTotalHands());
+        String titleNickname = getTitleNickname(playerMonitoredDto);
         String titleAvgChen = "title Avg Chen";
         String titleShowdowns = "title Showdowns";
         String titleShowdownPerc = "title Showdown Perc";
@@ -325,14 +327,14 @@ public class Analyse {
         String titleSbCount = "title SbCount";
         String titleBbCount = "title BbCount";
         String titleBtnCount = "title Btn Count";
-        String titleChen = CardUtil.sort(playerMonitoredDto.getCards());
+        String titleChen = getTitleChen(playerMonitoredDto);
         String titleHandDescription = "title Hand Description";
         String titleCardsOnHand = "title Cards On Hand";
         String titlePlace = "title Place";
         String titleStackOfPlayer = "title Stack Of Player";
-        String titleBlindsCount = "title Blinds Count";
+        String titleBlindsCount = getTitleBlinds(playerMonitoredDto, avgStack);
         String titleNoActionSeq = getTitleNoActionSeq(playerMonitoredDto);
-        String titleNoActionPerc = "title No Action Perc";
+        String titleNoActionPerc = getTitleNoActionPerc(playerMonitoredDto);
         String titleFoldSBSeq = "title Fold SB Seq";
         String titleFoldSBPerc = getTitleFoldSBPerc(playerMonitoredDto);
         String titleFoldBBSeq = "title Fold BB Seq";
@@ -343,6 +345,7 @@ public class Analyse {
         String titleFoldBBCount = "title Fold BB Count";
         String titleFoldSBCount = "title Fold SB Count";
         String titleNoActionCount = "title No Action Count";
+        String titleTotalHandsTournament = "title Total Hands Tournament";
 
         playerMonitoredDto.setTitleNickname(titleNickname);
         playerMonitoredDto.setTitleAvgChen(titleAvgChen);
@@ -372,6 +375,45 @@ public class Analyse {
         playerMonitoredDto.setTitleFoldBBCount(titleFoldBBCount);
         playerMonitoredDto.setTitleFoldSBCount(titleFoldSBCount);
         playerMonitoredDto.setTitleNoActionCount(titleNoActionCount);
+        playerMonitoredDto.setTitleTotalHandsTournament(titleTotalHandsTournament);
+    }
+
+    private static String getTitleNoActionPerc(PlayerMonitoredDto playerMonitoredDto) {
+        return
+                "seq: " + playerMonitoredDto.getNoActionSeq() +"\n" +
+                perc("noAction", playerMonitoredDto.getNoActionCount(), playerMonitoredDto.getTotalHandsTournament());
+    }
+
+    private static String getTitleBlinds(PlayerMonitoredDto playerMonitoredDto, int avgStack) {
+        int blinds = playerMonitoredDto.getBlindsCount();
+        String title = "STACK: " + playerMonitoredDto.getStackOfPlayer();
+
+        if (blinds <= 10) {
+            title = title +  "\nALL IN";
+        }
+        else if (playerMonitoredDto.getStackOfPlayer() >= avgStack) {
+            title = title +  "\nABOVE AVG STACK";
+        }
+        else if (blinds <= 30) {
+            title = title +  "\nPLAY";
+        }
+        else {
+            title = title +  "\nHUGE";
+        }
+        return title;
+    }
+
+    private static String getTitleChen(PlayerMonitoredDto playerMonitoredDto) {
+        return
+                "Total: " + playerMonitoredDto.getShowdowns() +
+                "\navgChen: " + Util.getValue(playerMonitoredDto.getAvgChen()) +
+                "\n" + CardUtil.sort(playerMonitoredDto.getCards());
+    }
+
+    private static String getTitleNickname(PlayerMonitoredDto playerMonitoredDto) {
+        return
+                perc("showdowns", playerMonitoredDto.getShowdowns(), playerMonitoredDto.getTotalHands()) +
+                "\navgChen: " + Util.getValue(playerMonitoredDto.getAvgChen());
 
     }
 

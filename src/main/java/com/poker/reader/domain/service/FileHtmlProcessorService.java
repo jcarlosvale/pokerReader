@@ -203,6 +203,7 @@ public class FileHtmlProcessorService {
                                             .foldBBCount(statsDto.getFoldBBCount())
                                             .foldSBCount(statsDto.getFoldSBCount())
                                             .noActionCount(statsDto.getNoActionCount())
+                                            .totalHandsTournament(statsDto.getTotal())
                                             .build();
                         })
                         .collect(Collectors.toList());

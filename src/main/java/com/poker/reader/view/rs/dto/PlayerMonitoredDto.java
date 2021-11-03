@@ -155,4 +155,9 @@ public class PlayerMonitoredDto {
     private Integer noActionCount;
     private String cssNoActionCount;
     private String titleNoActionCount;
+
+    //29
+    private Integer totalHandsTournament;
+    private String cssTotalHandsTournament;
+    private String titleTotalHandsTournament;
 }

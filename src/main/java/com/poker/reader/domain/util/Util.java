@@ -1,13 +1,12 @@
 package com.poker.reader.domain.util;
 
-import org.apache.commons.io.FileUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import org.apache.commons.io.FileUtils;
 
 public class Util {
 
@@ -59,5 +58,10 @@ public class Util {
 
     public static String toLocalDatetime(LocalDateTime localDateTime) {
         return localDateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMAT));
+    }
+
+    public static String getValue(Integer value) {
+        if (value == null) return "";
+        return value.toString();
     }
 }
