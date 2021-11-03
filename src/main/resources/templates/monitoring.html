@@ -29,8 +29,8 @@
 							<tr>
 								<th>nickname</th>
 								<th>chen</th>
+                                <th>BTN</th>
 								<th>SB</th>
-								<th>BTN</th>
                                 <th>noAct</th>
                                 <th>blinds</th>
 								<th>info</th>
@@ -40,8 +40,8 @@
 							<tr th:each="player : ${modelTournamentMonitored.playerMonitoredDtoList}">
 								<td th:text="${player.nickname}" th:classappend="${player.cssNickname}" th:title="${player.titleNickname}"/>
 								<td th:text="${player.avgChen}" th:classappend="${player.cssAvgChen}" th:title="${player.titleChen}"/>
+                                <td th:text="${player.actionBTNPerc}" th:classappend="${player.cssActionBTNPerc}" th:title="${player.titleActionBTNPerc}"/>
 								<td th:text="${player.foldSBPerc}" th:classappend="${player.cssFoldSBPerc}" th:title="${player.titleFoldSBPerc}"/>
-								<td th:text="${player.actionBTNPerc}" th:classappend="${player.cssActionBTNPerc}" th:title="${player.titleActionBTNPerc}"/>
                                 <td th:text="${player.noActionPerc}" th:classappend="${player.cssNoActionPerc}" th:title="${player.titleNoActionPerc}"/>
                                 <td th:text="${player.blindsCount}" th:classappend="${player.cssBlindsCount}" th:title="${player.titleBlindsCount}"/>
 								<td> <a th:href="@{'/player/'+${player.nickname}}" th:text="info" target="_blank" /></td>

@@ -5,6 +5,7 @@ import com.poker.reader.domain.util.Util;
 import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
 import java.util.Objects;
+import org.apache.logging.log4j.util.Strings;
 
 public class Analyse {
 
@@ -38,7 +39,10 @@ public class Analyse {
 
     public static void analyseCssPlayer(PlayerMonitoredDto playerMonitoredDto, int avgStack) {
 
-        PlayerStyle playerStyleAvgChen = analyseAvgChen(playerMonitoredDto.getAvgChen());
+        PlayerStyle playerStyleAvgChen = analyseChen(playerMonitoredDto.getAvgChen());
+        PlayerStyle playerStyleChen = analyseChen(playerMonitoredDto.getChen());
+        PlayerStyle playerStyleCardsOnHand = playerStyleChen;
+        PlayerStyle playerStyleHandDescription = playerStyleCardsOnHand;
         PlayerStyle playerStyleStackOfPlayer = analyseStackOfPlayer(playerMonitoredDto.getStackOfPlayer(), avgStack);
         PlayerStyle playerStyleBlindsCount = analyseBlindsCount(playerMonitoredDto.getBlindsCount());
         PlayerStyle playerStyleNoActionSeq = analyseNoActionSeq(playerMonitoredDto.getNoActionSeq());
@@ -52,6 +56,7 @@ public class Analyse {
         PlayerStyle playerStyleShowdowns = analyseShowdowns(playerMonitoredDto.getShowdowns());
         PlayerStyle playerStyleShowdownPerc = analyseShowdownPerc(playerMonitoredDto.getShowdownPerc());
         PlayerStyle playerStyleTotalHands = analyseTotalHands(playerMonitoredDto.getTotalHands());
+        PlayerStyle playerStylePlace = analysePlace(playerMonitoredDto.getPlace());
 
         PlayerStyle playerStyleNickname = analyse(
                 playerStyleAvgChen,
@@ -70,10 +75,10 @@ public class Analyse {
         playerMonitoredDto.setCssSbCount(PlayerStyle.NONE.getCss());
         playerMonitoredDto.setCssBbCount(PlayerStyle.NONE.getCss());
         playerMonitoredDto.setCssBtnCount(PlayerStyle.NONE.getCss());
-        playerMonitoredDto.setCssChen(PlayerStyle.NONE.getCss());
-        playerMonitoredDto.setCssHandDescription(PlayerStyle.NONE.getCss());
-        playerMonitoredDto.setCssCardsOnHand(PlayerStyle.NONE.getCss());
-        playerMonitoredDto.setCssPlace(PlayerStyle.NONE.getCss());
+        playerMonitoredDto.setCssChen(playerStyleChen.getCss());
+        playerMonitoredDto.setCssHandDescription(playerStyleHandDescription.getCss());
+        playerMonitoredDto.setCssCardsOnHand(playerStyleCardsOnHand.getCss());
+        playerMonitoredDto.setCssPlace(playerStylePlace.getCss());
         playerMonitoredDto.setCssStackOfPlayer(playerStyleStackOfPlayer.getCss());
         playerMonitoredDto.setCssBlindsCount(playerStyleBlindsCount.getCss());
         playerMonitoredDto.setCssNoActionSeq(playerStyleNoActionSeq.getCss());
@@ -89,6 +94,14 @@ public class Analyse {
         playerMonitoredDto.setCssFoldSBCount(PlayerStyle.NONE.getCss());
         playerMonitoredDto.setCssNoActionCount(PlayerStyle.NONE.getCss());
         playerMonitoredDto.setCssTotalHandsTournament(PlayerStyle.NONE.getCss());
+    }
+
+    private static PlayerStyle analysePlace(String place) {
+        if (Strings.isBlank(place)) return PlayerStyle.NONE;
+        if (place.equals("small blind")) return PlayerStyle.TIGHT;
+        if (place.equals("big blind")) return PlayerStyle.SUPER_TIGHT;
+        if (place.equals("button")) return PlayerStyle.LIMPER;
+        return PlayerStyle.NONE;
     }
 
     private static PlayerStyle analyse(PlayerStyle ... playerStyles) {
@@ -308,13 +321,13 @@ public class Analyse {
         }
     }
 
-    public static PlayerStyle analyseAvgChen(Integer avgChenValue) {
-        if (avgChenValue == null) {
+    public static PlayerStyle analyseChen(Integer chenValue) {
+        if (chenValue == null) {
             return PlayerStyle.NONE;
         } else {
-            if (avgChenValue >= 10) return PlayerStyle.SUPER_TIGHT;
-            if (avgChenValue >= 8) return PlayerStyle.TIGHT;
-            if (avgChenValue >= 5) return PlayerStyle.LIMPER;
+            if (chenValue >= 10) return PlayerStyle.SUPER_TIGHT;
+            if (chenValue >= 8) return PlayerStyle.TIGHT;
+            if (chenValue >= 5) return PlayerStyle.LIMPER;
             return PlayerStyle.LOOSE;
         }
     }
@@ -335,8 +348,8 @@ public class Analyse {
         String titleHandDescription = "title Hand Description";
         String titleCardsOnHand = "title Cards On Hand";
         String titlePlace = "title Place";
-        String titleStackOfPlayer = "title Stack Of Player";
         String titleBlindsCount = getTitleBlinds(playerMonitoredDto, avgStack);
+        String titleStackOfPlayer = titleBlindsCount;
         String titleNoActionSeq = getTitleNoActionSeq(playerMonitoredDto);
         String titleNoActionPerc = getTitleNoActionPerc(playerMonitoredDto);
         String titleFoldSBSeq = "title Fold SB Seq";

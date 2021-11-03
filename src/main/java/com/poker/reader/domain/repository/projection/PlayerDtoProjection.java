@@ -20,6 +20,6 @@ public interface PlayerDtoProjection {
     String getRawCards();
 
     default String getCss() {
-        return Analyse.analyseAvgChen(getAvgChen()).getCss();
+        return Analyse.analyseChen(getAvgChen()).getCss();
     }
 }
