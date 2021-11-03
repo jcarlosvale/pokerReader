@@ -38,7 +38,7 @@
 						</thead>
 						<tbody>
 							<tr th:each="player : ${modelTournamentMonitored.playerMonitoredDtoList}">
-								<td th:text="${player.nickname}" th:classappend="${player.cssNickname}" th:title="${player.titleNickname}"/>
+								<td th:text="${player.nickname} + '-' + ${player.totalHands}"  th:classappend="${player.cssNickname}" th:title="${player.titleNickname}"/>
 								<td th:text="${player.avgChen}" th:classappend="${player.cssAvgChen}" th:title="${player.titleChen}"/>
                                 <td th:text="${player.actionBTNPerc}" th:classappend="${player.cssActionBTNPerc}" th:title="${player.titleActionBTNPerc}"/>
 								<td th:text="${player.foldSBPerc}" th:classappend="${player.cssFoldSBPerc}" th:title="${player.titleFoldSBPerc}"/>

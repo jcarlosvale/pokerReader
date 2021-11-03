@@ -4,8 +4,9 @@ import com.poker.reader.domain.util.CardUtil;
 import com.poker.reader.domain.util.Util;
 import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
 import com.poker.reader.view.rs.dto.RecommendationDto;
-import java.util.Objects;
 import org.apache.logging.log4j.util.Strings;
+
+import java.util.Objects;
 
 public class Analyse {
 
@@ -397,13 +398,16 @@ public class Analyse {
 
     private static String getTitleNoActionPerc(PlayerMonitoredDto playerMonitoredDto) {
         return
-                "seq: " + playerMonitoredDto.getNoActionSeq() +"\n" +
+                "nickname: " + playerMonitoredDto.getNickname() +
+                "\nseq: " + playerMonitoredDto.getNoActionSeq() +"\n" +
                 perc("noAction", playerMonitoredDto.getNoActionCount(), playerMonitoredDto.getTotalHandsTournament());
     }
 
     private static String getTitleBlinds(PlayerMonitoredDto playerMonitoredDto, int avgStack) {
         int blinds = playerMonitoredDto.getBlindsCount();
-        String title = "STACK: " + playerMonitoredDto.getStackOfPlayer();
+        String title =
+                "nickname: " + playerMonitoredDto.getNickname() +
+                "\nSTACK: " + playerMonitoredDto.getStackOfPlayer();
 
         if (blinds <= 10) {
             title = title +  "\nALL IN";
@@ -422,7 +426,8 @@ public class Analyse {
 
     private static String getTitleChen(PlayerMonitoredDto playerMonitoredDto) {
         return
-                "shows: " + playerMonitoredDto.getShowdowns() +
+                "nickname: " + playerMonitoredDto.getNickname() +
+                "\nshows: " + playerMonitoredDto.getShowdowns() +
                 "\navgChen: " + Util.getValue(playerMonitoredDto.getAvgChen()) +
                 "\n" + CardUtil.sort(playerMonitoredDto.getCards());
     }
@@ -436,7 +441,8 @@ public class Analyse {
 
     private static String getTitleActionBTNPerc(PlayerMonitoredDto playerMonitoredDto) {
         return
-                "seq: " + playerMonitoredDto.getActionBTNSeq() +"\n" +
+                "nickname: " + playerMonitoredDto.getNickname() +
+                "\nseq: " + playerMonitoredDto.getActionBTNSeq() +"\n" +
                         perc("actionBTN", playerMonitoredDto.getActionBTNCount(), playerMonitoredDto.getBtnCount());
 
     }
@@ -450,7 +456,8 @@ public class Analyse {
 
     private static String getTitleFoldSBPerc(PlayerMonitoredDto playerMonitoredDto) {
         return
-                "seq: " + playerMonitoredDto.getFoldSBSeq() +"\n" +
+                "nickname: " + playerMonitoredDto.getNickname() +
+                "\nseq: " + playerMonitoredDto.getFoldSBSeq() +"\n" +
                         perc("foldSB", playerMonitoredDto.getFoldSBCount(), playerMonitoredDto.getSbCount());
     }
 
