@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class RecommendationDto {
     String recommendation;
     String css;
+    String title;
 }

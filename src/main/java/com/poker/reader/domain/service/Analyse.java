@@ -10,9 +10,12 @@ public class Analyse {
 
     public static final int MIN_BLINDS = 18;
 
-    public static RecommendationDto analyseStack(long stackFromHero, Integer avgStack, int blinds) {
+    public static RecommendationDto analyseStack(PlayerMonitoredDto playerMonitoredDto, int avgStack) {
         String recommendation;
         String css;
+        String title;
+        int blinds = playerMonitoredDto.getBlindsCount();
+        int stackFromHero = playerMonitoredDto.getStackOfPlayer();
         if(blinds <= 10) {
             recommendation = "ALL IN";
             css = PlayerStyle.LIMPER.getCss();
@@ -29,7 +32,8 @@ public class Analyse {
             recommendation = "PLAY!";
             css = PlayerStyle.TIGHT.getCss();
         }
-        return RecommendationDto.builder().recommendation(recommendation).css(css).build();
+        title = getTitleNickname(playerMonitoredDto);
+        return RecommendationDto.builder().recommendation(recommendation).css(css).title(title).build();
     }
 
     public static void analyseCssPlayer(PlayerMonitoredDto playerMonitoredDto, int avgStack) {
@@ -394,7 +398,7 @@ public class Analyse {
         else if (playerMonitoredDto.getStackOfPlayer() >= avgStack) {
             title = title +  "\nABOVE AVG STACK";
         }
-        else if (blinds <= 30) {
+        else if (blinds < 40) {
             title = title +  "\nPLAY";
         }
         else {
@@ -405,7 +409,7 @@ public class Analyse {
 
     private static String getTitleChen(PlayerMonitoredDto playerMonitoredDto) {
         return
-                "Total: " + playerMonitoredDto.getShowdowns() +
+                "shows: " + playerMonitoredDto.getShowdowns() +
                 "\navgChen: " + Util.getValue(playerMonitoredDto.getAvgChen()) +
                 "\n" + CardUtil.sort(playerMonitoredDto.getCards());
     }

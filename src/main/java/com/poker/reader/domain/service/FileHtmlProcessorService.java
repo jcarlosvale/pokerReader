@@ -119,7 +119,7 @@ public class FileHtmlProcessorService {
         int avgStack = (int) playerMonitoredDtoList.stream().mapToInt(PlayerMonitoredDto::getStackOfPlayer).average().orElseThrow();
 
         PlayerMonitoredDto hero = remove(playerMonitoredDtoList, HERO);
-        RecommendationDto recommendationDto = Analyse.analyseStack(hero.getStackOfPlayer(), avgStack,hero.getBlindsCount());
+        RecommendationDto recommendationDto = Analyse.analyseStack(hero, avgStack);
 
         return ModelTournamentMonitored.builder()
                 .tournamentId(tournamentId)
@@ -128,6 +128,7 @@ public class FileHtmlProcessorService {
                 .minBlindsRecommendation(Analyse.MIN_BLINDS * hand.getBigBlind())
                 .recommendation(recommendationDto.getRecommendation())
                 .cssRecommendation(recommendationDto.getCss())
+                .titleRecommendation(recommendationDto.getTitle())
                 .avgStack(avgStack)
                 .blindsCount(hero.getBlindsCount())
                 .playerMonitoredDtoList(playerMonitoredDtoList)

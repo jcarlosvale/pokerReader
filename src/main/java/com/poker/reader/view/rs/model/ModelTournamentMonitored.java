@@ -1,12 +1,11 @@
 package com.poker.reader.view.rs.model;
 
 import com.poker.reader.view.rs.dto.PlayerMonitoredDto;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,6 +21,7 @@ public class ModelTournamentMonitored {
     private Integer minBlindsRecommendation;
     private String recommendation;
     private String cssRecommendation;
+    private String titleRecommendation;
 
     private Integer avgStack;
     private Integer blindsCount;
