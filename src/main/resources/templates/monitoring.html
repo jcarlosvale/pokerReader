@@ -17,9 +17,9 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-12">
-					<table class="table table-sm table-bordered">
+					<table class="table table-sm table-bordered table-fit">
 						<caption th:text="${modelTournamentMonitored.tournamentId} +
-						' - stack ' + ${modelTournamentMonitored.stackOfHero} +
+						' - $ ' + ${modelTournamentMonitored.stackOfHero} +
 						' [' + ${modelTournamentMonitored.minBlindsRecommendation} +
 						' - ' + ${modelTournamentMonitored.avgStack} +
 						'] # ' + ${modelTournamentMonitored.blindsCount} +
@@ -28,12 +28,12 @@
 						<thead>
 							<tr>
 								<th>nickname</th>
-								<th>chen</th>
-                                <th>BTN</th>
+								<th>ch</th>
+                                <th>D</th>
 								<th>SB</th>
-                                <th>noAct</th>
-                                <th>blinds</th>
-								<th>info</th>
+                                <th>no</th>
+<!--                                <th>blinds</th>-->
+<!--								<th>info</th>-->
 							</tr>
 						</thead>
 						<tbody>
@@ -43,8 +43,8 @@
                                 <td th:text="${player.actionBTNPerc}" th:classappend="${player.cssActionBTNPerc}" th:title="${player.titleActionBTNPerc}"/>
 								<td th:text="${player.foldSBPerc}" th:classappend="${player.cssFoldSBPerc}" th:title="${player.titleFoldSBPerc}"/>
                                 <td th:text="${player.noActionPerc}" th:classappend="${player.cssNoActionPerc}" th:title="${player.titleNoActionPerc}"/>
-                                <td th:text="${player.blindsCount}" th:classappend="${player.cssBlindsCount}" th:title="${player.titleBlindsCount}"/>
-								<td> <a th:href="@{'/player/'+${player.nickname}}" th:text="info" target="_blank" /></td>
+<!--                                <td th:text="${player.blindsCount}" th:classappend="${player.cssBlindsCount}" th:title="${player.titleBlindsCount}"/>-->
+<!--								<td> <a th:href="@{'/player/'+${player.nickname}}" th:text="info" target="_blank" /></td>-->
 							</tr>
 						</tbody>
 					</table>
